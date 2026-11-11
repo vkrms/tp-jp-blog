@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TP JP 3.0 — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* tokens:start */
+:root {
+  --color-ink: #101828;
+  --color-body: #1D2939;
+  --color-label: #344054;
+  --color-secondary: #475467;
+  --color-muted: #667085;
+  --color-disabled: #98A2B3;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #101828;
+  --color-surface-muted: #F9FAFB;
+  --color-surface-soft: #F2F4F7;
+  --color-line: #EAECF0;
+  --color-line-strong: #D0D5DD;
+  --color-surface-deep: #1B1D29;
+  --color-primary: #006DFF;
+  --color-on-primary: #FFFFFF;
+  --color-primary-hover: #0061E0;
+  --color-primary-pressed: #0058CC;
+  --color-focus: #66A7FF;
+  --color-primary-200: #CCE2FF;
+  --color-primary-100: #E5F0FF;
+  --color-primary-50: #F2F8FF;
+  --color-warm: #FF6200;
+  --color-warm-result: #E05600;
+  --color-warm-strong: #C24A00;
+  --color-warm-strong-hover: #A33F00;
+  --color-warm-200: #FFE2D1;
+  --color-free-bg: #FFF1E8;
+  --color-free-text: #CC4E00;
+  --color-warm-50: #FFF8F3;
+  --color-success: #067647;
+  --color-error: #F04438;
+  --color-accent-pink: #E14171;
+  --color-accent-pink-tint: #FEECF1;
+
+  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, system-ui, sans-serif;
+  --type-numeral-desktop-size: 72px; --type-numeral-desktop-weight: 700; --type-numeral-desktop-lh: 1; --type-numeral-desktop-ls: -0.03em;
+  --type-numeral-mobile-size: 56px; --type-numeral-mobile-weight: 700; --type-numeral-mobile-lh: 1; --type-numeral-mobile-ls: -0.03em;
+  --type-h1-desktop-size: 50px; --type-h1-desktop-weight: 700; --type-h1-desktop-lh: 1.5; --type-h1-desktop-ls: 0.02em;
+  --type-h1-mobile-size: 30px; --type-h1-mobile-weight: 700; --type-h1-mobile-lh: 1.5; --type-h1-mobile-ls: 0.02em;
+  --type-h2-desktop-size: 32px; --type-h2-desktop-weight: 700; --type-h2-desktop-lh: 1.5; --type-h2-desktop-ls: 0.02em;
+  --type-h2-mobile-size: 22px; --type-h2-mobile-weight: 700; --type-h2-mobile-lh: 1.5; --type-h2-mobile-ls: 0.02em;
+  --type-h3-desktop-size: 24px; --type-h3-desktop-weight: 700; --type-h3-desktop-lh: 1.5; --type-h3-desktop-ls: 0.02em;
+  --type-h3-mobile-size: 18px; --type-h3-mobile-weight: 700; --type-h3-mobile-lh: 1.5; --type-h3-mobile-ls: 0.02em;
+  --type-lead-desktop-size: 18px; --type-lead-desktop-weight: 400; --type-lead-desktop-lh: 1.8; --type-lead-desktop-ls: 0em;
+  --type-lead-mobile-size: 16px; --type-lead-mobile-weight: 400; --type-lead-mobile-lh: 1.8; --type-lead-mobile-ls: 0em;
+  --type-body-desktop-size: 16px; --type-body-desktop-weight: 400; --type-body-desktop-lh: 1.8; --type-body-desktop-ls: 0em;
+  --type-body-mobile-size: 14px; --type-body-mobile-weight: 400; --type-body-mobile-lh: 1.8; --type-body-mobile-ls: 0em;
+  --type-title-size: 18px; --type-title-weight: 700; --type-title-lh: 1.6; --type-title-ls: 0em;
+  --type-body-bold-size: 16px; --type-body-bold-weight: 700; --type-body-bold-lh: 1.6; --type-body-bold-ls: 0em;
+  --type-small-size: 14px; --type-small-weight: 400; --type-small-lh: 1.6; --type-small-ls: 0em;
+  --type-small-bold-size: 14px; --type-small-bold-weight: 700; --type-small-bold-lh: 1.6; --type-small-bold-ls: 0em;
+  --type-note-size: 12px; --type-note-weight: 400; --type-note-lh: 1.6; --type-note-ls: 0em;
+  --type-note-bold-size: 12px; --type-note-bold-weight: 700; --type-note-bold-lh: 1.6; --type-note-bold-ls: 0em;
+  --type-button-l-size: 16px; --type-button-l-weight: 700; --type-button-l-lh: 1.3; --type-button-l-ls: 0.02em;
+  --type-button-s-size: 14px; --type-button-s-weight: 700; --type-button-s-lh: 1.3; --type-button-s-ls: 0.02em;
+  --type-tag-size: 10px; --type-tag-weight: 700; --type-tag-lh: 14px; --type-tag-ls: 0em;
+
+  --radius-xs: 4px;
+  --radius-control: 12px;
+  --radius-surface: 20px;
+  --radius-panel: 28px;
+  --radius-full: 999px;
+
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-18: 18px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-72: 72px;
+  --space-96: 96px;
+  --space-128: 128px;
+  --space-160: 160px;
+  --space-page-margin-desktop: 48px;
+  --space-page-margin-mobile: 16px;
+  --space-container-desktop: 1344px;
+  --space-container-mobile: 343px;
+  --space-section-top-desktop: 112px;
+  --space-card-padding-desktop: 32px;
+  --space-card-padding-mobile: 24px;
+
+  --shadow-focus: 0 0 0 3px var(--color-focus);
+
+  /* responsive aliases (desktop ≥ 768px) */
+  --type-numeral-size: var(--type-numeral-desktop-size); --type-numeral-weight: var(--type-numeral-desktop-weight); --type-numeral-lh: var(--type-numeral-desktop-lh); --type-numeral-ls: var(--type-numeral-desktop-ls);
+  --type-h1-size: var(--type-h1-desktop-size); --type-h1-weight: var(--type-h1-desktop-weight); --type-h1-lh: var(--type-h1-desktop-lh); --type-h1-ls: var(--type-h1-desktop-ls);
+  --type-h2-size: var(--type-h2-desktop-size); --type-h2-weight: var(--type-h2-desktop-weight); --type-h2-lh: var(--type-h2-desktop-lh); --type-h2-ls: var(--type-h2-desktop-ls);
+  --type-h3-size: var(--type-h3-desktop-size); --type-h3-weight: var(--type-h3-desktop-weight); --type-h3-lh: var(--type-h3-desktop-lh); --type-h3-ls: var(--type-h3-desktop-ls);
+  --type-lead-size: var(--type-lead-desktop-size); --type-lead-weight: var(--type-lead-desktop-weight); --type-lead-lh: var(--type-lead-desktop-lh); --type-lead-ls: var(--type-lead-desktop-ls);
+  --type-body-size: var(--type-body-desktop-size); --type-body-weight: var(--type-body-desktop-weight); --type-body-lh: var(--type-body-desktop-lh); --type-body-ls: var(--type-body-desktop-ls);
+}
+@media (max-width: 767px) {
+  :root {
+    --type-numeral-size: var(--type-numeral-mobile-size); --type-numeral-weight: var(--type-numeral-mobile-weight); --type-numeral-lh: var(--type-numeral-mobile-lh); --type-numeral-ls: var(--type-numeral-mobile-ls);
+    --type-h1-size: var(--type-h1-mobile-size); --type-h1-weight: var(--type-h1-mobile-weight); --type-h1-lh: var(--type-h1-mobile-lh); --type-h1-ls: var(--type-h1-mobile-ls);
+    --type-h2-size: var(--type-h2-mobile-size); --type-h2-weight: var(--type-h2-mobile-weight); --type-h2-lh: var(--type-h2-mobile-lh); --type-h2-ls: var(--type-h2-mobile-ls);
+    --type-h3-size: var(--type-h3-mobile-size); --type-h3-weight: var(--type-h3-mobile-weight); --type-h3-lh: var(--type-h3-mobile-lh); --type-h3-ls: var(--type-h3-mobile-ls);
+    --type-lead-size: var(--type-lead-mobile-size); --type-lead-weight: var(--type-lead-mobile-weight); --type-lead-lh: var(--type-lead-mobile-lh); --type-lead-ls: var(--type-lead-mobile-ls);
+    --type-body-size: var(--type-body-mobile-size); --type-body-weight: var(--type-body-mobile-weight); --type-body-lh: var(--type-body-mobile-lh); --type-body-ls: var(--type-body-mobile-ls);
+  }
+}
+.t-numeral { font-family: var(--font-sans); font-size: var(--type-numeral-size); font-weight: var(--type-numeral-weight); line-height: var(--type-numeral-lh); letter-spacing: var(--type-numeral-ls); }
+.t-h1 { font-family: var(--font-sans); font-size: var(--type-h1-size); font-weight: var(--type-h1-weight); line-height: var(--type-h1-lh); letter-spacing: var(--type-h1-ls); }
+.t-h2 { font-family: var(--font-sans); font-size: var(--type-h2-size); font-weight: var(--type-h2-weight); line-height: var(--type-h2-lh); letter-spacing: var(--type-h2-ls); }
+.t-h3 { font-family: var(--font-sans); font-size: var(--type-h3-size); font-weight: var(--type-h3-weight); line-height: var(--type-h3-lh); letter-spacing: var(--type-h3-ls); }
+.t-lead { font-family: var(--font-sans); font-size: var(--type-lead-size); font-weight: var(--type-lead-weight); line-height: var(--type-lead-lh); letter-spacing: var(--type-lead-ls); }
+.t-body { font-family: var(--font-sans); font-size: var(--type-body-size); font-weight: var(--type-body-weight); line-height: var(--type-body-lh); letter-spacing: var(--type-body-ls); }
+.t-title { font-family: var(--font-sans); font-size: var(--type-title-size); font-weight: var(--type-title-weight); line-height: var(--type-title-lh); letter-spacing: var(--type-title-ls); }
+.t-body-bold { font-family: var(--font-sans); font-size: var(--type-body-bold-size); font-weight: var(--type-body-bold-weight); line-height: var(--type-body-bold-lh); letter-spacing: var(--type-body-bold-ls); }
+.t-small { font-family: var(--font-sans); font-size: var(--type-small-size); font-weight: var(--type-small-weight); line-height: var(--type-small-lh); letter-spacing: var(--type-small-ls); }
+.t-small-bold { font-family: var(--font-sans); font-size: var(--type-small-bold-size); font-weight: var(--type-small-bold-weight); line-height: var(--type-small-bold-lh); letter-spacing: var(--type-small-bold-ls); }
+.t-note { font-family: var(--font-sans); font-size: var(--type-note-size); font-weight: var(--type-note-weight); line-height: var(--type-note-lh); letter-spacing: var(--type-note-ls); }
+.t-note-bold { font-family: var(--font-sans); font-size: var(--type-note-bold-size); font-weight: var(--type-note-bold-weight); line-height: var(--type-note-bold-lh); letter-spacing: var(--type-note-bold-ls); }
+.t-button-l { font-family: var(--font-sans); font-size: var(--type-button-l-size); font-weight: var(--type-button-l-weight); line-height: var(--type-button-l-lh); letter-spacing: var(--type-button-l-ls); }
+.t-button-s { font-family: var(--font-sans); font-size: var(--type-button-s-size); font-weight: var(--type-button-s-weight); line-height: var(--type-button-s-lh); letter-spacing: var(--type-button-s-ls); }
+.t-tag { font-family: var(--font-sans); font-size: var(--type-tag-size); font-weight: var(--type-tag-weight); line-height: var(--type-tag-lh); letter-spacing: var(--type-tag-ls); }
+/* tokens:end */
+
+/* ---------- guide chrome (neutral) ---------- */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font-sans); color: var(--color-ink); background: var(--color-surface); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1344px; margin: 0 auto; padding: var(--space-64) var(--space-48) var(--space-128); }
+@media (max-width: 767px) { .wrap { padding: var(--space-40) var(--space-16) var(--space-96); } }
+header.top { border-bottom: 1px solid var(--color-line); padding-bottom: var(--space-40); margin-bottom: var(--space-64); }
+.eyebrow { font-size: 14px; font-weight: 700; color: var(--color-primary-pressed); margin: 0 0 var(--space-8); }
+.top h1 { font-size: 56px; line-height: 1.2; margin: 0 0 var(--space-16); letter-spacing: 0.01em; }
+.top p { max-width: 760px; color: var(--color-secondary); margin: 0 0 var(--space-8); line-height: 1.8; }
+code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+section.s { margin-bottom: var(--space-96); }
+section.s > h2 { font-size: 28px; margin: 0 0 var(--space-8); padding-top: var(--space-16); border-top: 2px solid var(--color-ink); }
+section.s > p.lead { color: var(--color-muted); margin: 0 0 var(--space-32); max-width: 820px; line-height: 1.7; }
+h3.g { font-size: 16px; margin: var(--space-32) 0 var(--space-16); }
+.meta { color: var(--color-muted); font-size: 12px; line-height: 1.5; }
+
+/* colors */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-16); }
+.sw { border: 1px solid var(--color-line); border-radius: var(--radius-control); overflow: hidden; }
+.sw .chip { height: 88px; display: flex; align-items: flex-end; padding: var(--space-10) var(--space-12); font-size: 13px; font-weight: 700; }
+.sw .info { padding: var(--space-10) var(--space-12); }
+.sw .info b { display: block; font-size: 13px; }
+
+/* typography */
+.trow { display: grid; grid-template-columns: 220px 1fr; gap: var(--space-24); padding: var(--space-20) 0; border-bottom: 1px solid var(--color-line); align-items: baseline; }
+@media (max-width: 767px) { .trow { grid-template-columns: 1fr; gap: var(--space-8); } }
+.trow .spec b { display: block; font-size: 14px; }
+.trow .sample { font-family: var(--font-sans); color: var(--color-ink); overflow-wrap: anywhere; }
+.half { font-size: 0.5em; }
+
+/* spacing / radius / elevation */
+.sp { display: grid; grid-template-columns: 90px 60px 1fr; align-items: center; gap: var(--space-12); padding: 4px 0; }
+.sp .bar { height: 14px; background: var(--color-primary); border-radius: 2px; }
+.radii { display: flex; flex-wrap: wrap; gap: var(--space-24); }
+.radii .box { width: 140px; height: 100px; background: var(--color-primary-100); border: 1px solid var(--color-primary-200); margin-bottom: var(--space-8); }
+.elev { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-24); }
+.elev > div { padding: var(--space-24); border-radius: var(--radius-panel); min-height: 130px; }
+
+/* layout */
+.grid-demo { background: var(--color-surface-muted); border-radius: var(--radius-control); padding: var(--space-16); margin-bottom: var(--space-16); }
+.grid-demo .cols { display: grid; gap: var(--space-12); }
+.grid-demo .cols > div { background: var(--color-primary-100); border-radius: var(--radius-xs); padding: var(--space-12); font-size: 12px; color: var(--color-primary-pressed); font-weight: 700; }
+
+/* component showcase */
+.state-grid { display: grid; grid-template-columns: 90px repeat(3, max-content); margin-bottom: var(--space-24); gap: var(--space-16) var(--space-16); align-items: center; overflow-x: auto; padding-bottom: var(--space-8); }
+.state-grid .h { font-size: 12px; color: var(--color-muted); }
+.state-grid .rl { font-size: 13px; font-weight: 700; color: var(--color-label); }
+.demo-row { display: flex; flex-wrap: wrap; gap: var(--space-32); align-items: flex-start; }
+.demo-row > figure { margin: 0; }
+.demo-row figcaption { margin-top: var(--space-8); }
+
+/* ---------- product components (all token-driven) ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid transparent; border-radius: var(--radius-control); font-family: var(--font-sans); font-weight: var(--type-button-l-weight); line-height: var(--type-button-l-lh); letter-spacing: var(--type-button-l-ls); cursor: pointer; white-space: nowrap; text-decoration: none; transition: background-color .15s, border-color .15s; }
+.btn:focus-visible, .btn.is-focus { outline: none; box-shadow: var(--shadow-focus); }
+.btn-l { height: 56px; padding: 0 28px; font-size: var(--type-button-l-size); }
+.btn-m { height: 48px; padding: 0 22px; font-size: var(--type-button-l-size); }
+.btn-s { height: 40px; padding: 0 14px; font-size: var(--type-button-s-size); letter-spacing: var(--type-button-s-ls); }
+.btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+.btn-primary:hover, .btn-primary.is-hover { background: var(--color-primary-hover); }
+.btn-primary:active, .btn-primary.is-pressed { background: var(--color-primary-pressed); }
+.btn-primary[disabled], .btn-primary.is-disabled { background: var(--color-line); color: var(--color-disabled); cursor: not-allowed; }
+.btn-ghost { background: transparent; color: var(--color-ink); border-color: var(--color-line-strong); }
+.btn-ghost:hover, .btn-ghost.is-hover { background: var(--color-surface); border-color: var(--color-ink); }
+.btn-ghost:active, .btn-ghost.is-pressed { background: var(--color-line); border-color: var(--color-line-strong); }
+.btn-ghost[disabled], .btn-ghost.is-disabled { color: var(--color-disabled); border-color: var(--color-line); cursor: not-allowed; }
+.btn-outline-warm { background: transparent; color: var(--color-warm-strong); border-color: var(--color-warm-strong); }
+.btn-outline-warm:hover, .btn-outline-warm.is-hover { color: var(--color-warm-strong-hover); border-color: var(--color-warm-strong-hover); }
+.spin { width: 16px; height: 16px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.badge-free { display: inline-flex; padding: 2px 8px; border-radius: var(--radius-xs); background: var(--color-free-bg); color: var(--color-free-text); font-size: var(--type-note-bold-size); font-weight: 700; line-height: var(--type-note-bold-lh); }
+.chip-req { display: inline-flex; padding: 1px 6px; border-radius: var(--radius-xs); background: var(--color-surface-soft); color: var(--color-label); font-size: var(--type-note-bold-size); font-weight: 700; line-height: var(--type-note-bold-lh); }
+.tag-ex { display: inline-flex; padding: 1px 5px; border-radius: var(--radius-xs); background: var(--color-surface-soft); color: var(--color-secondary); font-size: var(--type-tag-size); font-weight: 700; line-height: var(--type-tag-lh); }
+.note { display: flex; gap: 3px; color: var(--color-muted); font-size: 13px; line-height: 19.5px; }
+@media (max-width: 767px) { .note { font-size: 12px; line-height: 18px; } }
+.link { color: var(--color-primary-pressed); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+.cta-row { display: inline-flex; flex-direction: column; align-items: center; gap: var(--space-24); text-align: center; }
+.cta-row .micro { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: var(--type-note-size); line-height: var(--type-note-lh); }
+.cta-row .micro .l1 { display: flex; gap: 8px; align-items: center; color: var(--color-secondary); }
+.cta-row .micro .l2 { color: var(--color-muted); }
+.cta-row.mobile { width: 343px; align-items: stretch; gap: var(--space-12); text-align: left; }
+.cta-row.mobile .btn { width: 100%; }
+.cta-row.mobile .micro { align-items: flex-start; }
+
+.field { display: flex; flex-direction: column; gap: var(--space-8); width: 100%; max-width: 480px; }
+.field label { display: flex; align-items: center; gap: var(--space-8); font-size: var(--type-small-bold-size); font-weight: 700; line-height: var(--type-small-bold-lh); }
+.input { height: 56px; padding: 0 16px; border: 1px solid var(--color-line-strong); border-radius: var(--radius-control); font-family: var(--font-sans); font-size: var(--type-body-desktop-size); color: var(--color-ink); background: var(--color-surface); width: 100%; }
+.input::placeholder { color: var(--color-disabled); }
+.input:focus { outline: none; border-color: var(--color-primary); box-shadow: var(--shadow-focus); }
+.input.is-error { border-color: var(--color-error); }
+
+.cb { display: inline-flex; align-items: center; gap: 10px; font-size: var(--type-small-size); line-height: var(--type-small-lh); }
+.cb .box { width: 20px; height: 20px; border: 1.5px solid var(--color-line-strong); border-radius: var(--radius-xs); background: var(--color-surface); display: inline-flex; align-items: center; justify-content: center; color: var(--color-on-primary); font-size: 13px; font-weight: 700; flex: none; }
+.cb.checked .box { background: var(--color-primary); border-color: var(--color-primary); }
+.cb.error .box { border-color: var(--color-error); }
+
+.lang { display: inline-flex; align-items: center; }
+.lang .it { height: 44px; padding: 0 8px; display: inline-flex; flex-direction: column; justify-content: center; align-items: center; gap: 3px; font-size: var(--type-small-size); color: var(--color-muted); border: 1px solid transparent; border-radius: var(--radius-xs); }
+.lang .it::after { content: ""; width: 100%; height: 1px; background: transparent; }
+.lang .it.on { color: var(--color-ink); font-weight: 700; }
+.lang .it.on::after { background: var(--color-ink); }
+.lang .it.hover { color: var(--color-ink); }
+.lang .it.hover::after { background: var(--color-line-strong); }
+.lang .it.focus { border-color: var(--color-focus); }
+.lang .sep { color: var(--color-line-strong); font-size: var(--type-small-size); }
+
+/* patterns */
+.kf { width: 437px; max-width: 100%; height: 200px; padding: var(--space-32); border-radius: var(--radius-panel); background: var(--color-primary-100); display: flex; flex-direction: column; gap: var(--space-12); justify-content: center; }
+.kf .num { color: var(--color-primary-pressed); font-size: var(--type-numeral-size); font-weight: 700; line-height: 1; letter-spacing: var(--type-numeral-ls); }
+.logo-tile { width: 214px; height: 120px; border-radius: var(--radius-surface); background: var(--color-surface-muted); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #00a03c; font-size: 18px; }
+.faq-tab { width: 460px; max-width: 100%; height: 60px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; border-radius: var(--radius-control); border: 1px solid var(--color-primary-100); background: var(--color-surface); color: var(--color-label); font-size: var(--type-body-desktop-size); position: relative; overflow: hidden; }
+.faq-tab .cnt { min-width: 22px; height: 20px; padding: 0 6px; border-radius: var(--radius-full); background: var(--color-surface-soft); color: var(--color-label); font-size: 12px; display: inline-flex; align-items: center; justify-content: center; }
+.faq-tab.on { background: var(--color-primary-100); border-color: var(--color-primary-200); color: var(--color-ink); font-weight: 700; }
+.faq-tab.on::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--color-primary); }
+.faq-tab.on .cnt { background: var(--color-primary-100); color: var(--color-primary-pressed); font-weight: 400; }
+.faq { width: 552px; max-width: 100%; border-radius: var(--radius-panel); background: var(--color-surface-muted); border: 1px solid transparent; }
+.faq.open { border-color: var(--color-primary-200); }
+.faq .q { display: flex; align-items: center; gap: var(--space-16); padding: var(--space-32); font-weight: 700; font-size: var(--type-body-bold-size); line-height: var(--type-body-bold-lh); }
+.faq .q span.t { flex: 1; }
+.plate { width: 36px; height: 36px; flex: none; border-radius: var(--radius-control); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+.plate.q { background: var(--color-primary-100); color: var(--color-primary-pressed); }
+.plate.a { background: var(--color-surface-soft); color: var(--color-muted); }
+.tog { width: 32px; height: 32px; flex: none; border-radius: var(--radius-full); background: var(--color-surface-soft); display: inline-flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 400; color: var(--color-ink); }
+.faq.open .tog { background: var(--color-primary-100); }
+.faq .ans { display: flex; gap: var(--space-16); padding: 0 72px 32px 32px; color: var(--color-secondary); font-size: var(--type-body-desktop-size); line-height: var(--type-body-desktop-lh); }
+.faq .ans ul { margin: 6px 0; padding-left: 1.2em; }
+.story { width: 552px; max-width: 100%; padding: var(--space-32); border-radius: var(--radius-panel); border: 1px solid var(--color-primary-100); background: var(--color-surface); display: flex; flex-direction: column; gap: var(--space-20); }
+.story .who { display: flex; align-items: center; gap: var(--space-16); }
+.avatar { width: 80px; height: 80px; border-radius: var(--radius-full); background: var(--color-primary-200); }
+.story .res { color: var(--color-primary-pressed); }
+.story p { margin: 0; color: var(--color-body); }
+.quote { padding: 20px 24px; border-radius: var(--radius-surface); background: var(--color-primary-100); color: var(--color-ink); }
+.step { width: 440px; max-width: 100%; padding: var(--space-24); border-radius: var(--radius-panel); border: 1px solid var(--color-primary-100); background: var(--color-surface); display: flex; flex-direction: column; gap: var(--space-24); }
+.step .plate-bg { height: 220px; border-radius: var(--radius-panel); background: var(--color-primary-50); padding: var(--space-16); display: flex; align-items: center; justify-content: center; }
+.step .mock { width: 100%; height: 100%; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-control); padding: 12px 14px; font-size: 10px; color: var(--color-muted); display: flex; flex-direction: column; gap: 5px; }
+.step .mock .in { border: 1px solid var(--color-line-strong); border-radius: var(--radius-xs); padding: 3px 6px; color: var(--color-ink); }
+.step .mock .b { height: 28px; border-radius: 6px; background: var(--color-primary); color: #fff; font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+.support { padding: var(--space-32); border-radius: var(--radius-panel); background: var(--color-warm-50); display: flex; align-items: center; justify-content: space-between; gap: var(--space-24); flex-wrap: wrap; }
+.support h4 { margin: 0 0 var(--space-8); color: var(--color-warm-strong); }
+.support p { margin: 0; color: var(--color-body); }
+
+/* do / don't */
+.dd { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-24); }
+@media (max-width: 767px) { .dd { grid-template-columns: 1fr; } }
+.dd > div { border-radius: var(--radius-surface); padding: var(--space-24); }
+.dd .do { background: #ECFDF3; }
+.dd .dont { background: #FEF3F2; }
+.dd h3 { margin: 0 0 var(--space-12); font-size: 18px; }
+.dd ul { margin: 0; padding-left: 1.2em; line-height: 1.8; font-size: 15px; }
+.dd li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">TP JP Landing · D 3.0</p>
+  <h1>TP JP 3.0 Design System</h1>
+  <p>A design system for the Travelpayouts Japan landing page. It is calm, flat and trust-first, uses one brand blue for actions, and saves warm orange for "free" and support moments.</p>
+  <p class="meta">This page is the human-readable mirror of <code>docs/design.md</code>, which is the source of truth. Tokens also live in <code>docs/design-tokens.json</code> (DTCG) and <code>docs/design-tokens.css</code>. Regenerate them with <code>node tools/build-design-tokens.mjs</code>. Source: Figma <code>tp-landing-jp</code> · node 388:330.</p>
+</header>
+
+<!-- ======================= COLORS ======================= -->
+<section class="s" id="colors">
+  <h2>Colors</h2>
+  <p class="lead">The palette is a neutral slate ramp, with one brand blue for action and a warm orange for free and support moments. Signals are kept sparse.</p>
+  <div id="color-groups"></div>
+</section>
+
+<!-- ======================= TYPOGRAPHY ======================= -->
+<section class="s" id="type">
+  <h2>Typography</h2>
+  <p class="lead">There is one family, Noto Sans JP (400 / 500 / 700). Line height is 150% for headings, 180% for reading text, 160% for UI text and 130% for buttons. Big numerals put their unit at half size.</p>
+  <div id="type-rows"></div>
+</section>
+
+<!-- ======================= LAYOUT ======================= -->
+<section class="s" id="layout">
+  <h2>Layout</h2>
+  <p class="lead">Spacing tokens run from 2 to 160. Desktop is 1440 with a 48 margin and a 1344 container. Mobile is 375 with a 16 margin and a 343 single column. Sections open with 112 top padding on desktop.</p>
+  <h3 class="g">Spacing scale</h3>
+  <div id="space-rows"></div>
+  <h3 class="g">Grids</h3>
+  <div class="grid-demo"><div class="meta" style="margin-bottom:8px">Desktop · 2 columns — text 560 · gap 116 · visual 668</div>
+    <div class="cols" style="grid-template-columns: 560fr 668fr; column-gap: calc(116px * .5)"><div>Text col 560</div><div>Visual col 668</div></div></div>
+  <div class="grid-demo"><div class="meta" style="margin-bottom:8px">Desktop · 3 columns — cards 437 × 3 · gap 16 (key figures / steps: 440 · gap 12)</div>
+    <div class="cols" style="grid-template-columns: repeat(3, 1fr)"><div>437</div><div>437</div><div>437</div></div></div>
+  <div class="grid-demo" style="max-width: 375px"><div class="meta" style="margin-bottom:8px">Mobile 375 — margin 16 · content 343 · single column</div>
+    <div class="cols"><div>343</div></div></div>
+</section>
+
+<!-- ======================= ELEVATION ======================= -->
+<section class="s" id="elevation">
+  <h2>Elevation &amp; Depth</h2>
+  <p class="lead">The system is flat. Depth comes from tonal surfaces and 1px tint borders. The only shadow is the focus ring.</p>
+  <div class="elev">
+    <div style="background: var(--color-surface); border: 1px solid var(--color-line)"><b>Level 0 · page</b><p class="meta">surface + line hairline</p></div>
+    <div style="background: var(--color-surface-muted)"><b>Level 1 · band / FAQ</b><p class="meta">surface-muted, no border</p></div>
+    <div style="background: var(--color-surface); border: 1px solid var(--color-primary-100)"><b>Level 1 · card</b><p class="meta">surface + 1px primary-100</p></div>
+    <div style="background: var(--color-surface-muted); border: 1px solid var(--color-primary-200)"><b>Active / open</b><p class="meta">outline in primary-200 — not a shadow</p></div>
+    <div style="background: var(--color-surface); box-shadow: var(--shadow-focus)"><b>Focus</b><p class="meta">0 0 0 3px focus (#66A7FF)</p></div>
+  </div>
+</section>
+
+<!-- ======================= SHAPES ======================= -->
+<section class="s" id="shapes">
+  <h2>Shapes</h2>
+  <p class="lead">There are four radius steps plus full. Bigger containers get bigger radii, and nested radii step down.</p>
+  <div class="radii" id="radius-boxes"></div>
+</section>
+
+<!-- ======================= COMPONENTS ======================= -->
+<section class="s" id="components">
+  <h2>Components</h2>
+  <p class="lead">Every entry is built from tokens. Static copies show the hover, pressed and focus states.</p>
+
+  <h3 class="g">Button — Kind × Size × State</h3>
+  <div class="demo-row" id="btn-grid"></div>
+  <h3 class="g">Outline warm (support band only)</h3>
+  <div class="demo-row">
+    <figure><a class="btn btn-l btn-outline-warm" href="#">サポートに問い合わせる</a><figcaption class="meta">default</figcaption></figure>
+    <figure><a class="btn btn-l btn-outline-warm is-hover" href="#">サポートに問い合わせる</a><figcaption class="meta">hover</figcaption></figure>
+  </div>
+
+  <h3 class="g">CTA row</h3>
+  <div class="demo-row">
+    <figure><div class="cta-row">
+      <a class="btn btn-l btn-primary" href="#">無料で登録する</a>
+      <div class="micro"><span class="l1"><span class="badge-free">無料</span>登録料・利用料0円※</span><span class="l2">メールアドレスとサイトURLの入力へ進みます</span><span class="note"><span>※</span><span>報酬のお受け取りには条件があります。[TBC]</span></span></div>
+    </div><figcaption class="meta">Breakpoint=Desktop (centred)</figcaption></figure>
+    <figure><div class="cta-row mobile">
+      <a class="btn btn-l btn-primary" href="#">無料で登録する</a>
+      <div class="micro"><span class="l1"><span class="badge-free">無料</span>登録料・利用料0円※</span><span class="l2">メールアドレスとサイトURLの入力へ進みます</span><span class="note"><span>※</span><span>報酬のお受け取りには条件があります。[TBC]</span></span></div>
+    </div><figcaption class="meta">Breakpoint=Mobile (stretched, 343)</figcaption></figure>
+  </div>
+
+  <h3 class="g">Form field · input · chip</h3>
+  <div class="demo-row">
+    <figure class="field"><label>メールアドレス <span class="chip-req">必須</span></label><input class="input" placeholder="name@example.com"><figcaption class="meta">default (click it to see focus)</figcaption></figure>
+    <figure class="field"><label>メールアドレス <span class="chip-req">必須</span></label><input class="input is-error" value="name@"><figcaption class="meta">error</figcaption></figure>
+  </div>
+
+  <h3 class="g">Checkbox / 同意</h3>
+  <div class="demo-row">
+    <figure><span class="cb"><span class="box"></span><span><a class="link" href="#">利用規約</a>と<a class="link" href="#">プライバシーポリシー</a>に同意する</span></span><figcaption class="meta">Unchecked</figcaption></figure>
+    <figure><span class="cb checked"><span class="box">✓</span><span><a class="link" href="#">利用規約</a>と<a class="link" href="#">プライバシーポリシー</a>に同意する</span></span><figcaption class="meta">Checked</figcaption></figure>
+    <figure><span class="cb error"><span class="box"></span><span><a class="link" href="#">利用規約</a>と<a class="link" href="#">プライバシーポリシー</a>に同意する</span></span><figcaption class="meta">Error</figcaption></figure>
+  </div>
+
+  <h3 class="g">Compliance atoms — ※ Note · Tag 表示例 · Badge 無料</h3>
+  <div class="demo-row">
+    <figure><span class="note"><span>※</span><span>注記テキスト</span></span><figcaption class="meta">※ Note — 13/19.5 desktop · 12/18 mobile · muted</figcaption></figure>
+    <figure><span class="tag-ex">表示例</span><figcaption class="meta">Tag / 表示例 · Tone=Light</figcaption></figure>
+    <figure><span class="badge-free">無料</span><figcaption class="meta">Badge / 無料</figcaption></figure>
+  </div>
+
+  <h3 class="g">Language switcher</h3>
+  <div class="demo-row">
+    <figure><span class="lang"><span class="it on">日本語</span><span class="sep">｜</span><span class="it">EN</span></span><figcaption class="meta">Active=JA · Default</figcaption></figure>
+    <figure><span class="lang"><span class="it on">日本語</span><span class="sep">｜</span><span class="it hover">EN</span></span><figcaption class="meta">Active=JA · Hover EN</figcaption></figure>
+    <figure><span class="lang"><span class="it on">日本語</span><span class="sep">｜</span><span class="it focus">EN</span></span><figcaption class="meta">Active=JA · Focus EN</figcaption></figure>
+    <figure><span class="lang"><span class="it on">JA</span><span class="sep">｜</span><span class="it">EN</span></span><figcaption class="meta">Size=Mobile</figcaption></figure>
+  </div>
+
+  <h3 class="g">Patterns — key figure · logo tile · FAQ tabs</h3>
+  <div class="demo-row">
+    <figure><div class="kf"><span class="num">15<span class="half">年</span></span><span class="t-body-bold">旅行アフィリエイト業界での実績</span></div><figcaption class="meta">key-figure-card</figcaption></figure>
+    <figure><div class="logo-tile">Rakuten Travel</div><figcaption class="meta">logo-tile</figcaption></figure>
+    <figure style="display:flex;flex-direction:column;gap:12px">
+      <div class="faq-tab on"><span>報酬・お支払い</span><span class="cnt">7</span></div>
+      <div class="faq-tab"><span>登録について</span><span class="cnt">3</span></div>
+      <figcaption class="meta">faq-tab-active · faq-tab</figcaption></figure>
+  </div>
+
+  <h3 class="g">Patterns — FAQ item</h3>
+  <div class="demo-row">
+    <figure><div class="faq"><div class="q"><span class="plate q">Q</span><span class="t">日本の銀行口座で、日本円で報酬を受け取ることはできますか？</span><span class="tog">+</span></div></div><figcaption class="meta">faq-item · closed</figcaption></figure>
+    <figure><div class="faq open"><div class="q"><span class="plate q">Q</span><span class="t">報酬の最低支払額はいくらですか？</span><span class="tog">−</span></div>
+      <div class="ans"><span class="plate a">A</span><div>最低支払額は、お選びいただく受取方法によって異なります。<ul><li>銀行振込（USDまたはEUR）：400 USD / 400 EUR</li><li>PayPal：50 USD</li><li>WebMoney（WMZ）：10 USD</li></ul>その月の報酬が最低支払額に達しなかった場合、残高は翌月に繰り越されます。</div></div></div><figcaption class="meta">faq-item-open</figcaption></figure>
+  </div>
+
+  <h3 class="g">Patterns — story · step · support</h3>
+  <div class="demo-row">
+    <figure><div class="story">
+      <div class="who"><span class="avatar"></span><div><div class="t-body-bold">Bob</div><div class="t-small" style="color:var(--color-secondary)">GoToTravel.tw</div></div></div>
+      <div class="t-h2 res">月6,700ドル <span class="tag-ex" style="vertical-align:middle">表示例</span></div>
+      <p class="t-body">コロナ禍でブログへのアクセスが激減したBobは、月間約70万人が訪れるまでにブログを立て直しました。</p>
+      <div class="quote t-body">「成果にとても満足しています。収入が増えたことで、自分が書きたい記事により集中できるようになりました。」</div>
+    </div><figcaption class="meta">story-card + quote</figcaption></figure>
+    <figure><div class="step">
+      <div class="plate-bg"><div class="mock">メールアドレス<span class="in">name@example.com</span>サイトURL<span class="in">https://hitoritabi-note.jp</span><span class="b">Travelpayoutsに登録する</span></div></div>
+      <div><div class="t-title">無料アカウントを作成</div><div class="t-small" style="color:var(--color-body);margin-top:12px">無料のTravelpayoutsアカウントを作成し、旅行サイトを登録します。</div></div>
+    </div><figcaption class="meta">step-card + step-plate</figcaption></figure>
+  </div>
+  <div style="margin-top:32px"><div class="support">
+    <div><h4 class="t-h3">他に気になることはありますか？</h4><p class="t-body">登録前のご質問も、どうぞお気軽に。サポートチームがていねいにお答えします。</p></div>
+    <a class="btn btn-l btn-outline-warm" href="#">サポートに問い合わせる</a>
+  </div><p class="meta" style="margin-top:8px">support-band</p></div>
+</section>
+
+<!-- ======================= DO / DON'T ======================= -->
+<section class="s" id="dosdonts">
+  <h2>Do's and Don'ts</h2>
+  <div class="dd">
+    <div class="do"><h3>✓ Do</h3><ul>
+      <li>Use <b>primary blue</b> for exactly one primary action per view, and use orange only for free, support and hero warmth.</li>
+      <li>Put a <span class="tag-ex">表示例</span> tag on every card or illustration that shows a money amount, and a ※ Note under any claim with conditions.</li>
+      <li>Keep ※ notes quiet: <code>note</code> style, <code>muted</code> color, one line where it fits.</li>
+      <li>Set key figures with <code>numeral-*</code> and the unit at half size: <b style="color:var(--color-primary-pressed)">15<span class="half">年</span></b></li>
+      <li>Express depth with tinted surfaces and 1px blue-tint borders, and keep the focus ring for keyboard focus.</li>
+      <li>Use the desktop/mobile token pair for every heading, lead and body text.</li>
+    </ul></div>
+    <div class="dont"><h3>✗ Don't</h3><ul>
+      <li>Don't add drop shadows, gradients or glassmorphism, because the system is flat.</li>
+      <li>Don't introduce a second typeface or use weights other than 400, 500 and 700.</li>
+      <li>Don't use a text color lighter than <code>muted</code> #667085 for readable copy.</li>
+      <li>Don't invent new radii; use only 4 / 12 / 20 / 28 / full.</li>
+      <li>Don't use red for anything other than form errors, or green for anything other than reward amounts.</li>
+      <li>Don't add letter spacing to body or lead text.</li>
+    </ul></div>
+  </div>
+</section>
+
+</div>
+<script>
+// Render token-driven specimens by reading the CSS custom properties (no hardcoded values).
+const css = getComputedStyle(document.documentElement);
+const v = n => css.getPropertyValue(n).trim();
+const el = (tag, attrs = {}, html = '') => Object.assign(document.createElement(tag), attrs, { innerHTML: html });
+
+const colorGroups = {
+  'Text': [['ink','surface'],['body','surface'],['label','surface'],['secondary','surface'],['muted','surface'],['disabled','surface']],
+  'Surface & line': [['surface','ink'],['surface-muted','ink'],['surface-soft','ink'],['line','ink'],['line-strong','ink'],['surface-deep','surface']],
+  'Brand blue': [['primary','on-primary'],['primary-hover','on-primary'],['primary-pressed','on-primary'],['focus','ink'],['primary-200','primary-pressed'],['primary-100','primary-pressed'],['primary-50','primary-pressed']],
+  'Warm orange': [['warm','surface'],['warm-result','surface'],['warm-strong','surface'],['warm-strong-hover','surface'],['warm-200','warm-strong'],['free-bg','free-text'],['free-text','surface'],['warm-50','warm-strong']],
+  'Signals': [['success','surface'],['error','surface'],['accent-pink','surface'],['accent-pink-tint','accent-pink']],
+};
+const cg = document.getElementById('color-groups');
+for (const [g, list] of Object.entries(colorGroups)) {
+  cg.append(el('h3', { className: 'g' }, g));
+  const grid = el('div', { className: 'swatches' });
+  for (const [k, on] of list) grid.append(el('div', { className: 'sw' },
+    `<div class="chip" style="background:var(--color-${k});color:var(--color-${on})">あア Aa on ${on}</div>
+     <div class="info"><b>${k}</b><span class="mono">${v('--color-' + k)}</span></div>`));
+  cg.append(grid);
+}
+
+const typeRows = [
+  ['numeral','Numeral','167<span class="half">万</span>'],['h1','H1 · hero headline','収益につなげる'],['h2','H2 · section heading','よくある質問'],
+  ['h3','H3 · route numbers, support heading','01 他に気になることは'],['lead','Lead · hero lead, intros','あなたのサイトで旅行ブランドを紹介'],
+  ['body','Body · stories, quotes, answers','コロナ禍でブログへのアクセスが激減'],['title','Title · card titles','無料アカウントを作成'],
+  ['body-bold','Body Bold · FAQ questions, names','報酬の最低支払額はいくらですか？'],['small','Small · step text, links, footer','利用規約とプライバシーポリシー'],
+  ['small-bold','Small Bold · labels, eyebrow, active tab','メールアドレス'],['note','Note · ※ notes, counters','※ 報酬のお受け取りには条件があります'],
+  ['note-bold','Note Bold · required chip','必須'],['button-l','Button L · buttons L/M','無料で登録する →'],['button-s','Button S · header buttons','無料で登録する →'],['tag','Tag · 表示例','表示例'],
+];
+const tr = document.getElementById('type-rows');
+for (const [k, label, sample] of typeRows) {
+  const pair = v(`--type-${k}-desktop-size`);
+  const spec = pair
+    ? `desktop ${v(`--type-${k}-desktop-size`)} · mobile ${v(`--type-${k}-mobile-size`)}<br>${v(`--type-${k}-desktop-weight`)} · lh ${v(`--type-${k}-desktop-lh`)} · ls ${v(`--type-${k}-desktop-ls`)}`
+    : `${v(`--type-${k}-size`)} · ${v(`--type-${k}-weight`)} · lh ${v(`--type-${k}-lh`)} · ls ${v(`--type-${k}-ls`)}`;
+  tr.append(el('div', { className: 'trow' }, `<div class="spec"><b>${label}</b><span class="meta mono">typography.${k}${pair ? '-{desktop|mobile}' : ''}<br>${spec}</span></div><div class="sample t-${k}">${sample}</div>`));
+}
+
+const sr = document.getElementById('space-rows');
+for (const k of [2,4,6,8,10,12,14,16,18,20,24,28,32,40,48,56,64,72,96,128,160])
+  sr.append(el('div', { className: 'sp' }, `<span class="mono">space-${k}</span><span class="meta">${v('--space-' + k)}</span><span class="bar" style="width:var(--space-${k})"></span>`));
+sr.append(el('p', { className: 'meta' }, 'Layout values: page margin 48 / 16 · container 1344 / 343 · section top 112 · H2 → content 56–64 · card padding 32 / 24 · grid gaps 12–16.'));
+
+const radiusUse = { xs: 'chips, checkbox, tag, switcher', control: 'buttons, inputs, tabs, plates', surface: 'quotes, logo tiles', panel: 'cards, FAQ, bands', full: 'pills, avatars, counters, ±' };
+const rb = document.getElementById('radius-boxes');
+for (const [k, use] of Object.entries(radiusUse))
+  rb.append(el('div', {}, `<div class="box" style="border-radius:var(--radius-${k})"></div><b class="mono">radius-${k}</b> <span class="meta">${v('--radius-' + k)}</span><div class="meta" style="max-width:140px">${use}</div>`));
+
+const bgWrap = document.getElementById('btn-grid');
+const states = ['Default','Hover','Pressed','Focus','Disabled','Loading'];
+for (const kind of ['primary','ghost']) {
+  const g = el('div', { className: 'state-grid' });
+  g.append(el('span', { className: 'rl' }, kind[0].toUpperCase() + kind.slice(1)));
+  ['L','M','S'].forEach(z => g.append(el('span', { className: 'h' }, z)));
+  for (const s of states) {
+    g.append(el('span', { className: 'h' }, s));
+    for (const size of ['l','m','s']) {
+      const cls = `btn btn-${size} btn-${kind}` + ({ Hover: ' is-hover', Pressed: ' is-pressed', Focus: ' is-focus', Disabled: ' is-disabled' }[s] || '');
+      g.append(el('button', { className: cls, disabled: s === 'Disabled' }, s === 'Loading' ? '<span class="spin"></span>送信中…' : '無料で登録する <span>→</span>'));
+    }
+  }
+  bgWrap.append(g);
+}
+</script>
+</body>
+</html>

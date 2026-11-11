@@ -1,0 +1,3522 @@
+[
+ {
+  "slug": "what-is-affiliate",
+  "category": "basics",
+  "level": 0,
+  "read_minutes": 6,
+  "keyword": "アフィリエイト とは / 仕組み",
+  "title": {
+   "ja": "アフィリエイトとは？仕組みと始め方を初心者向けにやさしく解説",
+   "en": "What is affiliate marketing? How it works and how to start, for beginners"
+  },
+  "eyebrow": {
+   "ja": "アフィリエイトとは？",
+   "en": "What is affiliate?"
+  },
+  "answer_first": {
+   "ja": "アフィリエイトは、自分のサイトやSNSで商品・サービスを紹介し、読者がリンク経由で購入や登録をすると**報酬がもらえる仕組み**です。広告主、紹介する人、読者の3者で成り立ち、間にASPが入ることが多くあります。",
+   "en": "Affiliate marketing is a system where you recommend products or services on your own site or social account and **earn a reward** when a reader buys or signs up through your link. It involves an advertiser, the person recommending, and the reader, and an ASP often sits in between."
+  },
+  "sections": [
+   {
+    "h": [
+     "アフィリエイトの流れは5ステップ",
+     "The process in five steps"
+    ],
+    "b": [
+     {
+      "p": [
+       "まず全体の流れをつかみましょう。細かい用語は後から覚えれば大丈夫です。",
+       "Start with the big picture. You can learn the terms later."
+      ]
+     },
+     {
+      "steps": [
+       [
+        "記事やSNS投稿で商品・サービスを紹介し、専用リンクを貼る",
+        "Recommend a product in an article or post and add your own link"
+       ],
+       [
+        "読者がリンクをクリックして、広告主のサイトへ移動する",
+        "A reader clicks the link and lands on the advertiser’s site"
+       ],
+       [
+        "読者が購入や会員登録などの「成果」につながる行動をする",
+        "The reader takes an action that counts as a result, such as buying or signing up"
+       ],
+       [
+        "広告主が内容を確認し、成果を承認する",
+        "The advertiser reviews the result and approves it"
+       ],
+       [
+        "承認された分の報酬が、あなたのアカウントに積み上がる",
+        "Approved rewards add up in your account"
+       ]
+      ]
+     },
+     {
+      "say": [
+       "リンクを貼るだけで終わりではありません。「読者が何に困っていて、この商品でどう解決できるか」を書くことが、成果につながる一番の近道です。",
+       "Placing a link is not the end of it. Explaining what the reader struggles with and how the product helps is the shortest path to results."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "登場するのは3者。間に入るのがASP",
+     "Three parties, and the ASP in the middle"
+    ],
+    "b": [
+     {
+      "p": [
+       "アフィリエイトには、広告主、アフィリエイター（紹介する人）、読者の3者が登場します。多くの場合、広告主とアフィリエイターのあいだに**ASP（アフィリエイトサービスプロバイダ）**が入り、広告の提供、成果の確認、報酬の支払いをまとめて担当します。",
+       "Three parties take part: the advertiser, the affiliate who recommends, and the reader. Usually an **ASP (affiliate service provider)** sits between advertiser and affiliate and handles ad supply, result tracking and payouts."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "登場人物",
+         "Party"
+        ],
+        [
+         "役割",
+         "Role"
+        ],
+        [
+         "例",
+         "Example"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "広告主",
+          "Advertiser"
+         ],
+         [
+          "商品やサービスを提供する会社",
+          "Company that offers the product or service"
+         ],
+         [
+          "ホテル予約サイト、航空券サイトなど",
+          "Hotel booking sites, flight sites"
+         ]
+        ],
+        [
+         [
+          "アフィリエイター",
+          "Affiliate"
+         ],
+         [
+          "自分の媒体で商品を紹介する人",
+          "Person who recommends it on their own channel"
+         ],
+         [
+          "ブロガー、YouTuber、SNS運用者",
+          "Bloggers, YouTubers, social media users"
+         ]
+        ],
+        [
+         [
+          "読者",
+          "Reader"
+         ],
+         [
+          "記事を読み、購入や登録をする人",
+          "Person who reads and buys or signs up"
+         ],
+         [
+          "旅行の計画を立てている人",
+          "Someone planning a trip"
+         ]
+        ],
+        [
+         [
+          "ASP",
+          "ASP"
+         ],
+         [
+          "案件の提供、計測、支払いを担う事業者",
+          "Provides offers, tracking and payouts"
+         ],
+         [
+          "アフィリエイトの運営会社",
+          "An affiliate network operator"
+         ]
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "h": [
+     "報酬が発生するタイプ",
+     "How rewards are triggered"
+    ],
+    "b": [
+     {
+      "p": [
+       "報酬の条件は大きく2種類です。どちらを採用するかは案件ごとに決まっているので、提携する前に必ず条件を確認します。",
+       "There are two main kinds. Each offer defines its own type, so always check the terms before you join."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "タイプ",
+         "Type"
+        ],
+        [
+         "報酬が出る条件",
+         "When you are paid"
+        ],
+        [
+         "特徴",
+         "Characteristic"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "成果報酬型",
+          "Pay per result"
+         ],
+         [
+          "購入、予約、会員登録などの成果",
+          "A purchase, booking or sign-up"
+         ],
+         [
+          "1件あたりの報酬が大きいことが多い",
+          "Often a larger reward per result"
+         ]
+        ],
+        [
+         [
+          "クリック報酬型",
+          "Pay per click"
+         ],
+         [
+          "リンクがクリックされたとき",
+          "A click on your link"
+         ],
+         [
+          "成果が出なくても報酬が発生する場合がある",
+          "May pay even without a purchase"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "「承認」されて初めて報酬が確定する案件が多くあります。表示される金額が、そのまま受け取れる金額とは限りません。",
+        "In many programs a reward is only final once it is approved. The amount you see is not always the amount you receive."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "どこで発信する？媒体の選び方",
+     "Where to publish"
+    ],
+    "b": [
+     {
+      "p": [
+       "ブログ、SNS、YouTube など、媒体によって強みが違います。自分が続けやすいものを選ぶのが基本です。",
+       "Blogs, social media and YouTube each have different strengths. Choose the one you can keep going with."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "媒体",
+         "Channel"
+        ],
+        [
+         "強み",
+         "Strength"
+        ],
+        [
+         "向いている人",
+         "Good for"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "ブログ",
+          "Blog"
+         ],
+         [
+          "検索から長く読まれやすい",
+          "Can be found through search for a long time"
+         ],
+         [
+          "文章で詳しく説明するのが好きな人",
+          "People who like explaining in writing"
+         ]
+        ],
+        [
+         [
+          "SNS",
+          "Social media"
+         ],
+         [
+          "拡散しやすく、反応が早い",
+          "Spreads quickly and gives fast feedback"
+         ],
+         [
+          "短い発信を毎日続けられる人",
+          "People who can post briefly every day"
+         ]
+        ],
+        [
+         [
+          "YouTube",
+          "YouTube"
+         ],
+         [
+          "体験や雰囲気が伝わりやすい",
+          "Conveys experience and atmosphere"
+         ],
+         [
+          "撮影や編集が苦にならない人",
+          "People comfortable filming and editing"
+         ]
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "h": [
+     "日本のアフィリエイト市場の規模",
+     "The size of the Japanese affiliate market"
+    ],
+    "b": [
+     {
+      "p": [
+       "矢野経済研究所によると、国内のアフィリエイト市場は拡大を続けています。2024年度は**4,379億円**、2025年度は**4,598億円**（前年度比5.0%増の見込み）です。",
+       "According to Yano Research Institute, the domestic affiliate market keeps growing: **¥437.9 billion** in FY2024 and **¥459.8 billion** in FY2025 (an estimated 5.0% increase)."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "年度",
+         "Fiscal year"
+        ],
+        [
+         "市場規模",
+         "Market size"
+        ],
+        [
+         "前年度比",
+         "Year on year"
+        ],
+        [
+         "区分",
+         "Status"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "2024年度",
+          "FY2024"
+         ],
+         [
+          "4,379億円",
+          "¥437.9bn"
+         ],
+         [
+          "106.5%",
+          "106.5%"
+         ],
+         [
+          "実績",
+          "Actual"
+         ]
+        ],
+        [
+         [
+          "2025年度",
+          "FY2025"
+         ],
+         [
+          "4,598億円",
+          "¥459.8bn"
+         ],
+         [
+          "105.0%",
+          "105.0%"
+         ],
+         [
+          "見込み",
+          "Estimate"
+         ]
+        ],
+        [
+         [
+          "2029年度",
+          "FY2029"
+         ],
+         [
+          "約5,883億円",
+          "About ¥588.3bn"
+         ],
+         [
+          "—",
+          "—"
+         ],
+         [
+          "予測",
+          "Forecast"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "p": [
+       "2029年度までの年平均成長率は「約6%台」と見られています。一方で、ASP市場については「過去のような年率10%を超える高成長は見込みにくい」と述べられています。",
+       "The average annual growth to FY2029 is put at “about 6%”. For the ASP market the release says growth above 10% a year, as in the past, is hard to expect."
+      ]
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "市場規模は「業界全体」の数字で、個人のブログの収入を示すものではありません。収入の実態は「稼げない？」の記事で、JAOの調査をもとに解説しています。",
+        "Market size describes the whole industry, not a single blog’s income. See the “Is it a dead end?” article for income data from the JAO survey."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "業界団体：日本アフィリエイト協議会（JAO）",
+     "Industry body: Japan Affiliate Organization (JAO)"
+    ],
+    "b": [
+     {
+      "p": [
+       "国内には、広告主、アフィリエイトサイト運営者、ASPが参加する業界団体があります。一般社団法人 日本アフィリエイト協議会（JAO）は、2012年11月1日に発足し、2020年7月に一般社団法人になりました。",
+       "Japan has an industry body that brings advertisers, site owners and ASPs together. The JAO was founded on 1 November 2012 and became a general incorporated association in July 2020."
+      ]
+     },
+     {
+      "p": [
+       "JAOは、アフィリエイトの基礎教育、業界の情報交換、行政との連携、ガイドラインの公開などを行っています。",
+       "The JAO works on basic education, information exchange, liaison with the authorities and publishing a guideline."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "始める前のチェックリスト",
+     "Before you start"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "扱うジャンルを1つ決めた",
+        "You picked one topic"
+       ],
+       [
+        "発信する媒体を1つ決めた",
+        "You picked one channel"
+       ],
+       [
+        "最初に書く記事のテーマを3つ決めた",
+        "You chose the first three article topics"
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "始めるのにお金はかかりますか？",
+     "Does it cost money to start?"
+    ],
+    [
+     "登録が無料のASPは多くありますが、ブログ用のドメインやサーバーの費用がかかる場合があります。",
+     "Many ASPs are free to join, but a blog may need a domain and hosting."
+    ]
+   ],
+   [
+    [
+     "フォロワーやアクセスが少なくても始められますか？",
+     "Can I start with a small audience?"
+    ],
+    [
+     "始められます。まずは、続けられる量の記事を書くところから始めましょう。",
+     "Yes. Start by writing a number of articles you can keep up with."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "アフィリエイトは、紹介した商品が買われたり申し込まれたりしたときに、報酬が出る仕組み。",
+    "Affiliate marketing pays a reward when a product you recommended is bought or signed up for."
+   ],
+   [
+    "登場するのは、広告主・アフィリエイター・ASPの3者。",
+    "Three parties take part: the advertiser, the affiliate and the ASP."
+   ],
+   [
+    "始める前に、発信する場所と、報酬が出る条件を確認する。",
+    "Before starting, decide where to publish and check how the reward is triggered."
+   ]
+  ],
+  "sources": [
+   "yano",
+   "jaoabout",
+   "moshimo",
+   "moshimohelp"
+  ],
+  "related": [
+   "earn-or-not"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。市場規模の数字を矢野経済研究所の公開情報で追加。",
+     "en": "First version. Market-size figures added from Yano’s public release."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "book"
+ },
+ {
+  "slug": "ad-affiliate",
+  "category": "traffic",
+  "level": 1,
+  "read_minutes": 7,
+  "keyword": "アドアフィリエイト",
+  "title": {
+   "ja": "アドアフィリエイトとは？やり方と、赤字を避けるための考え方",
+   "en": "Ad affiliate (アドアフィリエイト): how it works and how to avoid losing money"
+  },
+  "eyebrow": {
+   "ja": "アドアフィリエイト",
+   "en": "Ad affiliate"
+  },
+  "answer_first": {
+   "ja": "アドアフィリエイトは、**広告費を使って集客し**、アフィリエイト報酬を得る手法です。結果が早く分かる反面、広告費が報酬を上回ると赤字になります。始める前に、損益の計算方法を知っておきましょう。",
+   "en": "Ad affiliate means **paying for ads to bring traffic** and earning affiliate rewards. Results come fast, but you lose money if ad cost exceeds reward. Learn how to calculate profit before you start."
+  },
+  "sections": [
+   {
+    "h": [
+     "アドアフィリエイトとは",
+     "What it is"
+    ],
+    "b": [
+     {
+      "p": [
+       "広告媒体に広告を出し、その広告から紹介したい商品のページへ読者を案内します。広告費を負担するのは広告主ではなく、アフィリエイター自身です。",
+       "You place ads on an ad platform and send readers from them to the page of the product you promote. The affiliate, not the advertiser, pays for the ads."
+      ]
+     },
+     {
+      "p": [
+       "日本では「アドアフィリエイト」という言葉が一般的です。広告主が出す「アフィリエイト広告」とは立場が異なる点に注意してください。",
+       "In Japan the usual term is アドアフィリエイト. It is a different position from the “affiliate ads” (アフィリエイト広告) that advertisers run."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "記事型との違い",
+     "How it differs from article-based affiliate"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "",
+         ""
+        ],
+        [
+         "記事で集客",
+         "Articles"
+        ],
+        [
+         "広告で集客",
+         "Ads"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "最初の費用",
+          "Upfront cost"
+         ],
+         [
+          "ほぼ時間のみ",
+          "Mostly time"
+         ],
+         [
+          "広告費が必要",
+          "Ad spend required"
+         ]
+        ],
+        [
+         [
+          "結果が出るまで",
+          "Time to results"
+         ],
+         [
+          "時間がかかる",
+          "Slower"
+         ],
+         [
+          "早く分かる",
+          "Faster"
+         ]
+        ],
+        [
+         [
+          "主なリスク",
+          "Main risk"
+         ],
+         [
+          "読まれない",
+          "Not being read"
+         ],
+         [
+          "広告費が報酬を上回る",
+          "Ad cost exceeds reward"
+         ]
+        ],
+        [
+         [
+          "続け方",
+          "How it continues"
+         ],
+         [
+          "記事が資産として残る",
+          "Articles remain as assets"
+         ],
+         [
+          "広告を止めると流入も止まる",
+          "Traffic stops when ads stop"
+         ]
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "h": [
+     "基本の流れ",
+     "The basic flow"
+    ],
+    "b": [
+     {
+      "steps": [
+       [
+        "紹介する案件を選び、提携を申請する",
+        "Choose an offer and apply to join"
+       ],
+       [
+        "広告と、読者が最初に見るページを用意する",
+        "Prepare the ad and the page readers see first"
+       ],
+       [
+        "少額で出稿し、クリックと成果を記録する",
+        "Run a small budget and record clicks and results"
+       ],
+       [
+        "数字を見て、続けるか止めるかを決める",
+        "Decide from the numbers whether to continue or stop"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "損益の考え方：仮の数字で計算してみる",
+     "Profit and loss: a worked example with made-up numbers"
+    ],
+    "b": [
+     {
+      "p": [
+       "必要なのは3つの数字です。**クリック単価**、**成果率**、**1件あたりの報酬**。次の数字は説明のための仮の例で、実際の数字ではありません。",
+       "You need three numbers: **cost per click**, **conversion rate** and **reward per result**. The figures below are made up for explanation and are not real data."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "項目",
+         "Item"
+        ],
+        [
+         "仮の数字",
+         "Example"
+        ],
+        [
+         "計算",
+         "Calculation"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "クリック単価",
+          "Cost per click"
+         ],
+         [
+          "50円",
+          "¥50"
+         ],
+         [
+          "—",
+          "—"
+         ]
+        ],
+        [
+         [
+          "100クリックの広告費",
+          "Ad cost for 100 clicks"
+         ],
+         [
+          "5,000円",
+          "¥5,000"
+         ],
+         [
+          "50円 × 100",
+          "¥50 × 100"
+         ]
+        ],
+        [
+         [
+          "成果率",
+          "Conversion rate"
+         ],
+         [
+          "2%",
+          "2%"
+         ],
+         [
+          "100クリック中2件",
+          "2 of 100 clicks"
+         ]
+        ],
+        [
+         [
+          "1件あたりの報酬",
+          "Reward per result"
+         ],
+         [
+          "3,000円",
+          "¥3,000"
+         ],
+         [
+          "—",
+          "—"
+         ]
+        ],
+        [
+         [
+          "報酬の合計",
+          "Total reward"
+         ],
+         [
+          "6,000円",
+          "¥6,000"
+         ],
+         [
+          "3,000円 × 2件",
+          "¥3,000 × 2"
+         ]
+        ],
+        [
+         [
+          "差し引き",
+          "Net"
+         ],
+         [
+          "+1,000円",
+          "+¥1,000"
+         ],
+         [
+          "6,000円 − 5,000円",
+          "¥6,000 − ¥5,000"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "say": [
+       "成果率が2%から1%に下がると、報酬は3,000円になって2,000円の赤字です。**成果率の小さな差が、損益を大きく動かします。**",
+       "If the rate drops from 2% to 1%, the reward is ¥3,000 and you are ¥2,000 down. **A small change in conversion rate moves profit a lot.**"
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "小さく試して、やめる基準を先に決める",
+     "Test small and set a stop rule first"
+    ],
+    "b": [
+     {
+      "p": [
+       "最初は少額で出稿し、1週間単位で数字を見ます。「広告費がいくらを超えたら止める」を、始める前に決めておくと、損失が広がりません。",
+       "Start with a small budget and review the numbers weekly. Deciding beforehand “I stop when the ad cost passes this amount” keeps losses contained."
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "初心者でもできますか？",
+     "Can beginners do it?"
+    ],
+    [
+     "できますが、広告費が先に出ていくため、少額から始めることをおすすめします。",
+     "Yes, but ad spend goes out first, so start with a small amount."
+    ]
+   ],
+   [
+    [
+     "アフィリエイト広告とは違うのですか？",
+     "Is it the same as “affiliate ads”?"
+    ],
+    [
+     "違います。アフィリエイト広告は広告主が出す広告を指すことが多く、アドアフィリエイトはアフィリエイター自身が広告費を負担する手法です。",
+     "No. “Affiliate ads” usually means ads an advertiser runs. Ad affiliate is the method in which the affiliate pays for ads."
+    ]
+   ],
+   [
+    [
+     "どの広告媒体を使えばよいですか？",
+     "Which ad platform should I use?"
+    ],
+    [
+     "読者の層に合う媒体を選び、少額から試します。費用と反応を見て、続けるかどうかを決めます。",
+     "Choose a platform that fits your readers and test with a small budget; decide whether to continue from the cost and the response."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "アドアフィリエイトは、広告を出して読者を集め、商品を紹介する方法。",
+    "Ad affiliate marketing means buying ads to bring readers to the products you recommend."
+   ],
+   [
+    "出稿前に、仮の数字で損益を計算しておく。",
+    "Before buying ads, work out profit and loss with provisional numbers."
+   ],
+   [
+    "小さく試し、やめる基準を先に決める。",
+    "Start small and set the stop rule first."
+   ]
+  ],
+  "sources": [],
+  "related": [
+   "what-is-affiliate",
+   "earn-or-not"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。出典の確認は今後の更新で追加。",
+     "en": "First version. Sources will be added in later updates."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "megaphone"
+ },
+ {
+  "slug": "earn-or-not",
+  "category": "strategy",
+  "level": 0,
+  "read_minutes": 6,
+  "keyword": "アフィリエイト 稼げない / 稼げる / やめとけ",
+  "title": {
+   "ja": "アフィリエイトは稼げない？そう言われる理由と、続けている人の共通点",
+   "en": "Is affiliate marketing a dead end? Why people say so, and what keeps people going"
+  },
+  "eyebrow": {
+   "ja": "稼げない？",
+   "en": "A dead end?"
+  },
+  "answer_first": {
+   "ja": "JAOの2025年調査では、アフィリエイトで**月3万円以上**を得ている人は12.4%、**月1,000円未満**の人は52.5%でした。「稼げない」という声が多い背景は数字にも表れていますが、調査は、時間と手間をかけて運営している人ほど収入が高い傾向にあるとも伝えています。",
+   "en": "In the JAO 2025 survey, **12.4%** of site owners earned **¥30,000 or more a month** and **52.5%** earned **under ¥1,000**. The numbers reflect why many say “you can’t earn”, but the survey also reports that people who put in more time and effort tend to earn more."
+  },
+  "sections": [
+   {
+    "h": [
+     "調査で見る：アフィリエイトの収入の実態",
+     "What the survey says about income"
+    ],
+    "b": [
+     {
+      "p": [
+       "JAOは、クロス・マーケティングに調査を委託し、2025年12月1日〜4日に調査しました。サイトやブログにアフィリエイト広告を載せている人のうち、スクリーニングの21,054人から、有効回答1,000人を集めた調査です。",
+       "The JAO commissioned Cross Marketing and ran the survey on 1–4 December 2025: 1,000 valid answers from site owners who run affiliate ads, drawn from 21,054 screened respondents."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "項目",
+         "Item"
+        ],
+        [
+         "2013年",
+         "2013"
+        ],
+        [
+         "2021年",
+         "2021"
+        ],
+        [
+         "2023年",
+         "2023"
+        ],
+        [
+         "2025年",
+         "2025"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "月3万円以上",
+          "¥30,000+ per month"
+         ],
+         [
+          "2.4%",
+          "2.4%"
+         ],
+         [
+          "8.7%",
+          "8.7%"
+         ],
+         [
+          "9.4%",
+          "9.4%"
+         ],
+         [
+          "12.4%",
+          "12.4%"
+         ]
+        ],
+        [
+         [
+          "月1,000円未満",
+          "Under ¥1,000 per month"
+         ],
+         [
+          "—",
+          "—"
+         ],
+         [
+          "68.6%",
+          "68.6%"
+         ],
+         [
+          "66.2%",
+          "66.2%"
+         ],
+         [
+          "52.5%",
+          "52.5%"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "月3万円以上の人の割合は、2013年の2.4%から**5倍以上**に増えました（JAOの表現）。月1,000円未満の人は、2023年より13.7ポイント減っています。",
+        "The share earning ¥30,000 or more a month has grown **more than five times** since 2013 (the JAO’s wording). The share under ¥1,000 is 13.7 points lower than in 2023."
+       ]
+      ]
+     },
+     {
+      "p": [
+       "そのほか、運営歴が5年以上の人は32.0%、1人あたりの運営サイト数は平均2.4でした。",
+       "Also, 32.0% have run their sites for five years or more, and the average is 2.4 sites per person."
+      ]
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "これは「サイト運営者」への調査で、収入を保証するものではありません。年齢、職業、媒体、ジャンルなどの詳しい内訳は、JAO会員向けの報告書にあり、ここでは使っていません。",
+        "This is a survey of site owners and no guarantee of income. Breakdowns by age, occupation, channel and genre are in the members-only report and are not used here."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "なぜ「稼げない」と検索されるのか",
+     "Why people search for “can’t earn”"
+    ],
+    "b": [
+     {
+      "p": [
+       "始めたものの成果が出ず、やめてしまう人は少なくありません。そうした声が多いため、検索でも否定的な言葉が目立ちます。ただし、理由を分けて見ると、対策できるものがほとんどです。",
+       "Many people start, see no results and quit, so negative wording is common in search. But when you separate the reasons, most can be addressed."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "よくある理由",
+         "Common reason"
+        ],
+        [
+         "起きていること",
+         "What happens"
+        ],
+        [
+         "見直し方",
+         "How to fix it"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "記事が読者の疑問とずれている",
+          "Articles miss readers’ questions"
+         ],
+         [
+          "検索されない、読まれても離脱される",
+          "Not found, or readers leave"
+         ],
+         [
+          "検索結果の上位記事を読み、足りない情報を探す",
+          "Read the top results and find what is missing"
+         ]
+        ],
+        [
+         [
+          "更新が続かない",
+          "Updates stop"
+         ],
+         [
+          "記事が増えず、評価が育たない",
+          "Too few articles to build trust"
+         ],
+         [
+          "1週間に書ける量を決めて、小さく続ける",
+          "Set a weekly amount you can sustain"
+         ]
+        ],
+        [
+         [
+          "ジャンルが合っていない",
+          "Wrong topic"
+         ],
+         [
+          "書くこと自体が苦しくなる",
+          "Writing becomes a chore"
+         ],
+         [
+          "好き・詳しい・需要の3つで選び直す",
+          "Re-pick using interest, expertise and demand"
+         ]
+        ],
+        [
+         [
+          "成果が出る前にやめる",
+          "Quitting too early"
+         ],
+         [
+          "検索経由の評価は時間がかかる",
+          "Search trust takes time"
+         ],
+         [
+          "数ヶ月単位で数字を見る",
+          "Review over months, not days"
+         ]
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "h": [
+     "成果が出るまでの時間",
+     "How long results take"
+    ],
+    "b": [
+     {
+      "p": [
+       "検索から読まれる記事は、公開してすぐには評価されません。短期間の収益だけで判断せず、記事ごとの表示回数とクリックを見て改善していきます。",
+       "An article found through search is not rewarded the moment it is published. Instead of judging by short-term income, review impressions and clicks per article and improve from there."
+      ]
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "収益の前に、まず「表示回数」と「クリック」を見ます。収益は、その結果として後からついてきます。",
+        "Look at impressions and clicks before income. Income follows as a result."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "続けている人がしていること",
+     "What people who continue do"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "読者の質問に、具体的に答えている",
+        "They answer readers’ questions specifically"
+       ],
+       [
+        "自分の体験を入れて、ほかの記事との違いを出している",
+        "They add personal experience to stand out"
+       ],
+       [
+        "公開後も、数字を見て記事を書き直している",
+        "They rewrite articles after publishing, guided by numbers"
+       ],
+       [
+        "複数のことを一度に始めず、1つずつ試している",
+        "They test one thing at a time"
+       ]
+      ]
+     },
+     {
+      "say": [
+       "最初の記事で成果が出ないのは、ごく普通のことです。**書き直せる前提で、まず公開する**ほうが前に進めます。",
+       "It is completely normal for the first article to bring no results. **Publish with the expectation of rewriting** and you move forward faster."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "数字で振り返る：見る指標",
+     "Reviewing by numbers: what to look at"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "指標",
+         "Metric"
+        ],
+        [
+         "意味",
+         "Meaning"
+        ],
+        [
+         "低いときに疑うこと",
+         "If it is low"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "表示回数",
+          "Impressions"
+         ],
+         [
+          "検索結果に表示された回数",
+          "How often the page appeared in search"
+         ],
+         [
+          "キーワードや記事のテーマが合っていない",
+          "Keyword or topic mismatch"
+         ]
+        ],
+        [
+         [
+          "クリック率",
+          "Click-through rate"
+         ],
+         [
+          "表示された中で、クリックされた割合",
+          "Share of impressions that were clicked"
+         ],
+         [
+          "タイトルや説明文が魅力的でない",
+          "Title or description is unappealing"
+         ]
+        ],
+        [
+         [
+          "リンクのクリック",
+          "Link clicks"
+         ],
+         [
+          "記事内のリンクが押された回数",
+          "How often your in-article link was pressed"
+         ],
+         [
+          "リンクの位置や、前後の説明が弱い",
+          "Weak link placement or lead-in"
+         ]
+        ],
+        [
+         [
+          "成果",
+          "Results"
+         ],
+         [
+          "購入や登録など",
+          "Purchases or sign-ups"
+         ],
+         [
+          "紹介する商品と読者の目的が合っていない",
+          "Product and reader intent do not match"
+         ]
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "h": [
+     "立ち止まって見直すタイミング",
+     "When to pause and rethink"
+    ],
+    "b": [
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "広告費の持ち出しが続く場合や、本業や生活に支障が出ている場合は、いったん立ち止まって方法を見直してください。無理に続ける必要はありません。",
+        "If ad costs keep exceeding income or it is affecting your job or daily life, pause and rethink. There is no need to push through."
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "アフィリエイトは本当に稼げますか？",
+     "Can you really earn with affiliate marketing?"
+    ],
+    [
+     "JAOの2025年調査では、月3万円以上の人は12.4%、月1,000円未満は52.5%でした。稼いでいる人はいますが、誰でも簡単に稼げるわけではありません。",
+     "In the JAO 2025 survey, 12.4% earned ¥30,000 or more a month and 52.5% under ¥1,000. Some people do earn, but it is not easy for everyone."
+    ]
+   ],
+   [
+    [
+     "どのくらい続ければ成果が見えますか？",
+     "How long until I see results?"
+    ],
+    [
+     "一概には言えません。数ヶ月単位で、表示回数やクリックの変化を見ることをおすすめします。",
+     "It varies. Watch the change in impressions and clicks over a few months."
+    ]
+   ],
+   [
+    [
+     "「やめとけ」と言われるのはなぜですか？",
+     "Why do people say “don’t do it”?"
+    ],
+    [
+     "成果が出る前にやめた人の声が多いことと、誇大な宣伝への警戒が背景にあります。冷静に条件を確認することが大切です。",
+     "Partly because many people quit before results, and partly wariness about exaggerated promotion. Check the conditions calmly."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "数字で見ると、約半数は月1,000円未満。ただし、月3万円以上の人は増えている。",
+    "About half earn under ¥1,000, but the share earning ¥30,000 or more is growing."
+   ],
+   [
+    "時間と手間をかけて運営している人ほど、収入が高い傾向がある。",
+    "People who put in more time and effort tend to earn more."
+   ],
+   [
+    "最初は表示回数とクリックを見て、書き直しながら続ける。",
+    "At first watch impressions and clicks, and keep rewriting."
+   ]
+  ],
+  "sources": [
+   "jao25",
+   "jaoguide"
+  ],
+  "related": [
+   "pick-niche",
+   "what-is-affiliate"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "JAO「アフィリエイト市場調査2025」の数字を追加し、冒頭と「よくある質問」を差し替え。",
+     "en": "Added figures from the JAO 2025 survey and rewrote the lead and FAQ."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "chart"
+ },
+ {
+  "slug": "pick-niche",
+  "category": "strategy",
+  "level": 0,
+  "read_minutes": 6,
+  "keyword": "アフィリエイト ジャンル / 稼げるジャンル",
+  "title": {
+   "ja": "アフィリエイトのジャンルの選び方：好き・詳しい・需要で決める",
+   "en": "How to choose an affiliate topic: interest, expertise and demand"
+  },
+  "eyebrow": {
+   "ja": "ジャンルの選び方",
+   "en": "Choosing a topic"
+  },
+  "answer_first": {
+   "ja": "ジャンルは、**好きなこと、詳しいこと、検索されていること**の3つが重なるところから選ぶと続けやすくなります。日本では「ニッチ」より「ジャンル」という言葉が一般的です。",
+   "en": "Choose a topic where **what you like, what you know and what people search for** overlap, and it is easier to keep going. In Japan the usual word is ジャンル (genre), not ニッチ."
+  },
+  "sections": [
+   {
+    "h": [
+     "まず「ジャンル」の意味をそろえる",
+     "First, the word ジャンル"
+    ],
+    "b": [
+     {
+      "p": [
+       "日本では、記事やサイトで扱う分野を「ジャンル」と呼びます。「ニッチ」は、競合の少ない小さな市場という別の意味で使われることが多く、ジャンルの言い換えにはなりません。",
+       "In Japan the field an article or site covers is called ジャンル. ニッチ usually means a small market with few competitors, so it is not a substitute for ジャンル."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "3つの軸で候補を出す",
+     "Shortlist with three questions"
+    ],
+    "b": [
+     {
+      "steps": [
+       [
+        "好き：その話題なら、毎週書いても飽きないか",
+        "Interest: could you write about it every week without getting bored?"
+       ],
+       [
+        "詳しい：自分の体験や知識を、記事に入れられるか",
+        "Expertise: can you put your own experience or knowledge into articles?"
+       ],
+       [
+        "需要：その話題を、検索している人がいるか",
+        "Demand: do people actually search for it?"
+       ]
+      ]
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "3つのうち1つでも欠けると、続かないか、読まれないかのどちらかになりがちです。",
+        "Missing even one of the three usually means you either stop or are not read."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "候補を表で比べる",
+     "Compare candidates in a table"
+    ],
+    "b": [
+     {
+      "p": [
+       "気になるジャンルを3つほど挙げて、次のように比べます。評価は自分の感覚で構いません（以下は書き方の例です）。",
+       "List about three candidate topics and compare them like this. Your own judgement is fine (the table below is an example of how to fill it in)."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "ジャンル（例）",
+         "Topic (example)"
+        ],
+        [
+         "好き",
+         "Interest"
+        ],
+        [
+         "詳しさ",
+         "Expertise"
+        ],
+        [
+         "需要",
+         "Demand"
+        ],
+        [
+         "競合",
+         "Competition"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "国内旅行",
+          "Domestic travel"
+         ],
+         [
+          "◎",
+          "◎"
+         ],
+         [
+          "○",
+          "○"
+         ],
+         [
+          "◎",
+          "◎"
+         ],
+         [
+          "強い",
+          "Strong"
+         ]
+        ],
+        [
+         [
+          "海外ひとり旅",
+          "Solo trips abroad"
+         ],
+         [
+          "◎",
+          "◎"
+         ],
+         [
+          "◎",
+          "◎"
+         ],
+         [
+          "○",
+          "○"
+         ],
+         [
+          "中くらい",
+          "Medium"
+         ]
+        ],
+        [
+         [
+          "登山・アウトドア",
+          "Hiking and outdoors"
+         ],
+         [
+          "○",
+          "○"
+         ],
+         [
+          "△",
+          "△"
+         ],
+         [
+          "○",
+          "○"
+         ],
+         [
+          "中くらい",
+          "Medium"
+         ]
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "h": [
+     "単価と競合を見る",
+     "Check payout and competition"
+    ],
+    "b": [
+     {
+      "p": [
+       "報酬の単価が高くても、競合が強ければ上位表示は簡単ではありません。検索結果の上位を実際に開き、**自分にしか書けない切り口があるか**を確認します。",
+       "A high payout does not help if competition is strong. Open the top results and check **whether you have an angle only you can write**."
+      ]
+     },
+     {
+      "say": [
+       "「穴場ジャンル」という検索もよく見られます。ただ、誰かが「穴場」と紹介した時点で、競合は増えていきます。**自分の経験で差をつけられるか**のほうが大切です。",
+       "“Hidden-gem topic” (穴場ジャンル) is a common search too. But once someone calls a topic a hidden gem, competition grows. **Whether you can stand out with your own experience** matters more."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "旅行ジャンルの強み",
+     "Why travel is a good fit"
+    ],
+    "b": [
+     {
+      "p": [
+       "旅行は、宿泊、航空券、現地のアクティビティなど、体験とセットで紹介しやすい商品が多いジャンルです。実際に行った場所の記事は、ほかのサイトとの違いにもなります。",
+       "Travel has many products that pair easily with experience: stays, flights, local activities. Articles about places you actually visited also set you apart from other sites."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "慎重に考えたいジャンル",
+     "Topics to approach with care"
+    ],
+    "b": [
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "健康や金融など、読者の生活に大きく影響する分野では、専門的な知識が必要になる場合があります。扱うかどうかは、自分が責任を持って書けるかで慎重に決めてください。",
+        "Fields such as health or finance can seriously affect readers’ lives and may require real expertise. Decide carefully whether you can write about them responsibly."
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "複数のジャンルを同時に扱ってもいいですか？",
+     "Can I cover several topics at once?"
+    ],
+    [
+     "最初は1つに絞るほうが、記事の評価も学びも積み上がりやすくなります。",
+     "Start with one so that both your articles’ standing and your learning build up."
+    ]
+   ],
+   [
+    [
+     "需要はどうやって調べますか？",
+     "How do I check demand?"
+    ],
+    [
+     "検索候補や、キーワードを調べるツールで確認できます。数字は目安として見てください。",
+     "Search suggestions and keyword research tools help. Treat the numbers as a guide."
+    ]
+   ],
+   [
+    [
+     "途中でジャンルを変えてもいいですか？",
+     "Can I change topic later?"
+    ],
+    [
+     "変えられます。ただ、これまでの記事が評価されている場合は、新しいジャンルは別のサイトや媒体に分けることも考えます。",
+     "Yes, but if your existing articles are doing well, consider putting the new topic on a separate site or channel."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "まず「ジャンル」の意味をそろえてから、候補を出す。",
+    "Agree what “genre” means first, then list candidates."
+   ],
+   [
+    "候補は、3つの軸で出し、表で比べる。",
+    "List candidates along three axes and compare them in a table."
+   ],
+   [
+    "旅行は紹介できるものが幅広い。ただし、慎重に考えたいジャンルもある。",
+    "Travel offers a wide range to recommend, though some genres call for care."
+   ]
+  ],
+  "sources": [],
+  "related": [
+   "travel-blog-income",
+   "earn-or-not",
+   "what-is-affiliate"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。",
+     "en": "First version."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "compass"
+ },
+ {
+  "slug": "travel-blog-income",
+  "category": "travel",
+  "level": 0,
+  "read_minutes": 7,
+  "keyword": "旅しながら稼ぐ / 旅行ブログ",
+  "title": {
+   "ja": "旅行ブログの収益化、最初の一歩：体験記と比較記事で始める",
+   "en": "Monetising a travel blog: start with trip reports and comparison posts"
+  },
+  "eyebrow": {
+   "ja": "旅行ブログで収益化",
+   "en": "Travel blog income"
+  },
+  "answer_first": {
+   "ja": "旅行ブログは、宿泊や航空券、現地アクティビティの紹介と相性がよく、**実体験の記事がそのまま収益につながります**。まず「体験記」と「比較記事」の2種類から始めます。",
+   "en": "A travel blog pairs well with hotels, flights and local activities, and **first-hand posts can lead directly to income**. Start with two kinds of post: trip reports and comparisons."
+  },
+  "sections": [
+   {
+    "h": [
+     "旅行ブログと収益化の相性",
+     "Why travel blogs and monetisation fit"
+    ],
+    "b": [
+     {
+      "p": [
+       "旅行は「どこへ行くか」「どこに泊まるか」「どう行くか」と、予約が必要な場面が多く、記事の中に自然にリンクを置きやすいジャンルです。",
+       "Travel involves many booking moments: where to go, where to stay, how to get there. Links fit naturally into the articles."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "まず書く2種類の記事",
+     "The first two kinds of post"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "記事のタイプ",
+         "Type"
+        ],
+        [
+         "役割",
+         "Role"
+        ],
+        [
+         "読まれる場面",
+         "When it is read"
+        ],
+        [
+         "例",
+         "Example"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "体験記",
+          "Trip report"
+         ],
+         [
+          "信頼をつくる",
+          "Builds trust"
+         ],
+         [
+          "行き先を探している途中",
+          "While choosing a destination"
+         ],
+         [
+          "「京都2泊3日で歩いたルート」",
+          "“Our 3-day walking route in Kyoto”"
+         ]
+        ],
+        [
+         [
+          "比較記事",
+          "Comparison"
+         ],
+         [
+          "予約の背中を押す",
+          "Pushes toward booking"
+         ],
+         [
+          "予約する直前",
+          "Just before booking"
+         ],
+         [
+          "「京都駅周辺の宿を比べてみた」",
+          "“Comparing stays near Kyoto Station”"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "say": [
+       "体験記で「この人の話は信用できる」と思ってもらい、比較記事で「ここで予約しよう」と決めてもらう。**2つが同じサイトにあると、読者が迷わずに進めます。**",
+       "A trip report makes readers think “this person is credible”, and a comparison helps them decide “I’ll book here”. **With both on one site, readers move on without getting lost.**"
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "紹介できる旅行商品",
+     "Travel products you can recommend"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "宿泊（ホテル、旅館、民泊など）",
+        "Accommodation (hotels, ryokan, rentals)"
+       ],
+       [
+        "航空券、鉄道、バスなどの移動",
+        "Flights, trains, buses"
+       ],
+       [
+        "現地ツアーやアクティビティ",
+        "Local tours and activities"
+       ],
+       [
+        "レンタカー、空港送迎",
+        "Car rental, airport transfers"
+       ],
+       [
+        "旅行保険、eSIMなど、旅の準備に使うもの",
+        "Travel insurance, eSIM and other trip preparation"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "リンクを置く場所の考え方",
+     "Where to place links"
+    ],
+    "b": [
+     {
+      "steps": [
+       [
+        "読者が「ここで予約したい」と思う場面を探す",
+        "Find the moment where a reader would want to book"
+       ],
+       [
+        "その直前に、理由を一文で説明する",
+        "Explain the reason in one sentence just before"
+       ],
+       [
+        "リンクは、文章の中と、記事の最後に置く",
+        "Place the link in the text and at the end of the article"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "最初の10記事の作り方",
+     "Your first ten posts"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "体験記：行ってきた場所を3本",
+        "Three trip reports about places you visited"
+       ],
+       [
+        "比較記事：宿、移動手段、プランを3本",
+        "Three comparisons of stays, transport or plans"
+       ],
+       [
+        "準備記事：持ち物、予約の手順、注意点を2本",
+        "Two preparation posts: packing, booking steps, cautions"
+       ],
+       [
+        "まとめ記事：目的地ごとの記事をまとめる1本",
+        "One hub post linking your destination articles"
+       ],
+       [
+        "自己紹介記事：どんな旅をしている人かを1本",
+        "One about-me post on what kind of traveller you are"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "Travelpayouts でできること",
+     "What Travelpayouts offers"
+    ],
+    "b": [
+     {
+      "p": [
+       "Travelpayouts は、複数の旅行ブランドのアフィリエイトプログラムを、ひとつのプラットフォームで利用できるサービスです。登録は無料です。当サイトは Travelpayouts が運営しています。",
+       "Travelpayouts lets you use the affiliate programs of several travel brands on one platform. Registration is free. This site is published by Travelpayouts."
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "写真や体験談は必要ですか？",
+     "Do I need photos and personal stories?"
+    ],
+    [
+     "必須ではありませんが、自分で行って書いた記事は信頼されやすく、ほかのサイトとの違いにもなります。",
+     "Not required, but posts based on your own trips are trusted more and set you apart."
+    ]
+   ],
+   [
+    [
+     "旅行に行かなくても書けますか？",
+     "Can I write without travelling?"
+    ],
+    [
+     "書けますが、調べた情報のまとめだけでは、似た記事が多くなりがちです。自分の経験や視点を足すことをおすすめします。",
+     "You can, but summaries of researched information tend to look like many others. Adding your own experience or viewpoint helps."
+    ]
+   ],
+   [
+    [
+     "ブログとSNS、どちらから始めればよいですか？",
+     "Blog or social media first?"
+    ],
+    [
+     "どちらでも構いません。続けやすいほうを選び、慣れたらもう一方を足していきます。",
+     "Either. Pick the one you can maintain and add the other once you are comfortable."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "旅行ブログは、収益化と相性がよい。",
+    "Travel blogs are a good fit for monetisation."
+   ],
+   [
+    "まず、体験記と比較記事の2種類を書く。",
+    "Start with two kinds of article: trip reports and comparisons."
+   ],
+   [
+    "最初の10記事を、順番に作っていく。",
+    "Build the first ten articles one by one."
+   ]
+  ],
+  "sources": [],
+  "related": [
+   "sales-calendar",
+   "travel-demand"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。",
+     "en": "First version."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "plane"
+ },
+ {
+  "slug": "ai-seo",
+  "category": "seo",
+  "level": 1,
+  "read_minutes": 7,
+  "keyword": "AI検索 SEO / AIコンテンツ（提案キーワード）",
+  "title": {
+   "ja": "AI検索時代の旅行アフィリエイト記事：Googleが求める「人の確認」と独自性",
+   "en": "Travel affiliate articles in the age of AI search: human review and originality"
+  },
+  "eyebrow": {
+   "ja": "AI検索とSEO",
+   "en": "AI search & SEO"
+  },
+  "answer_first": {
+   "ja": "Googleは、AIで作った記事も**公開前に人が確認する**ことと、偽の専門家プロフィールを使わないことを求めています。リスト記事や比較記事は、価値を加えていれば問題になりません。人の確認と独自の体験が、AI時代の記事の土台です。",
+   "en": "Google asks that AI-made articles be **reviewed by a person before publishing** and that fake expert profiles are not used. Listicles and comparisons are fine if they add value. Human review and original experience are the foundation of articles in the AI era."
+  },
+  "sections": [
+   {
+    "h": [
+     "AI検索で何が起きているか",
+     "What is happening in AI search"
+    ],
+    "b": [
+     {
+      "p": [
+       "GoogleのAI概要（AI Overviews）やAIモードなどのAI機能が、検索結果に出るようになりました。2026年8月には、サイトがこれらの機能への掲載から外れる設定も使えるようになりました。",
+       "Google’s AI features such as AI Overviews and AI Mode now appear in search results. In August 2026 a setting also became available that lets a site opt out of these features."
+      ]
+     },
+     {
+      "p": [
+       "サイラス・シェパード氏が、あるサイトで28日間オプトアウトして比べた実験では、AI機能での表示は全体のおよそ10%、クリック率は約0.9%（サイト全体は約0.4%）と推定されました。",
+       "In an experiment by Cyrus Shepard, a site opted out for 28 days and was then switched back. AI features accounted for about 10% of impressions, with a click-through rate of about 0.9% against about 0.4% site-wide."
+      ]
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "これは1つのサイトの実験で、すでにAI向けに最適化していたサイトです。他のサイトに当てはまるとは限りません。",
+        "This is one site that had already optimised for AI. It does not necessarily apply elsewhere."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "Googleが求めていること（2026年10月）",
+     "What Google asks for (October 2026)"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "テーマ",
+         "Topic"
+        ],
+        [
+         "内容",
+         "What changed"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "AI生成コンテンツ",
+          "AI-generated content"
+         ],
+         [
+          "公開前に人が確認する。タイトル、メタディスクリプション、altテキストも含む",
+          "Have a person review it before publishing, including title, meta description and alt text"
+         ]
+        ],
+        [
+         [
+          "偽の専門家",
+          "Fake experts"
+         ],
+         [
+          "AIで作った顔写真、架空の名前、偽の資格のプロフィールは、欺瞞であり、品質の低いサインとされる",
+          "Profiles with AI photos, invented names or fake credentials count as deception and a low-quality signal"
+         ]
+        ],
+        [
+         [
+          "主要コンテンツの評価",
+          "Main content"
+         ],
+         [
+          "努力、独創性、技能、正確さの4つの観点で評価される",
+          "Judged on effort, originality, skill and accuracy"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "p": [
+       "鈴木謙一さんのブログによると、日本語版のドキュメントは、この時点ではまだ更新されていません（記事は鈴木さんによる翻訳です）。",
+       "According to Kenichi Suzuki’s blog, the Japanese version of the documents had not been updated yet; the post relies on his own translation."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "リスト記事・比較記事は大丈夫？",
+     "Are listicles and comparisons safe?"
+    ],
+    "b": [
+     {
+      "p": [
+       "2026年のSearch Central Live（バルセロナ）で、ジョン・ミューラー氏は、リスト記事（比較や「おすすめ」）はそれ自体がスパムではないが、**価値を加える必要がある**と話しました。",
+       " At Search Central Live in Barcelona in 2026, John Mueller said listicles (comparisons and “best of” lists) are not spam in themselves, but **they need to add value**."
+      ]
+     },
+     {
+      "say": [
+       "リスト記事だけに頼る方法は、ある日急に通用しなくなることがある、とも言われています。**自分で行った体験や、確認した数字を足す**のがいちばん確実です。",
+       "He also said that a strategy built only on such lists can suddenly stop working. **Adding your own experience and numbers you have checked** is the safest route."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "当サイトの運用ルール",
+     "How this site works"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "記事は、公開前に編集担当者が確認する",
+        "An editor reviews each article before publishing"
+       ],
+       [
+        "架空の執筆者は使わない。運営は「ラボ編集部」と明記する",
+        "No invented authors; the operator is stated as the Lab editors"
+       ],
+       [
+        "数字や主張には、記事の最後に出典と確認日を載せる",
+        "Numbers and claims get a source and a checked date at the end of the article"
+       ],
+       [
+        "更新したら、更新履歴を残す",
+        "Keep an update log whenever an article changes"
+       ],
+       [
+        "リスト・比較記事には、独自の観点や実際の確認を加える",
+        "Add original viewpoints or actual checks to lists and comparisons"
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "AIで書いた記事は評価されませんか？",
+     "Are AI-written articles marked down?"
+    ],
+    [
+     "鈴木さんの解説によると、Googleは、AIコンテンツを公開前に人が確認することを求めています。AIで作ったこと自体を禁じているわけではありません。",
+     "In Suzuki’s summary, Google asks for human review before publishing. It does not forbid using AI as such."
+    ]
+   ],
+   [
+    [
+     "AI概要に載ればアクセスは増えますか？",
+     "Will appearing in AI Overviews bring more traffic?"
+    ],
+    [
+     "1つの実験では、AI機能でのクリック率はサイト全体の2倍以上と推定されましたが、サイトによって違う可能性があります。",
+     "In one experiment the click-through rate in AI features was estimated at more than double the site average, but it may differ by site."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "AIで作った記事も、公開前に人が確認する。",
+    "Have a person review AI-made articles before publishing."
+   ],
+   [
+    "偽の専門家や架空の執筆者は使わない。",
+    "Don’t use fake experts or invented authors."
+   ],
+   [
+    "リスト・比較記事は、価値を加える。",
+    "Make lists and comparisons add value."
+   ]
+  ],
+  "sources": [
+   "suzctr",
+   "suzmu",
+   "suzhr"
+  ],
+  "related": [
+   "earn-or-not",
+   "travel-blog-income"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。鈴木謙一さんのブログ（2026年10月〜11月の記事）にもとづく。Googleの一次ドキュメントは未確認。",
+     "en": "First version based on Kenichi Suzuki’s posts (Oct–Nov 2026). Google’s primary documents are not yet checked."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "search"
+ },
+ {
+  "slug": "sales-calendar",
+  "category": "travel",
+  "level": 0,
+  "read_minutes": 6,
+  "keyword": "旅行 セール / 航空券 セール（提案キーワード）",
+  "title": {
+   "ja": "旅行セール・キャンペーンの追い方：年末までのセールの見つけ方と記事の書き方",
+   "en": "Following travel sales: how to find them and write about them"
+  },
+  "eyebrow": {
+   "ja": "旅行セールの追い方",
+   "en": "Following travel sales"
+  },
+  "answer_first": {
+   "ja": "セール記事は、**セールの期間と旅行できる期間**をセットで書くと、読者の役に立ちます。期限が来たら更新するのが基本です。2026年11月時点では、各社の「11.11」や冬のセールが続いています。",
+   "en": "For sale articles, give readers **the sale period and the travel period together**. Update the article once the sale ends. As of November 2026, “11.11” and winter sales are running."
+  },
+  "sections": [
+   {
+    "h": [
+     "まず、2026年11月のセールを見てみる",
+     "A look at November 2026 sales"
+    ],
+    "b": [
+     {
+      "p": [
+       "TRAICYが伝えた、11月上旬のセールの例です。いずれも2026年11月9日に確認した内容で、**期限が過ぎると変わります**。",
+       "Examples reported by TRAICY in early November, checked on 9 November 2026. **They change once they expire.**"
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "セール",
+         "Sale"
+        ],
+        [
+         "セール期間",
+         "Sale period"
+        ],
+        [
+         "旅行できる期間",
+         "Travel period"
+        ],
+        [
+         "内容",
+         "Details"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "エティハド航空「11.11セール」",
+          "Etihad “11.11 sale”"
+         ],
+         [
+          "11/8〜11/15",
+          "8–15 Nov"
+         ],
+         [
+          "2026/11/16〜2027/5/31",
+          "16 Nov 2026 – 31 May 2027"
+         ],
+         [
+          "東京・大阪発。基本運賃が最大22%オフ",
+          "From Tokyo and Osaka; up to 22% off the base fare"
+         ]
+        ],
+        [
+         [
+          "ジェットスター・ジャパン「スーパースターセール」",
+          "Jetstar Japan “Super Star Sale”"
+         ],
+         [
+          "11/6 12:00〜11/9 16:59",
+          "6 Nov 12:00 – 9 Nov 16:59"
+         ],
+         [
+          "2026/11/23〜2027/2/18",
+          "23 Nov 2026 – 18 Feb 2027"
+         ],
+         [
+          "国内16路線。片道3,690円から（各種手数料は別）",
+          "16 domestic routes; from ¥3,690 one way (fees extra)"
+         ]
+        ],
+        [
+         [
+          "トキエア「冬タイムセール」",
+          "Toki Air “winter time sale”"
+         ],
+         [
+          "11/6〜11/9",
+          "6–9 Nov"
+         ],
+         [
+          "2026/12/1〜12/23",
+          "1–23 Dec 2026"
+         ],
+         [
+          "片道、平日6,500円から・土日祝8,500円から（手数料は別）",
+          "One way from ¥6,500 on weekdays and ¥8,500 at weekends (fees extra)"
+         ]
+        ],
+        [
+         [
+          "KLM「リアルディールデイズ」",
+          "KLM “Real Deal Days”"
+         ],
+         [
+          "11/4〜11/24",
+          "4–24 Nov"
+         ],
+         [
+          "2026/11/5〜2027/6/30",
+          "5 Nov 2026 – 30 Jun 2027"
+         ],
+         [
+          "東京・大阪発の欧州線。往復177,680円から（エコノミー、アムステルダム）",
+          "Tokyo and Osaka to Europe; from ¥177,680 round trip (economy, Amsterdam)"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "セール価格には、燃油サーチャージや空港使用料などが含まれない場合があります。「最安」とは書かず、「〜円から」と条件を添えます。",
+        "Sale prices may exclude fuel surcharges and airport fees. Don’t write “cheapest”; write “from ¥…” with the conditions."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "年末にかけて追いたいテーマ",
+     "Themes to follow through year-end"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "テーマ",
+         "Theme"
+        ],
+        [
+         "時期",
+         "Timing"
+        ],
+        [
+         "出典",
+         "Source"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "ふるさと納税・年末売れ筋サービス特集（帰省・旅行を含む）",
+          "Furusato Nozei and year-end features (including travel home)"
+         ],
+         [
+          "2026/10/21〜12/2",
+          "21 Oct – 2 Dec 2026"
+         ],
+         [
+          "A8スタッフブログ",
+          "A8 staff blog"
+         ]
+        ],
+        [
+         [
+          "ブラックフライデー",
+          "Black Friday"
+         ],
+         [
+          "2026年は11/27（金）が中心",
+          "Centred on Fri 27 Nov in 2026"
+         ],
+         [
+          "A8スタッフブログ",
+          "A8 staff blog"
+         ]
+        ],
+        [
+         [
+          "ANAとIHGの新プログラム",
+          "New ANA and IHG programme"
+         ],
+         [
+          "2027年1月から（一部は2月から）",
+          "From January 2027 (partly February)"
+         ],
+         [
+          "TRAICY",
+          "TRAICY"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "p": [
+       "A8.netは競合ですが、季節ごとの特集は、日本のブロガーが「いつ何を紹介するか」を知る参考になります。",
+       "A8.net is a competitor, but its seasonal features show what Japanese bloggers promote and when."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "セール記事の書き方と、期限が来たときの更新",
+     "Writing sale articles and updating them when they end"
+    ],
+    "b": [
+     {
+      "steps": [
+       [
+        "記事の冒頭に、セール期間と旅行できる期間を書く",
+        "Put the sale period and the travel period at the top"
+       ],
+       [
+        "価格は「〜円から」と書き、手数料が別かどうかを添える",
+        "Write prices as “from ¥…” and say whether fees are extra"
+       ],
+       [
+        "期限の翌日に、記事を「終了」に更新する",
+        "Update the article to “ended” the day after the deadline"
+       ],
+       [
+        "次のセールの記事にリンクする",
+        "Link to the next sale article"
+       ]
+      ]
+     },
+     {
+      "p": [
+       "期限が過ぎた記事は、消さずに「終了しました」と明記して、次のセールへ案内します。",
+       "Don’t delete an expired article; mark it as ended and point readers to the next sale."
+      ]
+     },
+     {
+      "diff": [
+       [
+        "更新前：エティハド航空「11.11セール」を開催中（11/8〜11/15）",
+        "Before: Etihad “11.11 sale” is on (8–15 Nov)"
+       ],
+       [
+        "更新後：エティハド航空「11.11セール」は11/15に終了しました。次は、年末年始のセールをチェック",
+        "After: The Etihad “11.11 sale” ended on 15 Nov. Next, check the year-end sales"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "ニュースの見つけ方",
+     "Where to find the news"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "TRAICY：航空会社やホテルのセールの最新情報（毎日更新）",
+        "TRAICY: the latest airline and hotel sales (daily)"
+       ],
+       [
+        "TravelVoice：旅行業界のニュースと統計",
+        "TravelVoice: travel industry news and statistics"
+       ],
+       [
+        "A8スタッフブログ：季節の特集のスケジュール",
+        "A8 staff blog: seasonal feature schedule"
+       ],
+       [
+        "各社の公式サイト：条件は必ず公式ページで確認",
+        "Official sites: always confirm conditions there"
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "セール情報はどのくらいの頻度で更新しますか？",
+     "How often are sale articles updated?"
+    ],
+    [
+     "週に1回、内容を確認しています。セールの期限が過ぎた項目は、翌日に更新します。",
+     "Content is checked weekly, and items whose sale has ended are updated the next day."
+    ]
+   ],
+   [
+    [
+     "記事の価格は、いつの時点のものですか？",
+     "As of when are the prices in the article?"
+    ],
+    [
+     "記事の更新日の時点の情報です。価格は変わることがあるため、予約の前に、各社のページで最新の情報をご確認ください。",
+     "They are as of the article’s update date. Prices can change, so check each company’s page for the latest before booking."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "セールは、セール期間と旅行できる期間をセットで書く。",
+    "Write the sale period and the travel period together."
+   ],
+   [
+    "価格は条件つきで。「最安」とは書かない。",
+    "Give prices with conditions; don’t write “cheapest”."
+   ],
+   [
+    "期限が来たら、消さずに「終了」へ更新する。",
+    "When it ends, update to “ended” instead of deleting."
+   ]
+  ],
+  "sources": [
+   "tr1",
+   "tr2",
+   "tr3",
+   "tr4",
+   "tr5",
+   "a8yearend",
+   "a8bf"
+  ],
+  "related": [
+   "travel-demand",
+   "travel-blog-income"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。TRAICYとA8スタッフブログの2026年11月9日時点の内容にもとづく。",
+     "en": "First version based on TRAICY and the A8 staff blog as of 9 November 2026."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "ticket"
+ },
+ {
+  "slug": "travel-demand",
+  "category": "market",
+  "level": 0,
+  "read_minutes": 6,
+  "keyword": "日本人 海外旅行 出国者数（提案キーワード）",
+  "title": {
+   "ja": "日本人の海外旅行は、どこまで戻った？最新の出国者数と、記事での使い方",
+   "en": "How far has Japanese outbound travel recovered? The latest numbers and how to use them"
+  },
+  "eyebrow": {
+   "ja": "出国者数の最新データ",
+   "en": "Outbound travel data"
+  },
+  "answer_first": {
+   "ja": "2026年9月の日本人出国者数は**148万1,900人**（前年同月比+6.3%）で、3か月ぶりに増えました。ただし2019年9月と比べると15.4%少なく、1〜9月累計も2019年比で25.6%少ない状況です。数字は毎月更新されます。",
+   "en": "Japanese outbound travellers in September 2026 were **1,481,900** (+6.3% year on year), the first rise in three months. That is still 15.4% below September 2019, and January–September is 25.6% below 2019. The numbers update monthly."
+  },
+  "sections": [
+   {
+    "h": [
+     "2026年9月の出国者数",
+     "Outbound travellers, September 2026"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "期間",
+         "Period"
+        ],
+        [
+         "出国者数",
+         "Travellers"
+        ],
+        [
+         "前年同期比",
+         "Year on year"
+        ],
+        [
+         "2019年比",
+         "Versus 2019"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "2026年9月",
+          "Sep 2026"
+         ],
+         [
+          "1,481,900人",
+          "1,481,900"
+         ],
+         [
+          "+6.3%",
+          "+6.3%"
+         ],
+         [
+          "−15.4%（2019年9月は1,751,477人）",
+          "−15.4% (Sep 2019: 1,751,477)"
+         ]
+        ],
+        [
+         [
+          "2026年1〜9月累計",
+          "Jan–Sep 2026"
+         ],
+         [
+          "11,206,400人",
+          "11,206,400"
+         ],
+         [
+          "+3.2%",
+          "+3.2%"
+         ],
+         [
+          "−25.6%",
+          "−25.6%"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "p": [
+       "9月に増えた理由は、7日間の連休（シルバーウィーク）があったことと説明されています。出典はJNTO（日本政府観光局）の発表を、TravelVoiceが図解したものです。",
+       "The rise is explained by a seven-day holiday stretch (Silver Week). The figures are the JNTO’s announcement as illustrated by TravelVoice."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "参考：訪日外客数と世界の動向",
+     "For reference: inbound visitors and the global picture"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "項目",
+         "Item"
+        ],
+        [
+         "数字",
+         "Figure"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "訪日外客数（2026年9月）",
+          "Inbound visitors, Sep 2026"
+         ],
+         [
+          "3,103,700人（前年同月比−5.0%）",
+          "3,103,700 (−5.0% year on year)"
+         ]
+        ],
+        [
+         [
+          "世界の国際宿泊旅行（2026年予測、WTM）",
+          "Global international overnight trips (2026 forecast, WTM)"
+         ],
+         [
+          "15.7億回（前年比+2%）",
+          "1.57 billion (+2%)"
+         ]
+        ],
+        [
+         [
+          "2027年の予測",
+          "2027 forecast"
+         ],
+         [
+          "国際旅行が+8%",
+          "International trips +8%"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "p": [
+       "WTMの調査では、**AIに予約まで任せてもよい人は36%**、AIをアイデア集めに使う人は53%、価格比較に使う人は58%でした。旅行のメディアにとって、AIが入口になりつつあることを示す数字です。",
+       "In the WTM survey, **36% would let AI complete a booking**, 53% use AI for ideas and 58% to compare prices. It shows AI becoming an entry point for travel media."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "記事で数字を使うときの注意",
+     "Using the numbers in articles"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "必ず「何年何月の数字か」と出典を書く",
+        "Always state the month and the source"
+       ],
+       [
+        "前年比と、コロナ前（2019年）比は、分けて書く",
+        "Keep year-on-year and versus-2019 figures separate"
+       ],
+       [
+        "速報値は、あとで改訂されることがある",
+        "Preliminary figures can be revised later"
+       ],
+       [
+        "一次情報（JNTO）を最終確認する",
+        "Finally check the primary source (JNTO)"
+       ]
+      ]
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "この記事の数字は、JNTO（日本政府観光局）の発表をTravelVoiceが報じた内容にもとづいています。最新の数字は、JNTOの発表もあわせてご確認ください。",
+        "The figures come from the JNTO’s announcement as reported by TravelVoice. For the latest numbers, also check the JNTO’s own release."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "この記事の更新のしかた",
+     "How this article is updated"
+    ],
+    "b": [
+     {
+      "p": [
+       "JNTOが月次の数字を公表したら、表の行を新しい月に差し替えます。更新したときは、更新履歴に日付と内容を残します。",
+       "When the JNTO publishes the next monthly figures, the table rows are replaced with the new month, and the date and change are added to the update log."
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "この数字はいつ更新されますか？",
+     "When are these numbers updated?"
+    ],
+    [
+     "毎月、JNTOの発表後に更新します。",
+     "Every month, after the JNTO’s release."
+    ]
+   ],
+   [
+    [
+     "旅行ブログに、統計は必要ですか？",
+     "Does a travel blog need statistics?"
+    ],
+    [
+     "必須ではありません。ただ、最新の数字は記事の信頼性を高めます。",
+     "Not required, but up-to-date numbers raise an article’s credibility."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "2026年9月の出国者数は148万1,900人（+6.3%）。ただし2019年9月より15.4%少ない。",
+    "September 2026 outbound travellers: 1,481,900 (+6.3%), still 15.4% below September 2019."
+   ],
+   [
+    "数字は、月と出典を書いて使う。",
+    "Use numbers with the month and source."
+   ],
+   [
+    "毎月の公表後に更新する。",
+    "Update after each monthly release."
+   ]
+  ],
+  "sources": [
+   "tvout",
+   "tvin",
+   "tvwtm"
+  ],
+  "related": [
+   "sales-calendar",
+   "travel-blog-income",
+   "earn-or-not"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。TravelVoiceの記事（2026年10月21日、11月6日）にもとづく。JNTOの一次ページは未確認。",
+     "en": "First version based on TravelVoice articles (21 Oct and 6 Nov 2026). The JNTO primary page is not yet checked."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "chart"
+ },
+ {
+  "slug": "income-guide",
+  "category": "strategy",
+  "level": 0,
+  "read_minutes": 6,
+  "keyword": "アフィリエイト 収入 平均 目安",
+  "title": {
+   "ja": "アフィリエイトの収入の目安：調査データと、自分の数字の見積もり方",
+   "en": "What affiliate income looks like: survey data and how to estimate your own numbers"
+  },
+  "eyebrow": {
+   "ja": "収入の目安",
+   "en": "Income benchmarks"
+  },
+  "answer_first": {
+   "ja": "JAOの2025年調査では、アフィリエイトで**月3万円以上**を得ている人は12.4%、**月1,000円未満**は52.5%でした。目安として見るときは、調査の対象と時期を必ず確認してください。",
+   "en": "In JAO’s 2025 survey, **12.4%** of respondents earned **¥30,000 or more a month** and **52.5%** earned **under ¥1,000**. When using such figures, always check who was surveyed and when."
+  },
+  "sections": [
+   {
+    "h": [
+     "調査データで見る収入の分布",
+     "The income distribution in the survey"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "月の収益",
+         "Monthly earnings"
+        ],
+        [
+         "2021年",
+         "2021"
+        ],
+        [
+         "2023年",
+         "2023"
+        ],
+        [
+         "2025年",
+         "2025"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "3万円以上",
+          "¥30,000+"
+         ],
+         [
+          "8.7%",
+          "8.7%"
+         ],
+         [
+          "9.4%",
+          "9.4%"
+         ],
+         [
+          "12.4%",
+          "12.4%"
+         ]
+        ],
+        [
+         [
+          "1,000円未満",
+          "Under ¥1,000"
+         ],
+         [
+          "68.6%",
+          "68.6%"
+         ],
+         [
+          "66.2%",
+          "66.2%"
+         ],
+         [
+          "52.5%",
+          "52.5%"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "p": [
+       "2025年の調査は、1,000人の回答（スクリーニング対象21,054人）で、2025年12月1〜4日に実施されました。調査はJAO（日本アフィリエイト協議会）によるものです。",
+       "The 2025 survey had 1,000 respondents (from 21,054 screened) and ran 1–4 December 2025. It was conducted for JAO, the Japan Affiliate Council."
+      ]
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "この数字は「回答者」の分布で、すべてのアフィリエイターの平均ではありません。収入を保証するものでもありません。",
+        "These figures describe survey respondents, not all affiliates, and do not promise any income."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "自分の収益を見積もる式",
+     "A simple formula for your own estimate"
+    ],
+    "b": [
+     {
+      "p": [
+       "収益は、おおまかに「**訪問数 × クリック率 × 成約率 × 1件あたりの報酬**」で考えられます。",
+       "Earnings can be roughly thought of as **visits × click rate × conversion rate × reward per sale**."
+      ]
+     },
+     {
+      "steps": [
+       [
+        "記事ごとの月間訪問数を、アクセス解析で確認する",
+        "Check monthly visits per article in your analytics"
+       ],
+       [
+        "リンクのクリック率を確認する",
+        "Check the link click rate"
+       ],
+       [
+        "成約率と報酬額を、ASPの管理画面で確認する",
+        "Check conversion rate and reward in your ASP dashboard"
+       ],
+       [
+        "1つずつ変えて、数字がどう動くか見る",
+        "Change one factor at a time and watch the numbers"
+       ]
+      ]
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "数字を伸ばせるのは、多くの場合「訪問数」か「クリック率」です。報酬額は案件で決まります。",
+        "Usually it is visits or click rate you can improve; the reward amount is set by the programme."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "「稼げない」と感じたときに見る順番",
+     "What to check when it feels like it is not working"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "記事に、そもそも読者が来ているか",
+        "Are readers reaching the article at all?"
+       ],
+       [
+        "読者の検索意図と、記事の内容が合っているか",
+        "Does the content match what readers searched for?"
+       ],
+       [
+        "リンクが、読者の迷わない位置にあるか",
+        "Is the link where readers can find it easily?"
+       ],
+       [
+        "案件が、読者のジャンルに合っているか",
+        "Does the programme fit the readers’ topic?"
+       ]
+      ]
+     },
+     {
+      "p": [
+       "詳しくは「アフィリエイトは稼げない？」の記事もご覧ください。",
+       "See also the article “Is affiliate marketing not profitable?”"
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "初心者の平均収入はいくらですか？",
+     "What is a beginner’s average income?"
+    ],
+    [
+     "この調査は初心者だけの平均を示していません。分布（上の表）を目安にしてください。",
+     "The survey does not give a beginners-only average; use the distribution above as a guide."
+    ]
+   ],
+   [
+    [
+     "数字はどのくらいの頻度で変わりますか？",
+     "How often do the numbers change?"
+    ],
+    [
+     "JAOの調査は年1回です。新しい調査が出たら更新します。",
+     "JAO’s survey is yearly. This article is updated when a new one appears."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "JAO調査：月3万円以上は12.4%、1,000円未満は52.5%（2025年）。",
+    "JAO: 12.4% at ¥30,000+, 52.5% under ¥1,000 (2025)."
+   ],
+   [
+    "調査の数字は、平均でも保証でもない。",
+    "Survey figures are neither an average nor a promise."
+   ],
+   [
+    "収益は、訪問数・クリック率・成約率・報酬で見積もる。",
+    "Estimate with visits, click rate, conversion rate and reward."
+   ]
+  ],
+  "sources": [
+   "jao25"
+  ],
+  "related": [
+   "earn-or-not",
+   "travel-blog-income",
+   "start-guide"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。JAO 2025年調査（既存記事と同じ出典）にもとづく。",
+     "en": "First version based on the JAO 2025 survey (same source as the existing article)."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "chart"
+ },
+ {
+  "slug": "instagram",
+  "category": "traffic",
+  "level": 1,
+  "read_minutes": 6,
+  "keyword": "インスタ アフィリエイト",
+  "title": {
+   "ja": "Instagramで旅行の発信を続けるコツ：リンクの置き方と投稿の組み立て",
+   "en": "Keeping up travel posts on Instagram: where to put links and how to build a post"
+  },
+  "eyebrow": {
+   "ja": "SNSでの発信",
+   "en": "Social media"
+  },
+  "answer_first": {
+   "ja": "Instagramでは、投稿のキャプションにあるURLを押せません。そのため、**プロフィールのリンク**から、ブログなどのまとめページへ案内する形が基本です。1投稿に1テーマ、場所と時期を書くと、見た人が行き先を思い浮かべやすくなります。",
+   "en": "On Instagram, URLs in captions cannot be tapped, so the usual approach is to guide readers from the **profile link** to a hub page such as your blog. One theme per post, with the place and the season, helps viewers picture the trip."
+  },
+  "sections": [
+   {
+    "h": [
+     "リンクをどこに置くか",
+     "Where to put the link"
+    ],
+    "b": [
+     {
+      "p": [
+       "キャプションのURLは押せないため、プロフィールのリンク欄や、ストーリーズのリンク機能などを使うのが一般的です。使える機能は、アカウントの種類や時期で変わるため、Instagramのヘルプで確認してください。",
+       "Because caption URLs are not tappable, the profile link field or the Stories link feature is typically used. Available features change by account type and time, so check Instagram’s help."
+      ]
+     },
+     {
+      "steps": [
+       [
+        "プロフィールに、まとめページ（自分のブログなど）のリンクを置く",
+        "Put a hub page, such as your blog, in the profile link"
+       ],
+       [
+        "投稿で「詳しくはプロフィールのリンクから」と案内する",
+        "Tell readers in the post to use the profile link"
+       ],
+       [
+        "リンク先で、読者が迷わず目的の情報に進めるようにする",
+        "Make the landing page easy to follow to what they came for"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "旅行の投稿の組み立て方",
+     "How to build a travel post"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "1枚目の写真で、場所が分かるようにする",
+        "Make the place recognisable in the first photo"
+       ],
+       [
+        "キャプションの最初に、場所名と時期を書く",
+        "Start the caption with the place and the season"
+       ],
+       [
+        "1投稿で、1つのテーマだけ伝える",
+        "Cover one theme per post"
+       ],
+       [
+        "詳しい行き方や費用は、ブログ記事に任せる",
+        "Leave directions and costs to the blog article"
+       ]
+      ]
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "SNSは「見つけてもらう入口」、ブログは「詳しく読んでもらう場所」と役割を分けると続けやすくなります。",
+        "Treat social media as the entrance where people find you and the blog as where they read in depth; the split makes it easier to keep going."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "続けやすい発信のコツ",
+     "Tips to keep posting"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "ジャンルを絞り、プロフィールで何の情報かを伝える",
+        "Keep to one topic and say in the profile what it covers"
+       ],
+       [
+        "反応のあった投稿を、ブログ記事に広げる",
+        "Expand posts that resonate into blog articles"
+       ],
+       [
+        "投稿する曜日や時間を決めて、無理のない回数で続ける",
+        "Fix a posting day and time and keep a pace you can sustain"
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "ストーリーズのリンクは使えますか？",
+     "Can I use Stories links?"
+    ],
+    [
+     "機能の提供はアカウントや時期で変わります。Instagramのヘルプで確認してください。",
+     "Availability varies; check Instagram’s help."
+    ]
+   ],
+   [
+    [
+     "ブログがなくても始められますか？",
+     "Can I start without a blog?"
+    ],
+    [
+     "始められます。ただし、詳しい情報を届ける場所があると、リンクの行き先に困りません。",
+     "Yes, though having a place for detailed information gives the profile link somewhere to lead."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "キャプションのURLは押せない。プロフィールのリンクに誘導する。",
+    "Caption URLs are not tappable; guide readers to the profile link."
+   ],
+   [
+    "1投稿に1テーマ。場所と時期を書く。",
+    "One theme per post, with place and season."
+   ],
+   [
+    "SNSは入口、ブログは詳しく読む場所。",
+    "Social media is the entrance, the blog is where people read in depth."
+   ]
+  ],
+  "sources": [],
+  "related": [
+   "start-guide",
+   "travel-blog-income"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。一般的な内容。Instagramの現行機能は未確認。",
+     "en": "First version with general advice. Instagram’s current features are not yet checked."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "megaphone"
+ },
+ {
+  "slug": "start-guide",
+  "category": "basics",
+  "level": 0,
+  "read_minutes": 7,
+  "keyword": "アフィリエイト 初心者 始め方",
+  "title": {
+   "ja": "アフィリエイト初心者の始め方：6つのステップ",
+   "en": "Getting started with affiliate marketing: six steps"
+  },
+  "eyebrow": {
+   "ja": "初心者向けガイド",
+   "en": "Beginner guide"
+  },
+  "answer_first": {
+   "ja": "アフィリエイトは、**テーマを決める → 発信の場所を作る → 登録する → 案件を選ぶ → 記事を書く → 数字を見る**の順で始められます。登録は無料のものが多く、最初から大きな費用は必要ありません。",
+   "en": "You can start in this order: **choose a topic → set up a place to publish → sign up → pick programmes → write → check the numbers**. Many sign-ups are free, so no large upfront cost is needed."
+  },
+  "sections": [
+   {
+    "h": [
+     "6つのステップ",
+     "Six steps"
+    ],
+    "b": [
+     {
+      "steps": [
+       [
+        "**テーマを決める**：自分が詳しい、または続けられるジャンルを選ぶ。",
+        "**Choose a topic** you know well or can keep writing about."
+       ],
+       [
+        "**発信の場所を作る**：ブログやSNSなど。",
+        "**Set up where you publish**: a blog or social media."
+       ],
+       [
+        "**登録する**：ASP（アフィリエイトサービスプロバイダ）などに登録する。",
+        "**Sign up** with an ASP (affiliate service provider) or similar."
+       ],
+       [
+        "**案件を選ぶ**：読者のジャンルに合う商品やサービスを選ぶ。",
+        "**Pick programmes** that fit your readers’ topic."
+       ],
+       [
+        "**記事を書く**：読者の疑問に答える形で書く。",
+        "**Write**, answering the reader’s question."
+       ],
+       [
+        "**数字を見る**：訪問数・クリック数・成果を確認して、改善する。",
+        "**Check the numbers**: visits, clicks and results, then improve."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "ASPとは何か",
+     "What an ASP is"
+    ],
+    "b": [
+     {
+      "p": [
+       "ASPは、広告を出したい企業と、紹介したい人をつなぐ仕組みです。日本には複数のASPがあり、取り扱う案件や条件は異なります。",
+       "An ASP connects advertisers with people who want to recommend their products. Japan has several, with different programmes and terms. "
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "最初の3か月の目標の立て方",
+     "Setting goals for the first three months"
+    ],
+    "b": [
+     {
+      "p": [
+       "最初は収益より、**記事の本数と、読まれ方**を目標にするのがおすすめです。JAOの調査でも、月1,000円未満の人が半数を超えています（2025年）。焦らず続けることが大切です。",
+       "At first, aim for **the number of articles and how they are read** rather than earnings. In JAO’s survey, over half earned under ¥1,000 a month (2025). Keep going without rushing."
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "費用はかかりますか？",
+     "Does it cost anything?"
+    ],
+    [
+     "ASPの登録は無料のものが多いです。ブログのドメインやサーバーには費用がかかる場合があります。",
+     "Many ASP sign-ups are free. A blog domain or server may cost money."
+    ]
+   ],
+   [
+    [
+     "ブログとSNS、どちらから始めますか？",
+     "Blog or social media first?"
+    ],
+    [
+     "どちらでも始められます。リンクを置きやすいのは、ブログです。",
+     "Either works. Blogs make it easier to place links."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "テーマ→場所→登録→案件→記事→数字の6ステップ。",
+    "Topic → place → sign-up → programmes → articles → numbers."
+   ],
+   [
+    "最初は、記事の本数と読まれ方を目標にする。",
+    "Start by aiming at article count and readership."
+   ]
+  ],
+  "sources": [
+   "jao25",
+   "a8camp"
+  ],
+  "related": [
+   "what-is-affiliate",
+   "income-guide"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。JAO 2025年調査とA8.netの案内（競合の自社情報）にもとづく。",
+     "en": "First version based on the JAO 2025 survey and A8.net’s own guidance (a competitor’s self-description)."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "book"
+ },
+ {
+  "slug": "click-reward",
+  "category": "basics",
+  "level": 1,
+  "read_minutes": 5,
+  "keyword": "クリック報酬型 アフィリエイト",
+  "title": {
+   "ja": "クリック報酬型アフィリエイトとは？成果報酬型との違い",
+   "en": "Click-based affiliate rewards: how they differ from performance-based rewards"
+  },
+  "eyebrow": {
+   "ja": "報酬の種類",
+   "en": "Reward types"
+  },
+  "answer_first": {
+   "ja": "**クリック報酬型**は、リンクがクリックされると報酬が発生する形式です。**成果報酬型**は、購入や申込みなどの成果が出たときに報酬が発生します。どちらがあるかは、ASPや案件によって違います。",
+   "en": "With **click-based** rewards you earn when a link is clicked; with **performance-based** rewards you earn when a purchase or sign-up happens. Which are available differs by ASP and programme."
+  },
+  "sections": [
+   {
+    "h": [
+     "報酬の発生のしかたの違い",
+     "How the reward is triggered"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "種類",
+         "Type"
+        ],
+        [
+         "報酬が発生するとき",
+         "When you earn"
+        ],
+        [
+         "特徴",
+         "Characteristics"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "成果報酬型",
+          "Performance-based"
+         ],
+         [
+          "購入・申込みなどの成果",
+          "A purchase or sign-up"
+         ],
+         [
+          "1件あたりの報酬が大きい傾向。成果が出ないと0円。",
+          "Tends to pay more per result; nothing if no result."
+         ]
+        ],
+        [
+         [
+          "クリック報酬型",
+          "Click-based"
+         ],
+         [
+          "リンクがクリックされたとき",
+          "A link click"
+         ],
+         [
+          "1クリックあたりの報酬は小さい傾向。数が必要。",
+          "Tends to pay little per click; volume is needed."
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "上の「傾向」は一般的な説明で、実際の金額や条件は案件ごとに異なります。",
+        "The tendencies above are general; actual amounts and terms vary by programme."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "「PPCアフィリエイト」と混同しない",
+     "Do not confuse it with “PPC affiliate”"
+    ],
+    "b": [
+     {
+      "p": [
+       "日本では「PPCアフィリエイト」というと、検索連動型広告を出して商品を紹介する手法を指すことが多く、報酬の形式であるクリック報酬型とは意味が異なります。当サイトでは、報酬の形式は「クリック報酬型」と書きます。",
+       "In Japan “PPC affiliate” usually means promoting products through paid search ads, which is different from click-based rewards as a pay model. This site uses 「クリック報酬型」 for the reward type."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "どちらを選ぶか",
+     "Which to choose"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "読者の数が多く、購入までの距離が遠いテーマは、クリック報酬型が合うことがある",
+        "High-readership topics far from purchase may suit click-based rewards"
+       ],
+       [
+        "購入や予約につながりやすい記事は、成果報酬型が合うことが多い",
+        "Articles that lead naturally to purchase or booking often suit performance-based rewards"
+       ],
+       [
+        "提供の有無と条件は、各ASPで確認する",
+        "Check availability and terms with each ASP"
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "クリック報酬型は、初心者向きですか？",
+     "Is click-based good for beginners?"
+    ],
+    [
+     "向き不向きはテーマで変わります。条件と単価を確認してから選んでください。",
+     "It depends on your topic; check terms and rates before choosing."
+    ]
+   ],
+   [
+    [
+     "どのASPにありますか？",
+     "Which ASPs offer it?"
+    ],
+    [
+     "各ASPの案件一覧で確認してください。変わることがあります。",
+     "Check each ASP’s programme list; this changes."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "成果報酬型は成果で、クリック報酬型はクリックで報酬が発生する。",
+    "Performance-based pays on results; click-based pays on clicks."
+   ],
+   [
+    "PPCアフィリエイトとは意味が違う。",
+    "It is not the same as “PPC affiliate”."
+   ],
+   [
+    "提供の有無と条件は、ASPごとに違う。",
+    "Availability and terms differ by ASP."
+   ]
+  ],
+  "sources": [
+   "a8camp",
+   "moshimo"
+  ],
+  "related": [
+   "what-is-affiliate",
+   "ad-affiliate"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。説明は一般的な内容。各ASPの現行の案件と条件は未確認。",
+     "en": "First version with general explanations. Each ASP’s current programmes and terms are not yet checked."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "link"
+ }
+]

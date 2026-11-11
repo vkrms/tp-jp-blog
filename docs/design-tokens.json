@@ -1,0 +1,1239 @@
+{
+  "$description": "TP JP 3.0 — Design system for the Travelpayouts Japan landing page — a calm, flat, trust-first Japanese marketing surface with a single brand blue for action and a warm orange reserved for \"free\" and support moments.",
+  "$extensions": {
+    "source": {
+      "figma": "https://www.figma.com/design/o0YiuYwhJO50g7xNwaIw2N/tp-landing-jp?node-id=388-330",
+      "frame": "D 3.0 / step 11 / Design system (388:330)",
+      "mockups": "Desktop 1440 (344:1381), Mobile 375 (344:776)"
+    },
+    "generatedFrom": "docs/design.md",
+    "generator": "tools/build-design-tokens.mjs"
+  },
+  "color": {
+    "ink": {
+      "$type": "color",
+      "$value": "#101828",
+      "$description": "text/ink — headings, primary text"
+    },
+    "body": {
+      "$type": "color",
+      "$value": "#1D2939",
+      "$description": "raw — body copy, lead"
+    },
+    "label": {
+      "$type": "color",
+      "$value": "#344054",
+      "$description": "raw — labels, tabs, footer links"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "#475467",
+      "$description": "text/secondary — secondary text, FAQ answers"
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "#667085",
+      "$description": "text/note — ※ notes, muted labels (4.8:1 on white)"
+    },
+    "disabled": {
+      "$type": "color",
+      "$value": "#98A2B3",
+      "$description": "text/disabled — placeholder, disabled"
+    },
+    "surface": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "$description": "surface/white — page, cards"
+    },
+    "on-surface": {
+      "$type": "color",
+      "$value": "#101828"
+    },
+    "surface-muted": {
+      "$type": "color",
+      "$value": "#F9FAFB",
+      "$description": "signal/notice-bg — section bands, FAQ items, logo tiles"
+    },
+    "surface-soft": {
+      "$type": "color",
+      "$value": "#F2F4F7",
+      "$description": "placeholder/fill-soft — plates, chips, counters"
+    },
+    "line": {
+      "$type": "color",
+      "$value": "#EAECF0",
+      "$description": "line/hairline — hairline dividers; also state/disabled-bg"
+    },
+    "line-strong": {
+      "$type": "color",
+      "$value": "#D0D5DD",
+      "$description": "line/strong — input borders, ghost button border"
+    },
+    "surface-deep": {
+      "$type": "color",
+      "$value": "#1B1D29",
+      "$description": "surface/deep — dark browser mock"
+    },
+    "primary": {
+      "$type": "color",
+      "$value": "#006DFF",
+      "$description": "accent/default — primary buttons, step numbers, accents"
+    },
+    "on-primary": {
+      "$type": "color",
+      "$value": "#FFFFFF"
+    },
+    "primary-hover": {
+      "$type": "color",
+      "$value": "#0061E0",
+      "$description": "accent/hover = accent/text"
+    },
+    "primary-pressed": {
+      "$type": "color",
+      "$value": "#0058CC",
+      "$description": "accent/pressed — also links, result figures, eyebrow"
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "#66A7FF",
+      "$description": "accent/focus — 3px focus ring"
+    },
+    "primary-200": {
+      "$type": "color",
+      "$value": "#CCE2FF",
+      "$description": "blue/100 — chart bars, open-FAQ border, active tab border"
+    },
+    "primary-100": {
+      "$type": "color",
+      "$value": "#E5F0FF",
+      "$description": "blue/50 — quote bg, key-figure card, active tab, card borders"
+    },
+    "primary-50": {
+      "$type": "color",
+      "$value": "#F2F8FF",
+      "$description": "accent/tint — tint backgrounds, step plates"
+    },
+    "warm": {
+      "$type": "color",
+      "$value": "#FF6200",
+      "$description": "raw — hero CTA fill"
+    },
+    "warm-result": {
+      "$type": "color",
+      "$value": "#E05600",
+      "$description": "raw — result accent"
+    },
+    "warm-strong": {
+      "$type": "color",
+      "$value": "#C24A00",
+      "$description": "raw — support heading, outline CTA"
+    },
+    "warm-strong-hover": {
+      "$type": "color",
+      "$value": "#A33F00",
+      "$description": "raw — outline CTA hover"
+    },
+    "warm-200": {
+      "$type": "color",
+      "$value": "#FFE2D1",
+      "$description": "orange/100 — warm accents"
+    },
+    "free-bg": {
+      "$type": "color",
+      "$value": "#FFF1E8",
+      "$description": "signal/free-bg — 無料 chip background"
+    },
+    "free-text": {
+      "$type": "color",
+      "$value": "#CC4E00",
+      "$description": "orange/900 — 無料 chip text (token signal/free-text = #B84600)"
+    },
+    "warm-50": {
+      "$type": "color",
+      "$value": "#FFF8F3",
+      "$description": "orange/25 — sign-up / support band"
+    },
+    "success": {
+      "$type": "color",
+      "$value": "#067647",
+      "$description": "raw — positive amount (reward)"
+    },
+    "error": {
+      "$type": "color",
+      "$value": "#F04438",
+      "$description": "signal/error — form error states"
+    },
+    "accent-pink": {
+      "$type": "color",
+      "$value": "#E14171",
+      "$description": "raw — pink result accent"
+    },
+    "accent-pink-tint": {
+      "$type": "color",
+      "$value": "#FEECF1",
+      "$description": "raw — pink tint"
+    }
+  },
+  "typography": {
+    "numeral-desktop": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1,
+        "letterSpacing": "-0.03em"
+      }
+    },
+    "numeral-mobile": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1,
+        "letterSpacing": "-0.03em"
+      }
+    },
+    "h1-desktop": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "h1-mobile": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "h2-desktop": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "h2-mobile": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "h3-desktop": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "h3-mobile": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "lead-desktop": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.8,
+        "letterSpacing": "0em"
+      }
+    },
+    "lead-mobile": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.8,
+        "letterSpacing": "0em"
+      }
+    },
+    "body-desktop": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.8,
+        "letterSpacing": "0em"
+      }
+    },
+    "body-mobile": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.8,
+        "letterSpacing": "0em"
+      }
+    },
+    "title": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.6,
+        "letterSpacing": "0em"
+      }
+    },
+    "body-bold": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.6,
+        "letterSpacing": "0em"
+      }
+    },
+    "small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6,
+        "letterSpacing": "0em"
+      }
+    },
+    "small-bold": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.6,
+        "letterSpacing": "0em"
+      }
+    },
+    "note": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.6,
+        "letterSpacing": "0em"
+      }
+    },
+    "note-bold": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.6,
+        "letterSpacing": "0em"
+      }
+    },
+    "button-l": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.3,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "button-s": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.3,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "tag": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Noto Sans JP",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": "14px",
+        "letterSpacing": "0em"
+      }
+    }
+  },
+  "radius": {
+    "xs": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "chips 必須 / 無料, checkbox, Tag, language-switcher items"
+    },
+    "control": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$description": "buttons, inputs, FAQ tabs, Q/A plates"
+    },
+    "surface": {
+      "$type": "dimension",
+      "$value": "20px",
+      "$description": "quotes, logo tiles"
+    },
+    "panel": {
+      "$type": "dimension",
+      "$value": "28px",
+      "$description": "cards, hero visual, support band, FAQ items"
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "999px",
+      "$description": "pills, avatars, counters, +/− circles"
+    }
+  },
+  "spacing": {
+    "2": {
+      "$type": "dimension",
+      "$value": "2px"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "6px"
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "10": {
+      "$type": "dimension",
+      "$value": "10px"
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "14": {
+      "$type": "dimension",
+      "$value": "14px"
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "18": {
+      "$type": "dimension",
+      "$value": "18px"
+    },
+    "20": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "24": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "28": {
+      "$type": "dimension",
+      "$value": "28px"
+    },
+    "32": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "40": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "48": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "56": {
+      "$type": "dimension",
+      "$value": "56px"
+    },
+    "64": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "72": {
+      "$type": "dimension",
+      "$value": "72px"
+    },
+    "96": {
+      "$type": "dimension",
+      "$value": "96px"
+    },
+    "128": {
+      "$type": "dimension",
+      "$value": "128px"
+    },
+    "160": {
+      "$type": "dimension",
+      "$value": "160px"
+    },
+    "page-margin-desktop": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "page-margin-mobile": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "container-desktop": {
+      "$type": "dimension",
+      "$value": "1344px"
+    },
+    "container-mobile": {
+      "$type": "dimension",
+      "$value": "343px"
+    },
+    "section-top-desktop": {
+      "$type": "dimension",
+      "$value": "112px"
+    },
+    "card-padding-desktop": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "card-padding-mobile": {
+      "$type": "dimension",
+      "$value": "24px"
+    }
+  },
+  "shadow": {
+    "focus": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "0px",
+        "blur": "0px",
+        "spread": "3px",
+        "color": "{color.focus}"
+      },
+      "$description": "Focus ring — the only box-shadow in the system."
+    }
+  },
+  "component": {
+    "button-primary-l": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.on-primary}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.button-l}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.control}"
+      },
+      "padding": {
+        "$value": "0 28px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "56px"
+      }
+    },
+    "button-primary-l-hover": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary-hover}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.on-primary}"
+      }
+    },
+    "button-primary-l-pressed": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary-pressed}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.on-primary}"
+      }
+    },
+    "button-primary-l-focus": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.on-primary}"
+      },
+      "focusRing": {
+        "$value": "0 0 0 3px {color.focus}"
+      }
+    },
+    "button-primary-l-disabled": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.line}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.disabled}"
+      }
+    },
+    "button-primary-m": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.on-primary}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.button-l}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.control}"
+      },
+      "padding": {
+        "$value": "0 22px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "48px"
+      }
+    },
+    "button-primary-s": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.on-primary}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.button-s}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.control}"
+      },
+      "padding": {
+        "$value": "0 14px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "40px"
+      }
+    },
+    "button-ghost-l": {
+      "backgroundColor": {
+        "$value": "transparent"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.line-strong}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.button-l}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.control}"
+      },
+      "padding": {
+        "$value": "0 28px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "56px"
+      }
+    },
+    "button-ghost-l-hover": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      }
+    },
+    "button-ghost-l-pressed": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.line}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.line-strong}"
+      }
+    },
+    "button-ghost-l-disabled": {
+      "backgroundColor": {
+        "$value": "transparent"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.disabled}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.line}"
+      }
+    },
+    "button-outline-warm": {
+      "backgroundColor": {
+        "$value": "transparent"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.warm-strong}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.warm-strong}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.button-l}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.control}"
+      },
+      "padding": {
+        "$value": "0 28px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "56px"
+      }
+    },
+    "button-outline-warm-hover": {
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.warm-strong-hover}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.warm-strong-hover}"
+      }
+    },
+    "input": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.line-strong}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.body-desktop}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.control}"
+      },
+      "padding": {
+        "$value": "0 16px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "56px"
+      }
+    },
+    "input-placeholder": {
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.disabled}"
+      }
+    },
+    "input-error": {
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.error}"
+      }
+    },
+    "field-label": {
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.small-bold}"
+      }
+    },
+    "chip-required": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface-soft}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.label}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.note-bold}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.xs}"
+      },
+      "padding": {
+        "$value": "1px 6px"
+      }
+    },
+    "badge-free": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.free-bg}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.free-text}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.note-bold}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.xs}"
+      },
+      "padding": {
+        "$value": "2px 8px"
+      }
+    },
+    "tag-example": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface-soft}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.secondary}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.tag}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.xs}"
+      },
+      "padding": {
+        "$value": "1px 5px"
+      }
+    },
+    "checkbox": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.line-strong}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.xs}"
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "20px"
+      }
+    },
+    "checkbox-checked": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.primary}"
+      }
+    },
+    "checkbox-error": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.error}"
+      }
+    },
+    "checkbox-label": {
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.small}"
+      }
+    },
+    "link": {
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.primary-pressed}"
+      }
+    },
+    "note": {
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.muted}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.note}"
+      }
+    },
+    "lang-switch-item": {
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.muted}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.small}"
+      },
+      "padding": {
+        "$value": "0 8px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "44px"
+      }
+    },
+    "lang-switch-item-active": {
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.small-bold}"
+      }
+    },
+    "lang-switch-item-focus": {
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.focus}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.xs}"
+      }
+    },
+    "key-figure-card": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary-100}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.primary-pressed}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.numeral-desktop}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.panel}"
+      },
+      "padding": {
+        "$value": "{spacing.32}"
+      }
+    },
+    "logo-tile": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface-muted}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.surface}"
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "214px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "120px"
+      }
+    },
+    "faq-tab": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.label}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.primary-100}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.body-desktop}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.control}"
+      },
+      "padding": {
+        "$value": "0 20px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "60px"
+      }
+    },
+    "faq-tab-active": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary-100}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.primary-200}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.body-bold}"
+      }
+    },
+    "counter": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface-soft}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.label}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.note}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.full}"
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "20px"
+      }
+    },
+    "faq-item": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface-muted}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.body-bold}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.panel}"
+      },
+      "padding": {
+        "$value": "{spacing.32}"
+      }
+    },
+    "faq-item-open": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface-muted}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.primary-200}"
+      }
+    },
+    "qa-plate": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary-100}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.primary-pressed}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.body-bold}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.control}"
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "36px"
+      }
+    },
+    "story-card": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.body}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.primary-100}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.panel}"
+      },
+      "padding": {
+        "$value": "{spacing.32}"
+      }
+    },
+    "quote": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary-100}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.ink}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.body-desktop}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.surface}"
+      },
+      "padding": {
+        "$value": "20px 24px"
+      }
+    },
+    "step-card": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.surface}"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{color.primary-100}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.panel}"
+      },
+      "padding": {
+        "$value": "{spacing.24}"
+      }
+    },
+    "step-plate": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.primary-50}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.panel}"
+      },
+      "padding": {
+        "$value": "{spacing.16}"
+      }
+    },
+    "support-band": {
+      "backgroundColor": {
+        "$type": "color",
+        "$value": "{color.warm-50}"
+      },
+      "textColor": {
+        "$type": "color",
+        "$value": "{color.warm-strong}"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.h3-desktop}"
+      },
+      "rounded": {
+        "$type": "dimension",
+        "$value": "{radius.panel}"
+      },
+      "padding": {
+        "$value": "{spacing.32}"
+      }
+    }
+  }
+}

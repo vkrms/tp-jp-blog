@@ -1,0 +1,184 @@
+[
+ {
+  "term_ja": "アフィリエイト",
+  "term_en": "Affiliate marketing",
+  "def_ja": "自分の媒体で商品を紹介し、成果に応じた報酬を得る仕組み。",
+  "def_en": "Recommending products on your own channel and earning a reward based on results.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "ASP",
+  "term_en": "ASP",
+  "def_ja": "広告主とアフィリエイターを仲介し、案件の提供、計測、報酬の支払いを担う事業者。",
+  "def_en": "A service connecting advertisers and affiliates that handles offers, tracking and payouts.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "案件",
+  "term_en": "Offer (案件)",
+  "def_ja": "アフィリエイトで紹介できる広告やプログラムの総称。",
+  "def_en": "A general word for an ad or program you can promote as an affiliate.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "成果報酬型",
+  "term_en": "Pay per result (CPA)",
+  "def_ja": "購入や登録などの成果に対して報酬が支払われる方式。",
+  "def_en": "Rewards are paid for results such as purchases or sign-ups.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "クリック報酬型",
+  "term_en": "Pay per click (CPC)",
+  "def_ja": "リンクのクリック数に応じて報酬が支払われる方式。",
+  "def_en": "Rewards are paid by the number of link clicks.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "アドアフィリエイト",
+  "term_en": "Ad affiliate",
+  "def_ja": "広告を出稿して集客し、アフィリエイト報酬を得る手法。",
+  "def_en": "Paying for ads to bring traffic and earning affiliate rewards.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "承認",
+  "term_en": "Approval",
+  "def_ja": "広告主が成果の内容を確認し、報酬を確定させること。",
+  "def_en": "The advertiser confirms a result and finalises the reward.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "コンバージョン（成果）",
+  "term_en": "Conversion",
+  "def_ja": "購入、予約、会員登録など、目的とする行動が行われること。",
+  "def_en": "A target action such as a purchase, booking or sign-up.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "クリック率（CTR）",
+  "term_en": "Click-through rate",
+  "def_ja": "表示された回数のうち、クリックされた割合。",
+  "def_en": "The share of impressions that were clicked.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "導線",
+  "term_en": "Reader path (導線)",
+  "def_ja": "読者が記事から購入や登録までたどる道筋。",
+  "def_en": "The path a reader follows from an article to a purchase or sign-up.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "ジャンル",
+  "term_en": "Topic / genre",
+  "def_ja": "扱うテーマの分野。日本では「ニッチ」より一般的な言い方。",
+  "def_en": "The field you cover. In Japan more common than ニッチ.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "媒体",
+  "term_en": "Channel (媒体)",
+  "def_ja": "記事やリンクを掲載する場所。ブログ、SNS、YouTube など。",
+  "def_en": "Where you publish content and links: blog, social, YouTube and so on.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "集客",
+  "term_en": "Traffic acquisition",
+  "def_ja": "サイトやSNSに読者を呼び込むこと。",
+  "def_en": "Bringing readers to your site or account.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "コンテンツサイト",
+  "term_en": "Content site",
+  "def_ja": "記事や写真などを定期的に更新する、情報提供が中心のサイト。",
+  "def_en": "A site focused on information, with regularly updated articles and photos.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "ディープリンク",
+  "term_en": "Deep link",
+  "def_ja": "サイトのトップではなく、特定の商品や条件が入力されたページへ直接つなぐリンク。",
+  "def_en": "A link that goes straight to a specific page, such as one with the route and dates already filled in.",
+  "kind": "gen"
+ },
+ {
+  "term_ja": "パートナー",
+  "term_en": "Partner",
+  "def_ja": "Travelpayouts に登録し、自分の媒体で収益化する人。当サイトでは、Travelpayouts のユーザーをこう呼ぶ。",
+  "def_en": "A person registered with Travelpayouts who monetises their own channel. The term this site uses for Travelpayouts users.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "旅行ブランド",
+  "term_en": "Travel brand",
+  "def_ja": "Travelpayouts のプラットフォームで利用できる、旅行会社やサービスのプログラム。",
+  "def_en": "A travel company’s or service’s program available on the Travelpayouts platform.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "パートナーリンク",
+  "term_en": "Partner link",
+  "def_ja": "パートナー専用のIDが入ったリンク。このリンク経由の予約が、そのパートナーの成果として記録される。",
+  "def_en": "A link that carries the partner’s own ID so bookings through it are credited to that partner.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "報酬",
+  "term_en": "Reward",
+  "def_ja": "パートナーが成果に対して受け取る収入。「手数料」「コミッション」ではなく、この言葉を使う。",
+  "def_en": "The income a partner earns for results. Used instead of “fee” or “commission”.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "Sub ID",
+  "term_en": "Sub ID",
+  "def_ja": "リンクごと、またはトラフィックの出どころごとに、クリックと成果を分けて見るための追加パラメータ。",
+  "def_en": "An extra parameter that lets you see clicks and results separately per link or traffic source.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "Cookie有効期間",
+  "term_en": "Cookie lifetime",
+  "def_ja": "クリックの記録がブラウザに残る期間。この間に行われた予約が、パートナーの成果になる。",
+  "def_en": "How long a click is remembered in the browser. Bookings made within that period are credited to the partner.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "ウィジェット",
+  "term_en": "Widget",
+  "def_ja": "検索フォームなど、サイトに埋め込んで使うパーツ。",
+  "def_en": "An embeddable element such as a search form.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "ホワイトラベル",
+  "term_en": "White label",
+  "def_ja": "航空券・ホテル検索を、自分のサイトのデザインで表示する仕組み。",
+  "def_en": "A way to show flight and hotel search in your own site’s design.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "ポストバック",
+  "term_en": "Postback",
+  "def_ja": "予約の成立やキャンセルを通知するための仕組み。",
+  "def_en": "A notification mechanism for completed or cancelled bookings.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "メタサーチ",
+  "term_en": "Metasearch",
+  "def_ja": "複数のサイトの検索結果を集めて、比べて表示する検索サービス。",
+  "def_en": "A search service that gathers results from many sites and shows them side by side.",
+  "kind": "tp"
+ },
+ {
+  "term_ja": "紹介プログラム",
+  "term_en": "Referral program",
+  "def_ja": "ほかの人を Travelpayouts に紹介して、追加の報酬を得る仕組み。",
+  "def_en": "A way to earn extra by referring other people to Travelpayouts.",
+  "kind": "tp"
+ }
+]

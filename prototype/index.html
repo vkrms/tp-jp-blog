@@ -1,0 +1,1086 @@
+<title>旅アフィリ・ラボ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Sans+JP:wght@400;500;700;900&display=swap">
+<style>
+/* Japanese blog patterns on the Travelpayouts JP palette (Figma tp-landing-jp): dense layout, illustrated mascot, banner hero, category tiles, ranking, STEP blocks, speech bubbles, caption boxes, marker highlights, sidebar, sticky CTA bar. */
+:root{
+  --bg:#ffffff; --band:#f2f8ff; --blue:#006dff; --blue-50:#e5f0ff; --blue-100:#cce2ff; --blue-ink:#ffffff;
+  --orange:#d9480f; --orange-ink:#ffffff; --orange-25:#fff8f3; --orange-100:#ffe2d1;
+  --yellow:#ffd54a; --yellow-bg:#fff7d6; --yellow-ink:#3b2f00;
+  --fg:#14233a; --muted:#5b6678; --line:#dbe6f5; --card:#ffffff; --pink:#fdeef1; --pink-ink:#9b2c4a;
+  --ok:#0a7a4b; --warn:#a15c00; --warn-bg:#fff4dc; --mark:#fff09a;
+  --font-jp:"Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --font-en:Inter,"Noto Sans JP",system-ui,sans-serif;
+  --r-ctl:12px; --r-surf:20px; --r-panel:28px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1524; --band:#101d33; --blue:#5aa2ff; --blue-50:#14284a; --blue-100:#1d3a6b; --blue-ink:#06101f;
+  --orange:#ff7a3d; --orange-ink:#1a0e06; --orange-25:#2a1b12; --orange-100:#4a2a17;
+  --yellow-bg:#3a3213; --yellow-ink:#ffe590;
+  --fg:#e8eef8; --muted:#9aa8bf; --line:#22324d; --card:#121f36; --pink:#33202b; --pink-ink:#ff9fb8;
+  --ok:#4cd39a; --warn:#ffc266; --warn-bg:#33270f; --mark:#5b4d12; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1524; --band:#101d33; --blue:#5aa2ff; --blue-50:#14284a; --blue-100:#1d3a6b; --blue-ink:#06101f;
+  --orange:#ff7a3d; --orange-ink:#1a0e06; --orange-25:#2a1b12; --orange-100:#4a2a17;
+  --yellow-bg:#3a3213; --yellow-ink:#ffe590;
+  --fg:#e8eef8; --muted:#9aa8bf; --line:#22324d; --card:#121f36; --pink:#33202b; --pink-ink:#ff9fb8;
+  --ok:#4cd39a; --warn:#ffc266; --warn-bg:#33270f; --mark:#5b4d12; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.85 var(--font-jp);padding-bottom:84px}
+body.en{font-family:var(--font-en);line-height:1.65}
+a{color:var(--blue)} a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.5;letter-spacing:.04em}
+body.en h1,body.en h2,body.en h3{letter-spacing:0;line-height:1.28}
+p{margin:0}
+h1,h2,h3,p,summary,dd,dt,td,li,th{word-break:auto-phrase;overflow-wrap:anywhere}
+svg{display:block}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bg)}
+.banner{background:var(--warn-bg);color:var(--warn);font-size:12px;line-height:1.6}
+.banner .wrap{padding-block:6px}
+.ticker{background:var(--blue);color:var(--blue-ink);font-size:13px}
+.ticker .wrap{display:flex;gap:12px;align-items:center;padding-block:6px;min-width:0}
+.ticker b{background:var(--yellow);color:var(--yellow-ink);border-radius:4px;padding:0 8px;font-size:11px;flex:none}
+.ticker a{color:inherit;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:3px solid var(--blue)}
+header.top .wrap{display:flex;align-items:center;gap:12px;padding-block:8px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;line-height:1.2;text-decoration:none;color:var(--fg);margin-right:auto}
+.brand b{font-size:19px;letter-spacing:.06em;display:block}
+.brand small{font-size:11px;color:var(--muted);display:block;font-weight:500}
+nav.main{display:flex;gap:2px;flex-wrap:wrap}
+nav.main a{padding:8px 12px;border-radius:var(--r-ctl);text-decoration:none;color:var(--fg);font-weight:700;font-size:14px;border-bottom:3px solid transparent;border-radius:8px 8px 0 0}
+nav.main a[aria-current="page"]{color:var(--blue);border-bottom-color:var(--orange)}
+.lsel{font:600 13px var(--font-en);border:1px solid var(--line);border-radius:999px;padding:7px 30px 7px 14px;background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236b7a90' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 12px center;color:var(--fg);appearance:none;-webkit-appearance:none;cursor:pointer}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+.nums>div{background:var(--card);border:2px solid var(--yellow);border-radius:var(--r-surf);padding:16px 18px}
+.nums .n{display:block;font-size:40px;font-weight:900;color:var(--orange);line-height:1.1}
+.nums .n small{font-size:15px;color:var(--fg);margin-left:6px;font-weight:700}
+.nums p{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.7}
+.inpost{display:flex;gap:16px;align-items:center;margin:22px 0 6px;padding:16px 18px;background:#fff6d6;color:#14233a;border:2px solid var(--yellow);border-radius:var(--r-surf)}
+.inpost .m{flex:none;width:72px}
+.inpost p{margin:0 0 10px;font-size:15px;line-height:1.9}
+@media (max-width:560px){.inpost{flex-direction:column;align-items:flex-start}}
+.nums.side{grid-template-columns:repeat(3,1fr);margin:14px 0 0;gap:8px}
+.nums.side>div{padding:10px 8px;text-align:center;min-width:0}
+.nums.side .n{font-size:26px;white-space:nowrap}
+.nums.side .n small{font-size:11px;margin-left:2px;display:block}
+.nums.side>div p{font-size:11px;line-height:1.55}
+.nums.side .note{grid-column:1/-1;text-align:left}
+.nums.side .note{font-size:11px;color:var(--muted);border:0;padding:0;background:none}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:2px;background:var(--card)}
+.seg button{font:500 13px var(--font-en);border:0;background:none;color:var(--muted);padding:6px 12px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--blue);color:var(--blue-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--orange);color:var(--orange-ink);font:900 16px/1.3 var(--font-jp);letter-spacing:.1em;padding:14px 28px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+body.en .btn{letter-spacing:.02em}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.btn.sm{font-size:14px;padding:9px 18px}
+.btn.blue{background:var(--blue);color:var(--blue-ink)}
+.btn.ghost{background:var(--card);color:var(--blue);border:2px solid var(--blue);box-shadow:none}
+.ico{width:1em;height:1em;flex:none}
+/* hero */
+.hero{background:linear-gradient(180deg,var(--band),var(--bg));padding-block:28px 12px;position:relative;overflow:hidden}
+.hero .stage{position:relative;border-radius:var(--r-panel);background:var(--blue);color:var(--blue-ink);padding:40px 40px 36px;display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center;overflow:hidden;min-height:340px}
+.hero .stage::before,.hero .stage::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.1);pointer-events:none}
+.hero .stage::before{width:340px;height:340px;right:-80px;top:-120px}
+.hero .stage::after{width:200px;height:200px;left:38%;bottom:-100px;background:rgba(255,213,74,.25)}
+.hero .copy{position:relative;z-index:1;min-width:0}
+.ribbon{display:inline-block;background:var(--yellow);color:var(--yellow-ink);font-weight:900;font-size:13px;padding:2px 14px;border-radius:999px;margin-bottom:12px;letter-spacing:.06em}
+.hero h1{font-size:clamp(26px,4.4vw,46px);font-weight:900;line-height:1.4}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--orange) 62%);padding:0 2px}
+.hero p.lead{margin-top:14px;font-size:16px;opacity:.95;max-width:32em}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;align-items:center}
+.hero .cta .free{font-size:12px;font-weight:700;background:rgba(255,255,255,.18);padding:2px 12px;border-radius:999px}
+.hero .art{position:relative;z-index:1;display:grid;place-items:center;min-width:0}
+.hero .art .m{width:min(250px,100%)}
+.hero .bub{position:absolute;top:0;left:-6%;background:#fff;color:#14233a;font-weight:700;font-size:13px;padding:8px 14px;border-radius:16px;box-shadow:0 3px 0 rgba(0,0,0,.12);max-width:60%;line-height:1.5}
+.hero .bub::after{content:"";position:absolute;bottom:-8px;right:24px;border:8px solid transparent;border-top-color:#fff;border-bottom:0}
+.hero .float{position:absolute;color:#fff;opacity:.9}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--blue-100)} .dots i:first-child{background:var(--blue)}
+/* badges */
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.badge{display:flex;gap:12px;align-items:center;background:var(--card);border:2px solid var(--yellow);border-radius:var(--r-surf);padding:12px 16px;min-width:0}
+.badge .n{font-size:clamp(28px,4vw,40px);font-weight:900;color:var(--orange);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.badge .n small{font-size:.45em;letter-spacing:0;margin-left:2px;color:var(--fg)}
+.badge p{font-size:13px;font-weight:700;line-height:1.5;color:var(--fg)}
+.foot-note{font-size:11px;color:var(--muted);margin-top:8px}
+/* section heads */
+section.blk{padding-block:44px}
+.sech{text-align:center;margin-bottom:28px}
+.sech small{display:block;font:700 12px var(--font-en);letter-spacing:.2em;color:var(--blue);text-transform:uppercase}
+.sech h2{font-size:clamp(22px,3vw,30px);font-weight:900;margin-top:2px}
+.sech h2::after{content:"";display:block;width:56px;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--blue) 50%,var(--orange) 50%);margin:10px auto 0}
+.sech p{color:var(--muted);margin-top:10px;font-size:14px}
+.stripe{background:var(--band)}
+.dotbg{background-color:var(--band);background-image:radial-gradient(var(--blue-100) 1.5px,transparent 1.5px);background-size:18px 18px}
+/* category tiles */
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.tile{display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;color:var(--fg);background:var(--card);border:2px solid var(--line);border-radius:var(--r-surf);padding:18px 8px 14px;text-align:center;font-weight:700;font-size:14px;line-height:1.45;min-width:0;position:relative;cursor:pointer;font-family:inherit}
+.tile:hover{border-color:var(--c);transform:translateY(-2px)}
+.tile .circ{width:64px;height:64px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-size:30px;box-shadow:inset 0 -5px 0 rgba(0,0,0,.14)}
+.tile small{font-weight:500;color:var(--muted);font-size:12px}
+/* main + sidebar */
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:start}
+.side{display:grid;gap:20px;min-width:0;position:sticky;top:72px}
+.box{background:var(--card);border:2px solid var(--line);border-radius:var(--r-surf);overflow:hidden;min-width:0}
+.box>h3{background:var(--blue);color:var(--blue-ink);font-size:14px;font-weight:900;padding:8px 16px;letter-spacing:.08em}
+.box>div{padding:16px}
+.prof{text-align:center}
+.prof .m{width:96px;margin:0 auto 8px}
+.prof b{display:block}
+.prof p{font-size:13px;color:var(--muted);margin-top:6px;text-align:left}
+ol.rank{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ol.rank li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+ol.rank .no{width:28px;height:28px;border-radius:50%;background:var(--line);color:var(--fg);font-weight:900;display:grid;place-items:center;font-size:13px}
+ol.rank li:nth-child(1) .no{background:var(--yellow);color:var(--yellow-ink)}
+ol.rank li:nth-child(2) .no{background:#cfd6e0;color:#14233a}
+ol.rank li:nth-child(3) .no{background:#f0c8a0;color:#4a2a0a}
+ol.rank a{color:var(--fg);text-decoration:none;font-size:14px;font-weight:700;line-height:1.55}
+ol.rank a:hover{color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.tagchip{display:inline-flex;align-items:center;font:700 13px var(--font-jp);color:var(--blue);background:var(--blue-50);border:1px solid var(--blue-100);border-radius:999px;padding:3px 12px;text-decoration:none;cursor:pointer}
+.tagchip::before{content:"#";margin-right:2px;opacity:.6}
+.tagchip:hover{background:var(--blue);color:var(--blue-ink)}
+.sidecta{background:var(--orange-25);border:2px dashed var(--orange);border-radius:var(--r-surf);padding:16px;text-align:center;display:grid;gap:10px;justify-items:center}
+.sidecta b{font-size:15px;line-height:1.5}
+.sidecta p{font-size:12px;color:var(--muted)}
+/* news list */
+ul.news{list-style:none;margin:0;padding:0}
+ul.news li{display:flex;gap:12px;align-items:baseline;border-bottom:1px dashed var(--line);padding:10px 0;font-size:14px;min-width:0}
+ul.news time{font:600 13px var(--font-en);color:var(--muted);flex:none;font-variant-numeric:tabular-nums}
+ul.news .nw{background:var(--orange);color:var(--orange-ink);font:900 10px var(--font-en);border-radius:4px;padding:1px 6px;flex:none;letter-spacing:.06em}
+ul.news a{color:var(--fg);text-decoration:none;font-weight:500;min-width:0}
+ul.news a:hover{color:var(--blue);text-decoration:underline}
+/* article cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.acard{display:flex;flex-direction:column;background:var(--card);border:2px solid var(--line);border-radius:var(--r-surf);text-decoration:none;color:var(--fg);min-width:0;overflow:hidden}
+.acard:hover{border-color:var(--blue)}
+.acard .bd{padding:14px 16px 16px;display:grid;gap:8px;align-content:start;flex:1}
+.acard h3{font-size:16px;line-height:1.6;font-weight:700}
+.acard p{font-size:13px;color:var(--muted);line-height:1.7}
+.meta{display:flex;gap:8px;flex-wrap:wrap;font-size:12px;align-items:center;color:var(--muted)}
+.chip{background:var(--blue-50);color:var(--blue);padding:1px 10px;border-radius:4px;font-weight:700;font-size:12px}
+.chip.o{background:var(--orange-100);color:var(--orange)}
+.thumb{position:relative;aspect-ratio:16/9;background:var(--c);color:#fff;overflow:hidden;display:flex;align-items:center;padding:26px 14px 8px}
+.thumb svg.bgd{position:absolute;inset:0;width:100%;height:100%}
+.thumb .tx{position:relative;z-index:1;font-weight:900;font-size:clamp(15px,1.5vw,19px);line-height:1.35;max-width:64%;word-break:keep-all;overflow-wrap:anywhere;text-shadow:0 2px 0 rgba(0,0,0,.18);letter-spacing:.04em}
+body.en .thumb .tx{font-size:clamp(16px,1.9vw,20px);letter-spacing:0}
+.thumb .lab{position:absolute;left:0;top:10px;background:var(--yellow);color:var(--yellow-ink);font-size:11px;font-weight:900;padding:2px 10px 2px 8px;border-radius:0 999px 999px 0;z-index:2}
+.thumb .rc{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:30%;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.92);color:var(--c);display:grid;place-items:center;font-size:clamp(28px,4vw,44px);z-index:1;box-shadow:0 4px 0 rgba(0,0,0,.15)}
+.thumb .nwb{position:absolute;right:0;top:0;background:var(--orange);color:var(--orange-ink);font:900 11px var(--font-en);padding:2px 10px;border-radius:0 0 0 10px;z-index:2;letter-spacing:.08em}
+.thumb.big{border-radius:var(--r-surf);margin-top:16px;padding:30px 24px 12px}
+.thumb.big .tx{font-size:clamp(22px,4vw,38px);max-width:62%}
+.thumb.big .rc{width:24%;font-size:clamp(34px,6vw,64px)}
+.thumb.big.sm .rc{width:22%}
+.filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
+.filters button{font:700 14px var(--font-jp);border:2px solid var(--line);background:var(--card);color:var(--fg);padding:6px 16px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--blue-ink)}
+/* steps strip */
+.stepstrip{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stepcard{position:relative;background:var(--card);border:2px solid var(--blue);border-radius:var(--r-surf);padding:28px 18px 18px;text-align:center;min-width:0}
+.stepcard .st{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--blue);color:var(--blue-ink);font:900 12px var(--font-en);letter-spacing:.12em;padding:2px 16px;border-radius:999px;white-space:nowrap}
+.stepcard .circ{width:60px;height:60px;border-radius:50%;background:var(--yellow);color:var(--yellow-ink);display:grid;place-items:center;font-size:28px;margin:0 auto 10px}
+.stepcard b{display:block;font-size:16px;line-height:1.5}
+.stepcard p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.7}
+.stepcard:not(:last-child)::after{content:"";position:absolute;right:-17px;top:50%;border:9px solid transparent;border-left:12px solid var(--orange);border-right:0;transform:translateY(-50%)}
+/* bubble / say */
+.say{display:grid;grid-template-columns:72px minmax(0,1fr);gap:14px;align-items:start;margin:24px 0}
+.say .who{text-align:center;font-size:11px;font-weight:700;color:var(--muted);line-height:1.3}
+.say .who .m{width:64px;margin:0 auto 4px;border-radius:50%;background:var(--yellow);border:2px solid var(--yellow)}
+.say .bb{position:relative;background:var(--yellow-bg);border:2px solid var(--yellow);border-radius:18px;padding:14px 18px;font-weight:500;line-height:1.8}
+.say .bb::before{content:"";position:absolute;left:-12px;top:22px;border:8px solid transparent;border-right:12px solid var(--yellow);border-left:0}
+.say .bb::after{content:"";position:absolute;left:-8px;top:24px;border:6px solid transparent;border-right:9px solid var(--yellow-bg);border-left:0}
+/* post */
+article.post{min-width:0}
+.crumb{font-size:12px;color:var(--muted);margin-bottom:8px}
+.crumb a{color:var(--muted)}
+article.post h1{font-size:clamp(23px,3.4vw,32px);font-weight:900;line-height:1.55}
+.pmeta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:12px;align-items:center}
+.pmeta span{display:inline-flex;gap:4px;align-items:center}
+.answer{margin-top:24px;border:2px solid var(--blue);border-radius:var(--r-surf);position:relative;padding:22px 20px 16px;background:var(--blue-50)}
+.answer .cap{position:absolute;top:-14px;left:16px;background:var(--blue);color:var(--blue-ink);font-weight:900;font-size:13px;padding:2px 16px;border-radius:999px;letter-spacing:.08em}
+.answer p{font-weight:500}
+details.toc{margin-top:24px;border:2px solid var(--line);border-radius:var(--r-surf);background:var(--card);padding:0}
+details.toc summary{padding:12px 18px;font-weight:900;cursor:pointer;display:flex;gap:8px;align-items:center;letter-spacing:.08em}
+details.toc ol{margin:0;padding:4px 20px 16px 44px;display:grid;gap:6px;font-size:14px;font-weight:500}
+details.toc a{color:var(--fg);text-decoration:none;cursor:pointer}
+details.toc a:hover{color:var(--blue);text-decoration:underline}
+article.post h2{font-size:clamp(19px,2.4vw,24px);font-weight:900;margin:48px 0 16px;padding:10px 16px;background:var(--blue);color:var(--blue-ink);border-radius:10px;position:relative;scroll-margin-top:84px}
+article.post h2::after{content:"";position:absolute;left:24px;bottom:-10px;border:10px solid transparent;border-top-color:var(--blue);border-bottom:0}
+article.post .sec>*+*{margin-top:14px}
+mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;font-weight:700;padding:0 1px}
+.point,.warnbox{position:relative;border-radius:14px;padding:22px 18px 14px;margin-top:22px!important}
+.point{border:2px solid var(--blue);background:var(--card)}
+.warnbox{border:2px solid var(--orange);background:var(--orange-25)}
+.point .cap,.warnbox .cap{position:absolute;top:-13px;left:14px;font-weight:900;font-size:12px;padding:1px 14px;border-radius:999px;display:inline-flex;gap:4px;align-items:center;letter-spacing:.08em}
+.point .cap{background:var(--blue);color:var(--blue-ink)} .warnbox .cap{background:var(--orange);color:var(--orange-ink)}
+ul.checks{list-style:none;margin:0;padding:16px 18px;border:2px solid var(--line);border-radius:14px;background:var(--card);display:grid;gap:10px}
+ul.checks li{display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:start;font-weight:500}
+ul.checks li .ck{width:22px;height:22px;border-radius:6px;background:var(--blue);color:var(--blue-ink);display:grid;place-items:center;margin-top:3px;font-size:14px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ol.steps li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;background:var(--card);border:2px solid var(--blue-100);border-radius:14px;padding:10px 14px;font-weight:500}
+ol.steps .sn{background:var(--blue);color:var(--blue-ink);border-radius:10px;padding:4px 10px;text-align:center;line-height:1.2;font:900 11px var(--font-en);letter-spacing:.1em}
+ol.steps .sn b{display:block;font-size:20px;letter-spacing:0}
+.tblwrap{overflow-x:auto;border:2px solid var(--blue-100);border-radius:14px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:14px;line-height:1.6}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--blue-ink);background:var(--blue);font-weight:700}
+tbody tr:last-child td{border-bottom:0}
+tbody td:first-child{background:var(--blue-50);font-weight:700;color:var(--fg)}
+tbody tr:nth-child(even) td:not(:first-child){background:var(--band)}
+td.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.faq details{border:2px solid var(--line);border-radius:14px;padding:0;background:var(--card)}
+.faq details+details{margin-top:10px}
+.faq summary{cursor:pointer;font-weight:700;list-style:none;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;padding:12px 16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq .q,.faq .a{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:900 14px var(--font-en)}
+.faq .q{background:var(--blue);color:var(--blue-ink)} .faq .a{background:var(--orange);color:var(--orange-ink)}
+.faq .ans{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:0 16px 14px;color:var(--fg)}
+.src{margin-top:40px;border:2px dashed var(--warn);border-radius:14px;padding:12px 16px;font-size:13px;color:var(--muted);background:var(--warn-bg)}
+.src b{color:var(--warn)}
+.disclose{font-size:12px;color:var(--muted);margin-top:24px;border-top:1px solid var(--line);padding-top:12px}
+.note{font-size:12px;color:var(--muted)}
+.cta-band{background:var(--yellow-bg);border:3px solid var(--yellow);border-radius:var(--r-panel);padding:28px;display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:20px;align-items:center;position:relative}
+.cta-band .m{width:110px}
+.cta-band h2{font-size:clamp(19px,2.4vw,25px);font-weight:900;line-height:1.5}
+.cta-band p{color:var(--muted);margin-top:6px;font-size:14px}
+.cta-band .flag{position:absolute;top:-14px;left:24px;background:var(--orange);color:var(--orange-ink);font-weight:900;font-size:12px;padding:2px 14px;border-radius:999px;letter-spacing:.08em}
+/* glossary */
+.glsearch{display:flex;gap:8px;align-items:center;border:2px solid var(--line);border-radius:999px;background:var(--card);padding:6px 16px;max-width:420px;margin:0 auto 14px}
+.glsearch input{border:0;background:none;color:var(--fg);font:500 15px var(--font-jp);width:100%;outline:none;padding:4px 0}
+.glsearch:focus-within{border-color:var(--blue)}
+dl.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin:0}
+dl.gl .it{background:var(--card);border:2px solid var(--line);border-radius:var(--r-surf);padding:14px 16px;border-left:8px solid var(--blue)}
+dl.gl .it.tp{border-left-color:var(--orange)}
+dl.gl dt{font-weight:900;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+dl.gl dd{margin:6px 0 0;color:var(--muted);font-size:14px;line-height:1.75}
+.kind{font-size:11px;font-weight:700;border-radius:4px;padding:0 8px;background:var(--blue-50);color:var(--blue)}
+.kind.tp{background:var(--orange-100);color:var(--orange)}
+.pend{font-size:10px;font-weight:700;color:var(--warn);border:1px solid var(--warn);border-radius:4px;padding:0 6px}
+/* about / plan */
+.prose{max-width:760px;margin-inline:auto}
+.prose h2{font-size:20px;font-weight:900;margin:32px 0 10px;padding-left:12px;border-left:6px solid var(--blue)}
+.prose p{margin-top:10px}
+.prose .sech h2{border:0;padding:0;margin:2px 0 0}
+.st2{font-weight:700;font-size:12px;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.st2.launch{background:var(--blue-50);color:var(--blue)} .st2.queued{background:var(--orange-100);color:var(--orange)} .st2.held{background:var(--pink);color:var(--pink-ink)}
+.internal{background:var(--warn-bg);color:var(--warn);font-weight:900;font-size:12px;border-radius:4px;padding:1px 8px;display:inline-block;margin-bottom:8px}
+/* footer + sticky bar */
+footer.bot{margin-top:40px;background:var(--band);border-top:3px solid var(--blue);padding-block:28px;font-size:13px;color:var(--muted)}
+footer.bot .wrap{display:grid;gap:10px}
+footer.bot .fl{display:flex;gap:16px;flex-wrap:wrap}
+footer.bot .fl a{color:var(--fg);font-weight:700;text-decoration:none}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:35;background:var(--card);border-top:3px solid var(--orange);box-shadow:0 -4px 16px rgba(0,0,0,.12);padding:8px max(16px,env(safe-area-inset-right,0px)) max(8px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.nostick .sticky{display:none}
+body.nostick{padding-bottom:0}
+.sticky .in{max-width:1120px;margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.sticky p{font-size:13px;font-weight:700;line-height:1.5;min-width:0}
+.sticky .bt{display:flex;gap:8px;flex:none}
+
+.catbar{background:var(--band);border-bottom:1px solid var(--line)}
+.catbar .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:6px;scrollbar-width:thin}
+.catbar a{white-space:nowrap;text-decoration:none;color:var(--fg);font-size:13px;font-weight:700;padding:3px 12px;border-radius:999px;border:1.5px solid var(--c);background:var(--card)}
+.catbar a:hover{background:var(--c);color:#fff}
+.tabs{display:flex;gap:0;border-bottom:3px solid var(--blue);margin-bottom:18px;flex-wrap:wrap}
+.tabs button{font:900 14px var(--font-jp);border:0;background:var(--blue-50);color:var(--blue);padding:8px 18px;border-radius:12px 12px 0 0;cursor:pointer;margin-right:4px}
+.tabs button[aria-selected="true"]{background:var(--blue);color:var(--blue-ink)}
+ul.catlist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+ul.catlist li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding-bottom:6px;font-size:14px}
+ul.catlist a{color:var(--fg);text-decoration:none;font-weight:700}
+ul.catlist span{color:var(--muted);font-variant-numeric:tabular-nums}
+.tiles{grid-template-columns:repeat(auto-fit,minmax(118px,1fr))!important}
+.chip.lv{background:var(--yellow-bg);color:var(--yellow-ink);border:1px solid var(--yellow)}
+p.promo{display:flex;gap:6px;align-items:center;font-size:12px;font-weight:700;color:var(--orange);background:var(--orange-25);border:1px solid var(--orange-100);border-radius:8px;padding:4px 12px;margin-bottom:10px}
+.sep{text-align:center;letter-spacing:.5em;color:var(--muted);margin:40px 0 0}
+article.post h2.plain{background:none;color:var(--fg);padding:0 0 6px;border-bottom:3px solid var(--blue);border-radius:0;margin-top:12px}
+article.post h2.plain::after{display:none}
+ul.matome{margin:12px 0 0;padding-left:1.3em;display:grid;gap:6px;font-weight:500}
+.diff{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.diff>div{border-radius:12px;padding:10px 14px;font-size:14px}
+.diff .old{background:var(--pink);border:2px solid var(--pink-ink)} .diff .new{background:var(--blue-50);border:2px solid var(--blue)}
+.diff b{font-size:12px;letter-spacing:.08em;display:block;margin-bottom:2px}
+.fb{margin-top:32px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--band);border-radius:var(--r-surf);padding:12px 18px}
+.fb button{font:700 14px var(--font-jp);border:2px solid var(--blue);background:var(--card);color:var(--blue);border-radius:999px;padding:4px 20px;cursor:pointer}
+.srcbox{margin-top:28px;border:2px solid var(--line);border-radius:14px;padding:14px 18px;background:var(--card)}
+.srcbox h2.mini,article.post .srcbox h2{background:none;color:var(--fg);font-size:15px;padding:0;margin:0 0 8px;border-radius:0}
+article.post .srcbox h2::after{display:none}
+.srcbox ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.srcbox li{font-size:13px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.srcbox li a{font-weight:700}
+.st3{font-size:11px;font-weight:700;background:var(--blue-50);color:var(--blue);border-radius:4px;padding:0 8px}
+.ck3{font-size:12px;color:var(--muted)}
+table.logt{min-width:0;font-size:13px;width:100%} table.logt td{padding:6px 8px;border-bottom:1px dashed var(--line)} table.logt td:first-child{white-space:nowrap;color:var(--muted);background:none;font-weight:400;width:1%}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.pn a{display:block;border:2px solid var(--line);border-radius:14px;padding:10px 14px;text-decoration:none;color:var(--fg);font-weight:700;font-size:14px;line-height:1.55}
+.pn a small{display:block;color:var(--blue);font-weight:700;font-size:12px}
+.pn a.r{text-align:right}
+ul.srcul{margin:8px 0 0;padding-left:1.3em;display:grid;gap:6px;font-size:14px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:13px;margin-bottom:20px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+.mon{display:grid;grid-template-columns:90px 1fr;gap:16px;border-top:3px solid var(--blue);padding:14px 0;align-items:start}
+.mon .mh{text-align:center;background:var(--blue-50);border-radius:14px;padding:8px 0}
+.mon .mh b{font-size:28px;display:block;line-height:1.1;color:var(--blue)} .mon .mh small{color:var(--muted);font:600 12px var(--font-en)}
+.mon ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.mon li{display:flex;gap:8px 10px;flex-wrap:wrap;align-items:baseline;font-size:14px;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.mon .when{font:700 13px var(--font-en);color:var(--muted);min-width:96px;font-variant-numeric:tabular-nums}
+.mon .tg{color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:0 8px}
+.mon a{color:var(--fg);font-weight:500}
+@media (max-width:760px){.diff,.pn{grid-template-columns:1fr}.mon{grid-template-columns:1fr}.mon .mh{display:flex;gap:8px;justify-content:center;align-items:baseline}}
+
+.cta-side{position:relative;background:linear-gradient(160deg,var(--blue) 0%,#0a4fc2 100%);color:#fff;border-radius:var(--r-panel);padding:26px 20px 20px;text-align:center;display:grid;gap:10px;justify-items:center;overflow:hidden}
+.cta-side::before{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,213,74,.22);right:-70px;top:-70px}
+.cta-side>*{position:relative}
+.cta-side .m{width:104px}
+.cta-side h3{font-size:18px;font-weight:900;line-height:1.5;color:#fff}
+.cta-side p{font-size:13px;opacity:.95;line-height:1.7}
+.cta-side .flag{position:absolute;top:12px;left:12px;background:var(--yellow);color:var(--yellow-ink);font-weight:900;font-size:11px;padding:2px 12px;border-radius:999px;letter-spacing:.08em}
+.cta-side .btn{width:100%;font-size:15px;letter-spacing:.04em;padding:13px 12px}
+.strong{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:18px 0}
+.strong .sc{background:var(--card);border:2px solid var(--line);border-radius:var(--r-surf);padding:16px;border-top:6px solid var(--blue)}
+.strong .sc:nth-child(even){border-top-color:var(--orange)}
+.strong .sc .circ{width:44px;height:44px;border-radius:50%;background:var(--yellow);color:var(--yellow-ink);display:grid;place-items:center;font-size:22px;margin-bottom:8px}
+.strong .sc b{display:block;font-size:16px}
+.strong .sc p{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.75}
+@media (max-width:960px){.cols{grid-template-columns:1fr}.side{position:static}.tiles{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){
+  .hero .stage{grid-template-columns:1fr;padding:28px 20px;min-height:0}
+  .hero .art{order:-1;max-width:200px;margin:0 auto}
+  .hero .bub{left:50%;top:-6px;max-width:80%;font-size:12px;transform:translateX(-10%)}
+  .badges{grid-template-columns:1fr}
+  .stepstrip{grid-template-columns:1fr}.stepcard:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-20px;transform:translateX(-50%);border:9px solid transparent;border-top:12px solid var(--orange);border-bottom:0}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .cta-band{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .sticky p{display:none}.sticky .bt{width:100%}.sticky .bt .btn{flex:1}
+  .say{grid-template-columns:52px minmax(0,1fr)}.say .who .m{width:48px}
+  nav.main a{padding:6px 8px;font-size:13px}
+  .brand b{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="ticker"><div class="wrap"><b id="tkl"></b><a id="tk" href="#a-what-is-affiliate"></a></div></div>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#home"><span id="logo"></span><span><b>旅アフィリ・ラボ</b><small id="by"></small></span></a>
+  <nav class="main" id="nav" aria-label="main"></nav>
+  <select class="lsel" id="lsel" aria-label="Language"><option value="ja" selected>日本語</option><option value="en">English</option></select>
+</div></header>
+<nav class="catbar" id="catbar" aria-label="categories"></nav>
+<main id="app"></main>
+<footer class="bot"><div class="wrap" id="foot"></div></footer>
+<div class="sticky"><div class="in"><p id="stp"></p><div class="bt" id="stb"></div></div></div>
+
+<script>
+/* Content. Every text is [ja, en]. **x** = marker highlight. Draft: sources not yet verified. */
+var CATS=[
+ {id:'basics',t:['アフィリエイト入門','Affiliate basics'],c:'#006dff'},
+ {id:'traffic',t:['集客・広告','Traffic & ads'],c:'#d9480f'},
+ {id:'strategy',t:['ジャンル・戦略','Niche & strategy'],c:'#8a4fff'},
+ {id:'travel',t:['旅行ブログ','Travel blogging'],c:'#0a8f6a'},
+];
+var A=[
+/* ---------- 1 ---------- */
+{id:'what-is-affiliate',cat:'basics',icon:'book',read:6,
+ kw:'アフィリエイト とは / 仕組み',
+ t:['アフィリエイトとは？仕組みと始め方を初心者向けにやさしく解説','What is affiliate marketing? How it works and how to start, for beginners'],
+ eye:['アフィリエイトとは？','What is affiliate?'],
+ s:['アフィリエイトは、自分のサイトやSNSで商品・サービスを紹介し、読者がリンク経由で購入や登録をすると**報酬がもらえる仕組み**です。広告主、紹介する人、読者の3者で成り立ち、間にASPが入ることが多くあります。','Affiliate marketing is a system where you recommend products or services on your own site or social account and **earn a reward** when a reader buys or signs up through your link. It involves an advertiser, the person recommending, and the reader, and an ASP often sits in between.'],
+ secs:[
+ {h:['アフィリエイトの流れは5ステップ','The process in five steps'],b:[
+  {p:['まず全体の流れをつかみましょう。細かい用語は後から覚えれば大丈夫です。','Start with the big picture. You can learn the terms later.']},
+  {steps:[
+   ['記事やSNS投稿で商品・サービスを紹介し、専用リンクを貼る','Recommend a product in an article or post and add your own link'],
+   ['読者がリンクをクリックして、広告主のサイトへ移動する','A reader clicks the link and lands on the advertiser’s site'],
+   ['読者が購入や会員登録などの「成果」につながる行動をする','The reader takes an action that counts as a result, such as buying or signing up'],
+   ['広告主が内容を確認し、成果を承認する','The advertiser reviews the result and approves it'],
+   ['承認された分の報酬が、あなたのアカウントに積み上がる','Approved rewards add up in your account']]},
+  {say:['リンクを貼るだけで終わりではありません。「読者が何に困っていて、この商品でどう解決できるか」を書くことが、成果につながる一番の近道です。','Placing a link is not the end of it. Explaining what the reader struggles with and how the product helps is the shortest path to results.']}]},
+ {h:['登場するのは3者。間に入るのがASP','Three parties, and the ASP in the middle'],b:[
+  {p:['アフィリエイトには、広告主、アフィリエイター（紹介する人）、読者の3者が登場します。多くの場合、広告主とアフィリエイターのあいだに**ASP（アフィリエイトサービスプロバイダ）**が入り、広告の提供、成果の確認、報酬の支払いをまとめて担当します。','Three parties take part: the advertiser, the affiliate who recommends, and the reader. Usually an **ASP (affiliate service provider)** sits between advertiser and affiliate and handles ad supply, result tracking and payouts.']},
+  {table:{head:[['登場人物','Party'],['役割','Role'],['例','Example']],rows:[
+   [['広告主','Advertiser'],['商品やサービスを提供する会社','Company that offers the product or service'],['ホテル予約サイト、航空券サイトなど','Hotel booking sites, flight sites']],
+   [['アフィリエイター','Affiliate'],['自分の媒体で商品を紹介する人','Person who recommends it on their own channel'],['ブロガー、YouTuber、SNS運用者','Bloggers, YouTubers, social media users']],
+   [['読者','Reader'],['記事を読み、購入や登録をする人','Person who reads and buys or signs up'],['旅行の計画を立てている人','Someone planning a trip']],
+   [['ASP','ASP'],['案件の提供、計測、支払いを担う事業者','Provides offers, tracking and payouts'],['アフィリエイトの運営会社','An affiliate network operator']]]}}]},
+ {h:['報酬が発生するタイプ','How rewards are triggered'],b:[
+  {p:['報酬の条件は大きく2種類です。どちらを採用するかは案件ごとに決まっているので、提携する前に必ず条件を確認します。','There are two main kinds. Each offer defines its own type, so always check the terms before you join.']},
+  {table:{head:[['タイプ','Type'],['報酬が出る条件','When you are paid'],['特徴','Characteristic']],rows:[
+   [['成果報酬型','Pay per result'],['購入、予約、会員登録などの成果','A purchase, booking or sign-up'],['1件あたりの報酬が大きいことが多い','Often a larger reward per result']],
+   [['クリック報酬型','Pay per click'],['リンクがクリックされたとき','A click on your link'],['成果が出なくても報酬が発生する場合がある','May pay even without a purchase']]]}},
+  {point:[['ポイント','Key point'],['「承認」されて初めて報酬が確定する案件が多くあります。表示される金額が、そのまま受け取れる金額とは限りません。','In many programs a reward is only final once it is approved. The amount you see is not always the amount you receive.']]}]},
+ {h:['どこで発信する？媒体の選び方','Where to publish'],b:[
+  {p:['ブログ、SNS、YouTube など、媒体によって強みが違います。自分が続けやすいものを選ぶのが基本です。','Blogs, social media and YouTube each have different strengths. Choose the one you can keep going with.']},
+  {table:{head:[['媒体','Channel'],['強み','Strength'],['向いている人','Good for']],rows:[
+   [['ブログ','Blog'],['検索から長く読まれやすい','Can be found through search for a long time'],['文章で詳しく説明するのが好きな人','People who like explaining in writing']],
+   [['SNS','Social media'],['拡散しやすく、反応が早い','Spreads quickly and gives fast feedback'],['短い発信を毎日続けられる人','People who can post briefly every day']],
+   [['YouTube','YouTube'],['体験や雰囲気が伝わりやすい','Conveys experience and atmosphere'],['撮影や編集が苦にならない人','People comfortable filming and editing']]]}}]},
+ {h:['始める前のチェックリスト','Before you start'],b:[
+  {list:[['扱うジャンルを1つ決めた','You picked one topic'],['発信する媒体を1つ決めた','You picked one channel'],['最初に書く記事のテーマを3つ決めた','You chose the first three article topics']]}]}],
+ faq:[
+  [['始めるのにお金はかかりますか？','Does it cost money to start?'],['登録が無料のASPは多くありますが、ブログ用のドメインやサーバーの費用がかかる場合があります。','Many ASPs are free to join, but a blog may need a domain and hosting.']],
+  [['フォロワーやアクセスが少なくても始められますか？','Can I start with a small audience?'],['始められます。まずは、続けられる量の記事を書くところから始めましょう。','Yes. Start by writing a number of articles you can keep up with.']]],
+ rel:['earn-or-not','pick-niche']},
+/* ---------- 2 ---------- */
+{id:'ad-affiliate',cat:'traffic',icon:'megaphone',read:7,
+ kw:'アドアフィリエイト',
+ t:['アドアフィリエイトとは？やり方と、赤字を避けるための考え方','Ad affiliate (アドアフィリエイト): how it works and how to avoid losing money'],
+ eye:['アドアフィリエイト','Ad affiliate'],
+ s:['アドアフィリエイトは、**広告費を使って集客し**、アフィリエイト報酬を得る手法です。結果が早く分かる反面、広告費が報酬を上回ると赤字になります。始める前に、損益の計算方法を知っておきましょう。','Ad affiliate means **paying for ads to bring traffic** and earning affiliate rewards. Results come fast, but you lose money if ad cost exceeds reward. Learn how to calculate profit before you start.'],
+ secs:[
+ {h:['アドアフィリエイトとは','What it is'],b:[
+  {p:['広告媒体に広告を出し、その広告から紹介したい商品のページへ読者を案内します。広告費を負担するのは広告主ではなく、アフィリエイター自身です。','You place ads on an ad platform and send readers from them to the page of the product you promote. The affiliate, not the advertiser, pays for the ads.']},
+  {p:['日本では「アドアフィリエイト」という言葉が一般的です。広告主が出す「アフィリエイト広告」とは立場が異なる点に注意してください。','In Japan the usual term is アドアフィリエイト. It is a different position from the “affiliate ads” (アフィリエイト広告) that advertisers run.']}]},
+ {h:['記事型との違い','How it differs from article-based affiliate'],b:[
+  {table:{head:[['','' ],['記事で集客','Articles'],['広告で集客','Ads']],rows:[
+   [['最初の費用','Upfront cost'],['ほぼ時間のみ','Mostly time'],['広告費が必要','Ad spend required']],
+   [['結果が出るまで','Time to results'],['時間がかかる','Slower'],['早く分かる','Faster']],
+   [['主なリスク','Main risk'],['読まれない','Not being read'],['広告費が報酬を上回る','Ad cost exceeds reward']],
+   [['続け方','How it continues'],['記事が資産として残る','Articles remain as assets'],['広告を止めると流入も止まる','Traffic stops when ads stop']]]}}]},
+ {h:['基本の流れ','The basic flow'],b:[
+  {steps:[
+   ['紹介する案件を選び、提携を申請する','Choose an offer and apply to join'],
+   ['広告と、読者が最初に見るページを用意する','Prepare the ad and the page readers see first'],
+   ['少額で出稿し、クリックと成果を記録する','Run a small budget and record clicks and results'],
+   ['数字を見て、続けるか止めるかを決める','Decide from the numbers whether to continue or stop']]}]},
+ {h:['損益の考え方：仮の数字で計算してみる','Profit and loss: a worked example with made-up numbers'],b:[
+  {p:['必要なのは3つの数字です。**クリック単価**、**成果率**、**1件あたりの報酬**。次の数字は説明のための仮の例で、実際の数字ではありません。','You need three numbers: **cost per click**, **conversion rate** and **reward per result**. The figures below are made up for explanation and are not real data.']},
+  {table:{head:[['項目','Item'],['仮の数字','Example'],['計算','Calculation']],rows:[
+   [['クリック単価','Cost per click'],['50円','¥50'],['—','—']],
+   [['100クリックの広告費','Ad cost for 100 clicks'],['5,000円','¥5,000'],['50円 × 100','¥50 × 100']],
+   [['成果率','Conversion rate'],['2%','2%'],['100クリック中2件','2 of 100 clicks']],
+   [['1件あたりの報酬','Reward per result'],['3,000円','¥3,000'],['—','—']],
+   [['報酬の合計','Total reward'],['6,000円','¥6,000'],['3,000円 × 2件','¥3,000 × 2']],
+   [['差し引き','Net'],['+1,000円','+¥1,000'],['6,000円 − 5,000円','¥6,000 − ¥5,000']]]}},
+  {say:['成果率が2%から1%に下がると、報酬は3,000円になって2,000円の赤字です。**成果率の小さな差が、損益を大きく動かします。**','If the rate drops from 2% to 1%, the reward is ¥3,000 and you are ¥2,000 down. **A small change in conversion rate moves profit a lot.**']}]},
+ {h:['小さく試して、やめる基準を先に決める','Test small and set a stop rule first'],b:[
+  {p:['最初は少額で出稿し、1週間単位で数字を見ます。「広告費がいくらを超えたら止める」を、始める前に決めておくと、損失が広がりません。','Start with a small budget and review the numbers weekly. Deciding beforehand “I stop when the ad cost passes this amount” keeps losses contained.']}]}],
+ faq:[
+  [['初心者でもできますか？','Can beginners do it?'],['できますが、広告費が先に出ていくため、少額から始めることをおすすめします。','Yes, but ad spend goes out first, so start with a small amount.']],
+  [['アフィリエイト広告とは違うのですか？','Is it the same as “affiliate ads”?'],['違います。アフィリエイト広告は広告主が出す広告を指すことが多く、アドアフィリエイトはアフィリエイター自身が広告費を負担する手法です。','No. “Affiliate ads” usually means ads an advertiser runs. Ad affiliate is the method in which the affiliate pays for ads.']],
+  [['どの広告媒体を使えばよいですか？','Which ad platform should I use?'],['読者の層に合う媒体を選び、少額から試します。費用と反応を見て、続けるかどうかを決めます。','Choose a platform that fits your readers and test with a small budget; decide whether to continue from the cost and the response.']]],
+ rel:['what-is-affiliate','earn-or-not','pick-niche']},
+/* ---------- 3 ---------- */
+{id:'earn-or-not',cat:'strategy',icon:'chart',read:6,
+ kw:'アフィリエイト 稼げない / 稼げる / やめとけ',
+ t:['アフィリエイトは稼げない？そう言われる理由と、続けている人の共通点','Is affiliate marketing a dead end? Why people say so, and what keeps people going'],
+ eye:['稼げない？','A dead end?'],
+ s:['「稼げない」と言われる主な理由は、**読者の疑問に答えていない記事**、更新が続かないこと、ジャンル選びのずれの3つです。どれも始めた後に見直せます。続けている人は、数字を見て記事を直しています。','The usual reasons behind “you can’t earn” are **articles that don’t answer readers’ questions**, irregular updates and a poorly chosen topic. All three can be fixed after you start. People who continue review their numbers and rewrite.'],
+ secs:[
+ {h:['なぜ「稼げない」と検索されるのか','Why people search for “can’t earn”'],b:[
+  {p:['始めたものの成果が出ず、やめてしまう人は少なくありません。そうした声が多いため、検索でも否定的な言葉が目立ちます。ただし、理由を分けて見ると、対策できるものがほとんどです。','Many people start, see no results and quit, so negative wording is common in search. But when you separate the reasons, most can be addressed.']},
+  {table:{head:[['よくある理由','Common reason'],['起きていること','What happens'],['見直し方','How to fix it']],rows:[
+   [['記事が読者の疑問とずれている','Articles miss readers’ questions'],['検索されない、読まれても離脱される','Not found, or readers leave'],['検索結果の上位記事を読み、足りない情報を探す','Read the top results and find what is missing']],
+   [['更新が続かない','Updates stop'],['記事が増えず、評価が育たない','Too few articles to build trust'],['1週間に書ける量を決めて、小さく続ける','Set a weekly amount you can sustain']],
+   [['ジャンルが合っていない','Wrong topic'],['書くこと自体が苦しくなる','Writing becomes a chore'],['好き・詳しい・需要の3つで選び直す','Re-pick using interest, expertise and demand']],
+   [['成果が出る前にやめる','Quitting too early'],['検索経由の評価は時間がかかる','Search trust takes time'],['数ヶ月単位で数字を見る','Review over months, not days']]]}}]},
+ {h:['成果が出るまでの時間','How long results take'],b:[
+  {p:['検索から読まれる記事は、公開してすぐには評価されません。短期間の収益だけで判断せず、記事ごとの表示回数とクリックを見て改善していきます。','An article found through search is not rewarded the moment it is published. Instead of judging by short-term income, review impressions and clicks per article and improve from there.']},
+  {point:[['ポイント','Key point'],['収益の前に、まず「表示回数」と「クリック」を見ます。収益は、その結果として後からついてきます。','Look at impressions and clicks before income. Income follows as a result.']]}]},
+ {h:['続けている人がしていること','What people who continue do'],b:[
+  {list:[['読者の質問に、具体的に答えている','They answer readers’ questions specifically'],['自分の体験を入れて、ほかの記事との違いを出している','They add personal experience to stand out'],['公開後も、数字を見て記事を書き直している','They rewrite articles after publishing, guided by numbers'],['複数のことを一度に始めず、1つずつ試している','They test one thing at a time']]},
+  {say:['最初の記事で成果が出ないのは、ごく普通のことです。**書き直せる前提で、まず公開する**ほうが前に進めます。','It is completely normal for the first article to bring no results. **Publish with the expectation of rewriting** and you move forward faster.']}]},
+ {h:['数字で振り返る：見る指標','Reviewing by numbers: what to look at'],b:[
+  {table:{head:[['指標','Metric'],['意味','Meaning'],['低いときに疑うこと','If it is low']],rows:[
+   [['表示回数','Impressions'],['検索結果に表示された回数','How often the page appeared in search'],['キーワードや記事のテーマが合っていない','Keyword or topic mismatch']],
+   [['クリック率','Click-through rate'],['表示された中で、クリックされた割合','Share of impressions that were clicked'],['タイトルや説明文が魅力的でない','Title or description is unappealing']],
+   [['リンクのクリック','Link clicks'],['記事内のリンクが押された回数','How often your in-article link was pressed'],['リンクの位置や、前後の説明が弱い','Weak link placement or lead-in']],
+   [['成果','Results'],['購入や登録など','Purchases or sign-ups'],['紹介する商品と読者の目的が合っていない','Product and reader intent do not match']]]}}]},
+ {h:['立ち止まって見直すタイミング','When to pause and rethink'],b:[
+  {warn:[['注意','Caution'],['広告費の持ち出しが続く場合や、本業や生活に支障が出ている場合は、いったん立ち止まって方法を見直してください。無理に続ける必要はありません。','If ad costs keep exceeding income or it is affecting your job or daily life, pause and rethink. There is no need to push through.']]}]}],
+ faq:[
+  [['アフィリエイトは本当に稼げますか？','Can you really earn with affiliate marketing?'],['成果を出している人はいますが、誰でも簡単に稼げるわけではありません。収益は、ジャンル、記事の質、続けた期間などで大きく変わります。','Some people do, but it is not easy for everyone. Income varies greatly with topic, article quality and how long you keep going.']],
+  [['どのくらい続ければ成果が見えますか？','How long until I see results?'],['一概には言えません。数ヶ月単位で、表示回数やクリックの変化を見ることをおすすめします。','It varies. Watch the change in impressions and clicks over a few months.']],
+  [['「やめとけ」と言われるのはなぜですか？','Why do people say “don’t do it”?'],['成果が出る前にやめた人の声が多いことと、誇大な宣伝への警戒が背景にあります。冷静に条件を確認することが大切です。','Partly because many people quit before results, and partly wariness about exaggerated promotion. Check the conditions calmly.']]],
+ rel:['pick-niche','what-is-affiliate','ad-affiliate']},
+/* ---------- 4 ---------- */
+{id:'pick-niche',cat:'strategy',icon:'compass',read:6,
+ kw:'アフィリエイト ジャンル / 稼げるジャンル',
+ t:['アフィリエイトのジャンルの選び方：好き・詳しい・需要で決める','How to choose an affiliate topic: interest, expertise and demand'],
+ eye:['ジャンルの選び方','Choosing a topic'],
+ s:['ジャンルは、**好きなこと、詳しいこと、検索されていること**の3つが重なるところから選ぶと続けやすくなります。日本では「ニッチ」より「ジャンル」という言葉が一般的です。','Choose a topic where **what you like, what you know and what people search for** overlap, and it is easier to keep going. In Japan the usual word is ジャンル (genre), not ニッチ.'],
+ secs:[
+ {h:['まず「ジャンル」の意味をそろえる','First, the word ジャンル'],b:[
+  {p:['日本では、記事やサイトで扱う分野を「ジャンル」と呼びます。「ニッチ」は、競合の少ない小さな市場という別の意味で使われることが多く、ジャンルの言い換えにはなりません。','In Japan the field an article or site covers is called ジャンル. ニッチ usually means a small market with few competitors, so it is not a substitute for ジャンル.']}]},
+ {h:['3つの軸で候補を出す','Shortlist with three questions'],b:[
+  {steps:[
+   ['好き：その話題なら、毎週書いても飽きないか','Interest: could you write about it every week without getting bored?'],
+   ['詳しい：自分の体験や知識を、記事に入れられるか','Expertise: can you put your own experience or knowledge into articles?'],
+   ['需要：その話題を、検索している人がいるか','Demand: do people actually search for it?']]},
+  {point:[['ポイント','Key point'],['3つのうち1つでも欠けると、続かないか、読まれないかのどちらかになりがちです。','Missing even one of the three usually means you either stop or are not read.']]}]},
+ {h:['候補を表で比べる','Compare candidates in a table'],b:[
+  {p:['気になるジャンルを3つほど挙げて、次のように比べます。評価は自分の感覚で構いません（以下は書き方の例です）。','List about three candidate topics and compare them like this. Your own judgement is fine (the table below is an example of how to fill it in).']},
+  {table:{head:[['ジャンル（例）','Topic (example)'],['好き','Interest'],['詳しさ','Expertise'],['需要','Demand'],['競合','Competition']],rows:[
+   [['国内旅行','Domestic travel'],['◎','◎'],['○','○'],['◎','◎'],['強い','Strong']],
+   [['海外ひとり旅','Solo trips abroad'],['◎','◎'],['◎','◎'],['○','○'],['中くらい','Medium']],
+   [['登山・アウトドア','Hiking and outdoors'],['○','○'],['△','△'],['○','○'],['中くらい','Medium']]]}}]},
+ {h:['単価と競合を見る','Check payout and competition'],b:[
+  {p:['報酬の単価が高くても、競合が強ければ上位表示は簡単ではありません。検索結果の上位を実際に開き、**自分にしか書けない切り口があるか**を確認します。','A high payout does not help if competition is strong. Open the top results and check **whether you have an angle only you can write**.']},
+  {say:['「穴場ジャンル」という検索もよく見られます。ただ、誰かが「穴場」と紹介した時点で、競合は増えていきます。**自分の経験で差をつけられるか**のほうが大切です。','“Hidden-gem topic” (穴場ジャンル) is a common search too. But once someone calls a topic a hidden gem, competition grows. **Whether you can stand out with your own experience** matters more.']}]},
+ {h:['旅行ジャンルの強み','Why travel is a good fit'],b:[
+  {p:['旅行は、宿泊、航空券、現地のアクティビティなど、体験とセットで紹介しやすい商品が多いジャンルです。実際に行った場所の記事は、ほかのサイトとの違いにもなります。','Travel has many products that pair easily with experience: stays, flights, local activities. Articles about places you actually visited also set you apart from other sites.']}]},
+ {h:['慎重に考えたいジャンル','Topics to approach with care'],b:[
+  {warn:[['注意','Caution'],['健康や金融など、読者の生活に大きく影響する分野では、専門的な知識が必要になる場合があります。扱うかどうかは、自分が責任を持って書けるかで慎重に決めてください。','Fields such as health or finance can seriously affect readers’ lives and may require real expertise. Decide carefully whether you can write about them responsibly.']]}]}],
+ faq:[
+  [['複数のジャンルを同時に扱ってもいいですか？','Can I cover several topics at once?'],['最初は1つに絞るほうが、記事の評価も学びも積み上がりやすくなります。','Start with one so that both your articles’ standing and your learning build up.']],
+  [['需要はどうやって調べますか？','How do I check demand?'],['検索候補や、キーワードを調べるツールで確認できます。数字は目安として見てください。','Search suggestions and keyword research tools help. Treat the numbers as a guide.']],
+  [['途中でジャンルを変えてもいいですか？','Can I change topic later?'],['変えられます。ただ、これまでの記事が評価されている場合は、新しいジャンルは別のサイトや媒体に分けることも考えます。','Yes, but if your existing articles are doing well, consider putting the new topic on a separate site or channel.']]],
+ rel:['travel-blog-income','earn-or-not','what-is-affiliate']},
+/* ---------- 5 ---------- */
+{id:'travel-blog-income',cat:'travel',icon:'plane',read:7,
+ kw:'旅しながら稼ぐ / 旅行ブログ',
+ t:['旅行ブログの収益化、最初の一歩：体験記と比較記事で始める','Monetising a travel blog: start with trip reports and comparison posts'],
+ eye:['旅行ブログで収益化','Travel blog income'],
+ s:['旅行ブログは、宿泊や航空券、現地アクティビティの紹介と相性がよく、**実体験の記事がそのまま収益につながります**。まず「体験記」と「比較記事」の2種類から始めます。','A travel blog pairs well with hotels, flights and local activities, and **first-hand posts can lead directly to income**. Start with two kinds of post: trip reports and comparisons.'],
+ secs:[
+ {h:['旅行ブログと収益化の相性','Why travel blogs and monetisation fit'],b:[
+  {p:['旅行は「どこへ行くか」「どこに泊まるか」「どう行くか」と、予約が必要な場面が多く、記事の中に自然にリンクを置きやすいジャンルです。','Travel involves many booking moments: where to go, where to stay, how to get there. Links fit naturally into the articles.']}]},
+ {h:['まず書く2種類の記事','The first two kinds of post'],b:[
+  {table:{head:[['記事のタイプ','Type'],['役割','Role'],['読まれる場面','When it is read'],['例','Example']],rows:[
+   [['体験記','Trip report'],['信頼をつくる','Builds trust'],['行き先を探している途中','While choosing a destination'],['「京都2泊3日で歩いたルート」','“Our 3-day walking route in Kyoto”']],
+   [['比較記事','Comparison'],['予約の背中を押す','Pushes toward booking'],['予約する直前','Just before booking'],['「京都駅周辺の宿を比べてみた」','“Comparing stays near Kyoto Station”']]]}},
+  {say:['体験記で「この人の話は信用できる」と思ってもらい、比較記事で「ここで予約しよう」と決めてもらう。**2つが同じサイトにあると、読者が迷わずに進めます。**','A trip report makes readers think “this person is credible”, and a comparison helps them decide “I’ll book here”. **With both on one site, readers move on without getting lost.**']}]},
+ {h:['紹介できる旅行商品','Travel products you can recommend'],b:[
+  {list:[['宿泊（ホテル、旅館、民泊など）','Accommodation (hotels, ryokan, rentals)'],['航空券、鉄道、バスなどの移動','Flights, trains, buses'],['現地ツアーやアクティビティ','Local tours and activities'],['レンタカー、空港送迎','Car rental, airport transfers'],['旅行保険、eSIMなど、旅の準備に使うもの','Travel insurance, eSIM and other trip preparation']]}]},
+ {h:['リンクを置く場所の考え方','Where to place links'],b:[
+  {steps:[
+   ['読者が「ここで予約したい」と思う場面を探す','Find the moment where a reader would want to book'],
+   ['その直前に、理由を一文で説明する','Explain the reason in one sentence just before'],
+   ['リンクは、文章の中と、記事の最後に置く','Place the link in the text and at the end of the article']]}]},
+ {h:['最初の10記事の作り方','Your first ten posts'],b:[
+  {list:[['体験記：行ってきた場所を3本','Three trip reports about places you visited'],['比較記事：宿、移動手段、プランを3本','Three comparisons of stays, transport or plans'],['準備記事：持ち物、予約の手順、注意点を2本','Two preparation posts: packing, booking steps, cautions'],['まとめ記事：目的地ごとの記事をまとめる1本','One hub post linking your destination articles'],['自己紹介記事：どんな旅をしている人かを1本','One about-me post on what kind of traveller you are']]}]},
+ {h:['Travelpayouts でできること','What Travelpayouts offers'],b:[
+  {p:['Travelpayouts は、複数の旅行ブランドのアフィリエイトプログラムを、ひとつのプラットフォームで利用できるサービスです。登録は無料です。当サイトは Travelpayouts が運営しています。','Travelpayouts lets you use the affiliate programs of several travel brands on one platform. Registration is free. This site is published by Travelpayouts.']}]}],
+ faq:[
+  [['写真や体験談は必要ですか？','Do I need photos and personal stories?'],['必須ではありませんが、自分で行って書いた記事は信頼されやすく、ほかのサイトとの違いにもなります。','Not required, but posts based on your own trips are trusted more and set you apart.']],
+  [['旅行に行かなくても書けますか？','Can I write without travelling?'],['書けますが、調べた情報のまとめだけでは、似た記事が多くなりがちです。自分の経験や視点を足すことをおすすめします。','You can, but summaries of researched information tend to look like many others. Adding your own experience or viewpoint helps.']],
+  [['ブログとSNS、どちらから始めればよいですか？','Blog or social media first?'],['どちらでも構いません。続けやすいほうを選び、慣れたらもう一方を足していきます。','Either. Pick the one you can maintain and add the other once you are comfortable.']]],
+ rel:['pick-niche','what-is-affiliate']},
+/* ---------- 6 ---------- */
+];
+/* Glossary: g = [ja term, en term, ja definition, en definition, kind]  kind: gen = general affiliate term, tp = Travelpayouts-specific */
+var G=[
+['アフィリエイト','Affiliate marketing','自分の媒体で商品を紹介し、成果に応じた報酬を得る仕組み。','Recommending products on your own channel and earning a reward based on results.','gen'],
+['ASP','ASP','広告主とアフィリエイターを仲介し、案件の提供、計測、報酬の支払いを担う事業者。','A service connecting advertisers and affiliates that handles offers, tracking and payouts.','gen'],
+['案件','Offer (案件)','アフィリエイトで紹介できる広告やプログラムの総称。','A general word for an ad or program you can promote as an affiliate.','gen'],
+['成果報酬型','Pay per result (CPA)','購入や登録などの成果に対して報酬が支払われる方式。','Rewards are paid for results such as purchases or sign-ups.','gen'],
+['クリック報酬型','Pay per click (CPC)','リンクのクリック数に応じて報酬が支払われる方式。','Rewards are paid by the number of link clicks.','gen'],
+['アドアフィリエイト','Ad affiliate','広告を出稿して集客し、アフィリエイト報酬を得る手法。','Paying for ads to bring traffic and earning affiliate rewards.','gen'],
+['承認','Approval','広告主が成果の内容を確認し、報酬を確定させること。','The advertiser confirms a result and finalises the reward.','gen'],
+['コンバージョン（成果）','Conversion','購入、予約、会員登録など、目的とする行動が行われること。','A target action such as a purchase, booking or sign-up.','gen'],
+['クリック率（CTR）','Click-through rate','表示された回数のうち、クリックされた割合。','The share of impressions that were clicked.','gen'],
+['導線','Reader path (導線)','読者が記事から購入や登録までたどる道筋。','The path a reader follows from an article to a purchase or sign-up.','gen'],
+['ジャンル','Topic / genre','扱うテーマの分野。日本では「ニッチ」より一般的な言い方。','The field you cover. In Japan more common than ニッチ.','gen'],
+['媒体','Channel (媒体)','記事やリンクを掲載する場所。ブログ、SNS、YouTube など。','Where you publish content and links: blog, social, YouTube and so on.','gen'],
+['集客','Traffic acquisition','サイトやSNSに読者を呼び込むこと。','Bringing readers to your site or account.','gen'],
+['コンテンツサイト','Content site','記事や写真などを定期的に更新する、情報提供が中心のサイト。','A site focused on information, with regularly updated articles and photos.','gen'],
+['ディープリンク','Deep link','サイトのトップではなく、特定の商品や条件が入力されたページへ直接つなぐリンク。','A link that goes straight to a specific page, such as one with the route and dates already filled in.','gen'],
+['パートナー','Partner','Travelpayouts に登録し、自分の媒体で収益化する人。当サイトでは、Travelpayouts のユーザーをこう呼ぶ。','A person registered with Travelpayouts who monetises their own channel. The term this site uses for Travelpayouts users.','tp'],
+['旅行ブランド','Travel brand','Travelpayouts のプラットフォームで利用できる、旅行会社やサービスのプログラム。','A travel company’s or service’s program available on the Travelpayouts platform.','tp'],
+['パートナーリンク','Partner link','パートナー専用のIDが入ったリンク。このリンク経由の予約が、そのパートナーの成果として記録される。','A link that carries the partner’s own ID so bookings through it are credited to that partner.','tp'],
+['報酬','Reward','パートナーが成果に対して受け取る収入。「手数料」「コミッション」ではなく、この言葉を使う。','The income a partner earns for results. Used instead of “fee” or “commission”.','tp'],
+['Sub ID','Sub ID','リンクごと、またはトラフィックの出どころごとに、クリックと成果を分けて見るための追加パラメータ。','An extra parameter that lets you see clicks and results separately per link or traffic source.','tp'],
+['Cookie有効期間','Cookie lifetime','クリックの記録がブラウザに残る期間。この間に行われた予約が、パートナーの成果になる。','How long a click is remembered in the browser. Bookings made within that period are credited to the partner.','tp'],
+['ウィジェット','Widget','検索フォームなど、サイトに埋め込んで使うパーツ。','An embeddable element such as a search form.','tp'],
+['ホワイトラベル','White label','航空券・ホテル検索を、自分のサイトのデザインで表示する仕組み。','A way to show flight and hotel search in your own site’s design.','tp'],
+['ポストバック','Postback','予約の成立やキャンセルを通知するための仕組み。','A notification mechanism for completed or cancelled bookings.','tp'],
+['メタサーチ','Metasearch','複数のサイトの検索結果を集めて、比べて表示する検索サービス。','A search service that gathers results from many sites and shows them side by side.','tp'],
+['紹介プログラム','Referral program','ほかの人を Travelpayouts に紹介して、追加の報酬を得る仕組み。','A way to earn extra by referring other people to Travelpayouts.','tp']
+];
+
+/* Source registry and article upgrades. Facts only from pages read on 2026-11-09 (see SRC). tier 1 = sources supplied by Mariya. */
+var CHECKED='2026-11-09';
+var STYPE={gov:['公的機関','Government'],assoc:['業界団体','Industry body'],research:['市場調査','Market research'],asp:['ASP（競合）公式情報','ASP (competitor) own info'],news:['業界ニュース','Trade news'],seo:['SEO専門ブログ','SEO blog']};
+function SR(id,ja,en,u,d,t){return {id:id,n:[ja,en],u:u,d:d,t:t}}
+var SRC={
+ jao25:SR('jao25','日本アフィリエイト協議会（JAO）「アフィリエイト市場調査2025」','JAO Affiliate Market Survey 2025','https://www.japan-affiliate.org/news/survey2025/','2026-06-12','assoc'),
+ jaoabout:SR('jaoabout','JAO「日本アフィリエイト協議会とは」','JAO: about the association','https://www.japan-affiliate.org/about/','n/a','assoc'),
+ jaoguide:SR('jaoguide','JAO「アフィリエイト・ガイドライン」','JAO Affiliate Guideline','https://www.japan-affiliate.org/guideline/','n/a','assoc'),
+ jaosummit:SR('jaosummit','JAO「Japan Affiliate Summit 2026」','JAO: Japan Affiliate Summit 2026','https://www.japan-affiliate.org/news/honki2026/','2026-10-19','assoc'),
+ yano:SR('yano','矢野経済研究所 プレスリリース「アフィリエイト市場に関する調査を実施（2026年）」','Yano Research Institute press release: affiliate market survey 2026','https://www.yano.co.jp/press-release/show/press_id/4056','2026-03-18','research'),
+ yanorep:SR('yanorep','矢野経済研究所「2026 アフィリエイト市場の動向と展望」（有料レポート）','Yano: 2026 Affiliate Market Trends and Outlook (paid report)','https://www.yano.co.jp/market_reports/C67123400','2026-01-30','research'),
+ a8camp:SR('a8camp','A8.net「キャンペーン」','A8.net campaigns page','https://www.a8.net/camp.html','n/a','asp'),
+ a8yearend:SR('a8yearend','A8スタッフブログ「ふるさと納税・年末売れ筋サービス特集」','A8 staff blog: year-end features','https://a8pr.jp/2026/10/21/yearend2026/','2026-10-21','asp'),
+ a8bf:SR('a8bf','A8スタッフブログ「ブラックフライデー特集」','A8 staff blog: Black Friday feature','https://a8pr.jp/2026/10/07/blackfriday2026/','2026-10-07','asp'),
+ moshimo:SR('moshimo','もしもアフィリエイト「はじめての方へ」','Moshimo Affiliate: for beginners','https://af.moshimo.com/af/www/beginner','n/a','asp'),
+ moshimohelp:SR('moshimohelp','もしもアフィリエイト「よくある質問」','Moshimo Affiliate: FAQ','https://af.moshimo.com/af/www/help','n/a','asp'),
+ moshimorew:SR('moshimorew','もしもアフィリエイト「W報酬制度」','Moshimo Affiliate: W reward','https://af.moshimo.com/af/www/about/reward','n/a','asp'),
+ tvout:SR('tvout','TravelVoice「JNTO 訪日・出国者数（出国者）2026年9月」','TravelVoice: JNTO outbound travellers, Sep 2026','https://www.travelvoice.jp/20261021-160713','2026-10-21','news'),
+ tvin:SR('tvin','TravelVoice「JNTO 訪日外客数 2026年9月」','TravelVoice: JNTO inbound visitors, Sep 2026','https://www.travelvoice.jp/20261021-160712','2026-10-21','news'),
+ tvwtm:SR('tvwtm','TravelVoice「WTM Global Travel Report 2026」','TravelVoice: WTM Global Travel Report 2026','https://www.travelvoice.jp/20261106-160802','2026-11-06','news'),
+ tr1:SR('tr1','TRAICY「エティハド航空 11.11セール」','TRAICY: Etihad 11.11 sale','https://www.traicy.com/posts/20261108387264/','2026-11-08','news'),
+ tr2:SR('tr2','TRAICY「ジェットスター・ジャパン スーパースターセール」','TRAICY: Jetstar Japan Super Star Sale','https://www.traicy.com/posts/20261105386920/','2026-11-05','news'),
+ tr3:SR('tr3','TRAICY「トキエア 冬タイムセール」','TRAICY: Toki Air winter time sale','https://www.traicy.com/posts/20261106386983/','2026-11-06','news'),
+ tr4:SR('tr4','TRAICY「ANAとIHG 新プログラム」','TRAICY: ANA and IHG new programme','https://www.traicy.com/posts/20261106386985/','2026-11-06','news'),
+ tr5:SR('tr5','TRAICY「KLM リアルディールデイズ」','TRAICY: KLM Real Deal Days','https://www.traicy.com/posts/20261107387035/','2026-11-07','news'),
+ suzctr:SR('suzctr','鈴木謙一「AI OverviewsとAIモードのCTR（28日間のオプトアウト実験）」','Kenichi Suzuki: CTR of AI Overviews and AI Mode (28-day opt-out experiment)','https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/','2026-11-06','seo'),
+ suzmu:SR('suzmu','鈴木謙一「ジョン・ミューラー氏インタビュー：リスト記事や大量のAIコンテンツは長続きしない」','Kenichi Suzuki: John Mueller interview on listicles and mass AI content','https://www.suzukikenichi.com/blog/john-mueller-interview-seo-shortcuts-like-listicles-and-mass-ai-content-dont-last/','2026-11-04','seo'),
+ suzhr:SR('suzhr','鈴木謙一「AI記事は人間が確認、偽の専門家は不可：Googleがコンテンツの信頼性を強化」','Kenichi Suzuki: human review for AI articles, no fake experts','https://www.suzukikenichi.com/blog/human-review-for-ai-articles-no-fake-experts-google-reinforces-content-trustworthiness/','2026-10-05','seo'),
+ suzbing:SR('suzbing','鈴木謙一「Bing、AI利用の制御を刷新」','Kenichi Suzuki: Bing overhauls AI usage controls','https://www.suzukikenichi.com/blog/bing-overhauls-ai-usage-controls-training-and-grounding-can-now-be-set-separately-replacing-noarchive-nocache/','2026-11-05','seo')
+};
+/* public log line + internal editorial note (3rd element, never shown on the site) */
+function LG(ja,en){return ['2026-11-09',['初版を公開','First published'],[ja,en]]}
+CATS.push({id:'seo',t:['SEO・AI検索','SEO & AI search'],c:'#1c7ed6'},{id:'market',t:['データ・市場','Data & market'],c:'#e67700'});
+
+/* ---- upgrade existing articles ---- */
+(function(){
+ var by={};A.forEach(function(a){by[a.id]=a});
+ var w=by['what-is-affiliate'],e=by['earn-or-not'],ad=by['ad-affiliate'],tb=by['travel-blog-income'],pn=by['pick-niche'];
+ w.lvl=0;w.src=['yano','jaoabout','moshimo','moshimohelp'];w.log=[LG('初版を作成。市場規模の数字を矢野経済研究所の公開情報で追加。','First version. Market-size figures added from Yano’s public release.')];
+ w.secs.splice(4,0,{h:['日本のアフィリエイト市場の規模','The size of the Japanese affiliate market'],b:[
+  {p:['矢野経済研究所によると、国内のアフィリエイト市場は拡大を続けています。2024年度は**4,379億円**、2025年度は**4,598億円**（前年度比5.0%増の見込み）です。','According to Yano Research Institute, the domestic affiliate market keeps growing: **¥437.9 billion** in FY2024 and **¥459.8 billion** in FY2025 (an estimated 5.0% increase).']},
+  {table:{head:[['年度','Fiscal year'],['市場規模','Market size'],['前年度比','Year on year'],['区分','Status']],rows:[
+   [['2024年度','FY2024'],['4,379億円','¥437.9bn'],['106.5%','106.5%'],['実績','Actual']],
+   [['2025年度','FY2025'],['4,598億円','¥459.8bn'],['105.0%','105.0%'],['見込み','Estimate']],
+   [['2029年度','FY2029'],['約5,883億円','About ¥588.3bn'],['—','—'],['予測','Forecast']]]}},
+  {p:['2029年度までの年平均成長率は「約6%台」と見られています。一方で、ASP市場については「過去のような年率10%を超える高成長は見込みにくい」と述べられています。','The average annual growth to FY2029 is put at “about 6%”. For the ASP market the release says growth above 10% a year, as in the past, is hard to expect.']},
+  {warn:[['注意','Caution'],['市場規模は「業界全体」の数字で、個人のブログの収入を示すものではありません。収入の実態は「稼げない？」の記事で、JAOの調査をもとに解説しています。','Market size describes the whole industry, not a single blog’s income. See the “Is it a dead end?” article for income data from the JAO survey.']]}]});
+ w.secs.splice(5,0,{h:['業界団体：日本アフィリエイト協議会（JAO）','Industry body: Japan Affiliate Organization (JAO)'],b:[
+  {p:['国内には、広告主、アフィリエイトサイト運営者、ASPが参加する業界団体があります。一般社団法人 日本アフィリエイト協議会（JAO）は、2012年11月1日に発足し、2020年7月に一般社団法人になりました。','Japan has an industry body that brings advertisers, site owners and ASPs together. The JAO was founded on 1 November 2012 and became a general incorporated association in July 2020.']},
+  {p:['JAOは、アフィリエイトの基礎教育、業界の情報交換、行政との連携、ガイドラインの公開などを行っています。','The JAO works on basic education, information exchange, liaison with the authorities and publishing a guideline.']}]});
+ w.rel=['earn-or-not'];
+ e.lvl=0;e.src=['jao25','jaoguide'];e.log=[LG('JAO「アフィリエイト市場調査2025」の数字を追加し、冒頭と「よくある質問」を差し替え。','Added figures from the JAO 2025 survey and rewrote the lead and FAQ.')];
+ e.s=['JAOの2025年調査では、アフィリエイトで**月3万円以上**を得ている人は12.4%、**月1,000円未満**の人は52.5%でした。「稼げない」という声が多い背景は数字にも表れていますが、調査は、時間と手間をかけて運営している人ほど収入が高い傾向にあるとも伝えています。','In the JAO 2025 survey, **12.4%** of site owners earned **¥30,000 or more a month** and **52.5%** earned **under ¥1,000**. The numbers reflect why many say “you can’t earn”, but the survey also reports that people who put in more time and effort tend to earn more.'];
+ e.secs.unshift({h:['調査で見る：アフィリエイトの収入の実態','What the survey says about income'],b:[
+  {p:['JAOは、クロス・マーケティングに調査を委託し、2025年12月1日〜4日に調査しました。サイトやブログにアフィリエイト広告を載せている人のうち、スクリーニングの21,054人から、有効回答1,000人を集めた調査です。','The JAO commissioned Cross Marketing and ran the survey on 1–4 December 2025: 1,000 valid answers from site owners who run affiliate ads, drawn from 21,054 screened respondents.']},
+  {table:{head:[['項目','Item'],['2013年','2013'],['2021年','2021'],['2023年','2023'],['2025年','2025']],rows:[
+   [['月3万円以上','¥30,000+ per month'],['2.4%','2.4%'],['8.7%','8.7%'],['9.4%','9.4%'],['12.4%','12.4%']],
+   [['月1,000円未満','Under ¥1,000 per month'],['—','—'],['68.6%','68.6%'],['66.2%','66.2%'],['52.5%','52.5%']]]}},
+  {point:[['ポイント','Key point'],['月3万円以上の人の割合は、2013年の2.4%から**5倍以上**に増えました（JAOの表現）。月1,000円未満の人は、2023年より13.7ポイント減っています。','The share earning ¥30,000 or more a month has grown **more than five times** since 2013 (the JAO’s wording). The share under ¥1,000 is 13.7 points lower than in 2023.']]},
+  {p:['そのほか、運営歴が5年以上の人は32.0%、1人あたりの運営サイト数は平均2.4でした。','Also, 32.0% have run their sites for five years or more, and the average is 2.4 sites per person.']},
+  {warn:[['注意','Caution'],['これは「サイト運営者」への調査で、収入を保証するものではありません。年齢、職業、媒体、ジャンルなどの詳しい内訳は、JAO会員向けの報告書にあり、ここでは使っていません。','This is a survey of site owners and no guarantee of income. Breakdowns by age, occupation, channel and genre are in the members-only report and are not used here.']]}]});
+ e.faq[0]=[['アフィリエイトは本当に稼げますか？','Can you really earn with affiliate marketing?'],['JAOの2025年調査では、月3万円以上の人は12.4%、月1,000円未満は52.5%でした。稼いでいる人はいますが、誰でも簡単に稼げるわけではありません。','In the JAO 2025 survey, 12.4% earned ¥30,000 or more a month and 52.5% under ¥1,000. Some people do earn, but it is not easy for everyone.']];
+ e.matome=[['数字で見ると、約半数は月1,000円未満。ただし、月3万円以上の人は増えている。','About half earn under ¥1,000, but the share earning ¥30,000 or more is growing.'],['時間と手間をかけて運営している人ほど、収入が高い傾向がある。','People who put in more time and effort tend to earn more.'],['最初は表示回数とクリックを見て、書き直しながら続ける。','At first watch impressions and clicks, and keep rewriting.']];
+ e.rel=['pick-niche','what-is-affiliate'];
+ ad.lvl=1;ad.src=[];ad.log=[LG('初版を作成。出典の確認は今後の更新で追加。','First version. Sources will be added in later updates.')];ad.rel=['what-is-affiliate','earn-or-not'];
+ tb.lvl=0;tb.src=[];tb.log=[LG('初版を作成。','First version.')];
+ tb.rel=['sales-calendar','travel-demand'];
+ pn.lvl=0;pn.src=[];pn.log=[LG('初版を作成。','First version.')];
+})();
+
+/* ---- new articles ---- */
+A.push(
+{id:'ai-seo',cat:'seo',icon:'search',read:7,lvl:1,
+ kw:'AI検索 SEO / AIコンテンツ（提案キーワード）',
+ t:['AI検索時代の旅行アフィリエイト記事：Googleが求める「人の確認」と独自性','Travel affiliate articles in the age of AI search: human review and originality'],
+ eye:['AI検索とSEO','AI search & SEO'],
+ s:['Googleは、AIで作った記事も**公開前に人が確認する**ことと、偽の専門家プロフィールを使わないことを求めています。リスト記事や比較記事は、価値を加えていれば問題になりません。人の確認と独自の体験が、AI時代の記事の土台です。','Google asks that AI-made articles be **reviewed by a person before publishing** and that fake expert profiles are not used. Listicles and comparisons are fine if they add value. Human review and original experience are the foundation of articles in the AI era.'],
+ secs:[
+ {h:['AI検索で何が起きているか','What is happening in AI search'],b:[
+  {p:['GoogleのAI概要（AI Overviews）やAIモードなどのAI機能が、検索結果に出るようになりました。2026年8月には、サイトがこれらの機能への掲載から外れる設定も使えるようになりました。','Google’s AI features such as AI Overviews and AI Mode now appear in search results. In August 2026 a setting also became available that lets a site opt out of these features.']},
+  {p:['サイラス・シェパード氏が、あるサイトで28日間オプトアウトして比べた実験では、AI機能での表示は全体のおよそ10%、クリック率は約0.9%（サイト全体は約0.4%）と推定されました。','In an experiment by Cyrus Shepard, a site opted out for 28 days and was then switched back. AI features accounted for about 10% of impressions, with a click-through rate of about 0.9% against about 0.4% site-wide.']},
+  {warn:[['注意','Caution'],['これは1つのサイトの実験で、すでにAI向けに最適化していたサイトです。他のサイトに当てはまるとは限りません。','This is one site that had already optimised for AI. It does not necessarily apply elsewhere.']]}]},
+ {h:['Googleが求めていること（2026年10月）','What Google asks for (October 2026)'],b:[
+  {table:{head:[['テーマ','Topic'],['内容','What changed']],rows:[
+   [['AI生成コンテンツ','AI-generated content'],['公開前に人が確認する。タイトル、メタディスクリプション、altテキストも含む','Have a person review it before publishing, including title, meta description and alt text']],
+   [['偽の専門家','Fake experts'],['AIで作った顔写真、架空の名前、偽の資格のプロフィールは、欺瞞であり、品質の低いサインとされる','Profiles with AI photos, invented names or fake credentials count as deception and a low-quality signal']],
+   [['主要コンテンツの評価','Main content'],['努力、独創性、技能、正確さの4つの観点で評価される','Judged on effort, originality, skill and accuracy']]]}},
+  {p:['鈴木謙一さんのブログによると、日本語版のドキュメントは、この時点ではまだ更新されていません（記事は鈴木さんによる翻訳です）。','According to Kenichi Suzuki’s blog, the Japanese version of the documents had not been updated yet; the post relies on his own translation.']}]},
+ {h:['リスト記事・比較記事は大丈夫？','Are listicles and comparisons safe?'],b:[
+  {p:['2026年のSearch Central Live（バルセロナ）で、ジョン・ミューラー氏は、リスト記事（比較や「おすすめ」）はそれ自体がスパムではないが、**価値を加える必要がある**と話しました。',' At Search Central Live in Barcelona in 2026, John Mueller said listicles (comparisons and “best of” lists) are not spam in themselves, but **they need to add value**.']},
+  {say:['リスト記事だけに頼る方法は、ある日急に通用しなくなることがある、とも言われています。**自分で行った体験や、確認した数字を足す**のがいちばん確実です。','He also said that a strategy built only on such lists can suddenly stop working. **Adding your own experience and numbers you have checked** is the safest route.']}]},
+ {h:['当サイトの運用ルール','How this site works'],b:[
+  {list:[['記事は、公開前に編集担当者が確認する','An editor reviews each article before publishing'],['架空の執筆者は使わない。運営は「ラボ編集部」と明記する','No invented authors; the operator is stated as the Lab editors'],['数字や主張には、記事の最後に出典と確認日を載せる','Numbers and claims get a source and a checked date at the end of the article'],['更新したら、更新履歴を残す','Keep an update log whenever an article changes'],['リスト・比較記事には、独自の観点や実際の確認を加える','Add original viewpoints or actual checks to lists and comparisons']]}]}],
+ matome:[['AIで作った記事も、公開前に人が確認する。','Have a person review AI-made articles before publishing.'],['偽の専門家や架空の執筆者は使わない。','Don’t use fake experts or invented authors.'],['リスト・比較記事は、価値を加える。','Make lists and comparisons add value.']],
+ faq:[
+  [['AIで書いた記事は評価されませんか？','Are AI-written articles marked down?'],['鈴木さんの解説によると、Googleは、AIコンテンツを公開前に人が確認することを求めています。AIで作ったこと自体を禁じているわけではありません。','In Suzuki’s summary, Google asks for human review before publishing. It does not forbid using AI as such.']],
+  [['AI概要に載ればアクセスは増えますか？','Will appearing in AI Overviews bring more traffic?'],['1つの実験では、AI機能でのクリック率はサイト全体の2倍以上と推定されましたが、サイトによって違う可能性があります。','In one experiment the click-through rate in AI features was estimated at more than double the site average, but it may differ by site.']]],
+ src:['suzctr','suzmu','suzhr'],
+ log:[LG('初版を作成。鈴木謙一さんのブログ（2026年10月〜11月の記事）にもとづく。Googleの一次ドキュメントは未確認。','First version based on Kenichi Suzuki’s posts (Oct–Nov 2026). Google’s primary documents are not yet checked.')],
+ rel:['earn-or-not','travel-blog-income']},
+{id:'sales-calendar',cat:'travel',icon:'ticket',read:6,lvl:0,
+ kw:'旅行 セール / 航空券 セール（提案キーワード）',
+ t:['旅行セール・キャンペーンの追い方：年末までのセールの見つけ方と記事の書き方','Following travel sales: how to find them and write about them'],
+ eye:['旅行セールの追い方','Following travel sales'],
+ s:['セール記事は、**セールの期間と旅行できる期間**をセットで書くと、読者の役に立ちます。期限が来たら更新するのが基本です。2026年11月時点では、各社の「11.11」や冬のセールが続いています。','For sale articles, give readers **the sale period and the travel period together**. Update the article once the sale ends. As of November 2026, “11.11” and winter sales are running.'],
+ secs:[
+ {h:['まず、2026年11月のセールを見てみる','A look at November 2026 sales'],b:[
+  {p:['TRAICYが伝えた、11月上旬のセールの例です。いずれも2026年11月9日に確認した内容で、**期限が過ぎると変わります**。','Examples reported by TRAICY in early November, checked on 9 November 2026. **They change once they expire.**']},
+  {table:{head:[['セール','Sale'],['セール期間','Sale period'],['旅行できる期間','Travel period'],['内容','Details']],rows:[
+   [['エティハド航空「11.11セール」','Etihad “11.11 sale”'],['11/8〜11/15','8–15 Nov'],['2026/11/16〜2027/5/31','16 Nov 2026 – 31 May 2027'],['東京・大阪発。基本運賃が最大22%オフ','From Tokyo and Osaka; up to 22% off the base fare']],
+   [['ジェットスター・ジャパン「スーパースターセール」','Jetstar Japan “Super Star Sale”'],['11/6 12:00〜11/9 16:59','6 Nov 12:00 – 9 Nov 16:59'],['2026/11/23〜2027/2/18','23 Nov 2026 – 18 Feb 2027'],['国内16路線。片道3,690円から（各種手数料は別）','16 domestic routes; from ¥3,690 one way (fees extra)']],
+   [['トキエア「冬タイムセール」','Toki Air “winter time sale”'],['11/6〜11/9','6–9 Nov'],['2026/12/1〜12/23','1–23 Dec 2026'],['片道、平日6,500円から・土日祝8,500円から（手数料は別）','One way from ¥6,500 on weekdays and ¥8,500 at weekends (fees extra)']],
+   [['KLM「リアルディールデイズ」','KLM “Real Deal Days”'],['11/4〜11/24','4–24 Nov'],['2026/11/5〜2027/6/30','5 Nov 2026 – 30 Jun 2027'],['東京・大阪発の欧州線。往復177,680円から（エコノミー、アムステルダム）','Tokyo and Osaka to Europe; from ¥177,680 round trip (economy, Amsterdam)']]]}},
+  {point:[['ポイント','Key point'],['セール価格には、燃油サーチャージや空港使用料などが含まれない場合があります。「最安」とは書かず、「〜円から」と条件を添えます。','Sale prices may exclude fuel surcharges and airport fees. Don’t write “cheapest”; write “from ¥…” with the conditions.']]}]},
+ {h:['年末にかけて追いたいテーマ','Themes to follow through year-end'],b:[
+  {table:{head:[['テーマ','Theme'],['時期','Timing'],['出典','Source']],rows:[
+   [['ふるさと納税・年末売れ筋サービス特集（帰省・旅行を含む）','Furusato Nozei and year-end features (including travel home)'],['2026/10/21〜12/2','21 Oct – 2 Dec 2026'],['A8スタッフブログ','A8 staff blog']],
+   [['ブラックフライデー','Black Friday'],['2026年は11/27（金）が中心','Centred on Fri 27 Nov in 2026'],['A8スタッフブログ','A8 staff blog']],
+   [['ANAとIHGの新プログラム','New ANA and IHG programme'],['2027年1月から（一部は2月から）','From January 2027 (partly February)'],['TRAICY','TRAICY']]]}},
+  {p:['A8.netは競合ですが、季節ごとの特集は、日本のブロガーが「いつ何を紹介するか」を知る参考になります。','A8.net is a competitor, but its seasonal features show what Japanese bloggers promote and when.']}]},
+ {h:['セール記事の書き方と、期限が来たときの更新','Writing sale articles and updating them when they end'],b:[
+  {steps:[['記事の冒頭に、セール期間と旅行できる期間を書く','Put the sale period and the travel period at the top'],['価格は「〜円から」と書き、手数料が別かどうかを添える','Write prices as “from ¥…” and say whether fees are extra'],['期限の翌日に、記事を「終了」に更新する','Update the article to “ended” the day after the deadline'],['次のセールの記事にリンクする','Link to the next sale article']]},
+  {p:['期限が過ぎた記事は、消さずに「終了しました」と明記して、次のセールへ案内します。','Don’t delete an expired article; mark it as ended and point readers to the next sale.']},
+  {diff:[['更新前：エティハド航空「11.11セール」を開催中（11/8〜11/15）','Before: Etihad “11.11 sale” is on (8–15 Nov)'],['更新後：エティハド航空「11.11セール」は11/15に終了しました。次は、年末年始のセールをチェック','After: The Etihad “11.11 sale” ended on 15 Nov. Next, check the year-end sales']]}]},
+ {h:['ニュースの見つけ方','Where to find the news'],b:[
+  {list:[['TRAICY：航空会社やホテルのセールの最新情報（毎日更新）','TRAICY: the latest airline and hotel sales (daily)'],['TravelVoice：旅行業界のニュースと統計','TravelVoice: travel industry news and statistics'],['A8スタッフブログ：季節の特集のスケジュール','A8 staff blog: seasonal feature schedule'],['各社の公式サイト：条件は必ず公式ページで確認','Official sites: always confirm conditions there']]}]}],
+ matome:[['セールは、セール期間と旅行できる期間をセットで書く。','Write the sale period and the travel period together.'],['価格は条件つきで。「最安」とは書かない。','Give prices with conditions; don’t write “cheapest”.'],['期限が来たら、消さずに「終了」へ更新する。','When it ends, update to “ended” instead of deleting.']],
+ faq:[
+  [['セール情報はどのくらいの頻度で更新しますか？','How often are sale articles updated?'],['週に1回、内容を確認しています。セールの期限が過ぎた項目は、翌日に更新します。','Content is checked weekly, and items whose sale has ended are updated the next day.']],
+  [['記事の価格は、いつの時点のものですか？','As of when are the prices in the article?'],['記事の更新日の時点の情報です。価格は変わることがあるため、予約の前に、各社のページで最新の情報をご確認ください。','They are as of the article’s update date. Prices can change, so check each company’s page for the latest before booking.']]],
+ src:['tr1','tr2','tr3','tr4','tr5','a8yearend','a8bf'],
+ log:[LG('初版を作成。TRAICYとA8スタッフブログの2026年11月9日時点の内容にもとづく。','First version based on TRAICY and the A8 staff blog as of 9 November 2026.')],
+ rel:['travel-demand','travel-blog-income']},
+{id:'travel-demand',cat:'market',icon:'chart',read:6,lvl:0,
+ kw:'日本人 海外旅行 出国者数（提案キーワード）',
+ t:['日本人の海外旅行は、どこまで戻った？最新の出国者数と、記事での使い方','How far has Japanese outbound travel recovered? The latest numbers and how to use them'],
+ eye:['出国者数の最新データ','Outbound travel data'],
+ s:['2026年9月の日本人出国者数は**148万1,900人**（前年同月比+6.3%）で、3か月ぶりに増えました。ただし2019年9月と比べると15.4%少なく、1〜9月累計も2019年比で25.6%少ない状況です。数字は毎月更新されます。','Japanese outbound travellers in September 2026 were **1,481,900** (+6.3% year on year), the first rise in three months. That is still 15.4% below September 2019, and January–September is 25.6% below 2019. The numbers update monthly.'],
+ secs:[
+ {h:['2026年9月の出国者数','Outbound travellers, September 2026'],b:[
+  {table:{head:[['期間','Period'],['出国者数','Travellers'],['前年同期比','Year on year'],['2019年比','Versus 2019']],rows:[
+   [['2026年9月','Sep 2026'],['1,481,900人','1,481,900'],['+6.3%','+6.3%'],['−15.4%（2019年9月は1,751,477人）','−15.4% (Sep 2019: 1,751,477)']],
+   [['2026年1〜9月累計','Jan–Sep 2026'],['11,206,400人','11,206,400'],['+3.2%','+3.2%'],['−25.6%','−25.6%']]]}},
+  {p:['9月に増えた理由は、7日間の連休（シルバーウィーク）があったことと説明されています。出典はJNTO（日本政府観光局）の発表を、TravelVoiceが図解したものです。','The rise is explained by a seven-day holiday stretch (Silver Week). The figures are the JNTO’s announcement as illustrated by TravelVoice.']}]},
+ {h:['参考：訪日外客数と世界の動向','For reference: inbound visitors and the global picture'],b:[
+  {table:{head:[['項目','Item'],['数字','Figure']],rows:[
+   [['訪日外客数（2026年9月）','Inbound visitors, Sep 2026'],['3,103,700人（前年同月比−5.0%）','3,103,700 (−5.0% year on year)']],
+   [['世界の国際宿泊旅行（2026年予測、WTM）','Global international overnight trips (2026 forecast, WTM)'],['15.7億回（前年比+2%）','1.57 billion (+2%)']],
+   [['2027年の予測','2027 forecast'],['国際旅行が+8%','International trips +8%']]]}},
+  {p:['WTMの調査では、**AIに予約まで任せてもよい人は36%**、AIをアイデア集めに使う人は53%、価格比較に使う人は58%でした。旅行のメディアにとって、AIが入口になりつつあることを示す数字です。','In the WTM survey, **36% would let AI complete a booking**, 53% use AI for ideas and 58% to compare prices. It shows AI becoming an entry point for travel media.']}]},
+ {h:['記事で数字を使うときの注意','Using the numbers in articles'],b:[
+  {list:[['必ず「何年何月の数字か」と出典を書く','Always state the month and the source'],['前年比と、コロナ前（2019年）比は、分けて書く','Keep year-on-year and versus-2019 figures separate'],['速報値は、あとで改訂されることがある','Preliminary figures can be revised later'],['一次情報（JNTO）を最終確認する','Finally check the primary source (JNTO)']]},
+  {warn:[['注意','Caution'],['この記事の数字は、JNTO（日本政府観光局）の発表をTravelVoiceが報じた内容にもとづいています。最新の数字は、JNTOの発表もあわせてご確認ください。','The figures come from the JNTO’s announcement as reported by TravelVoice. For the latest numbers, also check the JNTO’s own release.']]}]},
+ {h:['この記事の更新のしかた','How this article is updated'],b:[
+  {p:['JNTOが月次の数字を公表したら、表の行を新しい月に差し替えます。更新したときは、更新履歴に日付と内容を残します。','When the JNTO publishes the next monthly figures, the table rows are replaced with the new month, and the date and change are added to the update log.']}]}],
+ matome:[['2026年9月の出国者数は148万1,900人（+6.3%）。ただし2019年9月より15.4%少ない。','September 2026 outbound travellers: 1,481,900 (+6.3%), still 15.4% below September 2019.'],['数字は、月と出典を書いて使う。','Use numbers with the month and source.'],['毎月の公表後に更新する。','Update after each monthly release.']],
+ faq:[
+  [['この数字はいつ更新されますか？','When are these numbers updated?'],['毎月、JNTOの発表後に更新します。','Every month, after the JNTO’s release.']],
+  [['旅行ブログに、統計は必要ですか？','Does a travel blog need statistics?'],['必須ではありません。ただ、最新の数字は記事の信頼性を高めます。','Not required, but up-to-date numbers raise an article’s credibility.']]],
+ src:['tvout','tvin','tvwtm'],
+ log:[LG('初版を作成。TravelVoiceの記事（2026年10月21日、11月6日）にもとづく。JNTOの一次ページは未確認。','First version based on TravelVoice articles (21 Oct and 6 Nov 2026). The JNTO primary page is not yet checked.')],
+ rel:['sales-calendar','travel-blog-income','earn-or-not']}
+);
+A.forEach(function(a){if(!a.src)a.src=[];if(!a.log)a.log=[];if(a.lvl==null)a.lvl=0});
+
+
+/* Queued articles 7-11, written 2026-11-10. Facts only from sources in SRC; tax facts: NTA Tax Answer No.1900 (page confirmed, full text to be re-read by a tax-literate editor). */
+A.push(
+{id:'income-guide',cat:'strategy',icon:'chart',read:6,lvl:0,
+ kw:'アフィリエイト 収入 平均 目安',
+ t:['アフィリエイトの収入の目安：調査データと、自分の数字の見積もり方','What affiliate income looks like: survey data and how to estimate your own numbers'],
+ eye:['収入の目安','Income benchmarks'],
+ s:['JAOの2025年調査では、アフィリエイトで**月3万円以上**を得ている人は12.4%、**月1,000円未満**は52.5%でした。目安として見るときは、調査の対象と時期を必ず確認してください。','In JAO’s 2025 survey, **12.4%** of respondents earned **¥30,000 or more a month** and **52.5%** earned **under ¥1,000**. When using such figures, always check who was surveyed and when.'],
+ secs:[
+ {h:['調査データで見る収入の分布','The income distribution in the survey'],b:[
+  {table:{head:[['月の収益','Monthly earnings'],['2021年','2021'],['2023年','2023'],['2025年','2025']],rows:[
+   [['3万円以上','¥30,000+'],['8.7%','8.7%'],['9.4%','9.4%'],['12.4%','12.4%']],
+   [['1,000円未満','Under ¥1,000'],['68.6%','68.6%'],['66.2%','66.2%'],['52.5%','52.5%']]]}},
+  {p:['2025年の調査は、1,000人の回答（スクリーニング対象21,054人）で、2025年12月1〜4日に実施されました。調査はJAO（日本アフィリエイト協議会）によるものです。','The 2025 survey had 1,000 respondents (from 21,054 screened) and ran 1–4 December 2025. It was conducted for JAO, the Japan Affiliate Council.']},
+  {warn:[['注意','Caution'],['この数字は「回答者」の分布で、すべてのアフィリエイターの平均ではありません。収入を保証するものでもありません。','These figures describe survey respondents, not all affiliates, and do not promise any income.']]}]},
+ {h:['自分の収益を見積もる式','A simple formula for your own estimate'],b:[
+  {p:['収益は、おおまかに「**訪問数 × クリック率 × 成約率 × 1件あたりの報酬**」で考えられます。','Earnings can be roughly thought of as **visits × click rate × conversion rate × reward per sale**.']},
+  {steps:[['記事ごとの月間訪問数を、アクセス解析で確認する','Check monthly visits per article in your analytics'],['リンクのクリック率を確認する','Check the link click rate'],['成約率と報酬額を、ASPの管理画面で確認する','Check conversion rate and reward in your ASP dashboard'],['1つずつ変えて、数字がどう動くか見る','Change one factor at a time and watch the numbers']]},
+  {point:[['ポイント','Key point'],['数字を伸ばせるのは、多くの場合「訪問数」か「クリック率」です。報酬額は案件で決まります。','Usually it is visits or click rate you can improve; the reward amount is set by the programme.']]}]},
+ {h:['「稼げない」と感じたときに見る順番','What to check when it feels like it is not working'],b:[
+  {list:[['記事に、そもそも読者が来ているか','Are readers reaching the article at all?'],['読者の検索意図と、記事の内容が合っているか','Does the content match what readers searched for?'],['リンクが、読者の迷わない位置にあるか','Is the link where readers can find it easily?'],['案件が、読者のジャンルに合っているか','Does the programme fit the readers’ topic?']]},
+  {p:['詳しくは「アフィリエイトは稼げない？」の記事もご覧ください。','See also the article “Is affiliate marketing not profitable?”']}]}],
+ matome:[['JAO調査：月3万円以上は12.4%、1,000円未満は52.5%（2025年）。','JAO: 12.4% at ¥30,000+, 52.5% under ¥1,000 (2025).'],['調査の数字は、平均でも保証でもない。','Survey figures are neither an average nor a promise.'],['収益は、訪問数・クリック率・成約率・報酬で見積もる。','Estimate with visits, click rate, conversion rate and reward.']],
+ faq:[
+  [['初心者の平均収入はいくらですか？','What is a beginner’s average income?'],['この調査は初心者だけの平均を示していません。分布（上の表）を目安にしてください。','The survey does not give a beginners-only average; use the distribution above as a guide.']],
+  [['数字はどのくらいの頻度で変わりますか？','How often do the numbers change?'],['JAOの調査は年1回です。新しい調査が出たら更新します。','JAO’s survey is yearly. This article is updated when a new one appears.']]],
+ src:['jao25'],
+ log:[LG('初版を作成。JAO 2025年調査（既存記事と同じ出典）にもとづく。','First version based on the JAO 2025 survey (same source as the existing article).')],
+ rel:['earn-or-not','travel-blog-income','start-guide']},
+
+{id:'instagram',cat:'traffic',icon:'megaphone',read:6,lvl:1,
+ kw:'インスタ アフィリエイト',
+ t:['Instagramで旅行の発信を続けるコツ：リンクの置き方と投稿の組み立て','Keeping up travel posts on Instagram: where to put links and how to build a post'],
+ eye:['SNSでの発信','Social media'],
+ s:['Instagramでは、投稿のキャプションにあるURLを押せません。そのため、**プロフィールのリンク**から、ブログなどのまとめページへ案内する形が基本です。1投稿に1テーマ、場所と時期を書くと、見た人が行き先を思い浮かべやすくなります。','On Instagram, URLs in captions cannot be tapped, so the usual approach is to guide readers from the **profile link** to a hub page such as your blog. One theme per post, with the place and the season, helps viewers picture the trip.'],
+ secs:[
+ {h:['リンクをどこに置くか','Where to put the link'],b:[
+  {p:['キャプションのURLは押せないため、プロフィールのリンク欄や、ストーリーズのリンク機能などを使うのが一般的です。使える機能は、アカウントの種類や時期で変わるため、Instagramのヘルプで確認してください。','Because caption URLs are not tappable, the profile link field or the Stories link feature is typically used. Available features change by account type and time, so check Instagram’s help.']},
+  {steps:[['プロフィールに、まとめページ（自分のブログなど）のリンクを置く','Put a hub page, such as your blog, in the profile link'],['投稿で「詳しくはプロフィールのリンクから」と案内する','Tell readers in the post to use the profile link'],['リンク先で、読者が迷わず目的の情報に進めるようにする','Make the landing page easy to follow to what they came for']]}]},
+ {h:['旅行の投稿の組み立て方','How to build a travel post'],b:[
+  {list:[['1枚目の写真で、場所が分かるようにする','Make the place recognisable in the first photo'],['キャプションの最初に、場所名と時期を書く','Start the caption with the place and the season'],['1投稿で、1つのテーマだけ伝える','Cover one theme per post'],['詳しい行き方や費用は、ブログ記事に任せる','Leave directions and costs to the blog article']]},
+  {point:[['ポイント','Key point'],['SNSは「見つけてもらう入口」、ブログは「詳しく読んでもらう場所」と役割を分けると続けやすくなります。','Treat social media as the entrance where people find you and the blog as where they read in depth; the split makes it easier to keep going.']]}]},
+ {h:['続けやすい発信のコツ','Tips to keep posting'],b:[
+  {list:[['ジャンルを絞り、プロフィールで何の情報かを伝える','Keep to one topic and say in the profile what it covers'],['反応のあった投稿を、ブログ記事に広げる','Expand posts that resonate into blog articles'],['投稿する曜日や時間を決めて、無理のない回数で続ける','Fix a posting day and time and keep a pace you can sustain']]}]}],
+ matome:[['キャプションのURLは押せない。プロフィールのリンクに誘導する。','Caption URLs are not tappable; guide readers to the profile link.'],['1投稿に1テーマ。場所と時期を書く。','One theme per post, with place and season.'],['SNSは入口、ブログは詳しく読む場所。','Social media is the entrance, the blog is where people read in depth.']],
+ faq:[
+  [['ストーリーズのリンクは使えますか？','Can I use Stories links?'],['機能の提供はアカウントや時期で変わります。Instagramのヘルプで確認してください。','Availability varies; check Instagram’s help.']],
+  [['ブログがなくても始められますか？','Can I start without a blog?'],['始められます。ただし、詳しい情報を届ける場所があると、リンクの行き先に困りません。','Yes, though having a place for detailed information gives the profile link somewhere to lead.']]],
+ src:[],
+ log:[LG('初版を作成。一般的な内容。Instagramの現行機能は未確認。','First version with general advice. Instagram’s current features are not yet checked.')],
+ rel:['start-guide','travel-blog-income']},
+
+{id:'start-guide',cat:'basics',icon:'book',read:7,lvl:0,
+ kw:'アフィリエイト 初心者 始め方',
+ t:['アフィリエイト初心者の始め方：6つのステップ','Getting started with affiliate marketing: six steps'],
+ eye:['初心者向けガイド','Beginner guide'],
+ s:['アフィリエイトは、**テーマを決める → 発信の場所を作る → 登録する → 案件を選ぶ → 記事を書く → 数字を見る**の順で始められます。登録は無料のものが多く、最初から大きな費用は必要ありません。','You can start in this order: **choose a topic → set up a place to publish → sign up → pick programmes → write → check the numbers**. Many sign-ups are free, so no large upfront cost is needed.'],
+ secs:[
+ {h:['6つのステップ','Six steps'],b:[
+  {steps:[['**テーマを決める**：自分が詳しい、または続けられるジャンルを選ぶ。','**Choose a topic** you know well or can keep writing about.'],['**発信の場所を作る**：ブログやSNSなど。','**Set up where you publish**: a blog or social media.'],['**登録する**：ASP（アフィリエイトサービスプロバイダ）などに登録する。','**Sign up** with an ASP (affiliate service provider) or similar.'],['**案件を選ぶ**：読者のジャンルに合う商品やサービスを選ぶ。','**Pick programmes** that fit your readers’ topic.'],['**記事を書く**：読者の疑問に答える形で書く。','**Write**, answering the reader’s question.'],['**数字を見る**：訪問数・クリック数・成果を確認して、改善する。','**Check the numbers**: visits, clicks and results, then improve.']]}]},
+ {h:['ASPとは何か','What an ASP is'],b:[
+  {p:['ASPは、広告を出したい企業と、紹介したい人をつなぐ仕組みです。日本には複数のASPがあり、取り扱う案件や条件は異なります。','An ASP connects advertisers with people who want to recommend their products. Japan has several, with different programmes and terms. ']}]},
+ {h:['最初の3か月の目標の立て方','Setting goals for the first three months'],b:[
+  {p:['最初は収益より、**記事の本数と、読まれ方**を目標にするのがおすすめです。JAOの調査でも、月1,000円未満の人が半数を超えています（2025年）。焦らず続けることが大切です。','At first, aim for **the number of articles and how they are read** rather than earnings. In JAO’s survey, over half earned under ¥1,000 a month (2025). Keep going without rushing.']}]}],
+ matome:[['テーマ→場所→登録→案件→記事→数字の6ステップ。','Topic → place → sign-up → programmes → articles → numbers.'],['最初は、記事の本数と読まれ方を目標にする。','Start by aiming at article count and readership.']],
+ faq:[
+  [['費用はかかりますか？','Does it cost anything?'],['ASPの登録は無料のものが多いです。ブログのドメインやサーバーには費用がかかる場合があります。','Many ASP sign-ups are free. A blog domain or server may cost money.']],
+  [['ブログとSNS、どちらから始めますか？','Blog or social media first?'],['どちらでも始められます。リンクを置きやすいのは、ブログです。','Either works. Blogs make it easier to place links.']]],
+ src:['jao25','a8camp'],
+ log:[LG('初版を作成。JAO 2025年調査とA8.netの案内（競合の自社情報）にもとづく。','First version based on the JAO 2025 survey and A8.net’s own guidance (a competitor’s self-description).')],
+ rel:['what-is-affiliate','income-guide']},
+
+{id:'click-reward',cat:'basics',icon:'link',read:5,lvl:1,
+ kw:'クリック報酬型 アフィリエイト',
+ t:['クリック報酬型アフィリエイトとは？成果報酬型との違い','Click-based affiliate rewards: how they differ from performance-based rewards'],
+ eye:['報酬の種類','Reward types'],
+ s:['**クリック報酬型**は、リンクがクリックされると報酬が発生する形式です。**成果報酬型**は、購入や申込みなどの成果が出たときに報酬が発生します。どちらがあるかは、ASPや案件によって違います。','With **click-based** rewards you earn when a link is clicked; with **performance-based** rewards you earn when a purchase or sign-up happens. Which are available differs by ASP and programme.'],
+ secs:[
+ {h:['報酬の発生のしかたの違い','How the reward is triggered'],b:[
+  {table:{head:[['種類','Type'],['報酬が発生するとき','When you earn'],['特徴','Characteristics']],rows:[
+   [['成果報酬型','Performance-based'],['購入・申込みなどの成果','A purchase or sign-up'],['1件あたりの報酬が大きい傾向。成果が出ないと0円。','Tends to pay more per result; nothing if no result.']],
+   [['クリック報酬型','Click-based'],['リンクがクリックされたとき','A link click'],['1クリックあたりの報酬は小さい傾向。数が必要。','Tends to pay little per click; volume is needed.']]]}},
+  {warn:[['注意','Caution'],['上の「傾向」は一般的な説明で、実際の金額や条件は案件ごとに異なります。','The tendencies above are general; actual amounts and terms vary by programme.']]}]},
+ {h:['「PPCアフィリエイト」と混同しない','Do not confuse it with “PPC affiliate”'],b:[
+  {p:['日本では「PPCアフィリエイト」というと、検索連動型広告を出して商品を紹介する手法を指すことが多く、報酬の形式であるクリック報酬型とは意味が異なります。当サイトでは、報酬の形式は「クリック報酬型」と書きます。','In Japan “PPC affiliate” usually means promoting products through paid search ads, which is different from click-based rewards as a pay model. This site uses 「クリック報酬型」 for the reward type.']}]},
+ {h:['どちらを選ぶか','Which to choose'],b:[
+  {list:[['読者の数が多く、購入までの距離が遠いテーマは、クリック報酬型が合うことがある','High-readership topics far from purchase may suit click-based rewards'],['購入や予約につながりやすい記事は、成果報酬型が合うことが多い','Articles that lead naturally to purchase or booking often suit performance-based rewards'],['提供の有無と条件は、各ASPで確認する','Check availability and terms with each ASP']]}]}],
+ matome:[['成果報酬型は成果で、クリック報酬型はクリックで報酬が発生する。','Performance-based pays on results; click-based pays on clicks.'],['PPCアフィリエイトとは意味が違う。','It is not the same as “PPC affiliate”.'],['提供の有無と条件は、ASPごとに違う。','Availability and terms differ by ASP.']],
+ faq:[
+  [['クリック報酬型は、初心者向きですか？','Is click-based good for beginners?'],['向き不向きはテーマで変わります。条件と単価を確認してから選んでください。','It depends on your topic; check terms and rates before choosing.']],
+  [['どのASPにありますか？','Which ASPs offer it?'],['各ASPの案件一覧で確認してください。変わることがあります。','Check each ASP’s programme list; this changes.']]],
+ src:['a8camp','moshimo'],
+ log:[LG('初版を作成。説明は一般的な内容。各ASPの現行の案件と条件は未確認。','First version with general explanations. Each ASP’s current programmes and terms are not yet checked.')],
+ rel:['what-is-affiliate','ad-affiliate']}
+);
+
+/* summaries (まとめ) for the five original articles */
+(function(){var M={
+'what-is-affiliate':[['アフィリエイトは、紹介した商品が買われたり申し込まれたりしたときに、報酬が出る仕組み。','Affiliate marketing pays a reward when a product you recommended is bought or signed up for.'],['登場するのは、広告主・アフィリエイター・ASPの3者。','Three parties take part: the advertiser, the affiliate and the ASP.'],['始める前に、発信する場所と、報酬が出る条件を確認する。','Before starting, decide where to publish and check how the reward is triggered.']],
+'ad-affiliate':[['アドアフィリエイトは、広告を出して読者を集め、商品を紹介する方法。','Ad affiliate marketing means buying ads to bring readers to the products you recommend.'],['出稿前に、仮の数字で損益を計算しておく。','Before buying ads, work out profit and loss with provisional numbers.'],['小さく試し、やめる基準を先に決める。','Start small and set the stop rule first.']],
+'earn-or-not':[['「稼げない」と言われる理由は、成果が出るまでに時間がかかることにある。','Many say “it doesn’t earn” because results take time to appear.'],['続けている人は、数字を見て、見直す時期を決めている。','People who continue watch the numbers and decide when to review.'],['JAOの調査の数字は、平均でも保証でもない。','The JAO survey figures are neither an average nor a promise.']],
+'pick-niche':[['まず「ジャンル」の意味をそろえてから、候補を出す。','Agree what “genre” means first, then list candidates.'],['候補は、3つの軸で出し、表で比べる。','List candidates along three axes and compare them in a table.'],['旅行は紹介できるものが幅広い。ただし、慎重に考えたいジャンルもある。','Travel offers a wide range to recommend, though some genres call for care.']],
+'travel-blog-income':[['旅行ブログは、収益化と相性がよい。','Travel blogs are a good fit for monetisation.'],['まず、体験記と比較記事の2種類を書く。','Start with two kinds of article: trip reports and comparisons.'],['最初の10記事を、順番に作っていく。','Build the first ten articles one by one.']],
+'asp':[['ASPは、広告主とアフィリエイターをつなぎ、成果の計測と報酬の支払いを担当する。','An ASP connects advertisers and affiliates, and handles tracking and payment.'],['比べるポイントは4つ。複数のASPを使い分けてもよい。','Compare on four points; using several ASPs is fine.'],['提携には審査と申請の流れがある。','Partnering involves an approval and application process.']]};
+A.forEach(function(a){if(!a.matome&&M[a.id])a.matome=M[a.id]})})();
+A.forEach(function(a){if(!a.src)a.src=[];if(!a.log)a.log=[];if(a.lvl==null)a.lvl=0});
+
+var L='ja';
+try{var s0=localStorage.getItem('lang');if(s0==='en'||s0==='ja')L=s0}catch(e){}
+var PROTO=false;
+var KEY='https://landings.travelpayouts.com/?tp_place=landing_jp-seo-blog';
+var X=function(a){return L==='ja'?a[0]:a[1]};
+var T={
+ by:['Travelpayouts が運営する旅行アフィリエイト情報サイト','Travel affiliate know-how, by Travelpayouts'],
+ tkl:['お知らせ','NEWS'], tk:['新着：2026年11月の旅行セールの追い方','New: how to follow the November 2026 travel sales'],
+ nav:[['home','ホーム','Home'],['articles','記事一覧','Articles'],['glossary','用語集','Glossary'],['about','このサイトについて','About'],],
+ ribbon:['旅行ブロガー・サイト運営者向け','For travel bloggers and site owners'],
+ heroH:['<em>旅の発信</em>を、<br>収益につなげる<br>はじめの一歩','Turn <em>your travel content</em><br>into income:<br>the first step'],
+ heroP:['アフィリエイトの仕組みから、ジャンルの選び方、旅行ブログの収益化まで。日本の検索で使われている言葉で、順番にやさしく解説します。','From how affiliate marketing works to choosing a topic and monetising a travel blog, explained step by step in the words readers in Japan search with.'],
+ bub:['はじめてでも大丈夫！','New here? No problem!'],
+ cta:['無料で登録する','Sign up free'], read:['記事を読む','Read articles'], free:['登録無料','Free to join'],
+ stats:[['11','ジャンル','の旅行カテゴリーで収益化（宿泊・航空券・ツアー・送迎など）','travel verticals: stays, flights, tours, transfers and more'],['24/7','','人によるサポート。返信までの平均時間は26分','human Support around the clock; average reply time 26 minutes'],['20','日','までに、複数のブランドの収益を、毎月まとめてお支払い','Earnings from several brands paid together by the 20th of each month']],
+ catH:['カテゴリーから探す','Browse by category'], catN:['記事','articles'],
+ newH:['新着記事','Latest articles'], rankH:['おすすめ記事ランキング','Recommended articles'],
+ rankN:['※ 編集部のおすすめ順です。','* In editors’ recommended order.'],
+ tagH:['人気のテーマ','Popular topics'], profH:['編集部について','About the editors'],
+ profP:['旅行ブロガーのために、日本の検索で使われている言葉でアフィリエイトの基本をまとめています。','We explain affiliate basics for travel bloggers in the words people in Japan actually search with.'],
+ profName:['ラボ編集部（マスコット：タビィ）','The Lab editors (mascot: Tabi)'],
+ sideCta:['旅行ブログを収益化しませんか？','Ready to monetise your travel blog?'],
+ stepH:['はじめての方へ：3ステップ','New here? Three steps'],
+ step:[['STEP 1','しくみを知る','アフィリエイトの流れと、3者の関係をつかみます。','Learn the flow and who is involved.','book'],['STEP 2','ジャンルを決める','好き・詳しい・需要の3つで、テーマを選びます。','Pick a topic by interest, expertise and demand.','compass'],['STEP 3','書いて、直す','体験記と比較記事から始め、数字を見て書き直します。','Start with trip reports and comparisons, then revise by numbers.','plane']],
+ brandsH:['紹介できる旅行カテゴリー','Travel categories you can promote'],
+ gloH:['用語をチェック','Check the terms'], gloAll:['用語集を見る','Open glossary'],
+ ctaH:['旅行ブログの収益化を、はじめませんか？','Ready to monetise your travel content?'],
+ ctaP:['Travelpayouts では、複数の旅行ブランドのプログラムをひとつのプラットフォームで利用できます。登録は無料です。','On Travelpayouts you can use programs from several travel brands on one platform. Registration is free.'],
+ ctaFlag:['無料','FREE'],
+ ctaSideH:['旅の発信を、収益につなげませんか？','Turn your travel content into income'], join:['Travelpayouts に参加する','Join Travelpayouts'],
+ all:['すべての記事','All articles'], allT:['すべて','All'],
+ sum:['この記事の要点','Key takeaway'], toc:['目次','Contents'], faq:['よくある質問','FAQ'], rel:['あわせて読みたい','Related articles'],
+ srcT:['出典','Sources'], srcN:['出典の確認待ち。公開前に、一次情報を開いて内容を照合します。数字や条件の記載は、確認が済むまで仮のものです。','Sources pending. Before publishing, each claim is checked against a primary source. Figures and conditions are provisional until then.'],
+ draft:['下書き','Draft'], upd:['更新日','Updated'], mins:['分で読めます','min read'], top:['ホーム','Home'],
+ disclose:['Travelpayouts が運営しています。','Published by Travelpayouts.'],
+ glH:['アフィリエイト用語集','Affiliate glossary'], glP:['日本のアフィリエイターが普段使う言葉と、Travelpayouts で使う言葉を、短く説明します。','Short explanations of terms Japanese affiliates use, and terms used at Travelpayouts.'],
+ glS:['用語を検索','Search terms'], glK:[['すべて','All'],['一般用語','General'],['Travelpayouts用語','Travelpayouts']],
+ pendT:['確認待ち','review pending'],
+ aboutH:['このサイトについて','About this site'],
+ tabs:[['all','新着','Latest'],['pop','人気','Popular'],['sale','セール・旅行','Sales & travel'],['data','データ・ルール','Data & rules']],
+ promo:['本記事にはプロモーション（アフィリエイトリンク）が含まれます。','This article contains promotion (affiliate links).'],
+ lvl:[['初級','Beginner'],['中級','Intermediate']], tell:['レベル','Level'],
+ srcH:['出典と確認日','Sources and checked dates'],
+ srcCk:['確認日','Checked'],
+ srcNone:['この記事には、まだ出典の確認が済んでいない内容が含まれます。公開前に、一次情報で照合します。','This article still contains content whose sources have not been checked. It is verified against primary sources before publishing.'],
+ srcNote:['公式サイトの情報は、各社の自己申告です。条件は変わることがあるため、最新の公式ページで確認してください。','Information from company sites is the company’s own statement. Terms change, so confirm on the current official page.'],
+ logH:['更新履歴','Update log'], matH:['まとめ','Summary'],
+ fb:['この記事は役に立ちましたか？','Was this article helpful?'], fbY:['はい','Yes'], fbN:['いいえ','No'], fbT:['ご意見ありがとうございます。','Thank you for your feedback.'],
+ prev:['前の記事','Previous'], next:['次の記事','Next'], more:['次の記事も読むと、さらに詳しくなります','Keep reading'],
+ saleH:['セール・キャンペーン情報','Sales and campaigns'], saleN:['※ TRAICYの2026年11月の記事より。期限が過ぎると変わります。','* From TRAICY, November 2026. Expired items change.'],
+ catList:['カテゴリー','Categories'],
+ calH:['イベント・セール・変更点カレンダー','Events, sales and changes calendar'], calP:['ブロガーが押さえておきたい、今後の予定です。出典のある項目だけを載せています。確認日：2026年11月9日。','Upcoming dates bloggers should know, listing only items with a source. Checked on 9 November 2026.'],
+ corrH:['お詫びと訂正','Corrections'], corrP:['記事に誤りがあった場合は、ここに掲載します。現在、訂正はありません。','Corrections to articles are listed here. There are none at the moment.'],
+ abSrcH:['参考にしている主な情報源','Main sources we rely on'],
+ stbar:['旅行ブログの収益化は、無料の登録から。','Start monetising your travel blog with a free sign-up.']
+};
+var IC={
+book:'M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z M4 19V5 M8 7h7',
+megaphone:'M3 11v3a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z M15 9a4 4 0 0 1 0 6 M18 6.5a8 8 0 0 1 0 11',
+chart:'M4 20V4 M4 20h16 M8 16v-5 M12 16V8 M16 16v-8',
+compass:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M15.5 8.5l-2 5-5 2 2-5z',
+plane:'M10 14L21 3 M21 3l-6.5 18-3.5-8-8-3.5z',
+link:'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1 M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1',
+hotel:'M3 20V7 M3 14h18v6 M21 14v-2a3 3 0 0 0-3-3h-7v5 M7 11h.01',
+ticket:'M3 8v3a2 2 0 0 1 0 4v3h18v-3a2 2 0 0 1 0-4V8z M14 8v10',
+car:'M5 16h14 M4 16v-4l2-5h12l2 5v4 M7 19v-3 M17 19v-3 M7 12h.01 M17 12h.01',
+shield:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M9 12l2 2 4-4',
+sim:'M7 3h7l4 4v14H7z M10 12h5v6h-5z',
+check:'M5 12l5 5L20 7',
+search:'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M20 20l-4-4',
+info:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 11v5 M12 8h.01',
+warn:'M12 3l10 18H2z M12 10v5 M12 18h.01',
+star:'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z',
+clock:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 7v5l3 2',
+list:'M8 6h12 M8 12h12 M8 18h12 M4 6h.01 M4 12h.01 M4 18h.01'
+};
+function ic(n,sw){return '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(sw||2)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n].split(' M').map(function(d,i){return '<path d="'+(i?'M':'')+d+'"/>'}).join('')+'</svg>'}
+/* original mascot "Tabi" (traveller cloud with a paper-plane cap) */
+function mascot(cls,face){
+ var id='mc'+(Math.random()*1e6|0);
+ return '<svg class="m '+(cls||'')+'" viewBox="0 0 120 120" role="img" aria-label="Tabi"><defs><clipPath id="'+id+'"><circle cx="60" cy="60" r="58"/></clipPath></defs><circle cx="60" cy="60" r="58" fill="#ffd54a"/><g clip-path="url(#'+id+')">'+
+ /* body: blue travel jacket, backpack straps, camera */
+ '<path d="M18 124Q22 88 60 84Q98 88 102 124Z" fill="#006dff"/><path d="M44 86L40 124M76 86L80 124" stroke="#d9480f" stroke-width="5" stroke-linecap="round"/>'+
+ '<path d="M50 84L60 98L70 84" fill="none" stroke="#fff" stroke-width="3"/>'+
+ '<path d="M44 86Q56 108 64 104M76 86Q64 108 56 104" fill="none" stroke="#14233a" stroke-width="2.4"/>'+
+ '<rect x="46" y="98" width="28" height="17" rx="4" fill="#14233a"/><rect x="50" y="95" width="9" height="5" rx="1.5" fill="#14233a"/><circle cx="60" cy="106.5" r="6" fill="#cfd6e0"/><circle cx="60" cy="106.5" r="3.6" fill="#14233a"/><circle cx="58.6" cy="105.3" r="1.1" fill="#fff"/><circle cx="69" cy="101.5" r="1.6" fill="#ffd54a"/></g>'+
+ /* head */
+ '<rect x="52" y="76" width="16" height="10" rx="5" fill="#f5cba7"/><ellipse cx="60" cy="58" rx="25" ry="24" fill="#ffe0c2"/>'+
+ '<path d="M35 56Q34 40 60 38Q86 40 85 56Q80 46 60 46Q40 46 35 56Z" fill="#5b3a29"/>'+
+ /* bucket hat */
+ '<ellipse cx="60" cy="40" rx="37" ry="9" fill="#c2410c"/><path d="M40 40Q40 17 60 17Q80 17 80 40Z" fill="#ea580c"/><rect x="40" y="33" width="40" height="6" fill="#14233a"/><circle cx="73" cy="36" r="2.4" fill="#ffd54a"/>'+
+ /* face */
+ '<circle cx="50" cy="60" r="3.6" fill="#14233a"/><circle cx="70" cy="60" r="3.6" fill="#14233a"/><circle cx="51.2" cy="58.8" r="1.2" fill="#fff"/><circle cx="71.2" cy="58.8" r="1.2" fill="#fff"/>'+
+ '<circle cx="42" cy="68" r="4.4" fill="#ffa8b8" opacity=".8"/><circle cx="78" cy="68" r="4.4" fill="#ffa8b8" opacity=".8"/>'+
+ (face==='o'?'<ellipse cx="60" cy="71" rx="3.6" ry="4.4" fill="#14233a"/>':'<path d="M52 68Q60 77 68 68" fill="none" stroke="#14233a" stroke-width="3" stroke-linecap="round"/>')+
+ /* waving hand with paper plane */
+ '<circle cx="97" cy="82" r="6.5" fill="#ffe0c2"/><path d="M104 68L118 62L110 76Z" fill="#fff" stroke="#14233a" stroke-width="1.6" stroke-linejoin="round"/></svg>'}
+function f(s){return s.replace(/\*\*(.+?)\*\*/g,'<mark>$1</mark>')}
+var CT={};CATS.forEach(function(c){CT[c.id]=c});
+var SLUG={};A.forEach(function(a){SLUG[a.id]=a});
+var catFilter='all',glFilter=0,glQ='';
+function thumb(a,big,isNew){
+ var c=CT[a.cat];
+ return '<div class="thumb'+(big?' big':'')+'" style="--c:'+c.c+'">'+
+ '<svg class="bgd" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="40" cy="170" r="70" fill="#fff" opacity=".08"/><circle cx="290" cy="20" r="60" fill="#fff" opacity=".1"/><circle cx="170" cy="30" r="6" fill="#ffd54a"/><circle cx="130" cy="150" r="4" fill="#fff" opacity=".5"/><circle cx="210" cy="160" r="8" fill="#ffd54a" opacity=".8"/><path d="M0 150Q60 120 120 150T240 150T360 140V180H0Z" fill="#fff" opacity=".1"/></svg>'+
+ '<span class="lab">'+X(c.t)+'</span>'+(isNew?'<span class="nwb">NEW</span>':'')+
+ '<span class="tx">'+X(a.eye)+'</span><span class="rc">'+ic(a.icon,1.8)+'</span></div>'}
+var NEWORD=['sales-calendar','travel-demand','ai-seo','start-guide','income-guide','instagram','click-reward','earn-or-not','what-is-affiliate','travel-blog-income','pick-niche','ad-affiliate'];
+var POPORD=['what-is-affiliate','start-guide','earn-or-not','ad-affiliate','instagram','income-guide','travel-blog-income','pick-niche','click-reward','sales-calendar','ai-seo','travel-demand'];
+function ordered(ids){return ids.map(function(id){return SLUG[id]}).filter(Boolean)}
+var tab='all';
+function card(a,i){return '<a class="acard" href="#a-'+a.id+'">'+thumb(a,false,NEWORD.indexOf(a.id)<4)+'<div class="bd"><div class="meta"><span class="chip">'+X(T.lvl[a.lvl||0])+'</span><span>'+a.read+X(T.mins)+'</span></div><h3>'+X(a.t)+'</h3><p>'+f(X(a.s)).replace(/<\/?mark>/g,'').slice(0,L==='ja'?62:120)+'…</p></div></a>'}
+function ctaBand(){return '<div class="cta-band"><span class="flag">'+X(T.ctaFlag)+'</span>'+mascot('','o')+'<div><h2>'+X(T.ctaH)+'</h2><p>'+X(T.ctaP)+'</p></div><a class="btn" href="'+KEY+'" target="_blank" rel="noopener">'+X(T.cta)+'</a></div>'}
+function ctaSide(){return '<div class="cta-side"><span class="flag">'+X(T.ctaFlag)+'</span>'+mascot('','o')+'<h3>'+X(T.ctaSideH)+'</h3><p>'+X(T.ctaP)+'</p><a class="btn" href="'+KEY+'" target="_blank" rel="noopener">'+X(T.join)+'</a></div>'}
+function sideBox(showProf,showNums){
+ return '<aside class="side">'+
+ (showProf?'<div class="box"><h3>'+X(T.profH)+'</h3><div class="prof">'+mascot('')+'<b>'+X(T.profName)+'</b><p>'+X(T.profP)+'</p></div></div>':'')+
+ (showProf?'':ctaSide())+'</aside>'}
+function tabList(){
+ if(tab==='pop')return ordered(POPORD).slice(0,6);
+ if(tab==='sale')return A.filter(function(a){return a.id==='sales-calendar'||a.id==='travel-blog-income'||a.id==='travel-demand'});
+ if(tab==='data')return A.filter(function(a){return a.cat==='rules'||a.cat==='market'||a.cat==='seo'||a.id==='earn-or-not'});
+ return ordered(NEWORD).slice(0,6)}
+function setTab(t){tab=t;render()}
+function home(){
+ var icoMap={basics:'book',traffic:'megaphone',strategy:'compass',travel:'plane',service:'link',rules:'shield',seo:'search',market:'chart'};
+ var cats=CATS.map(function(c){var n=A.filter(function(a){return a.cat===c.id}).length;
+  return '<button class="tile" style="--c:'+c.c+'" onclick="goCat(\''+c.id+'\')"><span class="circ">'+ic(icoMap[c.id],1.8)+'</span>'+X(c.t)+'<small>'+n+' '+X(T.catN)+'</small></button>'}).join('');
+ var steps=T.step.map(function(s){return '<div class="stepcard"><span class="st">'+s[0]+'</span><div class="circ">'+ic(s[4],1.8)+'</div><b>'+X([s[1],s[1]==='しくみを知る'?'Learn the basics':s[1]==='ジャンルを決める'?'Pick a topic':'Write, then revise'])+'</b><p>'+X([s[2],s[3]])+'</p></div>'}).join('');
+ IC.pin='M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z M12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z';
+ var cat5=[['ticket',['航空券','Flights']],['hotel',['ホテル','Hotels']],['pin',['ツアー','Tours']],['car',['送迎・レンタカー','Transfers & cars']],['shield',['旅行保険','Insurance']],['sim',['eSIM','eSIM']]].map(function(c){return '<span class="tagchip" style="font-size:14px;padding:6px 16px;cursor:default"><span style="margin-right:6px;display:inline-flex">'+ic(c[0],1.8)+'</span>'+X(c[1])+'</span>'});
+ var terms=G.slice(0,8).map(function(g){return '<a class="tagchip" href="#glossary">'+(L==='ja'?g[0]:g[1])+'</a>'}).join('');
+ var tabs='<div class="tabs" role="tablist">'+T.tabs.map(function(t){return '<button role="tab" aria-selected="'+(tab===t[0])+'" onclick="setTab(\''+t[0]+'\')">'+X([t[1],t[2]])+'</button>'}).join('')+'</div>';
+ return '<section class="hero"><div class="wrap"><div class="stage"><div class="copy"><span class="ribbon">'+X(T.ribbon)+'</span><h1>'+X(T.heroH)+'</h1><p class="lead">'+X(T.heroP)+'</p><div class="cta"><a class="btn" href="'+KEY+'" target="_blank" rel="noopener">'+X(T.cta)+'</a><a class="btn ghost" href="#articles">'+X(T.read)+'</a><span class="free">'+X(T.free)+'</span></div></div>'+
+ '<div class="art"><div class="bub">'+X(T.bub)+'</div>'+mascot('')+'</div></div><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>'+
+'</div></section>'+
+ '<section class="blk dotbg"><div class="wrap"><div class="sech"><small>NEW ARTICLES</small><h2>'+X(T.newH)+'</h2></div><div class="cols"><div>'+tabs+'<div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">'+tabList().map(card).join('')+'</div><p style="text-align:center;margin-top:24px"><a class="btn blue sm" href="#articles">'+X(T.all)+'</a></p></div>'+sideBox()+'</div></div></section>'+
+ '<section class="blk" style="padding-block:8px 36px"><div class="wrap"><div class="badges">'+T.stats.map(function(s){return '<div class="badge"><span class="n">'+s[0]+'<small>'+(L==='ja'?s[1]:'')+'</small></span><p>'+X([s[2],s[3]])+'</p></div>'}).join('')+'</div></div></section>'+
+ '<section class="blk stripe"><div class="wrap"><div class="sech"><small>TRAVEL CATEGORIES</small><h2>'+X(T.brandsH)+'</h2></div><div class="chips" style="justify-content:center">'+cat5.join('')+'</div><div class="sech" style="margin:36px 0 18px"><h2 style="font-size:20px">'+X(T.gloH)+'</h2></div><div class="chips" style="justify-content:center">'+terms+'</div><p style="text-align:center;margin-top:18px"><a class="btn ghost sm" href="#glossary">'+X(T.gloAll)+'</a></p></div></section>'}
+function articles(){
+ var fl='<div class="filters"><button aria-pressed="'+(catFilter==='all')+'" onclick="setCat(\'all\')">'+X(T.allT)+'</button>'+CATS.map(function(c){return '<button aria-pressed="'+(catFilter===c.id)+'" onclick="setCat(\''+c.id+'\')">'+X(c.t)+'</button>'}).join('')+'</div>';
+ var list=ordered(NEWORD).filter(function(a){return catFilter==='all'||a.cat===catFilter});
+ return '<section class="blk"><div class="wrap"><div class="sech"><small>ARTICLES</small><h2>'+X(T.all)+'</h2></div>'+fl+'<div class="cols"><div class="cards">'+list.map(card).join('')+'</div>'+sideBox()+'</div></div></section>'}
+function blk(b){
+ if(b.p)return '<p>'+f(X(b.p))+'</p>';
+ if(b.steps)return '<ol class="steps">'+b.steps.map(function(s,i){return '<li><span class="sn">STEP<b>'+(i+1)+'</b></span><span>'+f(X(s))+'</span></li>'}).join('')+'</ol>';
+ if(b.list)return '<ul class="checks">'+b.list.map(function(s){return '<li><span class="ck">'+ic('check',3)+'</span><span>'+f(X(s))+'</span></li>'}).join('')+'</ul>';
+ if(b.table){var t=b.table;return '<div class="tblwrap"><table><thead><tr>'+t.head.map(function(h){return '<th>'+X(h)+'</th>'}).join('')+'</tr></thead><tbody>'+t.rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+f(X(c))+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>'}
+ if(b.say)return '<div class="say"><div class="who">'+mascot('')+'Tabi</div><div class="bb">'+f(X(b.say))+'</div></div>';
+ if(b.point)return '<div class="point"><span class="cap">'+ic('star',2.4)+X(b.point[0])+'</span><p>'+f(X(b.point[1]))+'</p></div>';
+ if(b.warn)return '<div class="warnbox"><span class="cap">'+ic('warn',2.4)+X(b.warn[0])+'</span><p>'+f(X(b.warn[1]))+'</p></div>';
+ if(b.diff)return '<div class="diff"><div class="old"><b>'+X(['更新前','Before'])+'</b><p>'+X(b.diff[0]).replace(/^[^：:]*[：:]\s*/,'')+'</p></div><div class="new"><b>'+X(['更新後','After'])+'</b><p>'+X(b.diff[1]).replace(/^[^：:]*[：:]\s*/,'')+'</p></div></div>';
+ return ''}
+var fbDone={};
+function fbVote(id){fbDone[id]=1;render()}
+function srcList(a){
+ if(!a.src.length)return '<div class="src"><b>'+X(T.srcT)+'：</b>'+X(T.srcNone)+'</div>';
+ return '<div class="srcbox"><h2 class="mini">'+X(T.srcH)+'</h2><ul>'+a.src.map(function(id){var s=SRC[id];return '<li><a href="'+s.u+'" target="_blank" rel="noopener">'+X(s.n)+'</a><span class="st3">'+X(STYPE[s.t])+'</span><span class="ck3">'+(s.d==='n/a'?'':(L==='ja'?'発行日 ':'Published ')+s.d+' · ')+X(T.srcCk)+' '+CHECKED+'</span></li>'}).join('')+'</ul><p class="note">'+X(T.srcNote)+'</p></div>'}
+function logList(a){return '<div class="srcbox"><h2 class="mini">'+X(T.logH)+'</h2><table class="logt"><tbody>'+a.log.map(function(l){return '<tr><td>'+l[0]+'</td><td>'+X(l[1])+'</td></tr>'}).join('')+'</tbody></table></div>'}
+var CTAIN={"what-is-affiliate": ["どこで発信する？媒体の選び方", "旅行ブログを媒体に選ぶなら、案件探しからリンクの設置、数字の確認までをひとつの場所で進められると、最初の一歩がぐっと楽になります。Travelpayouts は、旅行ブランドのプログラム、リンク、レポート、お支払いをひとつのアカウントで管理できる、旅行に特化したプラットフォームです。", "If you choose a travel blog as your channel, it helps to find programs, place links and check numbers in one place. Travelpayouts is a travel-focused platform where brand programs, links, reports and payouts live in a single account."], "ad-affiliate": ["記事型との違い", "記事型で旅行の情報を育てていくなら、広告費をかけずに、読まれた分だけ積み上げていく進め方もあります。旅行の記事に合うプログラムは、Travelpayouts に登録すると、ひとつの管理画面から探せます。", "If you would rather build travel content as articles, you can grow it without ad spend. Once you sign up for Travelpayouts, you can browse programs that suit travel articles from a single dashboard."], "earn-or-not": ["続けている人がしていること", "続けている人は、案件選びと数字の確認を一か所にまとめていることが多いようです。Travelpayouts なら、複数の旅行ブランドのレポートとお支払いを、ひとつのアカウントで確認できます。", "People who keep going often keep program choice and number-checking in one place. With Travelpayouts you can see reports and payouts for several travel brands in a single account."], "pick-niche": ["旅行ジャンルの強み", "旅行を選んだなら、宿泊、航空券、ツアー、送迎、eSIMなど、紹介できるものが幅広いのも強みです。Travelpayouts では、11の旅行ジャンルを、ひとつのアカウントから扱えます。", "If you pick travel, the range of things you can recommend is a strength: stays, flights, tours, transfers, eSIMs and more. Travelpayouts lets you work with 11 travel verticals from one account."], "travel-blog-income": ["紹介できる旅行商品", "紹介できる商品が決まったら、次はどこから申し込むかです。Travelpayouts は旅行だけに特化していて、宿泊・航空券・ツアーなどのプログラムを、ひとつのアカウントでまとめて扱えます。登録は3ステップ、5〜7分です。", "Once you know what to recommend, the next question is where to sign up. Travelpayouts focuses on travel only, so stays, flights, tours and more sit in one account. Registration takes three steps and about 5–7 minutes."], "ai-seo": ["リスト記事・比較記事は大丈夫？", "人が確認し、読者の役に立つ比較記事を書くには、比べる材料が欠かせません。旅行の比較記事なら、Travelpayouts に登録すると、さまざまな旅行ブランドのプログラムをひとつの場所で見られます。", "Useful, human-checked comparison articles need something to compare. For travel comparisons, Travelpayouts puts programs from many travel brands in one place."], "sales-calendar": ["セール記事の書き方と、期限が来たときの更新", "セールの記事を書いたら、読者が予約に進みやすい導線も大切です。Travelpayouts なら、旅行ブランドのプログラムとリンクを、ひとつのアカウントから用意できます。", "After you write a sale article, an easy path to booking matters too. With Travelpayouts you can prepare travel brand programs and links from a single account."], "travel-demand": ["記事で数字を使うときの注意", "旅行の需要が動いているときこそ、読者の疑問に答える記事が役に立ちます。旅行ブログの収益化を考えているなら、Travelpayouts に登録して、旅行ブランドのプログラムを確認してみてください。", "When travel demand is moving, articles that answer readers’ questions are most useful. If you are thinking about monetising a travel blog, sign up for Travelpayouts and look at the brand programs."], "income-guide": ["自分の収益を見積もる式", "訪問数、クリック率、成約率、報酬額。見積もりに使う数字は、レポートで確認できると続けやすくなります。Travelpayouts のレポートで、旅行ブランドごとの数字をまとめて見られます。", "Visits, click rate, conversion rate and reward: the numbers behind your estimate are easier to keep up with when reports are at hand. Travelpayouts reports show figures for your travel brands together."], "instagram": ["リンクをどこに置くか", "プロフィールのリンク先に旅行の記事やまとめページを用意したら、そこに置く旅行ブランドのリンクが必要になります。Travelpayouts に登録すると、宿泊・航空券・ツアーなどのリンクを、ひとつのアカウントから作れます。", "Once your profile link leads to a travel article or hub page, you need travel brand links to place there. After signing up for Travelpayouts you can create links for stays, flights, tours and more from one account."], "start-guide": ["6つのステップ", "ステップ3の「登録」は、旅行をテーマにするなら Travelpayouts がおすすめです。登録は3ステップ、5〜7分で、旅行に特化したプログラムをひとつのアカウントで扱えます。", "For step three, signing up, Travelpayouts is a good fit if your topic is travel. Registration takes three steps and about 5–7 minutes, and travel-focused programs live in one account."], "click-reward": ["どちらを選ぶか", "どちらの形式が合うかは、テーマと読者しだいです。旅行の記事で試してみたいなら、Travelpayouts に登録して、旅行ブランドのプログラムの条件を見比べてみてください。", "Which model fits depends on your topic and readers. If you want to try it with travel articles, sign up for Travelpayouts and compare the travel brand programs’ terms."]};
+function inCta(a,s){var c=CTAIN[a.id];if(!c||c[0]!==s.h[0])return '';return '<aside class="inpost"><div class="m">'+mascot('')+'</div><div><p>'+X([c[1],c[2]])+'</p><a class="btn sm" href="'+KEY+'" target="_blank" rel="noopener">'+X(T.cta)+'</a></div></aside>'}
+function post(a){
+ var c=CT[a.cat];var rel=a.rel.map(function(id){return SLUG[id]}).filter(Boolean);
+ var ix=NEWORD.indexOf(a.id),pv=SLUG[NEWORD[ix-1]],nx=SLUG[NEWORD[ix+1]];
+ return '<section class="blk" style="padding-top:24px"><div class="wrap"><div class="cols"><article class="post"><div class="crumb"><a href="#home">'+X(T.top)+'</a> › <a href="#articles" onclick="catFilter=\''+a.cat+'\'">'+X(c.t)+'</a></div>'+
+ '<div class="meta"><span class="chip" style="background:'+c.c+';color:#fff">'+X(c.t)+'</span><span class="chip lv">['+X(T.tell)+'：'+X(T.lvl[a.lvl||0])+']</span><span class="chip o">'+a.kw.split(' / ')[0]+'</span></div>'+
+ '<h1 style="margin-top:10px">'+X(a.t)+'</h1>'+
+ '<div class="pmeta"><span>'+ic('clock')+' '+X(T.upd)+' '+a.log[a.log.length-1][0].replace(/-/g,'.')+'</span><span>'+a.read+X(T.mins)+'</span><span>'+X(['執筆：ラボ編集部','By the Lab editors'])+'</span></div>'+
+ thumb(a,true,false)+
+ '<div class="answer"><span class="cap">'+X(T.sum)+'</span><p>'+f(X(a.s))+'</p></div>'+
+ '<details class="toc" open><summary>'+ic('list')+X(T.toc)+'</summary><ol>'+a.secs.map(function(s,i){return '<li><a onclick="go(\'s'+i+'\')">'+X(s.h)+'</a></li>'}).join('')+'<li><a onclick="go(\'faq\')">'+X(T.faq)+'</a></li>'+(a.matome?'<li><a onclick="go(\'mat\')">'+X(T.matH)+'</a></li>':'')+'</ol></details>'+
+ a.secs.map(function(s,i){return '<div class="sec"><h2 id="s'+i+'">'+X(s.h)+'</h2>'+s.b.map(blk).join('')+inCta(a,s)+'</div>'}).join('')+
+ '<div class="sec faq" id="faq"><h2>'+X(T.faq)+'</h2>'+a.faq.map(function(q){return '<details><summary><span class="q">Q</span><span>'+X(q[0])+'</span></summary><div class="ans"><span class="a">A</span><span>'+f(X(q[1]))+'</span></div></details>'}).join('')+'</div>'+
+ (a.matome?'<p class="sep" aria-hidden="true">◇ ◇ ◇</p><div class="sec" id="mat"><h2 class="plain">'+X(T.matH)+'</h2><ul class="matome">'+a.matome.map(function(m){return '<li>'+X(m)+'</li>'}).join('')+'</ul></div>':'')+
+ '<div class="fb">'+(fbDone[a.id]?'<b>'+X(T.fbT)+'</b>':'<b>'+X(T.fb)+'</b><button onclick="fbVote(\''+a.id+'\')">'+X(T.fbY)+'</button><button onclick="fbVote(\''+a.id+'\')">'+X(T.fbN)+'</button>')+'</div>'+
+ logList(a)+
+ '<div class="pn">'+(pv?'<a href="#a-'+pv.id+'"><small>‹ '+X(T.prev)+'</small>'+X(pv.t)+'</a>':'<span></span>')+(nx?'<a class="r" href="#a-'+nx.id+'"><small>'+X(T.next)+' ›</small>'+X(nx.t)+'</a>':'<span></span>')+'</div>'+
+ '<div class="sech" style="margin:40px 0 18px"><h2 style="font-size:20px">'+X(T.more)+'</h2></div><div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">'+rel.map(card).join('')+'</div>'+
+ '</article>'+sideBox(true)+'</div></div></section>'}
+function glossary(){
+ var q=glQ.toLowerCase();
+ var list=G.filter(function(g){return (glFilter===0||(glFilter===1&&g[4]==='gen')||(glFilter===2&&g[4]==='tp'))&&(!q||(g[0]+g[1]+g[2]+g[3]).toLowerCase().indexOf(q)>=0)});
+ return '<section class="blk"><div class="wrap"><div class="sech"><small>GLOSSARY</small><h2>'+X(T.glH)+'</h2><p>'+X(T.glP)+'</p></div>'+
+ '<label class="glsearch">'+ic('search')+'<input id="glq" type="search" placeholder="'+X(T.glS)+'" value="'+glQ.replace(/"/g,'&quot;')+'" aria-label="'+X(T.glS)+'"></label>'+
+ '<div class="filters">'+T.glK.map(function(k,i){return '<button aria-pressed="'+(glFilter===i)+'" onclick="setGl('+i+')">'+X(k)+'</button>'}).join('')+'</div>'+
+ '<dl class="gl">'+list.map(function(g){var tp=g[4]==='tp';return '<div class="it'+(tp?' tp':'')+'"><dt><span>'+(L==='ja'?g[0]:g[1]+' · '+g[0])+'</span><span class="kind'+(tp?' tp':'')+'">'+X(tp?['Travelpayouts','Travelpayouts']:['一般','General'])+'</span>'+(tp?'<span class="pend">'+X(T.pendT)+'</span>':'')+'</dt><dd>'+(L==='ja'?g[2]:g[3])+'</dd></div>'}).join('')+'</dl>'+
+ (list.length?'':'<p class="note" style="text-align:center;margin-top:24px">—</p>')+'</div></section>'}
+function about(){
+ var nums=[['11',['ジャンル','genres'],['の旅行カテゴリーで収益化できます（宿泊・航空券・ツアー・送迎・eSIMなど）','of travel to monetise: stays, flights, tours, transfers, eSIMs and more']],['24/7',['サポート','Support'],['人によるサポートが24時間。返信までの平均時間は26分','Human Support around the clock; average reply time is 26 minutes']],['20',['日まで','th'],['に、複数のブランドの収益を毎月まとめてお支払い。最低支払額は10ドルから（支払い方法により異なります）','Earnings from different brands paid together each month by the 20th; minimum payout from $10, depending on the method']]];
+ return '<section class="blk"><div class="wrap prose" style="max-width:860px"><div class="sech"><small>ABOUT</small><h2>'+X(T.aboutH)+'</h2></div>'+
+ '<div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap"><div style="width:120px">'+mascot('')+'</div><div style="flex:1;min-width:240px"><h2 style="margin-top:0">'+X(['運営について','Who runs this site'])+'</h2><p>'+X(['旅アフィリ・ラボは、Travelpayouts が運営する、旅行ブロガーとサイト運営者のための情報サイトです。日本の検索で使われている言葉に合わせて、アフィリエイトの基礎から旅行ブログの収益化までを、やさしく解説します。','Tabi Affili Lab is published by Travelpayouts for travel bloggers and site owners. It explains affiliate basics through to monetising a travel blog, using the terms people in Japan search with.'])+'</p></div></div>'+
+ '<h2>'+X(['Travelpayouts とは','About Travelpayouts'])+'</h2>'+
+ '<p>'+X(['世界の旅行ブランドのプログラム、アフィリエイトリンク、手動と自動の収益化ツール、レポート、お支払い、サポートを、ひとつの場所で使えます。いくつのブランドを扱っても、ツール、レポート、お支払いはひとつのアカウントで管理できます。','Brand programs, affiliate links, manual and automated monetisation tools, reports, payouts and Support all live in one place. However many brands you promote, you manage tools, reports and payouts from a single account.'])+'</p>'+
+ '<div class="nums">'+nums.map(function(s){return '<div><span class="n">'+s[0]+'<small>'+X(s[1])+'</small></span><p>'+X(s[2])+'</p></div>'}).join('')+'</div>'+
+ '<p>'+X(['旅行サイト向けには、収益化を自動化する「Drive」も無料で使えます。Drive は記事を書き換えるものではなく、読者が予約したくなる場所に、関連するオファーを追加します。使う機能は、パートナーが選べます。','For travel sites there is also Drive, which automates monetisation and is free to use. Drive does not write or rewrite articles; it adds relevant offers where readers are ready to book, and partners choose which functions to use.'])+'</p>'+
+ '<div class="cta-band" style="margin:28px 0 8px"><span class="flag">'+X(T.ctaFlag)+'</span>'+mascot('','o')+'<div><h2>'+X(['旅の発信を、収益につなげませんか？','Ready to turn your travel content into income?'])+'</h2><p>'+X(['Travelpayouts は、旅行クリエイターのための旅行アフィリエイトプラットフォームです。登録は3ステップ、5〜7分。無料で始められます。','Travelpayouts is the travel affiliate platform for travel creators. Registration takes three steps and about 5–7 minutes, and it is free to start.'])+'</p><a class="btn" href="'+KEY+'" target="_blank" rel="noopener">'+X(T.join)+'</a></div></div>'+
+ '</div></section>'}
+function render(){
+ document.body.className=L==='en'?'en':'';document.documentElement.lang=L;
+ document.getElementById('lsel').value=L;
+ document.getElementById('by').textContent=X(T.by);
+ document.getElementById('tkl').textContent=X(T.tkl);document.getElementById('tk').textContent=X(T.tk);document.getElementById('tk').href='#a-sales-calendar';
+ document.getElementById('logo').innerHTML=mascot('').replace('class="m ','style="width:40px;height:40px" class="m ');
+ var h=(location.hash||'#home').slice(1);var cur=h.indexOf('a-')===0?'articles':h;
+ document.getElementById('nav').innerHTML=T.nav.map(function(n){return '<a href="#'+n[0]+'"'+(cur===n[0]?' aria-current="page"':'')+'>'+(L==='ja'?n[1]:n[2])+'</a>'}).join('');
+ document.getElementById('catbar').innerHTML='<div class="wrap">'+CATS.map(function(c){return '<a href="#articles" onclick="catFilter=\''+c.id+'\'" style="--c:'+c.c+'">'+X(c.t)+'</a>'}).join('')+'</div>';
+ var html;
+ if(h.indexOf('a-')===0&&SLUG[h.slice(2)])html=post(SLUG[h.slice(2)]);
+ else if(h==='articles')html=articles();else if(h==='glossary')html=glossary();else if(h==='about')html=about();else html=home();
+ document.getElementById('app').innerHTML=html;
+ var gq=document.getElementById('glq');if(gq){gq.oninput=function(){var p=gq.selectionStart;glQ=gq.value;render();var n=document.getElementById('glq');n.focus();try{n.setSelectionRange(p,p)}catch(e){}}}
+ document.getElementById('foot').innerHTML='<div class="fl"><a href="#home">'+X(T.nav[0].slice(1))+'</a><a href="#articles">'+X([T.nav[1][1],T.nav[1][2]])+'</a><a href="#glossary">'+X([T.nav[2][1],T.nav[2][2]])+'</a><a href="#about">'+X([T.nav[3][1],T.nav[3][2]])+'</a></div><div>© Travelpayouts, 2011–'+new Date().getFullYear()+'</div>';
+ document.getElementById('stp').textContent=X(T.stbar);document.body.classList.toggle('nostick',h.indexOf('a-')===0);
+ document.getElementById('stb').innerHTML='<a class="btn sm" href="'+KEY+'" target="_blank" rel="noopener">'+X(T.cta)+'</a><a class="btn sm blue" href="#articles">'+X(T.read)+'</a>';
+ document.title='旅アフィリ・ラボ';
+}
+function go(id){var e=document.getElementById(id);if(e)e.scrollIntoView({behavior:'smooth',block:'start'})}
+function setCat(c){catFilter=c;render()}
+function goCat(c){catFilter=c;location.hash='#articles';render()}
+function setGl(i){glFilter=i;render()}
+function setL(l){L=l;try{localStorage.setItem('lang',l)}catch(e){}render()}
+document.getElementById('lsel').onchange=function(){setL(this.value)};
+window.addEventListener('hashchange',function(){render();window.scrollTo(0,0)});
+render();
+
+</script>

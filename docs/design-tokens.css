@@ -1,0 +1,133 @@
+/* TP JP 3.0 design tokens — generated from docs/design.md by tools/build-design-tokens.mjs. Do not edit by hand. */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap");
+
+:root {
+  --color-ink: #101828;
+  --color-body: #1D2939;
+  --color-label: #344054;
+  --color-secondary: #475467;
+  --color-muted: #667085;
+  --color-disabled: #98A2B3;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #101828;
+  --color-surface-muted: #F9FAFB;
+  --color-surface-soft: #F2F4F7;
+  --color-line: #EAECF0;
+  --color-line-strong: #D0D5DD;
+  --color-surface-deep: #1B1D29;
+  --color-primary: #006DFF;
+  --color-on-primary: #FFFFFF;
+  --color-primary-hover: #0061E0;
+  --color-primary-pressed: #0058CC;
+  --color-focus: #66A7FF;
+  --color-primary-200: #CCE2FF;
+  --color-primary-100: #E5F0FF;
+  --color-primary-50: #F2F8FF;
+  --color-warm: #FF6200;
+  --color-warm-result: #E05600;
+  --color-warm-strong: #C24A00;
+  --color-warm-strong-hover: #A33F00;
+  --color-warm-200: #FFE2D1;
+  --color-free-bg: #FFF1E8;
+  --color-free-text: #CC4E00;
+  --color-warm-50: #FFF8F3;
+  --color-success: #067647;
+  --color-error: #F04438;
+  --color-accent-pink: #E14171;
+  --color-accent-pink-tint: #FEECF1;
+
+  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, system-ui, sans-serif;
+  --type-numeral-desktop-size: 72px; --type-numeral-desktop-weight: 700; --type-numeral-desktop-lh: 1; --type-numeral-desktop-ls: -0.03em;
+  --type-numeral-mobile-size: 56px; --type-numeral-mobile-weight: 700; --type-numeral-mobile-lh: 1; --type-numeral-mobile-ls: -0.03em;
+  --type-h1-desktop-size: 50px; --type-h1-desktop-weight: 700; --type-h1-desktop-lh: 1.5; --type-h1-desktop-ls: 0.02em;
+  --type-h1-mobile-size: 30px; --type-h1-mobile-weight: 700; --type-h1-mobile-lh: 1.5; --type-h1-mobile-ls: 0.02em;
+  --type-h2-desktop-size: 32px; --type-h2-desktop-weight: 700; --type-h2-desktop-lh: 1.5; --type-h2-desktop-ls: 0.02em;
+  --type-h2-mobile-size: 22px; --type-h2-mobile-weight: 700; --type-h2-mobile-lh: 1.5; --type-h2-mobile-ls: 0.02em;
+  --type-h3-desktop-size: 24px; --type-h3-desktop-weight: 700; --type-h3-desktop-lh: 1.5; --type-h3-desktop-ls: 0.02em;
+  --type-h3-mobile-size: 18px; --type-h3-mobile-weight: 700; --type-h3-mobile-lh: 1.5; --type-h3-mobile-ls: 0.02em;
+  --type-lead-desktop-size: 18px; --type-lead-desktop-weight: 400; --type-lead-desktop-lh: 1.8; --type-lead-desktop-ls: 0em;
+  --type-lead-mobile-size: 16px; --type-lead-mobile-weight: 400; --type-lead-mobile-lh: 1.8; --type-lead-mobile-ls: 0em;
+  --type-body-desktop-size: 16px; --type-body-desktop-weight: 400; --type-body-desktop-lh: 1.8; --type-body-desktop-ls: 0em;
+  --type-body-mobile-size: 14px; --type-body-mobile-weight: 400; --type-body-mobile-lh: 1.8; --type-body-mobile-ls: 0em;
+  --type-title-size: 18px; --type-title-weight: 700; --type-title-lh: 1.6; --type-title-ls: 0em;
+  --type-body-bold-size: 16px; --type-body-bold-weight: 700; --type-body-bold-lh: 1.6; --type-body-bold-ls: 0em;
+  --type-small-size: 14px; --type-small-weight: 400; --type-small-lh: 1.6; --type-small-ls: 0em;
+  --type-small-bold-size: 14px; --type-small-bold-weight: 700; --type-small-bold-lh: 1.6; --type-small-bold-ls: 0em;
+  --type-note-size: 12px; --type-note-weight: 400; --type-note-lh: 1.6; --type-note-ls: 0em;
+  --type-note-bold-size: 12px; --type-note-bold-weight: 700; --type-note-bold-lh: 1.6; --type-note-bold-ls: 0em;
+  --type-button-l-size: 16px; --type-button-l-weight: 700; --type-button-l-lh: 1.3; --type-button-l-ls: 0.02em;
+  --type-button-s-size: 14px; --type-button-s-weight: 700; --type-button-s-lh: 1.3; --type-button-s-ls: 0.02em;
+  --type-tag-size: 10px; --type-tag-weight: 700; --type-tag-lh: 14px; --type-tag-ls: 0em;
+
+  --radius-xs: 4px;
+  --radius-control: 12px;
+  --radius-surface: 20px;
+  --radius-panel: 28px;
+  --radius-full: 999px;
+
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-18: 18px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-72: 72px;
+  --space-96: 96px;
+  --space-128: 128px;
+  --space-160: 160px;
+  --space-page-margin-desktop: 48px;
+  --space-page-margin-mobile: 16px;
+  --space-container-desktop: 1344px;
+  --space-container-mobile: 343px;
+  --space-section-top-desktop: 112px;
+  --space-card-padding-desktop: 32px;
+  --space-card-padding-mobile: 24px;
+
+  --shadow-focus: 0 0 0 3px var(--color-focus);
+
+  /* responsive aliases (desktop ≥ 768px) */
+  --type-numeral-size: var(--type-numeral-desktop-size); --type-numeral-weight: var(--type-numeral-desktop-weight); --type-numeral-lh: var(--type-numeral-desktop-lh); --type-numeral-ls: var(--type-numeral-desktop-ls);
+  --type-h1-size: var(--type-h1-desktop-size); --type-h1-weight: var(--type-h1-desktop-weight); --type-h1-lh: var(--type-h1-desktop-lh); --type-h1-ls: var(--type-h1-desktop-ls);
+  --type-h2-size: var(--type-h2-desktop-size); --type-h2-weight: var(--type-h2-desktop-weight); --type-h2-lh: var(--type-h2-desktop-lh); --type-h2-ls: var(--type-h2-desktop-ls);
+  --type-h3-size: var(--type-h3-desktop-size); --type-h3-weight: var(--type-h3-desktop-weight); --type-h3-lh: var(--type-h3-desktop-lh); --type-h3-ls: var(--type-h3-desktop-ls);
+  --type-lead-size: var(--type-lead-desktop-size); --type-lead-weight: var(--type-lead-desktop-weight); --type-lead-lh: var(--type-lead-desktop-lh); --type-lead-ls: var(--type-lead-desktop-ls);
+  --type-body-size: var(--type-body-desktop-size); --type-body-weight: var(--type-body-desktop-weight); --type-body-lh: var(--type-body-desktop-lh); --type-body-ls: var(--type-body-desktop-ls);
+}
+@media (max-width: 767px) {
+  :root {
+    --type-numeral-size: var(--type-numeral-mobile-size); --type-numeral-weight: var(--type-numeral-mobile-weight); --type-numeral-lh: var(--type-numeral-mobile-lh); --type-numeral-ls: var(--type-numeral-mobile-ls);
+    --type-h1-size: var(--type-h1-mobile-size); --type-h1-weight: var(--type-h1-mobile-weight); --type-h1-lh: var(--type-h1-mobile-lh); --type-h1-ls: var(--type-h1-mobile-ls);
+    --type-h2-size: var(--type-h2-mobile-size); --type-h2-weight: var(--type-h2-mobile-weight); --type-h2-lh: var(--type-h2-mobile-lh); --type-h2-ls: var(--type-h2-mobile-ls);
+    --type-h3-size: var(--type-h3-mobile-size); --type-h3-weight: var(--type-h3-mobile-weight); --type-h3-lh: var(--type-h3-mobile-lh); --type-h3-ls: var(--type-h3-mobile-ls);
+    --type-lead-size: var(--type-lead-mobile-size); --type-lead-weight: var(--type-lead-mobile-weight); --type-lead-lh: var(--type-lead-mobile-lh); --type-lead-ls: var(--type-lead-mobile-ls);
+    --type-body-size: var(--type-body-mobile-size); --type-body-weight: var(--type-body-mobile-weight); --type-body-lh: var(--type-body-mobile-lh); --type-body-ls: var(--type-body-mobile-ls);
+  }
+}
+
+/* type utilities (responsive where a desktop/mobile pair exists) */
+.t-numeral { font-family: var(--font-sans); font-size: var(--type-numeral-size); font-weight: var(--type-numeral-weight); line-height: var(--type-numeral-lh); letter-spacing: var(--type-numeral-ls); }
+.t-h1 { font-family: var(--font-sans); font-size: var(--type-h1-size); font-weight: var(--type-h1-weight); line-height: var(--type-h1-lh); letter-spacing: var(--type-h1-ls); }
+.t-h2 { font-family: var(--font-sans); font-size: var(--type-h2-size); font-weight: var(--type-h2-weight); line-height: var(--type-h2-lh); letter-spacing: var(--type-h2-ls); }
+.t-h3 { font-family: var(--font-sans); font-size: var(--type-h3-size); font-weight: var(--type-h3-weight); line-height: var(--type-h3-lh); letter-spacing: var(--type-h3-ls); }
+.t-lead { font-family: var(--font-sans); font-size: var(--type-lead-size); font-weight: var(--type-lead-weight); line-height: var(--type-lead-lh); letter-spacing: var(--type-lead-ls); }
+.t-body { font-family: var(--font-sans); font-size: var(--type-body-size); font-weight: var(--type-body-weight); line-height: var(--type-body-lh); letter-spacing: var(--type-body-ls); }
+.t-title { font-family: var(--font-sans); font-size: var(--type-title-size); font-weight: var(--type-title-weight); line-height: var(--type-title-lh); letter-spacing: var(--type-title-ls); }
+.t-body-bold { font-family: var(--font-sans); font-size: var(--type-body-bold-size); font-weight: var(--type-body-bold-weight); line-height: var(--type-body-bold-lh); letter-spacing: var(--type-body-bold-ls); }
+.t-small { font-family: var(--font-sans); font-size: var(--type-small-size); font-weight: var(--type-small-weight); line-height: var(--type-small-lh); letter-spacing: var(--type-small-ls); }
+.t-small-bold { font-family: var(--font-sans); font-size: var(--type-small-bold-size); font-weight: var(--type-small-bold-weight); line-height: var(--type-small-bold-lh); letter-spacing: var(--type-small-bold-ls); }
+.t-note { font-family: var(--font-sans); font-size: var(--type-note-size); font-weight: var(--type-note-weight); line-height: var(--type-note-lh); letter-spacing: var(--type-note-ls); }
+.t-note-bold { font-family: var(--font-sans); font-size: var(--type-note-bold-size); font-weight: var(--type-note-bold-weight); line-height: var(--type-note-bold-lh); letter-spacing: var(--type-note-bold-ls); }
+.t-button-l { font-family: var(--font-sans); font-size: var(--type-button-l-size); font-weight: var(--type-button-l-weight); line-height: var(--type-button-l-lh); letter-spacing: var(--type-button-l-ls); }
+.t-button-s { font-family: var(--font-sans); font-size: var(--type-button-s-size); font-weight: var(--type-button-s-weight); line-height: var(--type-button-s-lh); letter-spacing: var(--type-button-s-ls); }
+.t-tag { font-family: var(--font-sans); font-size: var(--type-tag-size); font-weight: var(--type-tag-weight); line-height: var(--type-tag-lh); letter-spacing: var(--type-tag-ls); }

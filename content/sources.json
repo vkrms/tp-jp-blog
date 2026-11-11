@@ -1,0 +1,230 @@
+{
+ "types": {
+  "gov": [
+   "公的機関",
+   "Government"
+  ],
+  "assoc": [
+   "業界団体",
+   "Industry body"
+  ],
+  "research": [
+   "市場調査",
+   "Market research"
+  ],
+  "asp": [
+   "ASP（競合）公式情報",
+   "ASP (competitor) own info"
+  ],
+  "news": [
+   "業界ニュース",
+   "Trade news"
+  ],
+  "seo": [
+   "SEO専門ブログ",
+   "SEO blog"
+  ]
+ },
+ "sources": [
+  {
+   "id": "jao25",
+   "name": {
+    "ja": "日本アフィリエイト協議会（JAO）「アフィリエイト市場調査2025」",
+    "en": "JAO Affiliate Market Survey 2025"
+   },
+   "url": "https://www.japan-affiliate.org/news/survey2025/",
+   "published": "2026-06-12",
+   "type": "assoc"
+  },
+  {
+   "id": "jaoabout",
+   "name": {
+    "ja": "JAO「日本アフィリエイト協議会とは」",
+    "en": "JAO: about the association"
+   },
+   "url": "https://www.japan-affiliate.org/about/",
+   "published": "n/a",
+   "type": "assoc"
+  },
+  {
+   "id": "jaoguide",
+   "name": {
+    "ja": "JAO「アフィリエイト・ガイドライン」",
+    "en": "JAO Affiliate Guideline"
+   },
+   "url": "https://www.japan-affiliate.org/guideline/",
+   "published": "n/a",
+   "type": "assoc"
+  },
+  {
+   "id": "yano",
+   "name": {
+    "ja": "矢野経済研究所 プレスリリース「アフィリエイト市場に関する調査を実施（2026年）」",
+    "en": "Yano Research Institute press release: affiliate market survey 2026"
+   },
+   "url": "https://www.yano.co.jp/press-release/show/press_id/4056",
+   "published": "2026-03-18",
+   "type": "research"
+  },
+  {
+   "id": "a8camp",
+   "name": {
+    "ja": "A8.net「キャンペーン」",
+    "en": "A8.net campaigns page"
+   },
+   "url": "https://www.a8.net/camp.html",
+   "published": "n/a",
+   "type": "asp"
+  },
+  {
+   "id": "a8yearend",
+   "name": {
+    "ja": "A8スタッフブログ「ふるさと納税・年末売れ筋サービス特集」",
+    "en": "A8 staff blog: year-end features"
+   },
+   "url": "https://a8pr.jp/2026/10/21/yearend2026/",
+   "published": "2026-10-21",
+   "type": "asp"
+  },
+  {
+   "id": "a8bf",
+   "name": {
+    "ja": "A8スタッフブログ「ブラックフライデー特集」",
+    "en": "A8 staff blog: Black Friday feature"
+   },
+   "url": "https://a8pr.jp/2026/10/07/blackfriday2026/",
+   "published": "2026-10-07",
+   "type": "asp"
+  },
+  {
+   "id": "moshimo",
+   "name": {
+    "ja": "もしもアフィリエイト「はじめての方へ」",
+    "en": "Moshimo Affiliate: for beginners"
+   },
+   "url": "https://af.moshimo.com/af/www/beginner",
+   "published": "n/a",
+   "type": "asp"
+  },
+  {
+   "id": "moshimohelp",
+   "name": {
+    "ja": "もしもアフィリエイト「よくある質問」",
+    "en": "Moshimo Affiliate: FAQ"
+   },
+   "url": "https://af.moshimo.com/af/www/help",
+   "published": "n/a",
+   "type": "asp"
+  },
+  {
+   "id": "tvout",
+   "name": {
+    "ja": "TravelVoice「JNTO 訪日・出国者数（出国者）2026年9月」",
+    "en": "TravelVoice: JNTO outbound travellers, Sep 2026"
+   },
+   "url": "https://www.travelvoice.jp/20261021-160713",
+   "published": "2026-10-21",
+   "type": "news"
+  },
+  {
+   "id": "tvin",
+   "name": {
+    "ja": "TravelVoice「JNTO 訪日外客数 2026年9月」",
+    "en": "TravelVoice: JNTO inbound visitors, Sep 2026"
+   },
+   "url": "https://www.travelvoice.jp/20261021-160712",
+   "published": "2026-10-21",
+   "type": "news"
+  },
+  {
+   "id": "tvwtm",
+   "name": {
+    "ja": "TravelVoice「WTM Global Travel Report 2026」",
+    "en": "TravelVoice: WTM Global Travel Report 2026"
+   },
+   "url": "https://www.travelvoice.jp/20261106-160802",
+   "published": "2026-11-06",
+   "type": "news"
+  },
+  {
+   "id": "tr1",
+   "name": {
+    "ja": "TRAICY「エティハド航空 11.11セール」",
+    "en": "TRAICY: Etihad 11.11 sale"
+   },
+   "url": "https://www.traicy.com/posts/20261108387264/",
+   "published": "2026-11-08",
+   "type": "news"
+  },
+  {
+   "id": "tr2",
+   "name": {
+    "ja": "TRAICY「ジェットスター・ジャパン スーパースターセール」",
+    "en": "TRAICY: Jetstar Japan Super Star Sale"
+   },
+   "url": "https://www.traicy.com/posts/20261105386920/",
+   "published": "2026-11-05",
+   "type": "news"
+  },
+  {
+   "id": "tr3",
+   "name": {
+    "ja": "TRAICY「トキエア 冬タイムセール」",
+    "en": "TRAICY: Toki Air winter time sale"
+   },
+   "url": "https://www.traicy.com/posts/20261106386983/",
+   "published": "2026-11-06",
+   "type": "news"
+  },
+  {
+   "id": "tr4",
+   "name": {
+    "ja": "TRAICY「ANAとIHG 新プログラム」",
+    "en": "TRAICY: ANA and IHG new programme"
+   },
+   "url": "https://www.traicy.com/posts/20261106386985/",
+   "published": "2026-11-06",
+   "type": "news"
+  },
+  {
+   "id": "tr5",
+   "name": {
+    "ja": "TRAICY「KLM リアルディールデイズ」",
+    "en": "TRAICY: KLM Real Deal Days"
+   },
+   "url": "https://www.traicy.com/posts/20261107387035/",
+   "published": "2026-11-07",
+   "type": "news"
+  },
+  {
+   "id": "suzctr",
+   "name": {
+    "ja": "鈴木謙一「AI OverviewsとAIモードのCTR（28日間のオプトアウト実験）」",
+    "en": "Kenichi Suzuki: CTR of AI Overviews and AI Mode (28-day opt-out experiment)"
+   },
+   "url": "https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/",
+   "published": "2026-11-06",
+   "type": "seo"
+  },
+  {
+   "id": "suzmu",
+   "name": {
+    "ja": "鈴木謙一「ジョン・ミューラー氏インタビュー：リスト記事や大量のAIコンテンツは長続きしない」",
+    "en": "Kenichi Suzuki: John Mueller interview on listicles and mass AI content"
+   },
+   "url": "https://www.suzukikenichi.com/blog/john-mueller-interview-seo-shortcuts-like-listicles-and-mass-ai-content-dont-last/",
+   "published": "2026-11-04",
+   "type": "seo"
+  },
+  {
+   "id": "suzhr",
+   "name": {
+    "ja": "鈴木謙一「AI記事は人間が確認、偽の専門家は不可：Googleがコンテンツの信頼性を強化」",
+    "en": "Kenichi Suzuki: human review for AI articles, no fake experts"
+   },
+   "url": "https://www.suzukikenichi.com/blog/human-review-for-ai-articles-no-fake-experts-google-reinforces-content-trustworthiness/",
+   "published": "2026-10-05",
+   "type": "seo"
+  }
+ ]
+}

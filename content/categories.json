@@ -1,0 +1,50 @@
+[
+ {
+  "id": "basics",
+  "t": [
+   "アフィリエイト入門",
+   "Affiliate basics"
+  ],
+  "c": "#006dff"
+ },
+ {
+  "id": "traffic",
+  "t": [
+   "集客・広告",
+   "Traffic & ads"
+  ],
+  "c": "#d9480f"
+ },
+ {
+  "id": "strategy",
+  "t": [
+   "ジャンル・戦略",
+   "Niche & strategy"
+  ],
+  "c": "#8a4fff"
+ },
+ {
+  "id": "travel",
+  "t": [
+   "旅行ブログ",
+   "Travel blogging"
+  ],
+  "c": "#0a8f6a"
+ },
+ {
+  "id": "seo",
+  "t": [
+   "SEO・AI検索",
+   "SEO & AI search"
+  ],
+  "c": "#1c7ed6"
+ },
+ {
+  "id": "market",
+  "t": [
+   "データ・市場",
+   "Data & market"
+  ],
+  "c": "#e67700"
+ }
+]
