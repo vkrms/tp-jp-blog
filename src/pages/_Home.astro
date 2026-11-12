@@ -4,12 +4,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ArticleCard from '../components/ArticleCard.astro';
+import Promo from '../components/Promo.astro';
 import { T, KEY, tr, path, type Lang } from '../i18n/ui';
 import { articles, glossary } from '../data/content';
 import { covers } from '../data/covers';
 import icons from '../data/icons.json';
 import hero from '../assets/home/4dbc1d73ae.webp';
-import promo from '../assets/home/a78d7dea53.webp';
 
 const { lang } = Astro.props as { lang: Lang };
 const latest = articles
@@ -48,12 +48,7 @@ const title = lang === 'ja' ? '旅アフィリ・ラボ | 旅行ブログのア�
             <div class="grid">{latest.map((a) => <ArticleCard article={a} lang={lang} />)}</div>
             <p class="more"><a class="btn btn-ghost btn-s" href={path(lang, '/articles/')}>{tr(T.all, lang)}</a></p>
           </div>
-          <aside class="promo">
-            <Image src={promo} alt={lang === 'ja' ? '90以上の旅ブランド、60万人以上のパートナーが信頼しています' : '90+ travel brands, trusted by 600,000+ partners'} widths={[300, 600]} sizes="300px" loading="lazy" />
-            <h3>{tr(T.promoH, lang)}</h3>
-            <p>{tr(T.promoP, lang)}</p>
-            <a class="btn btn-white" href={KEY} target="_blank" rel="noopener">{tr(T.join, lang)}</a>
-          </aside>
+          <Promo lang={lang} />
         </div>
       </div>
     </section>

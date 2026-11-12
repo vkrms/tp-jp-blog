@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+import { T, KEY, tr, type Lang } from '../i18n/ui';
+import promo from '../assets/home/a78d7dea53.webp';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+<aside class="promo">
+  <Image src={promo} alt={lang === 'ja' ? '90以上の旅ブランド、60万人以上のパートナーが信頼しています' : '90+ travel brands, trusted by 600,000+ partners'} widths={[300, 600]} sizes="300px" loading="lazy" />
+  <h3>{tr(T.promoH, lang)}</h3>
+  <p>{tr(T.promoP, lang)}</p>
+  <a class="btn btn-white" href={KEY} target="_blank" rel="noopener">{tr(T.join, lang)}</a>
+</aside>
