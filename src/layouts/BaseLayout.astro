@@ -1,0 +1,34 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import type { Lang } from '../i18n/ui';
+import { path } from '../i18n/ui';
+interface Props { lang: Lang; title: string; description: string; route: string; ogType?: 'website' | 'article' }
+const { lang, title, description, route, ogType = 'website' } = Astro.props;
+const site = Astro.site!;
+const url = (l: Lang) => new URL(path(l, route), site).href;
+const indexing = process.env.INDEXING === 'true';
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {!indexing && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={url(lang)} />
+    <link rel="alternate" hreflang="ja" href={url('ja')} />
+    <link rel="alternate" hreflang="en" href={url('en')} />
+    <link rel="alternate" hreflang="x-default" href={url('ja')} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url(lang)} />
+    <meta property="og:locale" content={lang === 'ja' ? 'ja_JP' : 'en_US'} />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

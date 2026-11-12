@@ -1,0 +1,20 @@
+---
+import { T, tr, path, type Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const items = [['home', '/'], ['articles', '/articles/'], ['glossary', '/glossary/'], ['about', '/about/']] as const;
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">{items.map(([id, href]) => <a href={path(lang, href)}>{tr(T.nav[id], lang)}</a>)}</nav>
+    <p>© Travelpayouts, 2011–2026</p>
+  </div>
+</footer>
+<div class="stbar">
+  <div class="wrap">
+    <p>{tr(T.stbar, lang)}</p>
+    <div class="actions">
+      <a class="btn btn-primary btn-s" href="https://landings.travelpayouts.com/?tp_place=landing_jp-seo-blog" target="_blank" rel="noopener">{tr(T.cta, lang)}</a>
+      <a class="btn btn-ghost btn-s" href={path(lang, '/articles/')}>{tr(T.read, lang)}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { T, KEY, tr, path, type Lang } from '../i18n/ui';
+import { articles, glossary } from '../data/content';
+import { covers } from '../data/covers';
+import icons from '../data/icons.json';
+import hero from '../assets/home/4dbc1d73ae.webp';
+import promo from '../assets/home/a78d7dea53.webp';
+
+const { lang } = Astro.props as { lang: Lang };
+const latest = articles
+  .filter((a) => covers[a.slug])
+  .sort((a, b) => b.updated_at.localeCompare(a.updated_at))
+  .slice(0, 6);
+const terms = glossary.slice(0, 8);
+const title = lang === 'ja' ? '旅アフィリ・ラボ | 旅行ブログのアフィリエイト入門' : 'Travel affiliate lab | Affiliate know-how for travel bloggers';
+---
+<BaseLayout lang={lang} title={title} description={tr(T.heroP, lang)} route="/">
+  <Header lang={lang} route="/" current="home" />
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="stage">
+          <div class="copy">
+            <h1 set:html={tr(T.heroH, lang)} />
+            <p class="lead">{tr(T.heroP, lang)}</p>
+            <div class="cta">
+              <a class="btn btn-warm" href={KEY} target="_blank" rel="noopener">{tr(T.cta, lang)}</a>
+              <a class="btn btn-ghost" href="#articles">{tr(T.read, lang)}</a>
+            </div>
+          </div>
+          <div class="art">
+            <Image src={hero} alt={lang === 'ja' ? '電車の窓から海を眺める旅行者' : 'A traveller gazing out of a train window at the sea'} widths={[480, 960]} sizes="(min-width: 768px) 555px, 90vw" loading="eager" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="articles">
+      <div class="wrap">
+        <h2 class="sec-h">{tr(T.newH, lang)}</h2>
+        <div class="latest">
+          <div>
+            <div class="grid">{latest.map((a) => <ArticleCard article={a} lang={lang} />)}</div>
+            <p class="more"><a class="btn btn-ghost btn-s" href={path(lang, '/articles/')}>{tr(T.all, lang)}</a></p>
+          </div>
+          <aside class="promo">
+            <Image src={promo} alt={lang === 'ja' ? '90以上の旅ブランド、60万人以上のパートナーが信頼しています' : '90+ travel brands, trusted by 600,000+ partners'} widths={[300, 600]} sizes="300px" loading="lazy" />
+            <h3>{tr(T.promoH, lang)}</h3>
+            <p>{tr(T.promoP, lang)}</p>
+            <a class="btn btn-white" href={KEY} target="_blank" rel="noopener">{tr(T.join, lang)}</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="block tight">
+      <div class="wrap stats">
+        {T.stats.map(([n, unit, text], i) => (
+          <div class={`stat stat-${i}`}>
+            <span class="t-numeral">{n}{lang === 'ja' && unit[0] ? <small>{unit[0]}</small> : null}</span>
+            <p>{tr(text, lang)}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="block soft">
+      <div class="wrap two">
+        <h2 class="sec-h">{tr(T.brandsH, lang)}</h2>
+        <ul class="verticals">
+          {T.verticals.map(([id, label]) => (
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={(icons as Record<string, string>)[id]} />
+              <span>{tr(label, lang)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap two">
+        <div>
+          <h2 class="sec-h">{tr(T.gloH, lang)}</h2>
+          <a class="btn btn-ghost btn-s" href={path(lang, '/glossary/')}>{tr(T.gloAll, lang)}</a>
+        </div>
+        <ul class="terms">
+          {terms.map((g) => <li><a href={path(lang, '/glossary/')}>{lang === 'ja' ? g.term_ja : g.term_en}</a></li>)}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

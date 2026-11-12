@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import { T, tr, tx, path, type Lang } from '../i18n/ui';
+import { category, type Article } from '../data/content';
+import { covers } from '../data/covers';
+interface Props { article: Article; lang: Lang; eager?: boolean }
+const { article, lang } = Astro.props;
+const cat = category(article.category);
+const cover = covers[article.slug];
+---
+<a class="card" href={path(lang, `/articles/${article.slug}/`)} style={cat ? `--cat:${cat.c}` : undefined}>
+  <div class="card-img">
+    {cover
+      ? <Image src={cover.img} alt={tr(cover.alt, lang)} widths={[400, 832]} sizes="(min-width: 768px) 416px, 100vw" loading="lazy" />
+      : <span class="card-gen" aria-hidden="true">{tx(article.eyebrow, lang)}</span>}
+    {cat && <span class="card-cat">{tr(cat.t, lang)}</span>}
+  </div>
+  <div class="card-body">
+    <div class="card-meta"><span class="lvl">{tr(T.lvl[article.level], lang)}</span><span>{T.mins(article.read_minutes, lang)}</span></div>
+    <h3>{tx(article.title, lang)}</h3>
+    <p>{tx(article.answer_first, lang).replace(/\*\*/g, '')}</p>
+  </div>
+</a>

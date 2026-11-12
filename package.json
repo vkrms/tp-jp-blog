@@ -1,0 +1,23 @@
+{
+  "name": "tp-seo-blog",
+  "private": true,
+  "type": "module",
+  "description": "Travelpayouts JP SEO blog: Astro site, content and tooling",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "node tools/validate.mjs && astro check && astro build",
+    "beautify": "node tools/beautify-html.mjs",
+    "slim": "node tools/slim-html.mjs"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "astro": "^7.4.11",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "js-beautify": "^2.0.3"
+  }
+}
