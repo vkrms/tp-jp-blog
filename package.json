@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "check": "node tools/validate.mjs && astro check && astro build",
     "beautify": "node tools/beautify-html.mjs",
-    "slim": "node tools/slim-html.mjs"
+    "slim": "node tools/slim-html.mjs",
+    "covers": "node tools/featured-image/convert.mjs --all"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
-    "js-beautify": "^2.0.3"
+    "js-beautify": "^2.0.3",
+    "sharp": "^0.35.5"
   }
 }

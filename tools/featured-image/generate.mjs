@@ -268,7 +268,7 @@ async function main() {
   const prompt = style.build({
     color: { hex, pale: tint(hex, 0.14) }, gradientTo: slug === 'start-guide' ? '#ffffff' : null, brief, layout,
     outfit: pickOutfit(slug, brief.biome, brief.gender, num('outfit')), facing: pickFacing(slug, num('facing')), camera: pickCamera(slug, num('camera')),
-    scenes: pickScenes3(slug, brief.biome), location: arg('location', '') || pickLocations3(slug, brief.biome)[layout.heroIndex][lang], lang, outfits: pickOutfits3(slug, brief.biome, brief.gender),
+    scenes: pickScenes3(slug, brief.biome), location: arg('location', '') || pickLocations3(slug, brief.biome)[layout.heroIndex ?? 0][lang], lang, outfits: pickOutfits3(slug, brief.biome, brief.gender),
   });
 
   const ref = readFileSync(resolve(ROOT, 'docs/design-reference', style.ref)).toString('base64');
