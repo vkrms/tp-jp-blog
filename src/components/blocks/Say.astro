@@ -1,0 +1,14 @@
+---
+// The mascot's aside in the body text, in a speech bubble.
+import { rich, type Lang } from '../../i18n/ui';
+import Mascot from '../Mascot.astro';
+interface Props { text: unknown; lang: Lang }
+const { text, lang } = Astro.props;
+---
+<div class="say">
+  <div class="who">
+    <Mascot />
+    Tabi
+  </div>
+  <div class="bb" set:html={rich(text, lang)} />
+</div>

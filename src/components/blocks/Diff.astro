@@ -1,0 +1,19 @@
+---
+// "Before / after" pair, used when an article is updated (e.g. a sale has ended).
+// Content prefixes each side with "更新前：" / "更新後："; the labels already say that,
+// so the prefix is dropped (same rule as the prototype).
+import { rich, tr, T, type Lang } from '../../i18n/ui';
+interface Props { diff: [unknown, unknown]; lang: Lang }
+const { diff, lang } = Astro.props;
+const body = (t: unknown) => rich(t, lang).replace(/^[^：:]{1,12}[：:]\s*/, '');
+---
+<div class="diff">
+  <div class="old">
+    <b>{tr(T.before, lang)}</b>
+    <p set:html={body(diff[0])} />
+  </div>
+  <div class="new">
+    <b>{tr(T.after, lang)}</b>
+    <p set:html={body(diff[1])} />
+  </div>
+</div>

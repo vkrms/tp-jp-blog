@@ -1,0 +1,20 @@
+---
+// Article table of contents. Rendered as a native <details> so it needs no JavaScript.
+// Used twice: inline in the article on mobile, and in the sidebar from 960px up.
+import { tr, tx, T, type Lang } from '../../i18n/ui';
+import type { Article } from '../../data/content';
+import Icon from '../Icon.astro';
+interface Props { article: Article; lang: Lang; class?: string; open?: boolean }
+const { article, lang, class: cls, open = false } = Astro.props;
+const items = [
+  ...article.sections.map((s, i) => ({ id: `s${i}`, label: tx(s.h, lang) })),
+  ...(article.faq.length ? [{ id: 'faq', label: tr(T.faq, lang) }] : []),
+  ...(article.matome.length ? [{ id: 'mat', label: tr(T.matH, lang) }] : []),
+];
+---
+<details class={['toc', cls].filter(Boolean).join(' ')} open={open}>
+  <summary><Icon name="list" size={20} />{tr(T.toc, lang)}</summary>
+  <ol>
+    {items.map((item) => <li><a href={`#${item.id}`}>{item.label}</a></li>)}
+  </ol>
+</details>

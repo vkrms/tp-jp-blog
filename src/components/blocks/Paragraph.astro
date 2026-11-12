@@ -1,0 +1,7 @@
+---
+// One paragraph of article text. **bold** in the JSON becomes the article highlight (<mark>).
+import { rich, type Lang } from '../../i18n/ui';
+interface Props { text: unknown; lang: Lang }
+const { text, lang } = Astro.props;
+---
+<p set:html={rich(text, lang)} />

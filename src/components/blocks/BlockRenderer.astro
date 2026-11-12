@@ -1,0 +1,29 @@
+---
+// Maps one content block to its component. A block is an object with exactly one key
+// (docs/spec-stage1.md §3.2), so it is read through a record rather than a narrowed union.
+import type { Lang } from '../../i18n/ui';
+import type { Block, ArticleTable, Img } from '../../data/content';
+import Paragraph from './Paragraph.astro';
+import SubHeading from './SubHeading.astro';
+import Figure from './Figure.astro';
+import DataTable from './DataTable.astro';
+import Steps from './Steps.astro';
+import CheckList from './CheckList.astro';
+import Say from './Say.astro';
+import Callout from './Callout.astro';
+import Diff from './Diff.astro';
+
+interface Props { block: Block; lang: Lang }
+const { block, lang } = Astro.props;
+const b = block as Record<string, any>;
+---
+{b.p !== undefined && <Paragraph text={b.p} lang={lang} />}
+{b.h3 !== undefined && <SubHeading text={b.h3} lang={lang} />}
+{b.img && <Figure img={b.img as Img} lang={lang} />}
+{b.table && <DataTable table={b.table as ArticleTable} lang={lang} />}
+{b.steps && <Steps steps={b.steps} lang={lang} />}
+{b.list && <CheckList items={b.list} lang={lang} />}
+{b.say !== undefined && <Say text={b.say} lang={lang} />}
+{b.point && <Callout tone="point" label={b.point[0]} body={b.point[1]} lang={lang} />}
+{b.warn && <Callout tone="warn" label={b.warn[0]} body={b.warn[1]} lang={lang} />}
+{b.diff && <Diff diff={b.diff} lang={lang} />}

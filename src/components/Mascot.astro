@@ -1,0 +1,54 @@
+---
+// "Tabi", the site mascot: a traveller cloud with a paper-plane cap.
+// Ported from the prototype (prototype/src/app.js -> mascot()).
+interface Props { open?: boolean; class?: string; label?: string }
+const { open = false, class: cls, label = 'Tabi' } = Astro.props;
+// Each instance needs its own clipPath id; the build is static so a random suffix is safe.
+const clip = `tabi-${Math.random().toString(36).slice(2, 9)}`;
+---
+<svg
+  class={['m', cls].filter(Boolean).join(' ')}
+  viewBox="0 0 120 120"
+  role="img"
+  aria-label={label}
+>
+  <defs>
+    <clipPath id={clip}><circle cx="60" cy="60" r="58"></circle></clipPath>
+  </defs>
+  <circle cx="60" cy="60" r="58" fill="#ffd54a"></circle>
+  <g clip-path={`url(#${clip})`}>
+    <!-- travel jacket, backpack straps, camera -->
+    <path d="M18 124Q22 88 60 84Q98 88 102 124Z" fill="#006dff"></path>
+    <path d="M44 86L40 124M76 86L80 124" stroke="#d9480f" stroke-width="5" stroke-linecap="round"></path>
+    <path d="M50 84L60 98L70 84" fill="none" stroke="#fff" stroke-width="3"></path>
+    <path d="M44 86Q56 108 64 104M76 86Q64 108 56 104" fill="none" stroke="#14233a" stroke-width="2.4"></path>
+    <rect x="46" y="98" width="28" height="17" rx="4" fill="#14233a"></rect>
+    <rect x="50" y="95" width="9" height="5" rx="1.5" fill="#14233a"></rect>
+    <circle cx="60" cy="106.5" r="6" fill="#cfd6e0"></circle>
+    <circle cx="60" cy="106.5" r="3.6" fill="#14233a"></circle>
+    <circle cx="58.6" cy="105.3" r="1.1" fill="#fff"></circle>
+    <circle cx="69" cy="101.5" r="1.6" fill="#ffd54a"></circle>
+  </g>
+  <!-- head -->
+  <rect x="52" y="76" width="16" height="10" rx="5" fill="#f5cba7"></rect>
+  <ellipse cx="60" cy="58" rx="25" ry="24" fill="#ffe0c2"></ellipse>
+  <path d="M35 56Q34 40 60 38Q86 40 85 56Q80 46 60 46Q40 46 35 56Z" fill="#5b3a29"></path>
+  <!-- bucket hat -->
+  <ellipse cx="60" cy="40" rx="37" ry="9" fill="#c2410c"></ellipse>
+  <path d="M40 40Q40 17 60 17Q80 17 80 40Z" fill="#ea580c"></path>
+  <rect x="40" y="33" width="40" height="6" fill="#14233a"></rect>
+  <circle cx="73" cy="36" r="2.4" fill="#ffd54a"></circle>
+  <!-- face -->
+  <circle cx="50" cy="60" r="3.6" fill="#14233a"></circle>
+  <circle cx="70" cy="60" r="3.6" fill="#14233a"></circle>
+  <circle cx="51.2" cy="58.8" r="1.2" fill="#fff"></circle>
+  <circle cx="71.2" cy="58.8" r="1.2" fill="#fff"></circle>
+  <circle cx="42" cy="68" r="4.4" fill="#ffa8b8" opacity=".8"></circle>
+  <circle cx="78" cy="68" r="4.4" fill="#ffa8b8" opacity=".8"></circle>
+  {open
+    ? <ellipse cx="60" cy="71" rx="3.6" ry="4.4" fill="#14233a"></ellipse>
+    : <path d="M52 68Q60 77 68 68" fill="none" stroke="#14233a" stroke-width="3" stroke-linecap="round"></path>}
+  <!-- waving hand with paper plane -->
+  <circle cx="97" cy="82" r="6.5" fill="#ffe0c2"></circle>
+  <path d="M104 68L118 62L110 76Z" fill="#fff" stroke="#14233a" stroke-width="1.6" stroke-linejoin="round"></path>
+</svg>

@@ -1,0 +1,19 @@
+---
+// Data table. Scrolls horizontally on narrow screens instead of squeezing the columns.
+import { rich, type Lang } from '../../i18n/ui';
+import type { ArticleTable } from '../../data/content';
+interface Props { table: ArticleTable; lang: Lang }
+const { table, lang } = Astro.props;
+---
+<div class="tblwrap">
+  <table>
+    <thead>
+      <tr>{table.head.map((h) => <th scope="col" set:html={rich(h, lang)} />)}</tr>
+    </thead>
+    <tbody>
+      {table.rows.map((row) => (
+        <tr>{row.map((cell) => <td set:html={rich(cell, lang)} />)}</tr>
+      ))}
+    </tbody>
+  </table>
+</div>

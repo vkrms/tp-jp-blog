@@ -1,0 +1,21 @@
+---
+// In-article CTA: brand-blue panel with a cut-out photo, placed after the section named
+// in i18n/cta.ts (same rule as the prototype: match on the JA section heading).
+import { Image } from 'astro:assets';
+import { tr, KEY, T, type Lang } from '../../i18n/ui';
+import { inPostCta } from '../../i18n/cta';
+import type { Article } from '../../data/content';
+import photo from '../../assets/cta/partners.webp';
+interface Props { article: Article; lang: Lang }
+const { article, lang } = Astro.props;
+const cta = inPostCta[article.slug];
+---
+{cta && (
+  <aside class="inpost tpcta" aria-label="Travelpayouts">
+    <div class="tx">
+      <h3>{tr(T.inpost, lang)}</h3>
+      <a class="btn" href={KEY} target="_blank" rel="noopener">{tr(T.cta, lang)}</a>
+    </div>
+    <Image class="ph" src={photo} alt={tr(T.inpostPh, lang)} widths={[400, 800]} sizes="(min-width: 768px) 420px, 0px" loading="lazy" />
+  </aside>
+)}

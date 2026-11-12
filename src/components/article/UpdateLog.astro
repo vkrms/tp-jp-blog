@@ -1,0 +1,22 @@
+---
+// "更新履歴": public update entries only. `internal_note` is never rendered.
+import { tr, tx, dateLong, T, type Lang } from '../../i18n/ui';
+import type { UpdateLogEntry } from '../../data/content';
+interface Props { log: UpdateLogEntry[]; lang: Lang }
+const { log, lang } = Astro.props;
+if (!log.length) return;
+const rows = [...log].reverse();
+---
+<div class="srcbox">
+  <h2 class="mini">{tr(T.logH, lang)}</h2>
+  <table class="logt">
+    <tbody>
+      {rows.map((entry) => (
+        <tr>
+          <td><time datetime={entry.date}>{dateLong(entry.date, lang)}</time></td>
+          <td>{tx(entry.public, lang)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

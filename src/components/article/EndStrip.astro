@@ -1,0 +1,15 @@
+---
+// Closing strip with the update and first-publish dates.
+// The "was this helpful?" buttons from the prototype are not here: they need a backend
+// (docs/spec-stage1.md §5), so they move to stage 2.
+import { tr, dateLong, T, type Lang } from '../../i18n/ui';
+interface Props { updated: string; published: string; lang: Lang }
+const { updated, published, lang } = Astro.props;
+---
+<div class="endstrip">
+  <p class="upd">
+    <time datetime={updated}>{tr(T.upd, lang)} {dateLong(updated, lang)}</time>
+    <span class="dot" aria-hidden="true">·</span>
+    <time datetime={published}>{tr(T.published, lang)} {dateLong(published, lang)}</time>
+  </p>
+</div>

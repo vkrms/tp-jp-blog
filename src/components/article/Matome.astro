@@ -1,0 +1,14 @@
+---
+// "まとめ": the closing bullet list, separated from the body by a ◇ ◇ ◇ rule.
+import { rich, tr, T, type Lang } from '../../i18n/ui';
+interface Props { items: unknown[]; lang: Lang }
+const { items, lang } = Astro.props;
+if (!items.length) return;
+---
+<p class="sep" aria-hidden="true">◇ ◇ ◇</p>
+<section class="sec" id="mat">
+  <h2>{tr(T.matH, lang)}</h2>
+  <ul class="matome">
+    {items.map((item) => <li set:html={rich(item, lang)} />)}
+  </ul>
+</section>

@@ -1,0 +1,29 @@
+---
+// Article cover. Uses the mapped cover photo when one exists; otherwise falls back to a
+// generated tile in the category colour with the article's eyebrow text and icon.
+import { Image } from 'astro:assets';
+import { tr, tx, type Lang } from '../../i18n/ui';
+import { category, type Article } from '../../data/content';
+import { covers } from '../../data/covers';
+import Icon from '../Icon.astro';
+interface Props { article: Article; lang: Lang; eager?: boolean }
+const { article, lang, eager = false } = Astro.props;
+const cat = category(article.category);
+const cover = covers[article.slug];
+---
+<div class:list={['thumb', 'big', { gen: !cover }]} style={!cover && cat ? `--c:${cat.c}` : undefined}>
+  {cover
+    ? <Image
+        src={cover.img}
+        alt={tr(cover.alt, lang)}
+        widths={[640, 832, 1248]}
+        sizes="(min-width: 960px) 800px, 100vw"
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : 'auto'}
+      />
+    : <>
+        <span class="tx">{tx(article.eyebrow, lang)}</span>
+        <span class="rc" aria-hidden="true"><Icon name={article.icon ?? 'book'} size={48} stroke={1.6} /></span>
+      </>}
+  {cat && <span class="lab">{tr(cat.t, lang)}</span>}
+</div>

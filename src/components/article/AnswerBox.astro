@@ -1,0 +1,10 @@
+---
+// "この記事の要点": the answer-first paragraph that also becomes the meta description.
+import { rich, tr, T, type Lang } from '../../i18n/ui';
+interface Props { text: unknown; lang: Lang }
+const { text, lang } = Astro.props;
+---
+<div class="answer">
+  <span class="cap">{tr(T.sum, lang)}</span>
+  <p set:html={rich(text, lang)} />
+</div>

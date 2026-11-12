@@ -1,0 +1,19 @@
+---
+// Article sidebar: who writes the site, then the contents list (desktop only — the same
+// table of contents is rendered inline in the article on mobile).
+import { tr, T, type Lang } from '../../i18n/ui';
+import type { Article } from '../../data/content';
+import Mascot from '../Mascot.astro';
+import Toc from './Toc.astro';
+interface Props { article: Article; lang: Lang }
+const { article, lang } = Astro.props;
+---
+<div class="box">
+  <h3>{tr(T.profH, lang)}</h3>
+  <div class="prof">
+    <Mascot class="m" />
+    <b>{tr(T.profName, lang)}</b>
+    <p>{tr(T.profP, lang)}</p>
+  </div>
+</div>
+<Toc article={article} lang={lang} class="toc-side" open />

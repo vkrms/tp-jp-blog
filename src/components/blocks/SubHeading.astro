@@ -1,0 +1,7 @@
+---
+// Sub-heading inside a section (the section's own heading is an <h2> rendered by ArticleLayout).
+import { rich, type Lang } from '../../i18n/ui';
+interface Props { text: unknown; lang: Lang }
+const { text, lang } = Astro.props;
+---
+<h3 set:html={rich(text, lang)} />

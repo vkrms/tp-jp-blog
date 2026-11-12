@@ -1,0 +1,60 @@
+---
+// JSON-LD for an article page: Article, FAQPage and BreadcrumbList (docs/spec-stage1.md §6).
+import { tr, tx, plain, path, T, type Lang } from '../../i18n/ui';
+import { category, publishedAt, type Article } from '../../data/content';
+import { covers } from '../../data/covers';
+
+interface Props { article: Article; lang: Lang }
+const { article, lang } = Astro.props;
+
+const site = Astro.site!;
+const url = new URL(path(lang, `/articles/${article.slug}/`), site).href;
+const cat = category(article.category);
+const cover = covers[article.slug];
+
+const publisher = {
+  '@type': 'Organization',
+  name: 'Travelpayouts',
+  alternateName: T.siteName,
+  url: new URL('/', site).href,
+};
+
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    headline: tx(article.title, lang),
+    description: plain(article.answer_first, lang),
+    datePublished: publishedAt(article),
+    dateModified: article.updated_at,
+    inLanguage: lang === 'ja' ? 'ja-JP' : 'en-US',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    author: publisher,
+    publisher,
+    ...(cover ? { image: new URL(cover.img.src, site).href } : {}),
+    ...(cat ? { articleSection: tr(cat.t, lang) } : {}),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: tr(T.nav.home, lang), item: new URL(path(lang, '/'), site).href },
+      { '@type': 'ListItem', position: 2, name: cat ? tr(cat.t, lang) : tr(T.nav.articles, lang), item: new URL(path(lang, '/articles/'), site).href },
+      { '@type': 'ListItem', position: 3, name: tx(article.title, lang) },
+    ],
+  },
+];
+
+if (article.faq.length) {
+  graph.push({
+    '@type': 'FAQPage',
+    mainEntity: article.faq.map(([q, a]) => ({
+      '@type': 'Question',
+      name: plain(q, lang),
+      acceptedAnswer: { '@type': 'Answer', text: plain(a, lang) },
+    })),
+  });
+}
+
+const json = { '@context': 'https://schema.org', '@graph': graph };
+---
+<script type="application/ld+json" set:html={JSON.stringify(json)} />

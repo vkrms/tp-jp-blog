@@ -1,0 +1,16 @@
+---
+// Article figure: image from content/images plus a caption.
+import { Image } from 'astro:assets';
+import { rich, tx, type Lang } from '../../i18n/ui';
+import { contentImage } from '../../data/images';
+import type { Img } from '../../data/content';
+interface Props { img: Img; lang: Lang }
+const { img, lang } = Astro.props;
+const meta = contentImage(img.src);
+---
+<figure class="fig">
+  {meta
+    ? <Image src={meta} alt={tx(img.alt, lang)} widths={[480, 800, 1200]} sizes="(min-width: 960px) 800px, 100vw" loading="lazy" />
+    : null}
+  {img.caption ? <figcaption set:html={rich(img.caption, lang)} /> : null}
+</figure>

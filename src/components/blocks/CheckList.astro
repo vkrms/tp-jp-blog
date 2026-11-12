@@ -1,0 +1,15 @@
+---
+// Checklist. The JSON block is called `list`; it is presented as checked items, not bullets.
+import { rich, type Lang } from '../../i18n/ui';
+import Icon from '../Icon.astro';
+interface Props { items: unknown[]; lang: Lang }
+const { items, lang } = Astro.props;
+---
+<ul class="checks">
+  {items.map((item) => (
+    <li>
+      <span class="ck" aria-hidden="true"><Icon name="check" size={14} stroke={3} /></span>
+      <span set:html={rich(item, lang)} />
+    </li>
+  ))}
+</ul>

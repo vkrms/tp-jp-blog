@@ -1,0 +1,14 @@
+---
+// Numbered steps (STEP 01, STEP 02, ...).
+import { rich, type Lang } from '../../i18n/ui';
+interface Props { steps: unknown[]; lang: Lang }
+const { steps, lang } = Astro.props;
+---
+<ol class="steps">
+  {steps.map((step, i) => (
+    <li>
+      <span class="sn" aria-hidden="true">STEP<b>{i + 1}</b></span>
+      <span set:html={rich(step, lang)} />
+    </li>
+  ))}
+</ol>

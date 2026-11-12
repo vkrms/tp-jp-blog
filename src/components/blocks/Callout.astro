@@ -1,0 +1,14 @@
+---
+// "ポイント" / "注意" callout. Both blocks share the shape [label, body]; only the tone differs.
+import { rich, type Lang } from '../../i18n/ui';
+import Icon from '../Icon.astro';
+interface Props { tone: 'point' | 'warn'; label: unknown; body: unknown; lang: Lang }
+const { tone, label, body, lang } = Astro.props;
+---
+<div class={`callout ${tone}`}>
+  <span class="cap">
+    <Icon name={tone === 'point' ? 'star' : 'warn'} size={16} stroke={2.4} />
+    <span set:html={rich(label, lang)} />
+  </span>
+  <p set:html={rich(body, lang)} />
+</div>

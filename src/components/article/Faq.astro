@@ -1,0 +1,27 @@
+---
+// FAQ accordion built on native <details> (no client JS), carrying the design's Q/A marks
+// and plus/minus indicator. Also feeds the FAQPage JSON-LD.
+import { rich, tr, T, type Lang } from '../../i18n/ui';
+import type { FaqEntry } from '../../data/content';
+interface Props { faq: FaqEntry[]; lang: Lang }
+const { faq, lang } = Astro.props;
+if (!faq.length) return;
+---
+<section class="sec faq" id="faq">
+  <h2>{tr(T.faq, lang)}</h2>
+  <div class="faq-list">
+    {faq.map(([q, a], i) => (
+      <details class="qa" open={i === 0}>
+        <summary>
+          <span class="mk" aria-hidden="true">Q</span>
+          <span class="qt" set:html={rich(q, lang)} />
+          <span class="pm" aria-hidden="true" />
+        </summary>
+        <div class="ans">
+          <span class="mk" aria-hidden="true">A</span>
+          <div class="tx"><p set:html={rich(a, lang)} /></div>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

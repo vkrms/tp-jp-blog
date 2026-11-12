@@ -1,0 +1,12 @@
+---
+// /en/articles/<slug>/ — one page per article, English.
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { articles, type Article } from '../../../data/content';
+
+export function getStaticPaths() {
+  return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
+}
+
+const { article } = Astro.props as { article: Article };
+---
+<ArticleLayout article={article} lang="en" />

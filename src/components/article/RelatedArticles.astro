@@ -1,0 +1,15 @@
+---
+// "次に読む": the two related articles, reusing the home page card component.
+import { tr, T, type Lang } from '../../i18n/ui';
+import type { Article } from '../../data/content';
+import ArticleCard from '../ArticleCard.astro';
+interface Props { articles: Article[]; lang: Lang }
+const { articles, lang } = Astro.props;
+if (!articles.length) return;
+---
+<section class="readnext">
+  <h2>{tr(T.readNext, lang)}</h2>
+  <div class="cards">
+    {articles.map((a) => <ArticleCard article={a} lang={lang} />)}
+  </div>
+</section>

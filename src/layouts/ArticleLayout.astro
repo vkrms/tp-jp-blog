@@ -1,0 +1,75 @@
+---
+// Article page template: masthead, cover, key takeaway, contents, sections with an in-article
+// CTA, FAQ, summary, update log, closing strip and related articles, plus the sidebar.
+import BaseLayout from './BaseLayout.astro';
+import '../styles/article.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ArticleHeader from '../components/article/ArticleHeader.astro';
+import ArticleCover from '../components/article/ArticleCover.astro';
+import AnswerBox from '../components/article/AnswerBox.astro';
+import Toc from '../components/article/Toc.astro';
+import Faq from '../components/article/Faq.astro';
+import Matome from '../components/article/Matome.astro';
+import UpdateLog from '../components/article/UpdateLog.astro';
+import EndStrip from '../components/article/EndStrip.astro';
+import RelatedArticles from '../components/article/RelatedArticles.astro';
+import ArticleSidebar from '../components/article/ArticleSidebar.astro';
+import InPostCta from '../components/article/InPostCta.astro';
+import BlockRenderer from '../components/blocks/BlockRenderer.astro';
+import ArticleJsonLd from '../components/seo/ArticleJsonLd.astro';
+import { tx, plain, clip, T, type Lang } from '../i18n/ui';
+import { inPostCta } from '../i18n/cta';
+import { relatedOf, publishedAt, type Article } from '../data/content';
+
+interface Props { article: Article; lang: Lang }
+const { article, lang } = Astro.props;
+
+const route = `/articles/${article.slug}/`;
+const title = `${tx(article.title, lang)} | ${T.siteName}`;
+const description = clip(plain(article.answer_first, lang), lang === 'ja' ? 120 : 155);
+const related = relatedOf(article);
+const published = publishedAt(article);
+const log = article.update_log ?? [];
+// The in-article CTA sits after the section whose JA heading matches the cta.ts entry.
+const ctaHeading = inPostCta[article.slug]?.heading;
+---
+<BaseLayout lang={lang} title={title} description={description} route={route} ogType="article">
+  <ArticleJsonLd slot="head" article={article} lang={lang} />
+  <Header lang={lang} route={route} current="articles" />
+
+  <main class="a-main">
+    <div class="wrap">
+      <div class="cols">
+        <article class="post">
+          <ArticleHeader article={article} lang={lang} />
+          <ArticleCover article={article} lang={lang} eager />
+          <AnswerBox text={article.answer_first} lang={lang} />
+
+          {/* Inline contents for mobile; the same list sits in the sidebar from 960px up. */}
+          <Toc article={article} lang={lang} class="toc-inline" />
+
+          {article.sections.map((section, i) => (
+            <div class="sec">
+              <h2 id={`s${i}`}>{tx(section.h, lang)}</h2>
+              {section.b.map((block) => <BlockRenderer block={block} lang={lang} />)}
+              {ctaHeading && tx(section.h, 'ja') === ctaHeading && <InPostCta article={article} lang={lang} />}
+            </div>
+          ))}
+
+          <Faq faq={article.faq} lang={lang} />
+          <Matome items={article.matome} lang={lang} />
+          <UpdateLog log={log} lang={lang} />
+          <EndStrip updated={article.updated_at} published={published} lang={lang} />
+          <RelatedArticles articles={related} lang={lang} />
+        </article>
+
+        <aside class="side">
+          <ArticleSidebar article={article} lang={lang} />
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>

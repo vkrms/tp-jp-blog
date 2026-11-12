@@ -1,0 +1,33 @@
+---
+// Article masthead: breadcrumbs, category/level/keyword chips, title and meta line.
+import { tr, tx, path, dateDots, T, type Lang } from '../../i18n/ui';
+import { category, type Article } from '../../data/content';
+import Icon from '../Icon.astro';
+interface Props { article: Article; lang: Lang }
+const { article, lang } = Astro.props;
+const cat = category(article.category);
+// Keyword chips use the first half of the keyword field ("旅行 セール / 航空券 セール" -> "旅行 セール").
+// The keyword is a Japanese search term, so the chip is shown on the JA page only.
+const keyword = lang === 'ja' ? (article.keyword ?? '').split(' / ')[0] : '';
+const level = lang === 'ja'
+  ? `[${tr(T.tell, lang)}：${tr(T.lvl[article.level], lang)}]`
+  : `[${tr(T.tell, lang)}: ${tr(T.lvl[article.level], lang)}]`;
+---
+<nav class="crumb" aria-label={lang === 'ja' ? 'パンくず' : 'Breadcrumb'}>
+  <a href={path(lang, '/')}>{tr(T.nav.home, lang)}</a>
+  <span class="crumb-sep" aria-hidden="true">›</span>
+  {cat
+    ? <a href={path(lang, '/articles/') + `#${cat.id}`}>{tr(cat.t, lang)}</a>
+    : <a href={path(lang, '/articles/')}>{tr(T.nav.articles, lang)}</a>}
+</nav>
+<div class="meta">
+  {cat && <span class="chip cat">{tr(cat.t, lang)}</span>}
+  <span class="chip lv">{level}</span>
+  {keyword && <span class="chip o">{keyword}</span>}
+</div>
+<h1>{tx(article.title, lang)}</h1>
+<div class="pmeta">
+  <span><Icon name="clock" size={16} />{tr(T.upd, lang)} <time datetime={article.updated_at}>{dateDots(article.updated_at)}</time></span>
+  <span>{T.mins(article.read_minutes, lang)}</span>
+  <span>{tr(T.author, lang)}</span>
+</div>
