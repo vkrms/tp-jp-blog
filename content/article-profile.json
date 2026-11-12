@@ -1,0 +1,40 @@
+{
+  "_comment": "Эталон объёма и состава статьи. Источник: https://www.travelpayouts.com/jp/blog/is-affiliate-marketing-worth-it/ (замер 2026-11-11 по одному чтению страницы; числа приблизительные). Подробности и что НЕ копировать: docs/article-reference.md. Используется tools/article-stats.mjs и tools/edit-article.mjs.",
+  "reference": {
+    "url": "https://www.travelpayouts.com/jp/blog/is-affiliate-marketing-worth-it/",
+    "measured_on": "2026-11-11",
+    "measured": {
+      "chars_ja": 13000,
+      "sections_h2": 9,
+      "subsections_h3": 30,
+      "paragraphs": 110,
+      "bullet_and_numbered_lists": 24,
+      "tables": 4,
+      "images_body": 9,
+      "quotes": 2,
+      "faq": 6,
+      "worked_calculation": 1,
+      "source_lines": 4,
+      "paragraph_share_of_text": 0.68,
+      "paragraphs_per_structural_block": 2.8
+    },
+    "per_1000_chars": { "paragraphs": 8.5, "lists": 1.8, "tables": 0.3, "images": 0.7, "h3": 2.3 }
+  },
+  "target": {
+    "_comment": "Цели для наших статей. Эталон — «столп» на ~13 000 знаков; для статей, у которых источников меньше, размер меньше, но ПРОПОРЦИИ те же.",
+    "chars_ja": { "min": 5500, "max": 9000 },
+    "sections_h2": { "min": 5, "max": 7 },
+    "paragraph_share_min": 0.6,
+    "paragraphs_per_structural_block": { "min": 2.2, "max": 3.8 },
+    "per_1000_chars": { "paragraphs": 8, "lists": 1.5, "tables": 0.4, "images": 0.7, "h3": 2.0 },
+    "min_counts_for_5500_chars": { "paragraphs": 30, "lists": 6, "tables": 3, "images": 4, "h3": 8 }
+  },
+  "not_copied": [
+    "налоги, 確定申告, 住民税 (исключённая тема)",
+    "правила маркировки рекламы / ステマ / раскрытие партнёрства (исключённая тема)",
+    "условия ASP и площадок: регистрация, выплаты, минимумы, комиссии (исключённая тема)",
+    "призыв «зарегистрируйтесь в Travelpayouts» и цифры вроде «90 брендов» (запрещены правилами)",
+    "названия конкурентов в тексте о Travelpayouts",
+    "выдуманные или чужие цитаты блогеров; скриншоты чужих кабинетов/сайтов"
+  ]
+}

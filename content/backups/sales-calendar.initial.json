@@ -1,0 +1,364 @@
+{
+ "_comment": "Backup of sales-calendar BEFORE the 2026-11-11 editing-pipeline tests (tools/edit-article.mjs paragraph pass, then tools/expand-article.mjs). This is the article as committed in 7aaae74 (init). Restore with: node tools/restore-backup.mjs sales-calendar",
+ "backed_up_at": "2026-11-12",
+ "source_commit": "7aaae74",
+ "slug": "sales-calendar",
+ "article": {
+  "slug": "sales-calendar",
+  "category": "travel",
+  "level": 0,
+  "read_minutes": 6,
+  "keyword": "旅行 セール / 航空券 セール（提案キーワード）",
+  "title": {
+   "ja": "旅行セール・キャンペーンの追い方：年末までのセールの見つけ方と記事の書き方",
+   "en": "Following travel sales: how to find them and write about them"
+  },
+  "eyebrow": {
+   "ja": "旅行セールの追い方",
+   "en": "Following travel sales"
+  },
+  "answer_first": {
+   "ja": "セール記事は、**セールの期間と旅行できる期間**をセットで書くと、読者の役に立ちます。期限が来たら更新するのが基本です。2026年11月時点では、各社の「11.11」や冬のセールが続いています。",
+   "en": "For sale articles, give readers **the sale period and the travel period together**. Update the article once the sale ends. As of November 2026, “11.11” and winter sales are running."
+  },
+  "sections": [
+   {
+    "h": [
+     "まず、2026年11月のセールを見てみる",
+     "A look at November 2026 sales"
+    ],
+    "b": [
+     {
+      "p": [
+       "TRAICYが伝えた、11月上旬のセールの例です。いずれも2026年11月9日に確認した内容で、**期限が過ぎると変わります**。",
+       "Examples reported by TRAICY in early November, checked on 9 November 2026. **They change once they expire.**"
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "セール",
+         "Sale"
+        ],
+        [
+         "セール期間",
+         "Sale period"
+        ],
+        [
+         "旅行できる期間",
+         "Travel period"
+        ],
+        [
+         "内容",
+         "Details"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "エティハド航空「11.11セール」",
+          "Etihad “11.11 sale”"
+         ],
+         [
+          "11/8〜11/15",
+          "8–15 Nov"
+         ],
+         [
+          "2026/11/16〜2027/5/31",
+          "16 Nov 2026 – 31 May 2027"
+         ],
+         [
+          "東京・大阪発。基本運賃が最大22%オフ",
+          "From Tokyo and Osaka; up to 22% off the base fare"
+         ]
+        ],
+        [
+         [
+          "ジェットスター・ジャパン「スーパースターセール」",
+          "Jetstar Japan “Super Star Sale”"
+         ],
+         [
+          "11/6 12:00〜11/9 16:59",
+          "6 Nov 12:00 – 9 Nov 16:59"
+         ],
+         [
+          "2026/11/23〜2027/2/18",
+          "23 Nov 2026 – 18 Feb 2027"
+         ],
+         [
+          "国内16路線。片道3,690円から（各種手数料は別）",
+          "16 domestic routes; from ¥3,690 one way (fees extra)"
+         ]
+        ],
+        [
+         [
+          "トキエア「冬タイムセール」",
+          "Toki Air “winter time sale”"
+         ],
+         [
+          "11/6〜11/9",
+          "6–9 Nov"
+         ],
+         [
+          "2026/12/1〜12/23",
+          "1–23 Dec 2026"
+         ],
+         [
+          "片道、平日6,500円から・土日祝8,500円から（手数料は別）",
+          "One way from ¥6,500 on weekdays and ¥8,500 at weekends (fees extra)"
+         ]
+        ],
+        [
+         [
+          "KLM「リアルディールデイズ」",
+          "KLM “Real Deal Days”"
+         ],
+         [
+          "11/4〜11/24",
+          "4–24 Nov"
+         ],
+         [
+          "2026/11/5〜2027/6/30",
+          "5 Nov 2026 – 30 Jun 2027"
+         ],
+         [
+          "東京・大阪発の欧州線。往復177,680円から（エコノミー、アムステルダム）",
+          "Tokyo and Osaka to Europe; from ¥177,680 round trip (economy, Amsterdam)"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "セール価格には、燃油サーチャージや空港使用料などが含まれない場合があります。「最安」とは書かず、「〜円から」と条件を添えます。",
+        "Sale prices may exclude fuel surcharges and airport fees. Don’t write “cheapest”; write “from ¥…” with the conditions."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "年末にかけて追いたいテーマ",
+     "Themes to follow through year-end"
+    ],
+    "b": [
+     {
+      "table": {
+       "head": [
+        [
+         "テーマ",
+         "Theme"
+        ],
+        [
+         "時期",
+         "Timing"
+        ],
+        [
+         "出典",
+         "Source"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "ふるさと納税・年末売れ筋サービス特集（帰省・旅行を含む）",
+          "Furusato Nozei and year-end features (including travel home)"
+         ],
+         [
+          "2026/10/21〜12/2",
+          "21 Oct – 2 Dec 2026"
+         ],
+         [
+          "A8スタッフブログ",
+          "A8 staff blog"
+         ]
+        ],
+        [
+         [
+          "ブラックフライデー",
+          "Black Friday"
+         ],
+         [
+          "2026年は11/27（金）が中心",
+          "Centred on Fri 27 Nov in 2026"
+         ],
+         [
+          "A8スタッフブログ",
+          "A8 staff blog"
+         ]
+        ],
+        [
+         [
+          "ANAとIHGの新プログラム",
+          "New ANA and IHG programme"
+         ],
+         [
+          "2027年1月から（一部は2月から）",
+          "From January 2027 (partly February)"
+         ],
+         [
+          "TRAICY",
+          "TRAICY"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "p": [
+       "A8.netは競合ですが、季節ごとの特集は、日本のブロガーが「いつ何を紹介するか」を知る参考になります。",
+       "A8.net is a competitor, but its seasonal features show what Japanese bloggers promote and when."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "セール記事の書き方と、期限が来たときの更新",
+     "Writing sale articles and updating them when they end"
+    ],
+    "b": [
+     {
+      "steps": [
+       [
+        "記事の冒頭に、セール期間と旅行できる期間を書く",
+        "Put the sale period and the travel period at the top"
+       ],
+       [
+        "価格は「〜円から」と書き、手数料が別かどうかを添える",
+        "Write prices as “from ¥…” and say whether fees are extra"
+       ],
+       [
+        "期限の翌日に、記事を「終了」に更新する",
+        "Update the article to “ended” the day after the deadline"
+       ],
+       [
+        "次のセールの記事にリンクする",
+        "Link to the next sale article"
+       ]
+      ]
+     },
+     {
+      "p": [
+       "期限が過ぎた記事は、消さずに「終了しました」と明記して、次のセールへ案内します。",
+       "Don’t delete an expired article; mark it as ended and point readers to the next sale."
+      ]
+     },
+     {
+      "diff": [
+       [
+        "更新前：エティハド航空「11.11セール」を開催中（11/8〜11/15）",
+        "Before: Etihad “11.11 sale” is on (8–15 Nov)"
+       ],
+       [
+        "更新後：エティハド航空「11.11セール」は11/15に終了しました。次は、年末年始のセールをチェック",
+        "After: The Etihad “11.11 sale” ended on 15 Nov. Next, check the year-end sales"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "ニュースの見つけ方",
+     "Where to find the news"
+    ],
+    "b": [
+     {
+      "list": [
+       [
+        "TRAICY：航空会社やホテルのセールの最新情報（毎日更新）",
+        "TRAICY: the latest airline and hotel sales (daily)"
+       ],
+       [
+        "TravelVoice：旅行業界のニュースと統計",
+        "TravelVoice: travel industry news and statistics"
+       ],
+       [
+        "A8スタッフブログ：季節の特集のスケジュール",
+        "A8 staff blog: seasonal feature schedule"
+       ],
+       [
+        "各社の公式サイト：条件は必ず公式ページで確認",
+        "Official sites: always confirm conditions there"
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "セール情報はどのくらいの頻度で更新しますか？",
+     "How often are sale articles updated?"
+    ],
+    [
+     "週に1回、内容を確認しています。セールの期限が過ぎた項目は、翌日に更新します。",
+     "Content is checked weekly, and items whose sale has ended are updated the next day."
+    ]
+   ],
+   [
+    [
+     "記事の価格は、いつの時点のものですか？",
+     "As of when are the prices in the article?"
+    ],
+    [
+     "記事の更新日の時点の情報です。価格は変わることがあるため、予約の前に、各社のページで最新の情報をご確認ください。",
+     "They are as of the article’s update date. Prices can change, so check each company’s page for the latest before booking."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "セールは、セール期間と旅行できる期間をセットで書く。",
+    "Write the sale period and the travel period together."
+   ],
+   [
+    "価格は条件つきで。「最安」とは書かない。",
+    "Give prices with conditions; don’t write “cheapest”."
+   ],
+   [
+    "期限が来たら、消さずに「終了」へ更新する。",
+    "When it ends, update to “ended” instead of deleting."
+   ]
+  ],
+  "sources": [
+   "tr1",
+   "tr2",
+   "tr3",
+   "tr4",
+   "tr5",
+   "a8yearend",
+   "a8bf"
+  ],
+  "related": [
+   "travel-demand",
+   "travel-blog-income"
+  ],
+  "updated_at": "2026-11-09",
+  "update_log": [
+   {
+    "date": "2026-11-09",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。TRAICYとA8スタッフブログの2026年11月9日時点の内容にもとづく。",
+     "en": "First version based on TRAICY and the A8 staff blog as of 9 November 2026."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "ticket"
+ }
+}
