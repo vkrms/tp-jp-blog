@@ -29,6 +29,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 .news-tag { flex: none; background: var(--color-primary-100); color: var(--color-primary-pressed); border-radius: var(--radius-xs); padding: 0 var(--space-8); font-size: 12px; }
 .news a { color: var(--color-primary-pressed); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .news a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.news[hidden] { display: none; }
+.news-close { flex: none; display: grid; place-items: center; width: 28px; height: 28px; margin-left: auto; padding: 0; border: 1px solid var(--color-line-strong); border-radius: var(--radius-control); background: var(--color-surface); color: var(--color-label); cursor: pointer; }
+.news-close:hover { background: var(--color-surface-soft); }
 .site-header { position: sticky; top: 0; z-index: 30; background: var(--color-surface); border-bottom: 1px solid var(--color-line); }
 .header-row { display: flex; align-items: center; gap: var(--space-16); min-height: 60px; flex-wrap: wrap; padding-block: var(--space-8); }
 .brand { display: flex; align-items: center; gap: var(--space-10); margin-right: auto; }

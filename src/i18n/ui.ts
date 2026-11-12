@@ -8,6 +8,7 @@ export const T = {
   siteName: '旅アフィリ・ラボ',
   by: ['Travelpayouts が運営する旅行アフィリエイト情報サイト', 'Travel affiliate know-how, by Travelpayouts'],
   newsLabel: ['お知らせ', 'NEWS'],
+  newsClose: ['お知らせを閉じる', 'Dismiss announcement'],
   news: ['新着：2026年11月の旅行セールの追い方', 'New: how to follow the November 2026 travel sales'],
   nav: { home: ['ホーム', 'Home'], articles: ['記事一覧', 'Articles'], glossary: ['用語集', 'Glossary'], about: ['このサイトについて', 'About'] },
   switchTo: ['English', '日本語'],

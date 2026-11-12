@@ -8,12 +8,33 @@ const { lang, route, current = 'home' } = Astro.props;
 const items = [['home', '/'], ['articles', '/articles/'], ['glossary', '/glossary/'], ['about', '/about/']] as const;
 const other: Lang = lang === 'ja' ? 'en' : 'ja';
 ---
-<div class="news">
+<div class="news" id="news-bar">
   <div class="wrap">
     <b class="news-tag">{tr(T.newsLabel, lang)}</b>
     <a href={path(lang, '/articles/sales-calendar/')}>{tr(T.news, lang)}</a>
+    <button type="button" class="news-close" aria-label={tr(T.newsClose, lang)}>
+      <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="3" x2="13" y2="13" />
+        <line x1="13" y1="3" x2="3" y2="13" />
+      </svg>
+    </button>
   </div>
 </div>
+{/* Collapses the announcement bar. Inline and dependency-free; the bar shows normally if JS is off.
+    The choice is remembered for the session so it stays collapsed while the reader browses. */}
+<script is:inline>
+  (() => {
+    const bar = document.getElementById('news-bar');
+    if (!bar) return;
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem('news-dismissed') === '1'; } catch {}
+    if (dismissed) { bar.hidden = true; return; }
+    bar.querySelector('.news-close')?.addEventListener('click', () => {
+      bar.hidden = true;
+      try { sessionStorage.setItem('news-dismissed', '1'); } catch {}
+    });
+  })();
+</script>
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href={path(lang, '/')}>
