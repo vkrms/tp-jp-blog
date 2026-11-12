@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { T, tr, path, type Lang } from '../i18n/ui';
+import { glossary, termId } from '../data/content';
+
+const { lang } = Astro.props as { lang: Lang };
+const title = lang === 'ja' ? 'アフィリエイト用語集 | 旅アフィリ・ラボ' : 'Affiliate glossary | Travel affiliate lab';
+const terms = glossary.map((g) => ({
+  id: termId(g),
+  kind: g.kind === 'tp' ? 'tp' : 'gen',
+  name: lang === 'ja' ? g.term_ja : g.term_en,
+  def: lang === 'ja' ? g.def_ja : g.def_en,
+}));
+const count = (k: string) => terms.filter((t) => !k || t.kind === k).length;
+const tabs = [['', T.gloTabAll], ['gen', T.gloTabGen], ['tp', T.gloTabTp]] as const;
+const url = new URL(path(lang, '/glossary/'), Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTermSet',
+  '@id': url,
+  name: tr(T.gloPageH, lang),
+  inLanguage: lang,
+  hasDefinedTerm: terms.map((t) => ({ '@type': 'DefinedTerm', '@id': `${url}#${t.id}`, name: t.name, description: t.def })),
+};
+---
+<BaseLayout lang={lang} title={title} description={tr(T.gloLead, lang)} route="/glossary/">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Header lang={lang} route="/glossary/" current="glossary" />
+  <main class="gl-page">
+    <div class="wrap">
+      <div class="gl-head">
+        <h1>{tr(T.gloPageH, lang)}</h1>
+        <p class="gl-lead">{tr(T.gloLead, lang)}</p>
+      </div>
+      <div class="gl-bar">
+        <div class="tabs" role="group" aria-label={tr(T.gloKinds, lang)}>
+          {tabs.map(([k, label]) => (
+            <button type="button" data-kind={k} aria-pressed={k ? "false" : "true"}>{tr(label, lang)}<span class="n">{count(k)}</span></button>
+          ))}
+        </div>
+        <label class="gq">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+          <input type="search" id="gq" placeholder={tr(T.gloSearch, lang)} aria-label={tr(T.gloSearch, lang)} autocomplete="off" />
+        </label>
+      </div>
+      <dl class="gl-list" id="gl">
+        {terms.map((t) => (
+          <div class="term" id={t.id} data-kind={t.kind}>
+            <dt><span class="nm">{t.name}</span><span class={`k k-${t.kind}`}>{tr(t.kind === 'tp' ? T.gloKindTp : T.gloKindGen, lang)}</span></dt>
+            <dd>{t.def}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="gl-empty" id="gl-empty" hidden data-tpl={tr(T.gloEmpty, lang)}></p>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.gl-bar .tabs button');
+  const items = document.querySelectorAll<HTMLElement>('#gl .term');
+  const input = document.getElementById('gq') as HTMLInputElement;
+  const empty = document.getElementById('gl-empty') as HTMLElement;
+  let kind = '';
+  const apply = () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    items.forEach((el) => {
+      const ok = (!kind || el.dataset.kind === kind) && (!q || (el.textContent ?? '').toLowerCase().includes(q));
+      el.hidden = !ok;
+      if (ok) shown++;
+    });
+    empty.hidden = shown > 0;
+    if (!shown) empty.textContent = (empty.dataset.tpl ?? '').replace('{q}', input.value.trim());
+  };
+  tabs.forEach((tab) =>
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === tab)));
+      kind = tab.dataset.kind ?? '';
+      apply();
+    }),
+  );
+  input.addEventListener('input', apply);
+</script>

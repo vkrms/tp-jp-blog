@@ -56,11 +56,14 @@ export interface Article {
 }
 
 export interface Category { id: string; t: [string, string]; c: string }
-export interface Term { term_ja: string; term_en: string; kind: string }
+export interface Term { term_ja: string; term_en: string; def_ja: string; def_en: string; kind: 'gen' | 'tp' | string }
 
 export const articles = (articlesRaw as unknown as Article[]).slice();
 export const categories = categoriesRaw as Category[];
 export const glossary = glossaryRaw as Term[];
+/** Stable anchor id for a term on /glossary/, from its English name: "Sub ID" -> "sub-id". */
+export const termId = (t: Term) =>
+  t.term_en.toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 export const category = (id: string) => categories.find((c) => c.id === id);
 
 export const article = (slug: string) => articles.find((a) => a.slug === slug);
