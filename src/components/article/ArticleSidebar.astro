@@ -1,13 +1,17 @@
 ---
-// Article sidebar: who writes the site, then the contents list (desktop only — the same
-// table of contents is rendered inline in the article on mobile).
-import { tr, T, type Lang } from '../../i18n/ui';
+// Article sidebar: contents list (desktop only — the same table of contents is rendered
+// inline in the article on mobile).
+// The imports below are only needed by the disabled "About the editors" box;
+// un-comment them together with that block to restore it.
+// import { tr, T } from '../../i18n/ui';
+import type { Lang } from '../../i18n/ui';
 import type { Article } from '../../data/content';
-import Mascot from '../Mascot.astro';
+// import Mascot from '../Mascot.astro';
 import Toc from './Toc.astro';
 interface Props { article: Article; lang: Lang }
 const { article, lang } = Astro.props;
 ---
+{/* "About the editors" box — disabled. Un-comment to restore.
 <div class="box">
   <h3>{tr(T.profH, lang)}</h3>
   <div class="prof">
@@ -16,4 +20,5 @@ const { article, lang } = Astro.props;
     <p>{tr(T.profP, lang)}</p>
   </div>
 </div>
+*/}
 <Toc article={article} lang={lang} class="toc-side" open />
