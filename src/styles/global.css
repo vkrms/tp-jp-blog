@@ -32,7 +32,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .site-header { position: sticky; top: 0; z-index: 30; background: var(--color-surface); border-bottom: 1px solid var(--color-line); }
 .header-row { display: flex; align-items: center; gap: var(--space-16); min-height: 60px; flex-wrap: wrap; padding-block: var(--space-8); }
 .brand { display: flex; align-items: center; gap: var(--space-10); margin-right: auto; }
-.brand-mark { width: 36px; height: 36px; border-radius: var(--radius-control); background: var(--color-primary); flex: none; }
+.brand-mark { width: 36px; height: 36px; flex: none; display: block; }
+.brand-mark svg { display: block; width: 100%; height: 100%; }
 .brand-text { display: grid; line-height: 1.2; }
 .brand-text b { font-size: 19px; color: var(--color-ink); }
 .brand-text small { font-size: 11px; font-weight: 500; color: var(--color-secondary); display: none; }

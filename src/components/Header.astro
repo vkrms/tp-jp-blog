@@ -1,5 +1,8 @@
 ---
 import { T, tr, path, type Lang } from '../i18n/ui';
+// Icon-only Travelpayouts mark (wordmark stripped from the brand SVG), inlined to avoid a
+// render-blocking request in the sticky header.
+import tpMark from '../assets/brand/tp-mark.svg?raw';
 interface Props { lang: Lang; route: string; current?: 'home' | 'articles' | 'glossary' | 'about' }
 const { lang, route, current = 'home' } = Astro.props;
 const items = [['home', '/'], ['articles', '/articles/'], ['glossary', '/glossary/'], ['about', '/about/']] as const;
@@ -14,7 +17,7 @@ const other: Lang = lang === 'ja' ? 'en' : 'ja';
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href={path(lang, '/')}>
-      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-mark" aria-hidden="true" set:html={tpMark}></span>
       <span class="brand-text"><b>{T.siteName}</b><small>{tr(T.by, lang)}</small></span>
     </a>
     <nav aria-label="Main">
