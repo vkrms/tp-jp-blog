@@ -1,9 +1,9 @@
 /* Content. Every text is [ja, en]. **x** = marker highlight. Draft: sources not yet verified. */
 var CATS=[
- {id:'basics',t:['アフィリエイト入門','Affiliate basics'],c:'#006dff'},
- {id:'traffic',t:['集客・広告','Traffic & ads'],c:'#d9480f'},
- {id:'strategy',t:['ジャンル・戦略','Niche & strategy'],c:'#8a4fff'},
- {id:'travel',t:['旅行ブログ','Travel blogging'],c:'#0a8f6a'},
+ {id:'basics',t:['アフィリエイト入門','Affiliate basics'],c:'#5d5d5d'},
+ {id:'traffic',t:['集客・広告','Traffic & ads'],c:'#6d6d6d'},
+ {id:'strategy',t:['ジャンル・戦略','Niche & strategy'],c:'#757575'},
+ {id:'travel',t:['旅行ブログ','Travel blogging'],c:'#636363'},
 ];
 var A=[
 /* ---------- 1 ---------- */

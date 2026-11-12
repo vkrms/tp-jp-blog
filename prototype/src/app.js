@@ -100,23 +100,23 @@ function ic(n,sw){return '<svg class="ico" viewBox="0 0 24 24" fill="none" strok
 /* original mascot "Tabi" (traveller cloud with a paper-plane cap) */
 function mascot(cls,face){
  var id='mc'+(Math.random()*1e6|0);
- return '<svg class="m '+(cls||'')+'" viewBox="0 0 120 120" role="img" aria-label="Tabi"><defs><clipPath id="'+id+'"><circle cx="60" cy="60" r="58"/></clipPath></defs><circle cx="60" cy="60" r="58" fill="#ffd54a"/><g clip-path="url(#'+id+')">'+
+ return '<svg class="m '+(cls||'')+'" viewBox="0 0 120 120" role="img" aria-label="Tabi"><defs><clipPath id="'+id+'"><circle cx="60" cy="60" r="58"/></clipPath></defs><circle cx="60" cy="60" r="58" fill="#d2d2d2"/><g clip-path="url(#'+id+')">'+
  /* body: blue travel jacket, backpack straps, camera */
- '<path d="M18 124Q22 88 60 84Q98 88 102 124Z" fill="#006dff"/><path d="M44 86L40 124M76 86L80 124" stroke="#d9480f" stroke-width="5" stroke-linecap="round"/>'+
- '<path d="M50 84L60 98L70 84" fill="none" stroke="#fff" stroke-width="3"/>'+
- '<path d="M44 86Q56 108 64 104M76 86Q64 108 56 104" fill="none" stroke="#14233a" stroke-width="2.4"/>'+
- '<rect x="46" y="98" width="28" height="17" rx="4" fill="#14233a"/><rect x="50" y="95" width="9" height="5" rx="1.5" fill="#14233a"/><circle cx="60" cy="106.5" r="6" fill="#cfd6e0"/><circle cx="60" cy="106.5" r="3.6" fill="#14233a"/><circle cx="58.6" cy="105.3" r="1.1" fill="#fff"/><circle cx="69" cy="101.5" r="1.6" fill="#ffd54a"/></g>'+
+ '<path d="M18 124Q22 88 60 84Q98 88 102 124Z" fill="#5d5d5d"/><path d="M44 86L40 124M76 86L80 124" stroke="#6d6d6d" stroke-width="5" stroke-linecap="round"/>'+
+ '<path d="M50 84L60 98L70 84" fill="none" stroke="#ffffff" stroke-width="3"/>'+
+ '<path d="M44 86Q56 108 64 104M76 86Q64 108 56 104" fill="none" stroke="#212121" stroke-width="2.4"/>'+
+ '<rect x="46" y="98" width="28" height="17" rx="4" fill="#212121"/><rect x="50" y="95" width="9" height="5" rx="1.5" fill="#212121"/><circle cx="60" cy="106.5" r="6" fill="#d5d5d5"/><circle cx="60" cy="106.5" r="3.6" fill="#212121"/><circle cx="58.6" cy="105.3" r="1.1" fill="#ffffff"/><circle cx="69" cy="101.5" r="1.6" fill="#d2d2d2"/></g>'+
  /* head */
- '<rect x="52" y="76" width="16" height="10" rx="5" fill="#f5cba7"/><ellipse cx="60" cy="58" rx="25" ry="24" fill="#ffe0c2"/>'+
- '<path d="M35 56Q34 40 60 38Q86 40 85 56Q80 46 60 46Q40 46 35 56Z" fill="#5b3a29"/>'+
+ '<rect x="52" y="76" width="16" height="10" rx="5" fill="#d3d3d3"/><ellipse cx="60" cy="58" rx="25" ry="24" fill="#e6e6e6"/>'+
+ '<path d="M35 56Q34 40 60 38Q86 40 85 56Q80 46 60 46Q40 46 35 56Z" fill="#424242"/>'+
  /* bucket hat */
- '<ellipse cx="60" cy="40" rx="37" ry="9" fill="#c2410c"/><path d="M40 40Q40 17 60 17Q80 17 80 40Z" fill="#ea580c"/><rect x="40" y="33" width="40" height="6" fill="#14233a"/><circle cx="73" cy="36" r="2.4" fill="#ffd54a"/>'+
+ '<ellipse cx="60" cy="40" rx="37" ry="9" fill="#626262"/><path d="M40 40Q40 17 60 17Q80 17 80 40Z" fill="#7b7b7b"/><rect x="40" y="33" width="40" height="6" fill="#212121"/><circle cx="73" cy="36" r="2.4" fill="#d2d2d2"/>'+
  /* face */
- '<circle cx="50" cy="60" r="3.6" fill="#14233a"/><circle cx="70" cy="60" r="3.6" fill="#14233a"/><circle cx="51.2" cy="58.8" r="1.2" fill="#fff"/><circle cx="71.2" cy="58.8" r="1.2" fill="#fff"/>'+
- '<circle cx="42" cy="68" r="4.4" fill="#ffa8b8" opacity=".8"/><circle cx="78" cy="68" r="4.4" fill="#ffa8b8" opacity=".8"/>'+
- (face==='o'?'<ellipse cx="60" cy="71" rx="3.6" ry="4.4" fill="#14233a"/>':'<path d="M52 68Q60 77 68 68" fill="none" stroke="#14233a" stroke-width="3" stroke-linecap="round"/>')+
+ '<circle cx="50" cy="60" r="3.6" fill="#212121"/><circle cx="70" cy="60" r="3.6" fill="#212121"/><circle cx="51.2" cy="58.8" r="1.2" fill="#ffffff"/><circle cx="71.2" cy="58.8" r="1.2" fill="#ffffff"/>'+
+ '<circle cx="42" cy="68" r="4.4" fill="#c4c4c4" opacity=".8"/><circle cx="78" cy="68" r="4.4" fill="#c4c4c4" opacity=".8"/>'+
+ (face==='o'?'<ellipse cx="60" cy="71" rx="3.6" ry="4.4" fill="#212121"/>':'<path d="M52 68Q60 77 68 68" fill="none" stroke="#212121" stroke-width="3" stroke-linecap="round"/>')+
  /* waving hand with paper plane */
- '<circle cx="97" cy="82" r="6.5" fill="#ffe0c2"/><path d="M104 68L118 62L110 76Z" fill="#fff" stroke="#14233a" stroke-width="1.6" stroke-linejoin="round"/></svg>'}
+ '<circle cx="97" cy="82" r="6.5" fill="#e6e6e6"/><path d="M104 68L118 62L110 76Z" fill="#ffffff" stroke="#212121" stroke-width="1.6" stroke-linejoin="round"/></svg>'}
 function f(s){return s.replace(/\*\*(.+?)\*\*/g,'<mark>$1</mark>')}
 var CT={};CATS.forEach(function(c){CT[c.id]=c});
 var SLUG={};A.forEach(function(a){SLUG[a.id]=a});
@@ -124,7 +124,7 @@ var catFilter='all',glFilter=0,glQ='';
 function thumb(a,big,isNew){
  var c=CT[a.cat];
  return '<div class="thumb'+(big?' big':'')+'" style="--c:'+c.c+'">'+
- '<svg class="bgd" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="40" cy="170" r="70" fill="#fff" opacity=".08"/><circle cx="290" cy="20" r="60" fill="#fff" opacity=".1"/><circle cx="170" cy="30" r="6" fill="#ffd54a"/><circle cx="130" cy="150" r="4" fill="#fff" opacity=".5"/><circle cx="210" cy="160" r="8" fill="#ffd54a" opacity=".8"/><path d="M0 150Q60 120 120 150T240 150T360 140V180H0Z" fill="#fff" opacity=".1"/></svg>'+
+ '<svg class="bgd" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="40" cy="170" r="70" fill="#ffffff" opacity=".08"/><circle cx="290" cy="20" r="60" fill="#ffffff" opacity=".1"/><circle cx="170" cy="30" r="6" fill="#d2d2d2"/><circle cx="130" cy="150" r="4" fill="#ffffff" opacity=".5"/><circle cx="210" cy="160" r="8" fill="#d2d2d2" opacity=".8"/><path d="M0 150Q60 120 120 150T240 150T360 140V180H0Z" fill="#ffffff" opacity=".1"/></svg>'+
  '<span class="lab">'+X(c.t)+'</span>'+(isNew?'<span class="nwb">NEW</span>':'')+
  '<span class="tx">'+X(a.eye)+'</span><span class="rc">'+ic(a.icon,1.8)+'</span></div>'}
 var NEWORD=['sales-calendar','travel-demand','ai-seo','start-guide','income-guide','instagram','click-reward','earn-or-not','what-is-affiliate','travel-blog-income','pick-niche','ad-affiliate'];
@@ -187,7 +187,7 @@ function post(a){
  var c=CT[a.cat];var rel=a.rel.map(function(id){return SLUG[id]}).filter(Boolean);
  var ix=NEWORD.indexOf(a.id),pv=SLUG[NEWORD[ix-1]],nx=SLUG[NEWORD[ix+1]];
  return '<section class="blk" style="padding-top:24px"><div class="wrap"><div class="cols"><article class="post"><div class="crumb"><a href="#home">'+X(T.top)+'</a> › <a href="#articles" onclick="catFilter=\''+a.cat+'\'">'+X(c.t)+'</a></div>'+
- '<div class="meta"><span class="chip" style="background:'+c.c+';color:#fff">'+X(c.t)+'</span><span class="chip lv">['+X(T.tell)+'：'+X(T.lvl[a.lvl||0])+']</span><span class="chip o">'+a.kw.split(' / ')[0]+'</span></div>'+
+ '<div class="meta"><span class="chip" style="background:'+c.c+';color:#ffffff">'+X(c.t)+'</span><span class="chip lv">['+X(T.tell)+'：'+X(T.lvl[a.lvl||0])+']</span><span class="chip o">'+a.kw.split(' / ')[0]+'</span></div>'+
  '<h1 style="margin-top:10px">'+X(a.t)+'</h1>'+
  '<div class="pmeta"><span>'+ic('clock')+' '+X(T.upd)+' '+a.log[a.log.length-1][0].replace(/-/g,'.')+'</span><span>'+a.read+X(T.mins)+'</span><span>'+X(['執筆：ラボ編集部','By the Lab editors'])+'</span></div>'+
  thumb(a,true,false)+

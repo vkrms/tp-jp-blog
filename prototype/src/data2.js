@@ -30,7 +30,7 @@ var SRC={
 };
 /* public log line + internal editorial note (3rd element, never shown on the site) */
 function LG(ja,en){return ['2026-11-09',['初版を公開','First published'],[ja,en]]}
-CATS.push({id:'seo',t:['SEO・AI検索','SEO & AI search'],c:'#1c7ed6'},{id:'market',t:['データ・市場','Data & market'],c:'#e67700'});
+CATS.push({id:'seo',t:['SEO・AI検索','SEO & AI search'],c:'#6b6b6b'},{id:'market',t:['データ・市場','Data & market'],c:'#8b8b8b'});
 
 /* ---- upgrade existing articles ---- */
 (function(){
@@ -242,4 +242,4 @@ var EV=[
  ['2026-12-15','2027-03-01',['Bing：AI利用の新しい制御設定への移行期間が始まる','Bing: migration to the new AI usage controls begins'],'seo','suzbing'],
  ['2027-01-01','2027-02-28',['ANAとIHGの新プログラムが順次開始（1月〜2月）','ANA and IHG programme rolls out (Jan–Feb)'],'travel','tr4']
 ];
-var EVT={sale:['セール','Sale','#d9480f'],season:['需要期','Season','#0a8f6a'],industry:['業界','Industry','#006dff'],seo:['SEO','SEO','#1c7ed6'],travel:['旅行','Travel','#c2255c']};
+var EVT={sale:['セール','Sale','#6d6d6d'],season:['需要期','Season','#636363'],industry:['業界','Industry','#5d5d5d'],seo:['SEO','SEO','#6b6b6b'],travel:['旅行','Travel','#5a5a5a']};
