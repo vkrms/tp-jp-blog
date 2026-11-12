@@ -8,7 +8,7 @@ const { article, lang } = Astro.props;
 const cat = category(article.category);
 const cover = covers[article.slug];
 ---
-<a class="card" href={path(lang, `/articles/${article.slug}/`)} style={cat ? `--cat:${cat.c}` : undefined}>
+<a class="card" href={path(lang, `/articles/${article.slug}/`)} data-cat={article.category} style={cat ? `--cat:${cat.c}` : undefined}>
   <div class="card-img">
     {cover
       ? <Image src={cover.img} alt={tr(cover.alt, lang)} widths={[400, 832]} sizes="(min-width: 768px) 416px, 100vw" loading="lazy" />

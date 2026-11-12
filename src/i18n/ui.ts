@@ -17,6 +17,8 @@ export const T = {
   read: ['記事を読む', 'Read articles'],
   newH: ['新着記事', 'Latest articles'],
   all: ['すべての記事', 'All articles'],
+  tabAll: ['すべて', 'All'],
+  artsDesc: ['旅行アフィリエイトの基本から、ジャンルの選び方、AI検索時代の記事の書き方まで。カテゴリーで絞り込めます。', 'From affiliate basics to choosing a niche and writing for AI search. Filter by category.'],
   lvl: [['初級', 'Beginner'], ['中級', 'Intermediate']],
   mins: (n: number, l: Lang) => (l === 'ja' ? `${n}分で読めます` : `${n}min read`),
   stats: [

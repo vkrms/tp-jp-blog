@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import Promo from '../components/Promo.astro';
+import { T, tr, type Lang } from '../i18n/ui';
+import { articles, categories } from '../data/content';
+
+const { lang } = Astro.props as { lang: Lang };
+const list = articles.slice().sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+const title = lang === 'ja' ? 'すべての記事 | 旅アフィリ・ラボ' : 'All articles | Travel affiliate lab';
+---
+<BaseLayout lang={lang} title={title} description={tr(T.artsDesc, lang)} route="/articles/">
+  <Header lang={lang} route="/articles/" current="articles" />
+  <main class="list-page">
+    <div class="wrap">
+      <h1>{tr(T.all, lang)}</h1>
+      <div class="latest">
+        <div>
+          <div class="tabs" role="group" aria-label={tr(T.all, lang)}>
+            <button type="button" data-cat="" aria-pressed="true">{tr(T.tabAll, lang)}</button>
+            {categories.map((c) => <button type="button" data-cat={c.id} aria-pressed="false">{tr(c.t, lang)}</button>)}
+          </div>
+          <div class="grid" id="list">{list.map((a) => <ArticleCard article={a} lang={lang} />)}</div>
+        </div>
+        <Promo lang={lang} />
+      </div>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.tabs button');
+  const cards = document.querySelectorAll<HTMLElement>('#list .card');
+  tabs.forEach((tab) =>
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === tab)));
+      cards.forEach((c) => { c.hidden = !!tab.dataset.cat && c.dataset.cat !== tab.dataset.cat; });
+    }),
+  );
+</script>
