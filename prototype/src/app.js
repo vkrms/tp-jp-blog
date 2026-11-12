@@ -165,6 +165,8 @@ function articles(){
  return '<section class="blk"><div class="wrap"><div class="sech"><small>ARTICLES</small><h2>'+X(T.all)+'</h2></div>'+fl+'<div class="cols"><div class="cards">'+list.map(card).join('')+'</div>'+sideBox()+'</div></div></section>'}
 function blk(b){
  if(b.p)return '<p>'+f(X(b.p))+'</p>';
+ if(b.h3)return '<h3>'+f(X(b.h3))+'</h3>';
+ if(b.img)return '<figure class="artimg"><img src="../content/'+b.img.src+'" alt="'+X(b.img.alt).replace(/"/g,'&quot;')+'" loading="lazy"><figcaption>'+f(X(b.img.caption))+'</figcaption></figure>';
  if(b.steps)return '<ol class="steps">'+b.steps.map(function(s,i){return '<li><span class="sn">STEP<b>'+(i+1)+'</b></span><span>'+f(X(s))+'</span></li>'}).join('')+'</ol>';
  if(b.list)return '<ul class="checks">'+b.list.map(function(s){return '<li><span class="ck">'+ic('check',3)+'</span><span>'+f(X(s))+'</span></li>'}).join('')+'</ul>';
  if(b.table){var t=b.table;return '<div class="tblwrap"><table><thead><tr>'+t.head.map(function(h){return '<th>'+X(h)+'</th>'}).join('')+'</tr></thead><tbody>'+t.rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+f(X(c))+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>'}
