@@ -5,7 +5,18 @@
 /* ---------------------------------------------------------------- shell --- */
 .a-main { padding-block: var(--space-24) var(--space-96); }
 .cols { display: grid; gap: var(--space-40); align-items: start; }
-.post { min-width: 0; }
+.post {
+    min-width: 320px;
+    display: grid;
+    justify-content: center;
+}
+/* Reading measure: 712px. Section wrappers keep the full column width so tables can
+   protrude to 864px, but only when the table cannot fit 712px with its cells wrapped
+   (width: min-content = narrowest wrapped width; min-width keeps it at the measure). */
+.post > * { max-width: 712px; }
+.post > .sec { max-width: none; }
+.post .sec > * { max-width: 712px; }
+.post .sec > .tblwrap { width: min-content; min-width: min(712px, 100%); max-width: min(864px, 100%); }
 
 @media (min-width: 960px) {
   .a-main { padding-block: var(--space-48) var(--space-128); }
@@ -70,8 +81,7 @@
 /* ------------------------------------------------------------- sections --- */
 .post .sec > * + * { margin-top: var(--space-24); }
 
-.post h2 { position: relative; scroll-margin-top: 84px; text-wrap: balance; margin: var(--space-72) 0 var(--space-24); padding: 0 0 var(--space-16); border-bottom: 1px solid var(--color-line); font-size: var(--type-h3-size); font-weight: var(--type-h3-weight); line-height: var(--type-h3-lh); letter-spacing: var(--type-h3-ls); color: var(--color-ink); }
-.post h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 48px; height: 3px; background: var(--color-primary); }
+.post h2 { scroll-margin-top: 84px; text-wrap: balance; margin: var(--space-72) 0 var(--space-24); padding: 0 0 var(--space-16); border-bottom: 1px solid var(--color-line); font-size: var(--type-h3-size); font-weight: var(--type-h3-weight); line-height: var(--type-h3-lh); letter-spacing: var(--type-h3-ls); color: var(--color-ink); }
 .post h3 { text-wrap: balance; font-size: var(--type-title-size); font-weight: var(--type-title-weight); line-height: var(--type-title-lh); letter-spacing: var(--type-title-ls); color: var(--color-ink); }
 
 .post p { color: var(--color-body); }
@@ -181,8 +191,7 @@ mark { background: var(--color-primary-100); color: inherit; font-weight: 700; p
 
 /* ---------------------------------------------------------- update log ---- */
 .srcbox { margin-top: var(--space-32); padding: var(--space-24) var(--space-32); border: 1px solid var(--color-line); border-radius: var(--radius-surface); background: var(--color-surface); }
-.post .srcbox h2.mini { position: static; margin: 0 0 var(--space-8); padding: 0; border: 0; font-size: var(--type-body-size); line-height: var(--type-body-lh); }
-.post .srcbox h2.mini::after { display: none; }
+.post .srcbox h2.mini { margin: 0 0 var(--space-8); padding: 0; border: 0; font-size: var(--type-body-size); line-height: var(--type-body-lh); }
 .logt { width: 100%; min-width: 0; border-collapse: collapse; font-size: var(--type-small-size); }
 .logt td { padding: var(--space-8) var(--space-12) var(--space-8) 0; border-bottom: 1px solid var(--color-line); background: transparent; font-weight: 400; color: var(--color-body); vertical-align: top; }
 .logt tr:last-child td { border-bottom: 0; }
