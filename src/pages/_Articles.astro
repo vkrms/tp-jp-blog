@@ -33,10 +33,18 @@ const title = lang === 'ja' ? 'すべての記事 | 旅アフィリ・ラボ' : 
 <script>
   const tabs = document.querySelectorAll<HTMLButtonElement>('.tabs button');
   const cards = document.querySelectorAll<HTMLElement>('#list .card');
-  tabs.forEach((tab) =>
-    tab.addEventListener('click', () => {
-      tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === tab)));
-      cards.forEach((c) => { c.hidden = !!tab.dataset.cat && c.dataset.cat !== tab.dataset.cat; });
-    }),
-  );
+
+  // Category links (e.g. a breadcrumb to /articles/#basics) arrive as a hash; apply it on load
+  // and on hashchange so the list actually filters instead of silently staying unfiltered.
+  const apply = (cat: string) => {
+    const known = [...tabs].some((t) => (t.dataset.cat ?? '') === cat);
+    const active = known ? cat : '';
+    tabs.forEach((t) => t.setAttribute('aria-pressed', String((t.dataset.cat ?? '') === active)));
+    cards.forEach((c) => { c.hidden = !!active && c.dataset.cat !== active; });
+  };
+  const fromHash = () => decodeURIComponent(location.hash.slice(1));
+
+  tabs.forEach((tab) => tab.addEventListener('click', () => apply(tab.dataset.cat ?? '')));
+  apply(fromHash());
+  window.addEventListener('hashchange', () => apply(fromHash()));
 </script>

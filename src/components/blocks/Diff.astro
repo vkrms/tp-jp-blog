@@ -5,7 +5,8 @@
 import { rich, tr, T, type Lang } from '../../i18n/ui';
 interface Props { diff: [unknown, unknown]; lang: Lang }
 const { diff, lang } = Astro.props;
-const body = (t: unknown) => rich(t, lang).replace(/^[^：:]{1,12}[：:]\s*/, '');
+// Strip only the known labels, not any short "X:" prefix (a real "Note:" must survive).
+const body = (t: unknown) => rich(t, lang).replace(/^(?:更新前|更新後|Before|After)\s*[：:]\s*/, '');
 ---
 <div class="diff">
   <div class="old">

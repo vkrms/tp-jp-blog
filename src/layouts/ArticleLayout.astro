@@ -32,7 +32,11 @@ const related = relatedOf(article);
 const published = publishedAt(article);
 const log = article.update_log ?? [];
 // The in-article CTA sits after the section whose JA heading matches the cta.ts entry.
+// If content rewording breaks that match, fall back to the first section so the CTA never
+// silently disappears (validate.mjs does not guard this).
 const ctaHeading = inPostCta[article.slug]?.heading;
+const ctaFound = ctaHeading ? article.sections.findIndex((s) => tx(s.h, 'ja') === ctaHeading) : -1;
+const ctaAt = ctaHeading ? (ctaFound >= 0 ? ctaFound : 0) : -1;
 ---
 <BaseLayout lang={lang} title={title} description={description} route={route} ogType="article">
   <ArticleJsonLd slot="head" article={article} lang={lang} />
@@ -53,7 +57,7 @@ const ctaHeading = inPostCta[article.slug]?.heading;
             <div class="sec">
               <h2 id={`s${i}`}>{tx(section.h, lang)}</h2>
               {section.b.map((block) => <BlockRenderer block={block} lang={lang} />)}
-              {ctaHeading && tx(section.h, 'ja') === ctaHeading && <InPostCta article={article} lang={lang} />}
+              {i === ctaAt && <InPostCta article={article} lang={lang} />}
             </div>
           ))}
 
