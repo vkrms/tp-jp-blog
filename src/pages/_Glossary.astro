@@ -24,9 +24,11 @@ const jsonLd = {
   inLanguage: lang,
   hasDefinedTerm: terms.map((t) => ({ '@type': 'DefinedTerm', '@id': `${url}#${t.id}`, name: t.name, description: t.def })),
 };
+// Escape `<` so term text cannot break out of the script tag.
+const jsonLdStr = JSON.stringify(jsonLd).replace(/</g, '\\u003c');
 ---
 <BaseLayout lang={lang} title={title} description={tr(T.gloLead, lang)} route="/glossary/">
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLdStr} />
   <Header lang={lang} route="/glossary/" current="glossary" />
   <main class="gl-page">
     <div class="wrap">

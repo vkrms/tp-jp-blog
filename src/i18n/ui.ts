@@ -96,9 +96,15 @@ export const dateLong = (iso: string, l: Lang) => {
   return l === 'ja' ? `${y}年${m}月${d}日` : `${d} ${MONTHS[m - 1]} ${y}`;
 };
 
-/** Trim a description to a meta-description budget on a word boundary. */
-export const clip = (s: string, max: number) =>
-  s.length <= max ? s : s.slice(0, max - 1).replace(/[\s、。]…?$/, '') + '…';
+/** Trim a description to a meta-description budget on a word boundary.
+ *  Japanese has no spaces, so it falls back to a hard cut when no boundary is found. */
+export const clip = (s: string, max: number) => {
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max - 1);
+  const boundary = Math.max(cut.lastIndexOf(' '), cut.lastIndexOf('、'), cut.lastIndexOf('。'));
+  const head = boundary > max * 0.5 ? cut.slice(0, boundary) : cut;
+  return head.trimEnd().replace(/[、。]$/, '') + '…';
+};
 
 export const base = (l: Lang) => (l === 'ja' ? '/' : '/en/');
 export const path = (l: Lang, p: string) => (l === 'ja' ? p : '/en' + p);

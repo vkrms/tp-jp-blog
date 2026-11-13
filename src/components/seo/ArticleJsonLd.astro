@@ -56,5 +56,7 @@ if (article.faq.length) {
 }
 
 const json = { '@context': 'https://schema.org', '@graph': graph };
+// Escape `<` so LLM-written text containing `</script>` cannot break out of the tag.
+const jsonLd = JSON.stringify(json).replace(/</g, '\\u003c');
 ---
-<script type="application/ld+json" set:html={JSON.stringify(json)} />
+<script type="application/ld+json" set:html={jsonLd} />
