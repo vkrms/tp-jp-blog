@@ -5,7 +5,8 @@ import { T, tr, path, type Lang } from '../i18n/ui';
 import tpMark from '../assets/brand/tp-mark.svg?raw';
 interface Props { lang: Lang; route: string; current?: 'home' | 'articles' | 'glossary' | 'about' }
 const { lang, route, current = 'home' } = Astro.props;
-const items = [['home', '/'], ['articles', '/articles/'], ['glossary', '/glossary/'], ['about', '/about/']] as const;
+// The `/about/` item is added back once that page exists.
+const items = [['home', '/'], ['articles', '/articles/'], ['glossary', '/glossary/']] as const;
 const other: Lang = lang === 'ja' ? 'en' : 'ja';
 ---
 <div class="news" id="news-bar">

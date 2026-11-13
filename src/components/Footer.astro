@@ -1,7 +1,8 @@
 ---
 import { T, tr, path, type Lang } from '../i18n/ui';
 const { lang } = Astro.props as { lang: Lang };
-const items = [['home', '/'], ['articles', '/articles/'], ['glossary', '/glossary/'], ['about', '/about/']] as const;
+// The `/about/` item is added back once that page exists (see Header.astro).
+const items = [['home', '/'], ['articles', '/articles/'], ['glossary', '/glossary/']] as const;
 ---
 <footer class="site-footer">
   <div class="wrap">
