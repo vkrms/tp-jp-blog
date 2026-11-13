@@ -1,12 +1,16 @@
 ---
-import { T, tr, path, MAIN_SITE_JP, type Lang } from '../i18n/ui';
+import { T, tr, path, ABOUT_URL, MAIN_SITE_JP, type Lang } from '../i18n/ui';
 const { lang } = Astro.props as { lang: Lang };
-// The `/about/` item is added back once that page exists (see Header.astro).
-const items = [['home', '/'], ['articles', '/articles/'], ['glossary', '/glossary/']] as const;
+const items = [
+  ['home', path(lang, '/')],
+  ['articles', path(lang, '/articles/')],
+  ['glossary', path(lang, '/glossary/')],
+  ['about', ABOUT_URL],
+] as const;
 ---
 <footer class="site-footer">
   <div class="wrap">
-    <nav aria-label="Footer">{items.map(([id, href]) => <a href={path(lang, href)}>{tr(T.nav[id], lang)}</a>)}</nav>
+    <nav aria-label="Footer">{items.map(([id, href]) => <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener' : undefined}>{tr(T.nav[id], lang)}</a>)}</nav>
     <p class="disclosure">{tr(T.disclosurePre, lang)}<a href={MAIN_SITE_JP} target="_blank" rel="noopener">travelpayouts.com</a>{tr(T.disclosurePost, lang)}</p>
     <p>© Travelpayouts, 2011–2026</p>
   </div>

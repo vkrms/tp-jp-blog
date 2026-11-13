@@ -5,6 +5,8 @@ type P = readonly [string, string];
 export const KEY = 'https://landings.travelpayouts.com/?tp_place=landing_jp-seo-blog';
 /** Travelpayouts main site, Japanese edition (linked from the footer disclosure). */
 export const MAIN_SITE_JP = 'https://travelpayouts.com/jp/';
+/** Travelpayouts JP landing page, linked from the "About" nav item. */
+export const ABOUT_URL = 'https://landings.travelpayouts.com/jp/';
 
 export const T = {
   siteName: '旅アフィリ・ラボ',

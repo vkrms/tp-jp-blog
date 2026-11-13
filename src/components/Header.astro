@@ -1,12 +1,16 @@
 ---
-import { T, tr, path, type Lang } from '../i18n/ui';
+import { T, tr, path, ABOUT_URL, type Lang } from '../i18n/ui';
 // Icon-only Travelpayouts mark (wordmark stripped from the brand SVG), inlined to avoid a
 // render-blocking request in the sticky header.
 import tpMark from '../assets/brand/tp-mark.svg?raw';
 interface Props { lang: Lang; route: string; current?: 'home' | 'articles' | 'glossary' | 'about' }
 const { lang, route, current = 'home' } = Astro.props;
-// The `/about/` item is added back once that page exists.
-const items = [['home', '/'], ['articles', '/articles/'], ['glossary', '/glossary/']] as const;
+const items = [
+  ['home', path(lang, '/')],
+  ['articles', path(lang, '/articles/')],
+  ['glossary', path(lang, '/glossary/')],
+  ['about', ABOUT_URL],
+] as const;
 const other: Lang = lang === 'ja' ? 'en' : 'ja';
 ---
 <div class="news" id="news-bar">
@@ -44,7 +48,12 @@ const other: Lang = lang === 'ja' ? 'en' : 'ja';
     </a>
     <nav aria-label="Main">
       {items.map(([id, href]) => (
-        <a href={path(lang, href)} aria-current={current === id ? 'page' : undefined}>{tr(T.nav[id], lang)}</a>
+        <a
+          href={href}
+          aria-current={current === id ? 'page' : undefined}
+          target={href.startsWith('http') ? '_blank' : undefined}
+          rel={href.startsWith('http') ? 'noopener' : undefined}
+        >{tr(T.nav[id], lang)}</a>
       ))}
     </nav>
     <a class="lang" href={path(other, route)} hreflang={other} lang={other}>{tr(T.switchTo, lang)}</a>
