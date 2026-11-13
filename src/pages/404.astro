@@ -1,0 +1,56 @@
+---
+// 404 page. Built as /404.html; the host serves it via `ErrorDocument 404 /404.html`
+// (see public/.htaccess). Always noindex, regardless of the INDEXING flag.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { path } from '../i18n/ui';
+
+const title = 'ページが見つかりません | 旅アフィリ・ラボ';
+const description = 'お探しのページは見つかりませんでした。';
+---
+<BaseLayout lang="ja" title={title} description={description} route="/404/" noindex>
+  <Header lang="ja" route="/404/" />
+  <main class="nf">
+    <div class="wrap">
+      <div class="nf-panel">
+        <p class="nf-code t-numeral" aria-hidden="true">404</p>
+        <h1 class="nf-h">ページが見つかりません</h1>
+        <p class="nf-p">お探しのページは、URL が変わったか、削除された可能性があります。</p>
+        <p class="nf-p nf-en" lang="en">The page you are looking for could not be found.</p>
+        <div class="nf-actions">
+          <a class="btn btn-primary" href={path('ja', '/')}>ホームへ戻る</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer lang="ja" />
+</BaseLayout>
+
+<style>
+  .nf { background: var(--color-surface-muted); padding-block: var(--space-32) var(--space-64); }
+  @media (min-width: 768px) { .nf { padding-block: var(--space-96) var(--space-128); } }
+
+  .nf-panel {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-16);
+    max-width: 760px;
+    margin-inline: auto;
+    padding: var(--space-32) var(--space-24);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-panel);
+    text-align: center;
+  }
+  @media (min-width: 768px) { .nf-panel { padding: var(--space-56) var(--space-48); } }
+
+  .nf-code { margin: 0; color: var(--color-primary); letter-spacing: -0.04em; line-height: 1; }
+  .nf-h { font-size: var(--type-h2-mobile-size); line-height: 1.5; letter-spacing: 0.02em; color: var(--color-ink); }
+  @media (min-width: 768px) { .nf-h { font-size: var(--type-h2-desktop-size); } }
+
+  .nf-p { max-width: 46ch; margin: 0; font-size: var(--type-body-size); line-height: 1.8; color: var(--color-secondary); }
+  .nf-en { font-size: var(--type-small-size); color: var(--color-muted); }
+
+  .nf-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-12); margin-top: var(--space-8); }
+</style>

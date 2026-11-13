@@ -3,8 +3,8 @@ import '../styles/tokens.css';
 import '../styles/global.css';
 import type { Lang } from '../i18n/ui';
 import { path } from '../i18n/ui';
-interface Props { lang: Lang; title: string; description: string; route: string; ogType?: 'website' | 'article' }
-const { lang, title, description, route, ogType = 'website' } = Astro.props;
+interface Props { lang: Lang; title: string; description: string; route: string; ogType?: 'website' | 'article'; noindex?: boolean }
+const { lang, title, description, route, ogType = 'website', noindex = false } = Astro.props;
 const site = Astro.site!;
 const url = (l: Lang) => new URL(path(l, route), site).href;
 const indexing = process.env.INDEXING === 'true';
@@ -16,7 +16,7 @@ const indexing = process.env.INDEXING === 'true';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {!indexing && <meta name="robots" content="noindex, nofollow" />}
+    {(noindex || !indexing) && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={url(lang)} />
     <link rel="alternate" hreflang="ja" href={url('ja')} />
     <link rel="alternate" hreflang="en" href={url('en')} />
