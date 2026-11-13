@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:preview": "SITE_URL=https://jp-blog.travelpayouts.com astro build",
+    "build:prod": "SITE_URL=https://jp-blog.travelpayouts.com INDEXING=true astro build",
     "preview": "astro preview",
     "check": "node tools/validate.mjs && astro check && astro build",
     "beautify": "node tools/beautify-html.mjs",
