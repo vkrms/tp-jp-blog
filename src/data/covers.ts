@@ -15,6 +15,17 @@ import niche from '../assets/home/pick-niche-featured.webp';
 import blogIncome from '../assets/home/travel-blog-income-featured.webp';
 import clickReward from '../assets/home/click-reward-featured.webp';
 
+// Downscaled card renditions emitted next to the 1424px covers (convert.mjs). Keyed by slug so the
+// registry does not need a second manual entry per article; falls back to the full cover when absent.
+const cardFiles = import.meta.glob<ImageMetadata>('../assets/home/*-card.webp', {
+  eager: true,
+  import: 'default',
+});
+const cardBySlug = new Map(
+  Object.entries(cardFiles).map(([key, img]) => [key.slice(key.lastIndexOf('/') + 1).replace(/-card\.webp$/, ''), img]),
+);
+export const coverCard = (slug: string) => cardBySlug.get(slug);
+
 export const covers: Record<string, { img: ImageMetadata; alt: [string, string] }> = {
   // from the design
   'sales-calendar': { img: sales, alt: ['雪の集落でスマホを見る旅行者と Travelpayouts の吹き出し', 'A smiling traveller in earmuffs checking her phone in a snowy village of thatched houses, beside a Travelpayouts speech bubble'] },

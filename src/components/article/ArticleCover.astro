@@ -16,8 +16,8 @@ const cover = covers[article.slug];
     ? <Image
         src={cover.img}
         alt={tr(cover.alt, lang)}
-        widths={[640, 832, 1248]}
-        sizes="(min-width: 960px) 800px, 100vw"
+        widths={[400, 712, 1424]}
+        sizes="(min-width: 768px) 712px, 100vw"
         loading={eager ? 'eager' : 'lazy'}
         fetchpriority={eager ? 'high' : 'auto'}
       />

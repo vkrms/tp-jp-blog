@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { T, tr, tx, path, type Lang } from '../i18n/ui';
 import { category, type Article } from '../data/content';
-import { covers } from '../data/covers';
+import { covers, coverCard } from '../data/covers';
 interface Props { article: Article; lang: Lang; eager?: boolean }
 const { article, lang } = Astro.props;
 const cat = category(article.category);
@@ -11,7 +11,7 @@ const cover = covers[article.slug];
 <a class="card" href={path(lang, `/articles/${article.slug}/`)} data-cat={article.category} style={cat ? `--cat:${cat.c}` : undefined}>
   <div class="card-img">
     {cover
-      ? <Image src={cover.img} alt={tr(cover.alt, lang)} widths={[400, 832]} sizes="(min-width: 768px) 416px, 100vw" loading="lazy" />
+      ? <Image src={coverCard(article.slug) ?? cover.img} alt={tr(cover.alt, lang)} widths={[416, 832]} sizes="(min-width: 768px) 416px, 100vw" loading="lazy" />
       : <span class="card-gen" aria-hidden="true">{tx(article.eyebrow, lang)}</span>}
     {cat && <span class="card-cat">{tr(cat.t, lang)}</span>}
   </div>
