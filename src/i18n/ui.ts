@@ -3,6 +3,8 @@ export type Lang = 'ja' | 'en';
 type P = readonly [string, string];
 
 export const KEY = 'https://landings.travelpayouts.com/?tp_place=landing_jp-seo-blog';
+/** Travelpayouts main site, Japanese edition (linked from the footer disclosure). */
+export const MAIN_SITE_JP = 'https://travelpayouts.com/jp/';
 
 export const T = {
   siteName: '旅アフィリ・ラボ',
@@ -46,6 +48,9 @@ export const T = {
   promoP: ['Travelpayouts では、複数の旅行ブランドのプログラムをひとつのプラットフォームで利用できます。登録は無料です。', 'On Travelpayouts you can use programs from several travel brands on one platform. Registration is free.'],
   join: ['Travelpayouts に参加する', 'Join Travelpayouts'],
   stbar: ['旅行ブログの収益化は、無料の登録から。', 'Start monetising your travel blog with a free sign-up.'],
+  // Footer disclosure. The link text is rendered between these two halves.
+  disclosurePre: ['AIの支援を受けて作成しています。本サイトはTravelpayoutsのメインサイトではありません。サービスの詳細は', 'Created with AI assistance. This site is not Travelpayouts’ main website. For service details, see '],
+  disclosurePost: ['をご覧ください。', '.'],
 
   // article template
   upd: ['更新日', 'Updated'],
