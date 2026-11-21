@@ -1,0 +1,34 @@
+# Paths rsync must never copy to the webroot (patterns are relative to dist/).
+# Passed to rsync via --exclude-from in tools/deploy.sh.
+#
+# Note: excluded paths are also protected from --delete, i.e. if one of these
+# exists on the server it is left alone instead of being removed.
+
+# OS / editor noise
+.DS_Store
+._*
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Secrets and local config that must never be public
+.env
+.env.*
+*.pem
+*.key
+
+# Build and tooling leftovers
+node_modules/
+.git/
+.gitignore
+temp/
+out/
+*.log
+*.map
+*.original.html
+*.bak
+
+# Heavy sources that are not served (featured-image PNG sources, etc.)
+*.psd
+*.ai
