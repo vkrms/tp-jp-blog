@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    // Site rebuild trigger (docs/spec.md §11.2): repository_dispatch on the repo that builds astro/.
+    'github' => [
+        'dispatch_token' => env('GITHUB_DISPATCH_TOKEN') ?: null,
+        'repo' => env('GITHUB_REPO') ?: null, // owner/name
+        'event_type' => 'content-updated',
+    ],
+
 ];
