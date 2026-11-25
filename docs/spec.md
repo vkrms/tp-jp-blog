@@ -114,7 +114,7 @@ GitHub repo (один, монорепозиторий; контент после
 
 **`fact_article`** — связь «факт используется в статье»: `fact_id`, `article_id`. Заполняется оркестратором при публикации автоматически (по плейсхолдерам в тексте), а не вручную.
 
-**`articles`** — «карточка» статьи: `id`, `slug` (уникальный), `category_id`, `level`, `read_minutes`, `keyword`, `icon`, `status` (draft | pending_review | published | archived), `current_version_id`, `published_at`, `updated_at`.
+**`articles`** — «карточка» статьи: `id`, `slug` (уникальный), `category_id`, `level`, `read_minutes`, `keyword`, `icon`, `status` (draft | pending_review | published | archived), `current_version_id`, `published_at`, `content_updated_at` (публичная дата обновления статьи, `dateModified`; отдельно от служебного `updated_at` строки, который меняется при любой правке, включая смену статуса).
 
 **`article_versions`** — неизменяемые версии содержимого: `id`, `article_id`, `version` (1, 2, …), `content` (JSON: title, eyebrow, answer_first, sections, faq, matome, related — все двуязычные), `source_ids` (JSON), `author` (seed | writer | updater | admin), `run_id`, `change_summary`, `created_at`. Откат = переключение `current_version_id` на предыдущую версию.
 
@@ -314,7 +314,7 @@ GitHub repo (один, монорепозиторий; контент после
 
 Данные отдаёт бэкенд, Astro забирает их **один раз на этапе `astro build`**, в рантайме фронтенда никаких запросов к API нет (сайт статический). Эндпоинты read-only, отдают только `status = published` (черновики и `pending_review` в экспорт не попадают):
 
-- `GET /api/export/articles?locale=ja|en` — список статей с полным содержимым текущей версии (включая уже подставленные значения фактов вместо плейсхолдеров `{{fact:...}}`), `updated_at`, `category`, `related`.
+- `GET /api/export/articles` — список статей с полным содержимым текущей версии, обе локали сразу (включая уже подставленные значения фактов вместо плейсхолдеров `{{fact:...}}`, когда они появятся). Формат — тот же, что у элемента `content/articles.json` в стадии 1, поэтому компоненты Astro не меняются. Не экспортируются поля, которых нет на сайте: `sources`, `review_status`, `update_log[].internal_note`.
 - `GET /api/export/categories`, `GET /api/export/glossary` — вспомогательные справочники.
 - `GET /api/export/meta` — служебное: время последней публикации/правки (для принятия решения «нужна ли пересборка», опционально, см. §11.2).
 
@@ -371,14 +371,14 @@ GitHub repo (один, монорепозиторий; контент после
 
 ## 10. Миграция данных
 
-Одноразовая команда `php artisan content:import` из `content/`:
+Одноразовая команда `php artisan content:import` из `content/` (реализована; повторный запуск без `--fresh` отказывает, `--fresh` очищает таблицы контента и импортирует заново; всё в одной транзакции):
 - `categories.json` → `categories`; `sources.json` → `sources`; `glossary.json` → `glossary_terms`; `queue.json` → `topic_queue`;
-- `articles.json` → `articles`, `article_versions` (v1, `author = seed`), `article_update_log`; пары `[ja, en]` преобразуются в `{ja, en}`;
-- `facts.yaml` → `facts` (требуется ручная подготовка значений в виде фрагментов ja/en) и построение `fact_article`;
+- `articles.json` → `articles`, `article_versions` (v1, `author = seed`), `article_update_log`; содержимое статьи копируется **как есть** (тексты `[ja, en]` и `{ja, en}`, блоки `sections[].b[]`). Нормализация к `{ja, en}` — отдельный шаг позже, вместе с плейсхолдерами фактов; Astro поддерживает обе формы. Справочники (категории, глоссарий, источники) приводятся к `{ja, en}` сразу;
+- `facts.yaml` → `facts` и построение `fact_article` из `used_in`. Текущие значения — русские рабочие заметки, поэтому они кладутся в `internal_note`, а `value` (фрагменты ja/en) остаётся пустым до миграции на плейсхолдеры (§3.2). Источник факта, которого нет в `sources.json`, создаётся минимальной записью с предупреждением (`internal:`-URL → тип `internal`, `fetch_allowed = false`);
 - 12 статей уже опубликованы в стадии 1 → импортируются со `status = published`; поле `review_status` не переносится;
 - после импорта запускается `content:validate`; ожидаемый результат — 12 статей, 0 ошибок.
 
-`policy.yaml` и `rules.json` остаются в репозитории и читаются как конфигурация (YAML требует `symfony/yaml`, уже входит в Laravel).
+`policy.yaml` при импорте **заполняет таблицу `settings`**; после импорта источник правды — БД (правится в админке), файл больше не читается. `rules.json` остаётся в репозитории и читается как конфигурация валидатора (меняется только через деплой, §5). YAML читается через `symfony/yaml`.
 
 ---
 

@@ -18,7 +18,7 @@ Decided 2026-11-25:
 - §8.3: design source is `docs/design.md`, not `prototype/head.html`.
 - §12: phases 0–6 clash with "stage 1/2" naming; phase 2 (Astro) already done; phases 3 and 5 mention scheduled rebuilds, contradicting the event-only trigger in §11.2.
 - §13: numbering skips 5; header version/date stale.
-- `policy.yaml` vs `settings` table: define one source of truth (suggest: yaml seeds DB on import, DB wins).
+- ~~`policy.yaml` vs `settings`~~ — decided: yaml seeds `settings` on import, DB wins (spec §10).
 - Fact placeholders `{{fact:id}}` (§3.2): when to migrate the 12 articles.
 - Writer inputs: Asya's keyword sheet (mentioned in `agents/writer.md`) — in or out?
 
@@ -26,3 +26,7 @@ Decided 2026-11-25:
 - Rewrite README as a short entry point pointing to `spec.md`.
 - Delete `.github/workflows/{write,update,validate}.yml` (Claude Code / PR-based concept, superseded).
 - Note in `spec-stage1.md` the fallbacks actually taken: single `content/articles.json`, local `tools/deploy.sh` instead of `deploy.yml`.
+
+## Implementation progress (spec §12 phases)
+- Phase 1, done: DB schema (§3.1), `php artisan content:import` (§10), export API `/api/export/*` with bearer token (§8.1), tests. Astro builds from the API when `CONTENT_API_URL` / `CONTENT_API_TOKEN` are set; output verified byte-identical to the file build.
+- Phase 1, remaining: PHP validator `content:validate` (§6), port of `tools/validate.mjs`.
