@@ -2,12 +2,15 @@
 import '../styles/tokens.css';
 import '../styles/global.css';
 import type { Lang } from '../i18n/ui';
-import { path } from '../i18n/ui';
-interface Props { lang: Lang; title: string; description: string; route: string; ogType?: 'website' | 'article'; noindex?: boolean; hreflang?: boolean }
-const { lang, title, description, route, ogType = 'website', noindex = false, hreflang = true } = Astro.props;
+import { path, isIndexedLang } from '../i18n/ui';
+interface Props { lang: Lang; title: string; description: string; route: string; ogType?: 'website' | 'article'; noindex?: boolean }
+const { lang, title, description, route, ogType = 'website', noindex = false } = Astro.props;
 const site = Astro.site!;
 const url = (l: Lang) => new URL(path(l, route), site).href;
 const indexing = process.env.INDEXING === 'true';
+// EN is an editorial copy, closed from search (machine translation in the index is a scaled-content risk):
+// always noindex, and no hreflang pairs pointing at it (README §9, agents/seo-ja.md §7).
+const closed = noindex || !indexing || !isIndexedLang(lang);
 ---
 <!doctype html>
 <html lang={lang}>
@@ -16,15 +19,8 @@ const indexing = process.env.INDEXING === 'true';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {(noindex || !indexing) && <meta name="robots" content="noindex, nofollow" />}
+    {closed && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={url(lang)} />
-    {hreflang && (
-      <>
-        <link rel="alternate" hreflang="ja" href={url('ja')} />
-        <link rel="alternate" hreflang="en" href={url('en')} />
-        <link rel="alternate" hreflang="x-default" href={url('ja')} />
-      </>
-    )}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

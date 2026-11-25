@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { T, tr, tx, path, type Lang } from '../i18n/ui';
+import { T, tr, tx, plain, path, type Lang } from '../i18n/ui';
 import { category, type Article } from '../data/content';
 import { covers, coverCard } from '../data/covers';
 interface Props { article: Article; lang: Lang; eager?: boolean }
@@ -18,6 +18,6 @@ const cover = covers[article.slug];
   <div class="card-body">
     <div class="card-meta"><span class="lvl">{tr(T.lvl[article.level], lang)}</span><span>{T.mins(article.read_minutes, lang)}</span></div>
     <h3>{tx(article.title, lang)}</h3>
-    <p>{tx(article.answer_first, lang).replace(/\*\*/g, '')}</p>
+    <p>{plain(article.answer_first, lang)}</p>
   </div>
 </a>

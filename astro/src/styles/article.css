@@ -228,3 +228,7 @@ mark { background: var(--color-primary-100); color: inherit; font-weight: 700; p
 @media (prefers-reduced-motion: reduce) {
   .qa, .qa .pm, .qa .pm::after { transition: none; }
 }
+
+/* Editorial source links inside article text (agents/seo-ja.md §6) */
+.src-link { color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px; }
+.src-link:hover { color: var(--color-primary-hover); }

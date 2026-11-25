@@ -81,15 +81,28 @@ export const tr = (p: P | readonly [string, string], l: Lang) => p[l === 'ja' ? 
 export const tx = (t: unknown, l: Lang): string =>
   Array.isArray(t) ? String(t[l === 'ja' ? 0 : 1] ?? '') : String((t as Record<string, string>)?.[l] ?? '');
 
-/** Content text as plain text: strips the **bold** markers used in the JSON. */
-export const plain = (t: unknown, l: Lang) => tx(t, l).replace(/\*\*/g, '');
+/** Inline source link in content text: [anchor](https://…) (agents/seo-ja.md §6). No spaces, quotes or <> in the URL. */
+const LINK = /\[([^\]]+)\]\(([^)\s"<>]+)\)/g;
 
-/** Content text as HTML: escapes markup and turns **bold** into <mark> (the article highlight). */
+/** Content text as plain text: strips **bold** markers and turns [anchor](url) links into their anchor. */
+export const plain = (t: unknown, l: Lang) => tx(t, l).replace(LINK, '$1').replace(/\*\*/g, '');
+
+/** Languages open to search engines. EN stays an editorial copy, closed from the index (README §9). */
+export const INDEXED_LANGS: readonly Lang[] = ['ja'];
+export const isIndexedLang = (l: Lang) => INDEXED_LANGS.includes(l);
+
+/**
+ * Content text as HTML: escapes markup, turns **bold** into <mark> (the article highlight) and
+ * [anchor](https://…) into an editorial source link. Only https links become <a>; anything else is
+ * left as its anchor text (the validator rejects it anyway).
+ */
 export const rich = (t: unknown, l: Lang) =>
   tx(t, l)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
+    .replace(LINK, (_, anchor: string, url: string) =>
+      /^https:\/\//.test(url) ? `<a class="src-link" href="${url}" target="_blank" rel="noopener">${anchor}</a>` : anchor)
     .replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>');
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

@@ -27,7 +27,8 @@ const { article, lang } = Astro.props;
 
 const route = `/articles/${article.slug}/`;
 const title = `${tx(article.title, lang)} | ${T.siteName}`;
-const description = clip(plain(article.answer_first, lang), lang === 'ja' ? 120 : 155);
+// JA: 80–100 chars, the point in the first 50 (agents/seo-ja.md §3). EN is not indexed.
+const description = clip(plain(article.answer_first, lang), lang === 'ja' ? 100 : 155);
 const related = relatedOf(article);
 const published = publishedAt(article);
 const log = article.update_log ?? [];

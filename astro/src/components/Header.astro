@@ -1,5 +1,5 @@
 ---
-import { T, tr, path, ABOUT_URL, type Lang } from '../i18n/ui';
+import { T, tr, path, ABOUT_URL, isIndexedLang, type Lang } from '../i18n/ui';
 // Icon-only Travelpayouts mark (wordmark stripped from the brand SVG), inlined to avoid a
 // render-blocking request in the sticky header.
 import tpMark from '../assets/brand/tp-mark.svg?raw';
@@ -56,6 +56,6 @@ const other: Lang = lang === 'ja' ? 'en' : 'ja';
         >{tr(T.nav[id], lang)}</a>
       ))}
     </nav>
-    <a class="lang" href={path(other, route)} hreflang={other} lang={other}>{tr(T.switchTo, lang)}</a>
+    <a class="lang" href={path(other, route)} hreflang={other} lang={other} rel={isIndexedLang(other) ? undefined : 'nofollow'}>{tr(T.switchTo, lang)}</a>
   </div>
 </header>
