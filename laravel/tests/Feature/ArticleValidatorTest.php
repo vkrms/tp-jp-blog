@@ -20,8 +20,7 @@ class ArticleValidatorTest extends TestCase
     {
         parent::setUp();
         $this->artisan('content:import')->assertSuccessful();
-        $rules = json_decode(file_get_contents(config('content.path').'/rules.json'), true);
-        $this->validator = new ArticleValidator($rules, Source::pluck('id')->all(), Article::pluck('slug')->all());
+        $this->validator = ArticleValidator::fromDatabase();
     }
 
     private function article(string $slug = 'what-is-affiliate'): array
@@ -51,7 +50,8 @@ class ArticleValidatorTest extends TestCase
 
     public function test_imported_content_is_clean_like_validate_mjs(): void
     {
-        $this->artisan('content:validate')->expectsOutput('Статей: 12. Ошибок: 0. Предупреждений: 0')->assertSuccessful();
+        // Same result as tools/validate.mjs: no errors; warnings (missing source links, long titles) until content is fixed.
+        $this->artisan('content:validate')->expectsOutputToContain('Ошибок: 0.')->assertSuccessful();
     }
 
     public function test_command_fails_on_errors(): void
@@ -138,5 +138,50 @@ class ArticleValidatorTest extends TestCase
         $result = $this->validator->validate($a);
         $this->assertSame([], $result['errors']);
         $this->assertStringContainsString('FAQ: 1', $result['warnings'][0]);
+    }
+
+    private function warningsLike(string $needle, array $a): array
+    {
+        return array_values(array_filter($this->validator->validate($a)['warnings'], fn ($w) => str_contains($w, $needle)));
+    }
+
+    public function test_source_links_must_be_https_on_registered_hosts_with_real_anchors(): void
+    {
+        $this->assertErrorLike('адрес не https', $this->withPhrase($this->article(), '[JAO](http://www.japan-affiliate.org/news/survey2025/)'));
+        $this->assertErrorLike('нет в реестре источников', $this->withPhrase($this->article(), '[調査](https://evil.example.com/page)'));
+        $this->assertErrorLike('анкор «こちら» запрещён', $this->withPhrase($this->article(), '[こちら](https://www.japan-affiliate.org/news/survey2025/)'));
+        $this->assertNotEmpty($this->warningsLike('ведёт на главную',
+            $this->withPhrase($this->article(), '[JAO](https://www.japan-affiliate.org/)')));
+    }
+
+    public function test_linking_a_source_clears_its_warning(): void
+    {
+        $a = $this->article(); // what-is-affiliate: sources yano, jaoabout, moshimo, moshimohelp
+        $this->assertNotEmpty($this->warningsLike('«yano»', $a));
+
+        $yano = Source::find('yano')->url;
+        $linked = $this->withPhrase($a, "[矢野経済研究所の調査]({$yano})によると");
+        $this->assertSame([], $this->warningsLike('«yano»', $linked));
+        $this->assertSame([], $this->errors($linked));
+    }
+
+    public function test_enforced_source_links_become_errors(): void
+    {
+        $rules = json_decode(file_get_contents(config('content.path').'/rules.json'), true);
+        $rules['source_links']['enforce'] = true;
+        $strict = new ArticleValidator($rules, Source::pluck('url', 'id')->all(), Article::pluck('keyword', 'slug')->all());
+
+        $this->assertNotEmpty(array_filter($strict->validate($this->article())['errors'], fn ($e) => str_contains($e, 'не привязан ссылкой')));
+    }
+
+    public function test_seo_warnings(): void
+    {
+        $a = $this->article();
+        $a['title'] = [str_repeat('あ', 33), 'Long title'];
+        $a['related'] = [];
+        $a['keyword'] = Article::where('slug', 'earn-or-not')->value('keyword');
+        $this->assertNotEmpty($this->warningsLike('title 33 знаков', $a));
+        $this->assertNotEmpty($this->warningsLike('related: 0', $a));
+        $this->assertNotEmpty($this->warningsLike('уже у статьи earn-or-not', $a));
     }
 }

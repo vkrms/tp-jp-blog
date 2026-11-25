@@ -50,7 +50,7 @@ class ArticlePublisherTest extends TestCase
         $article->refresh();
         $this->assertSame(2, $version->version);
         $this->assertSame($version->id, $article->current_version_id);
-        $this->assertSame(now()->toDateString(), $article->content_updated_at->toDateString());
+        $this->assertSame('2026-11-09', $article->content_updated_at->toDateString(), 'no public note: date unchanged');
         $this->assertSame(1, $this->dispatches());
         Http::assertSent(fn (Request $r) => $r->url() === 'https://api.github.com/repos/owner/repo/dispatches'
             && $r['event_type'] === 'content-updated' && $r->hasHeader('Authorization', 'Bearer gh-token'));
@@ -66,6 +66,7 @@ class ArticlePublisherTest extends TestCase
             'admin', null, ['ja' => '表現を修正', 'en' => 'Wording fixed']);
 
         $this->assertSame($before + 1, $article->updateLog()->count());
+        $this->assertSame(now()->toDateString(), $article->refresh()->content_updated_at->toDateString(), 'substantive: date moves');
         $this->assertSame('表現を修正', $article->updateLog()->get()->last()->public['ja']);
     }
 

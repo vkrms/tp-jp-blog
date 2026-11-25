@@ -26,7 +26,8 @@ class ArticlePublisher
      * Store a new version and make it current. Validated first; invalid content is not saved.
      *
      * @param  array  $content  title, eyebrow, answer_first, sections, faq, matome, related
-     * @param  array{ja: string, en: string}|null  $publicNote  adds a public 更新履歴 line when given
+     * @param  array{ja: string, en: string}|null  $publicNote  a substantive change: adds a public 更新履歴 line
+     *                                                    and moves the public update date to today
      */
     public function saveVersion(Article $article, array $content, array $sourceIds, string $author,
         ?string $summary = null, ?array $publicNote = null, ?array $internalNote = null, ?int $runId = null): ArticleVersion
@@ -37,9 +38,10 @@ class ArticlePublisher
 
         $today = now()->toDateString();
         $payload = ArticlePayload::full($article);
-        $payload = [...$payload, ...$content, 'sources' => array_values($sourceIds), 'updated_at' => $today];
+        $payload = [...$payload, ...$content, 'sources' => array_values($sourceIds)];
         if ($publicNote) {
             $payload['update_log'][] = ['date' => $today, 'public' => $publicNote];
+            $payload['updated_at'] = $today;
         }
         $this->assertValid($payload);
 
@@ -53,7 +55,10 @@ class ArticlePublisher
                 'run_id' => $runId,
                 'change_summary' => $summary,
             ]);
-            $article->update(['current_version_id' => $version->id, 'content_updated_at' => $today]);
+            // The public update date moves only with a substantive change, i.e. one that gets a public
+            // 更新履歴 line; cosmetic fixes keep the date (agents/seo-ja.md §2: no date "freshening").
+            $article->update(['current_version_id' => $version->id]
+                + ($publicNote ? ['content_updated_at' => $today] : []));
             if ($publicNote) {
                 ArticleUpdateLog::create([
                     'article_id' => $article->id,
@@ -131,11 +136,7 @@ class ArticlePublisher
 
     public function validator(): ArticleValidator
     {
-        return new ArticleValidator(
-            (new ContentFiles(config('content.path')))->json('rules.json'),
-            Source::pluck('id')->all(),
-            Article::pluck('slug')->all(),
-        );
+        return ArticleValidator::fromDatabase();
     }
 
     private function rebuildIfLive(Article $article, string $reason): void

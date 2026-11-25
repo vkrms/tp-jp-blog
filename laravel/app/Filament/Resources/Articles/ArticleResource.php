@@ -82,7 +82,7 @@ class ArticleResource extends Resource
                     TextInput::make('change_summary')->label('Что изменено (для истории версий)'),
                     Grid::make(2)->schema([
                         TextInput::make('public_note_ja')->label('Запись в 更新履歴 (ja)')
-                            ->helperText('Необязательно. Если заполнено, на сайте появится строка истории обновлений.'),
+                            ->helperText('Только для содержательной правки (число, факт, новая информация): на сайте появится строка истории и сменится дата обновления. Опечатки и косметика — без записи, дата не меняется.'),
                         TextInput::make('public_note_en')->label('Запись в 更新履歴 (en)')
                             ->requiredWith('public_note_ja'),
                     ]),

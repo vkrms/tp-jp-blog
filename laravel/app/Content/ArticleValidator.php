@@ -2,6 +2,10 @@
 
 namespace App\Content;
 
+use App\Models\Article;
+use App\Models\Source;
+use App\Support\ContentFiles;
+
 /**
  * Content validator (docs/spec.md §6). Port of tools/validate.mjs plus structural checks.
  * Works on the stage-1 article array (ArticlePayload::full), so the same rules apply to
@@ -17,16 +21,45 @@ class ArticleValidator
     private const SERVICE_TEXT_BODY = '/試作版|ネイティブチェック|下書き|公開前に、?(確認します|一次|照合)/u';
     private const JSON_FLAGS = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES;
 
+    /** @var string[] */
+    private readonly array $sourceIds;
+
+    /** @var string[] */
+    private readonly array $slugs;
+
+    /** @var array<string, true> hosts of http(s) sources: the only hosts article links may point to */
+    private readonly array $sourceHosts;
+
     /**
      * @param  array  $rules  content/rules.json
-     * @param  string[]  $sourceIds  registered source ids
-     * @param  string[]  $slugs  all existing article slugs (for `related`)
+     * @param  array<string, string>  $sources  registered sources: id => url
+     * @param  array<string, ?string>  $keywords  all articles: slug => keyword (for `related` and duplicate keywords)
      */
     public function __construct(
         private readonly array $rules,
-        private readonly array $sourceIds,
-        private readonly array $slugs,
-    ) {}
+        private readonly array $sources,
+        private readonly array $keywords,
+    ) {
+        $this->sourceIds = array_map('strval', array_keys($sources));
+        $this->slugs = array_map('strval', array_keys($keywords));
+        $hosts = [];
+        foreach ($sources as $url) {
+            if ($host = self::host($url)) {
+                $hosts[$host] = true;
+            }
+        }
+        $this->sourceHosts = $hosts;
+    }
+
+    /** Validator over the current database state and content/rules.json. */
+    public static function fromDatabase(): self
+    {
+        return new self(
+            (new ContentFiles(config('content.path')))->json('rules.json'),
+            Source::pluck('url', 'id')->all(),
+            Article::pluck('keyword', 'slug')->all(),
+        );
+    }
 
     /** @return array{errors: string[], warnings: string[]} */
     public function validate(array $a): array
@@ -98,6 +131,9 @@ class ArticleValidator
                 $e("related: статьи {$r} нет");
             }
         }
+        $this->checkSeo($a, $e, $w);
+        $this->checkSourceLinks($a, $e, $w);
+
         foreach ($this->texts($a) as [$path, $value]) {
             if (! Text::isComplete($value, allowBlank: str_contains($path, '.table.'))) {
                 $e("{$path}: нужен текст на обоих языках (ja и en)");
@@ -144,6 +180,101 @@ class ArticleValidator
             yield from self::each("faq[{$i}]", $qa, 2);
         }
         yield from self::each('matome', $a['matome'] ?? []);
+    }
+
+    /** agents/seo-ja.md §3, §5, §9: title length, related count, one keyword per article. */
+    private function checkSeo(array $a, callable $e, callable $w): void
+    {
+        $seo = $this->rules['seo'] ?? null;
+        if (! $seo) {
+            return;
+        }
+        $title = is_array($a['title'] ?? null) ? (Text::ja($a['title']) ?? '') : '';
+        $len = mb_strlen($title);
+        if ($len > $seo['title_max_chars_ja']) {
+            $w("title {$len} знаков (нужно до {$seo['title_max_chars_ja']})");
+        }
+        $related = count($a['related'] ?? []);
+        if ($related < $seo['related_min'] || $related > $seo['related_max']) {
+            $w("related: {$related} (нужно {$seo['related_min']}-{$seo['related_max']})");
+        }
+        $keyword = trim((string) ($a['keyword'] ?? ''));
+        if ($keyword !== '' && ($seo['unique_keyword'] ?? false)) {
+            foreach ($this->keywords as $slug => $other) {
+                if ($slug !== ($a['slug'] ?? null) && trim((string) $other) === $keyword) {
+                    $w("ключ «{$keyword}» уже у статьи {$slug} (каннибализация)");
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * agents/seo-ja.md §6, §9: inline [anchor](url) links point to https pages on registered source hosts,
+     * not to a site's homepage, with a descriptive anchor; every http(s) source of the article is linked.
+     */
+    private function checkSourceLinks(array $a, callable $e, callable $w): void
+    {
+        $cfg = $this->rules['source_links'] ?? null;
+        if (! $cfg) {
+            return;
+        }
+        $strings = [];
+        $collect = function ($v) use (&$collect, &$strings) {
+            if (is_string($v)) {
+                $strings[] = $v;
+            } elseif (is_array($v)) {
+                foreach ($v as $x) {
+                    $collect($x);
+                }
+            }
+        };
+        $collect([$a['answer_first'] ?? null, $a['sections'] ?? null, $a['faq'] ?? null, $a['matome'] ?? null]);
+
+        $pattern = '/'.str_replace('/', '\/', $cfg['link_pattern']).'/u';
+        $badAnchors = array_map(fn ($b) => mb_strtolower($b), $cfg['bad_anchors'] ?? []);
+        $linked = [];
+        foreach ($strings as $str) {
+            preg_match_all($pattern, $str, $m, PREG_SET_ORDER);
+            foreach ($m as [, $text, $url]) {
+                if (! str_starts_with($url, 'https://')) {
+                    $e("ссылка «{$text}»: адрес не https ({$url})");
+                } elseif (! isset($this->sourceHosts[self::host($url) ?? ''])) {
+                    $e("ссылка «{$text}»: хоста ".self::host($url).' нет в реестре источников');
+                } elseif (strlen((string) parse_url($url, PHP_URL_PATH)) <= 1) {
+                    $w("ссылка «{$text}» ведёт на главную страницу, нужна конкретная страница источника");
+                }
+                if (in_array(mb_strtolower(trim($text)), $badAnchors, true)) {
+                    $e("анкор «{$text}» запрещён (нужно описание факта или название источника)");
+                }
+                $linked[self::normUrl($url)] = true;
+            }
+        }
+
+        $report = ($cfg['enforce'] ?? false) ? $e : $w;
+        foreach ($a['sources'] ?? [] as $id) {
+            $url = $this->sources[$id] ?? null;
+            if ($url && preg_match('/^https?:/', $url) && ! isset($linked[self::normUrl($url)])) {
+                $report("источник «{$id}» из sources не привязан ссылкой к тексту статьи");
+            }
+        }
+    }
+
+    /** host[:port] like JavaScript's URL.host; null for non-URLs (e.g. internal: sources). */
+    private static function host(?string $url): ?string
+    {
+        $parts = $url ? parse_url($url) : false;
+        if (! $parts || empty($parts['host']) || ! preg_match('/^https?$/', $parts['scheme'] ?? '')) {
+            return null;
+        }
+
+        return $parts['host'].(isset($parts['port']) ? ':'.$parts['port'] : '');
+    }
+
+    /** Same page regardless of #fragment and trailing slash. */
+    private static function normUrl(string $url): string
+    {
+        return rtrim(preg_replace('/#.*$/', '', $url), '/');
     }
 
     /** Items of a list of texts; with $size, the list must have exactly that many items. */

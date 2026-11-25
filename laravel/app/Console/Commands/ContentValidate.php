@@ -22,11 +22,7 @@ class ContentValidate extends Command
             ->when($this->option('status'), fn ($q, $s) => $q->where('status', $s))
             ->orderBy('id')->get();
 
-        $validator = new ArticleValidator(
-            (new ContentFiles(config('content.path')))->json('rules.json'),
-            Source::pluck('id')->all(),
-            Article::pluck('slug')->all(),
-        );
+        $validator = ArticleValidator::fromDatabase();
 
         $errors = [];
         $warnings = [];
