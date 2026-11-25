@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Content\ArticlePayload;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
@@ -23,20 +24,7 @@ class ExportController extends Controller
             ->with(['category', 'currentVersion', 'updateLog'])
             ->orderBy('id')
             ->get()
-            ->map(fn (Article $a) => [
-                'slug' => $a->slug,
-                'category' => $a->category_id,
-                'level' => $a->level,
-                'read_minutes' => $a->read_minutes,
-                'keyword' => $a->keyword,
-                ...$a->currentVersion->content,
-                'updated_at' => $a->content_updated_at->toDateString(),
-                'update_log' => $a->updateLog->map(fn ($l) => [
-                    'date' => $l->date->toDateString(),
-                    'public' => $l->public,
-                ])->all(),
-                'icon' => $a->icon,
-            ]);
+            ->map(fn (Article $a) => ArticlePayload::public($a));
 
         return $this->json($articles);
     }

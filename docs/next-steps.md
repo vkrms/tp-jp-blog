@@ -29,4 +29,5 @@ Decided 2026-11-25:
 
 ## Implementation progress (spec §12 phases)
 - Phase 1, done: DB schema (§3.1), `php artisan content:import` (§10), export API `/api/export/*` with bearer token (§8.1), tests. Astro builds from the API when `CONTENT_API_URL` / `CONTENT_API_TOKEN` are set; output verified byte-identical to the file build.
-- Phase 1, remaining: PHP validator `content:validate` (§6), port of `tools/validate.mjs`.
+- Phase 1, done: PHP validator `content:validate` (§6), same result as `tools/validate.mjs` on current content. Not yet: `{{fact:…}}` checks, `tp_approved_numbers` / competitor rules (need exact trigger rules).
+- Next: phase 3 admin (Filament resources: articles with versions/diff/rollback, facts, queue, logs, settings with Pause).
