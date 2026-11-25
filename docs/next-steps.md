@@ -11,7 +11,7 @@ Decided 2026-11-25:
 3. ~~**Prompts**~~ — decided, spec §4.5: rewritten when the orchestrator is built; shared `rules.md` + short task prompts; writer follows the article profile.
 
 ## Fix in `spec.md`
-- ~~§2.1 layout~~ — decided: one repo, `astro/` + `laravel/`, shared `agents/`, `content/`, `docs/`, `tools/` at root (spec §2.1, README). Physical move of Astro into `astro/` happens at build time, not yet.
+- ~~§2.1 layout~~ — decided: one repo, `astro/` + `laravel/`, shared `agents/`, `content/`, `docs/`, `tools/` at root (spec §2.1, README). Astro moved into `astro/` (npm workspace), build output verified identical.
 - §2.2/§3.3: "Blade component" per block type is stale (Astro renders); block list lacks `h3`, `img`.
 - §4.7: `sections[].blocks[{type}]` vs real format `sections[].b[]` with single-key blocks.
 - §8.2: category pages listed; stage 1 deliberately has none.

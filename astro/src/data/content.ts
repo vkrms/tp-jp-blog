@@ -1,7 +1,7 @@
 // Single place where site code reads repo-level content (content/). Stage 2 swaps this for an API.
-import articlesRaw from '../../content/articles.json';
-import categoriesRaw from '../../content/categories.json';
-import glossaryRaw from '../../content/glossary.json';
+import articlesRaw from '../../../content/articles.json';
+import categoriesRaw from '../../../content/categories.json';
+import glossaryRaw from '../../../content/glossary.json';
 
 /** Bilingual content text: [ja, en] or { ja, en } (both forms exist in content/). */
 export type Text = unknown;

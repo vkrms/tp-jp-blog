@@ -9,7 +9,7 @@
 > - `laravel/` — админка (Filament) и оркестратор (cron → OpenRouter → MySQL), плюс API, из которого Astro берёт контент при сборке.
 > - В корне — общие папки: `agents/`, `content/`, `docs/`, `tools/`.
 >
-> Сейчас (стадия 1) Astro ещё лежит в корне репозитория, а `laravel/` пока нет.
+> Корень — npm workspace: `npm run dev|build|check` запускают Astro из `astro/`, сборка попадает в `astro/dist/`. Скрипты `tools/*` и их зависимости остаются в корне.
 
 ## Что внутри
 

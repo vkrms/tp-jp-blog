@@ -6,7 +6,7 @@
 // Usage:
 //   node tools/featured-image/convert.mjs --all
 //   node tools/featured-image/convert.mjs ai-seo click-reward
-//   node tools/featured-image/convert.mjs --all --from=out/featured --out=src/assets/home --quality=85
+//   node tools/featured-image/convert.mjs --all --from=out/featured --out=astro/src/assets/home --quality=85
 //   node tools/featured-image/convert.mjs --all --master=1424 --card=832
 //   node tools/featured-image/convert.mjs --all --dry
 import { readdirSync, statSync, readFileSync, mkdirSync } from 'node:fs';
@@ -21,7 +21,7 @@ const flags = new Set(args.filter((a) => a.startsWith('--')));
 const slugs = args.filter((a) => !a.startsWith('--'));
 
 const fromDir = resolve(ROOT, arg('from', 'out/featured'));
-const outDir = resolve(ROOT, arg('out', 'src/assets/home'));
+const outDir = resolve(ROOT, arg('out', 'astro/src/assets/home'));
 const quality = Number(arg('quality', '85'));
 // Retina targets: the article cover renders at a 712px reading measure, the card at 416px.
 const masterWidth = Number(arg('master', '1424'));
@@ -54,7 +54,7 @@ function discover() {
 
 // Registry from covers.ts: slug -> basename of the asset it currently renders.
 function coverAssets() {
-  const ts = readFileSync(resolve(ROOT, 'src/data/covers.ts'), 'utf8');
+  const ts = readFileSync(resolve(ROOT, 'astro/src/data/covers.ts'), 'utf8');
   const imports = new Map([...ts.matchAll(/^import\s+(\w+)\s+from\s+'([^']+)'/gm)].map((m) => [m[1], m[2].split('/').pop()]));
   const map = new Map();
   for (const m of ts.matchAll(/^\s*'?([a-z0-9-]+)'?:\s*\{\s*img:\s*(\w+)/gm)) {

@@ -1,4 +1,4 @@
-# Paths rsync must never copy to the webroot (patterns are relative to dist/).
+# Paths rsync must never copy to the webroot (patterns are relative to astro/dist/).
 # Passed to rsync via --exclude-from in tools/deploy.sh.
 #
 # Note: excluded paths are also protected from --delete, i.e. if one of these

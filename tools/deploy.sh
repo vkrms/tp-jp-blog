@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Build the production site and rsync dist/ to the Hostinger docroot.
+# Build the production site and rsync astro/dist/ to the Hostinger docroot.
 #
 #   tools/deploy.sh              # dry run: build, then show what rsync would do
 #   tools/deploy.sh --yes        # actually deploy
@@ -17,7 +17,7 @@ Usage: tools/deploy.sh [--yes] [--skip-build]
   (no flags)    build, then rsync in dry-run mode (no server changes)
   --dry-run     same as no flags, stated explicitly
   --yes, -y     build and actually deploy
-  --skip-build  deploy the existing dist/ as-is
+  --skip-build  deploy the existing astro/dist/ as-is
   -h, --help    this help
 EOF
 }
@@ -28,6 +28,7 @@ die() {
 }
 
 cd "$(dirname "$0")/.."
+DIST=astro/dist
 
 DEPLOY=0
 SKIP_BUILD=0
@@ -77,12 +78,12 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   npm run build:prod
 fi
 
-[ -f dist/index.html ] || die "dist/index.html is missing — build first"
+[ -f "$DIST/index.html" ] || die "$DIST/index.html is missing — build first"
 
 # Guard: a build without INDEXING=true ships "Disallow: /" and noindex meta,
 # which silently de-indexes the site. Refuse to publish it.
-if grep -q '^Disallow: /' dist/robots.txt 2>/dev/null; then
-  die "dist/robots.txt blocks crawling (INDEXING was not true) — refusing to deploy"
+if grep -q '^Disallow: /' "$DIST/robots.txt" 2>/dev/null; then
+  die "$DIST/robots.txt blocks crawling (INDEXING was not true) — refusing to deploy"
 fi
 
 # --- rsync -----------------------------------------------------------------
@@ -91,14 +92,14 @@ RSYNC_ARGS="-avz --delete-delay --itemize-changes --exclude-from=tools/rsync-exc
 
 SSH_CMD="ssh -i $SSH_KEY -p $DEPLOY_PORT -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=accept-new"
 
-echo "==> source:      dist/ ($(du -sh dist | cut -f1))"
+echo "==> source:      $DIST/ ($(du -sh "$DIST" | cut -f1))"
 echo "==> destination: $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"
 if [ "$DEPLOY" -eq 0 ]; then
   echo "==> DRY RUN (pass --yes to deploy)"
 fi
 
 # shellcheck disable=SC2086 # args are intentionally word-split
-rsync $RSYNC_ARGS -e "$SSH_CMD" dist/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"
+rsync $RSYNC_ARGS -e "$SSH_CMD" "$DIST/" "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"
 
 if [ "$DEPLOY" -eq 0 ]; then
   echo "==> dry run finished, nothing changed"
@@ -107,7 +108,7 @@ fi
 
 # --- smoke check -----------------------------------------------------------
 # Derive the public URL from the built robots.txt instead of hardcoding it.
-SITE=$(sed -n 's|^Sitemap: \(.*\)/sitemap\.xml$|\1|p' dist/robots.txt)
+SITE=$(sed -n 's|^Sitemap: \(.*\)/sitemap\.xml$|\1|p' "$DIST/robots.txt")
 if [ -n "$SITE" ] && command -v curl >/dev/null 2>&1; then
   echo "==> checking $SITE/"
   code=$(curl -sS -o /dev/null -w '%{http_code}' "$SITE/") || code="000"

@@ -1,0 +1,20 @@
+{
+  "name": "astro",
+  "private": true,
+  "type": "module",
+  "description": "Public site (Astro, static). Content is read from ../content in stage 1, from the Laravel API in stage 2.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check && astro build"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "astro": "^7.4.11",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6"
+  }
+}
