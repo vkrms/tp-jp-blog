@@ -17,6 +17,12 @@ php artisan test
 
 Local dev uses SQLite; production uses MySQL on Hostinger (PHP 8.3+).
 
+## Admin
+
+`/admin` (Filament, Russian UI): articles (edit current version as JSON, versions with diff/rollback, publish/archive, update log), facts, sources, topic queue, logs (AI runs, page fetches, admin actions), settings (Pause, publish mode, limits, AI budget, rebuild site now).
+
+Every content change goes through `App\Content\ArticlePublisher`: validated, audited, and — for published articles — one site rebuild after commit (`App\Content\SiteRebuild`, needs `GITHUB_REPO` + `GITHUB_DISPATCH_TOKEN`; without them the rebuild is skipped and shown as failed on the settings page).
+
 ## Export API (docs/spec.md §8.1)
 
 `GET /api/export/{articles,categories,glossary,meta}` with `Authorization: Bearer $EXPORT_API_TOKEN`.

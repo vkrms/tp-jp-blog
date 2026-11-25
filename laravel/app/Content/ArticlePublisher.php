@@ -18,6 +18,8 @@ use InvalidArgumentException;
  */
 class ArticlePublisher
 {
+    private bool $rebuildQueued = false;
+
     public function __construct(private readonly SiteRebuild $rebuild) {}
 
     /**
@@ -71,12 +73,29 @@ class ArticlePublisher
         return $version;
     }
 
+    /**
+     * Change card fields (category, level, read_minutes, keyword, icon) without a new content version.
+     * They are shown on the site too, so the same validation and rebuild apply.
+     */
+    public function updateCard(Article $article, array $attributes): void
+    {
+        $article->fill(array_intersect_key($attributes, array_flip(['category_id', 'level', 'read_minutes', 'keyword', 'icon'])));
+        if (! $article->isDirty()) {
+            return;
+        }
+        $changed = array_keys($article->getDirty());
+        $this->assertValid(ArticlePayload::full($article->loadMissing(['currentVersion', 'updateLog'])));
+        $article->save();
+        AuditLog::record('edit', 'article', $article->slug, ['fields' => $changed]);
+        $this->rebuildIfLive($article, "{$article->slug}: card updated");
+    }
+
     public function publish(Article $article): void
     {
         $this->assertValid(ArticlePayload::full($article->load(['currentVersion', 'updateLog'])));
         $article->update(['status' => 'published', 'published_at' => $article->published_at ?? now()]);
         AuditLog::record('publish', 'article', $article->slug);
-        $this->rebuild->trigger("{$article->slug}: published");
+        $this->rebuildAfterCommit("{$article->slug}: published");
     }
 
     /** Point the article back at an earlier version (no new version is created). */
@@ -97,7 +116,7 @@ class ArticlePublisher
         $article->update(['status' => 'archived']);
         AuditLog::record('archive', 'article', $article->slug);
         if ($wasLive) {
-            $this->rebuild->trigger("{$article->slug}: archived");
+            $this->rebuildAfterCommit("{$article->slug}: archived");
         }
     }
 
@@ -122,7 +141,24 @@ class ArticlePublisher
     private function rebuildIfLive(Article $article, string $reason): void
     {
         if ($article->status === 'published') {
-            $this->rebuild->trigger($reason);
+            $this->rebuildAfterCommit($reason);
         }
+    }
+
+    /**
+     * The site must never be rebuilt for a change that was rolled back: inside a transaction the
+     * trigger waits for the outermost commit and is dropped on rollback; outside one it runs now.
+     */
+    private function rebuildAfterCommit(string $reason): void
+    {
+        // One save may touch the card and the content: queue a single trigger per transaction.
+        if ($this->rebuildQueued) {
+            return;
+        }
+        $this->rebuildQueued = true;
+        DB::afterCommit(function () use ($reason) {
+            $this->rebuildQueued = false;
+            $this->rebuild->trigger($reason);
+        });
     }
 }
