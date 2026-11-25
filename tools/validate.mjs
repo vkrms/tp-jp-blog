@@ -24,6 +24,53 @@ for (const a of articles) {
   const t2 = JSON.stringify([a.title, a.answer_first, a.sections, a.faq, a.matome]);
   for (const p of rules.excluded_topics.patterns) { const m = t2.match(new RegExp(p)); if (m) errors.push(`${a.slug}: исключённая тема (право/налоги/условия ASP): «${m[0]}»`); }
 }
+
+// --- SEO и ссылки на источники (agents/seo-ja.md, разделы 3, 6, 9)
+const norm = u => u.replace(/#.*$/, '').replace(/\/$/, '');
+const hostOf = u => { try { return new URL(u).host; } catch { return null; } };
+const knownHosts = new Set(sources.filter(s => /^https?:/.test(s.url)).map(s => hostOf(s.url)));
+const linkRe = new RegExp(rules.source_links.link_pattern, 'g');
+const kwSeen = new Map();
+for (const a of articles) {
+  const bad = (list, m) => (rules.source_links.enforce ? errors : warns).push(`${a.slug}: ${m}`);
+  const e = m => errors.push(`${a.slug}: ${m}`), w = m => warns.push(`${a.slug}: ${m}`);
+  const titleJa = a.title?.ja || '';
+  if (titleJa.length > rules.seo.title_max_chars_ja) w(`title ${titleJa.length} знаков (нужно до ${rules.seo.title_max_chars_ja})`);
+  if (!new RegExp(rules.seo.slug_pattern).test(a.slug)) e(`slug «${a.slug}» не латиница/дефисы`);
+  const k = (a.keyword || '').trim();
+  if (k) { if (kwSeen.has(k)) w(`ключ «${k}» уже у статьи ${kwSeen.get(k)} (каннибализация)`); else kwSeen.set(k, a.slug); }
+  const rel = a.related || [];
+  if (rel.length < rules.seo.related_min || rel.length > rules.seo.related_max) w(`related: ${rel.length} (нужно ${rules.seo.related_min}-${rules.seo.related_max})`);
+  const strs = [];
+  const walk = v => { if (typeof v === 'string') strs.push(v); else if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') Object.values(v).forEach(walk); };
+  walk([a.answer_first, a.sections, a.faq, a.matome]);
+  const found = strs.flatMap(t => [...t.matchAll(linkRe)].map(m => ({ text: m[1], url: m[2] })));
+  for (const l of found) {
+    if (!/^https:\/\//.test(l.url)) e(`ссылка «${l.text}»: адрес не https (${l.url})`);
+    else if (!knownHosts.has(hostOf(l.url))) e(`ссылка «${l.text}»: хоста ${hostOf(l.url)} нет в реестре источников`);
+    else { try { if (new URL(l.url).pathname.length <= 1) w(`ссылка «${l.text}» ведёт на главную страницу, нужна конкретная страница источника`); } catch {} }
+    if (rules.source_links.bad_anchors.some(b => l.text.trim().toLowerCase() === b.toLowerCase())) e(`анкор «${l.text}» запрещён (нужно описание факта или название источника)`);
+  }
+  const linked = new Set(found.map(l => norm(l.url)));
+  for (const id of a.sources || []) {
+    const s = sources.find(x => x.id === id);
+    if (!s || !/^https?:/.test(s.url)) continue;
+    if (!linked.has(norm(s.url))) bad([], `источник «${id}» из sources не привязан ссылкой к тексту статьи`);
+  }
+}
+
+// --- очередь тем: записи, добавленные агентом (agents/topic-discovery.md)
+try {
+  const queue = JSON.parse(fs.readFileSync(new URL('../content/queue.json', import.meta.url), 'utf8')).queue || [];
+  for (const q of queue.filter(x => x.origin === 'agent')) {
+    const id = `queue «${q.keyword}»`;
+    if (!q.keyword || q.keyword === '(next)') errors.push(`${id}: нет ключа`);
+    if (!q.evidence?.length) errors.push(`${id}: нет evidence (запросы и страницы топа)`);
+    if (!q.serp_gap || !q.angle) errors.push(`${id}: нет serp_gap или angle`);
+    if (typeof q.score !== 'number' || q.score < 7) errors.push(`${id}: score ${q.score} ниже порога 7`);
+    if (q.status === 'approved' && articles.some(a => a.keyword === q.keyword)) warns.push(`${id}: ключ уже есть в статьях`);
+  }
+} catch (e) { warns.push('queue.json не прочитан: ' + e.message); }
 const site = fs.readFileSync(new URL('../prototype/index.html', import.meta.url), 'utf8');
 for (const bad of ['社内メモ', 'MVP', 'Figures approved', 'Internal']) if (site.includes(bad)) errors.push(`prototype/index.html содержит «${bad}»`);
 console.log(`Статей: ${articles.length}. Ошибок: ${errors.length}. Предупреждений: ${warns.length}`);
