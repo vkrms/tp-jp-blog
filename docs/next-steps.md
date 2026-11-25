@@ -32,3 +32,27 @@ Decided 2026-11-25:
 - Phase 1, done: PHP validator `content:validate` (§6), same result as `tools/validate.mjs` on current content. Not yet: `{{fact:…}}` checks, `tp_approved_numbers` / competitor rules (need exact trigger rules).
 - Phase 3, done: Filament admin (spec §9 status note) + rebuild trigger via repository_dispatch (§11.2) + audit log. Not yet: block editor, rebuild-failure email, build-token rotation.
 - Next: `deploy-frontend.yml` (build from API + atomic rsync, §11.2) and the orchestrator (phase 4).
+
+## Content owner handoff, 2026-11-25 (`agents/seo-ja.md`, `agents/topic-discovery.md`)
+Done:
+- EN closed from search: noindex on all EN pages, no hreflang, EN out of the sitemap, nofollow on the switcher link (spec §8.3). **Live site still has the old EN/hreflang setup until the next deploy.**
+- Inline source links `[anchor](https://…)` rendered as links; meta description JA cut at 100 chars (§7.1, §8.3).
+- Validators (JS from the handoff, PHP port) check source links + SEO rules; identical output (0 errors, 30 warnings).
+- Update date moves only on substantive edits (= edits that add a public 更新履歴 line).
+- Her prompts / rules.json / policy.yaml / validate.mjs / README changes are in the repo. Her `articles.json` was NOT taken (older than ours: pre-expansion `sales-calendar`).
+
+Open decisions (spec §13, items 15–17): topic discovery web access, weekly report by email or not, Basic Auth on `/en/`.
+
+Backlog:
+- **Existing 12 articles** (editorial, can be done in the admin or with `tools/edit-article.mjs`):
+  - add source links: 24 article–source pairs have none (validator warnings);
+  - shorten 5 JA titles over 32 chars: ai-seo (39), sales-calendar (37), instagram (37), travel-demand (34), earn-or-not (33);
+  - what-is-affiliate: only 1 related article (needs 2–5);
+  - facts with homepage-only `source_url` (traicy.com/, suzukikenichi.com/blog/) → specific pages.
+  - When done: `rules.json → source_links.enforce: true` (warnings become errors).
+- **Orchestrator (phase 4)** must cover:
+  - `topic_queue`: new status `approved` and fields `intent`, `origin`, `demand_estimate`, `serp_gap`, `angle`, `evidence`, `sources_planned`, `score` (+ port of the queue checks from `validate.mjs`);
+  - writer output contract (§4.7): also edits to 1–2 existing articles that link to the new one (`related` + a sentence);
+  - link check (HTTP 200) for every source link before publishing, by our fetcher;
+  - updater: add/refresh source links each run, never touch slug, no date freshening;
+  - Search Console data (`content/gsc/*.csv` in her plan) as a topic source; stop rule "3 weeks without impressions → propose turning discovery off".
