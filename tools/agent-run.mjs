@@ -43,7 +43,7 @@ if (cmd === 'prompt') {
     read(file),
   ].filter(Boolean);
   out('agent-out/prompt.md', parts.join('\n\n---\n\n'));
-  const tools = ['Read', 'Glob', 'Grep', 'Edit', 'Write', 'WebSearch', 'Bash(node tools/validate.mjs)', ...fetchDomains().map((d) => `WebFetch(domain:${d})`)];
+  const tools = ['Read', 'Glob', 'Grep', 'Edit', 'Write', 'WebSearch', 'Bash(node tools/validate.mjs)', 'Bash(node tools/repair-json.mjs)', ...fetchDomains().map((d) => `WebFetch(domain:${d})`)];
   out('agent-out/tools.txt', tools.join(','));
   console.log(`prompt: ${parts.join('').length} chars; tools: ${tools.length} (${fetchDomains().length} fetch domains)`);
 } else if (cmd === 'pr-body') {
@@ -51,13 +51,14 @@ if (cmd === 'prompt') {
   try { report = JSON.parse(read('agent-out/report.json')); } catch { /* отчёта нет — гейт уже это отметил */ }
   try { claude = JSON.parse(read('agent-out/claude.json')); } catch { /* запуск упал */ }
   const gate = fs.existsSync(new URL('agent-out/gate.md', ROOT)) ? read('agent-out/gate.md') : '';
+  const repairs = fs.existsSync(new URL('agent-out/repairs.md', ROOT)) ? read('agent-out/repairs.md') : '';
   const cost = typeof claude.total_cost_usd === 'number' ? `$${claude.total_cost_usd.toFixed(2)} (оценка Claude Code), ходов: ${claude.num_turns ?? '?'}` : 'нет данных';
   const run = process.env.GITHUB_RUN_ID ? `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}` : '';
   out('agent-out/pr-body.md', [
     report.summary_md || '_Агент не оставил отчёт._',
     report.needs_human ? `\n> **Нужен человек:** ${report.needs_human_reason || 'причина не указана'}` : '',
     report.injection_suspected ? '\n> **Подозрение на prompt injection** на внешней странице.' : '',
-    '\n---\n', gate, `\nСтоимость запуска: ${cost}`, run ? `\nЗапуск: ${run}` : '',
+    '\n---\n', gate, repairs, `\nСтоимость запуска: ${cost}`, run ? `\nЗапуск: ${run}` : '',
   ].filter(Boolean).join('\n'));
   console.log('pr body written');
 } else {

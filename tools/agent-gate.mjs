@@ -22,7 +22,10 @@ const output = (pairs) => {
   if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, Object.entries(pairs).map(([k, v]) => `${k}=${v}\n`).join(''));
 };
 const policy = parsePolicy(read('content/policy.yaml'));
-const articles = JSON.parse(read('content/articles.json'));
+let articles = null;
+let articlesError = '';
+try { articles = JSON.parse(read('content/articles.json')); } catch (e) { articlesError = e.message; }
+if (mode === 'pre' && !articles) { console.error(`content/articles.json не разбирается: ${articlesError}`); process.exit(1); }
 
 if (mode === 'pre') {
   const r = preCheck({ task, policy, articles });
@@ -42,7 +45,13 @@ const validator = spawnSync('node', ['tools/validate.mjs'], { cwd: ROOT, encodin
 let report = null;
 try { report = JSON.parse(read('agent-out/report.json')); } catch { /* нет отчёта → hold */ }
 
-const r = postCheck({ task, slug: arg('slug'), policy, baseArticles, newArticles: articles, changedFiles, validatorOk: validator.status === 0, report });
+// Сломанный JSON (агент испортил файл и ремонт не помог) — это отказ, а не падение скрипта.
+const brokenJson = ['content/articles.json', 'content/queue.json', 'content/sources.json', 'content/glossary.json']
+  .filter((f) => changedFiles.includes(f))
+  .filter((f) => { try { JSON.parse(read(f)); return false; } catch { return true; } });
+const r = brokenJson.length
+  ? { decision: 'reject', reasons: brokenJson.map((f) => `${f}: не разбирается как JSON (см. agent-out/repairs.md)`), summary: {} }
+  : postCheck({ task, slug: arg('slug'), policy, baseArticles, newArticles: articles, changedFiles, validatorOk: validator.status === 0, report });
 
 const md = [
   `### Gate: **${r.decision}**`,

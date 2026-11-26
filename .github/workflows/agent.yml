@@ -59,6 +59,10 @@ jobs:
             --output-format json > agent-out/claude.json || echo "::warning::agent exited with an error; the gate decides what happens"
           node -e 'const d=require("./agent-out/claude.json"); console.log(`cost ~$${(d.total_cost_usd??0).toFixed(2)}, turns ${d.num_turns}, error ${d.is_error}`)' || true
 
+      - name: Repair JSON quotes
+        if: steps.pre.outputs.run == 'true'
+        run: node tools/repair-json.mjs || echo "::warning::JSON still broken after repair; the gate will reject"
+
       - name: Gate
         id: gate
         if: steps.pre.outputs.run == 'true'
@@ -108,6 +112,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: agent-${{ inputs.task }}-${{ github.run_id }}
-          path: agent-out/
+          # content files too, so a rejected run can be inspected or salvaged
+          path: |
+            agent-out/
+            content/articles.json
+            content/facts.yaml
+            content/sources.json
+            content/queue.json
+            content/glossary.json
           if-no-files-found: ignore
           retention-days: 30

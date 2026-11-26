@@ -8,6 +8,8 @@
 - Только `content/articles.json`, `content/facts.yaml`, `content/sources.json`, `content/queue.json`, `content/glossary.json`.
   Любой другой изменённый файл — и результат запуска отклоняется целиком (проверяет код, не модель).
 - Формат `content/articles.json` сохраняй как есть (JSON с отступом в 1 пробел). Не переформатируй файлы целиком.
+- **В JSON ключи и границы строк — только ASCII-кавычки `"`**, никогда `“ ”`. Если валидатор пишет, что JSON не разбирается,
+  запусти `node tools/repair-json.mjs` (чинит типографские кавычки у ключей), затем снова `node tools/validate.mjs`.
 - Не используй git, не трогай `.github/`, `tools/`, `agents/`, `astro/`, `laravel/`.
 
 ## Жёсткие правила, которые проверяет код (tools/agent-gate.mjs)
