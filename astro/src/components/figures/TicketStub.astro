@@ -1,0 +1,25 @@
+---
+// A boarding-pass style stub: route, cabin and price, with a decorative barcode
+// (docs/figures.md → template `ticket-stub`, kind `ui`). Every string is article text —
+// the barcode is the only drawing, and it carries no information.
+import { rich, type Lang } from '../../i18n/ui';
+
+interface Props { data: Record<string, any>; lang: Lang }
+const { data, lang } = Astro.props;
+---
+<div class="ticket">
+  <div class="tmain">
+    <span class="route">
+      <span set:html={rich(data.from, lang)} />
+      <span class="arw" aria-hidden="true">✈</span>
+      <span set:html={rich(data.to, lang)} />
+    </span>
+    <span class="cabin" set:html={rich(data.cabin, lang)} />
+    <span class="price" set:html={rich(data.price, lang)} />
+    {data.note ? <span class="tnote" set:html={rich(data.note, lang)} /> : null}
+  </div>
+  <div class="stub" aria-hidden="true">
+    {data.tag ? <span class="tag" set:html={rich(data.tag, lang)} /> : null}
+    <span class="bars" />
+  </div>
+</div>

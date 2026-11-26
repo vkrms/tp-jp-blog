@@ -109,7 +109,8 @@ export const rich = (t: unknown, l: Lang) =>
       /^https:\/\//.test(url) ? `<a class="src-link" href="${url}" target="_blank" rel="noopener">${anchor}</a>` : anchor)
     .replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>');
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+/** English month abbreviations, shared by date formatting and the timeline figure. */
+export const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /** 2026-11-09 -> 2026.11.09 (used in the article meta line). */
 export const dateDots = (iso: string) => iso.replace(/-/g, '.');

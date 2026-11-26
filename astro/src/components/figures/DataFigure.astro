@@ -9,6 +9,11 @@ import type { Figure } from '../../data/content';
 import CheckCards from './CheckCards.astro';
 import StepsArrow from './StepsArrow.astro';
 import ComparePairs from './ComparePairs.astro';
+import TimelineGantt from './TimelineGantt.astro';
+import StairSteps from './StairSteps.astro';
+import PathMilestones from './PathMilestones.astro';
+import BalanceScale from './BalanceScale.astro';
+import TicketStub from './TicketStub.astro';
 
 interface Props { figure: Figure; lang: Lang }
 const { figure, lang } = Astro.props;
@@ -18,6 +23,11 @@ const RENDERED: Record<string, typeof CheckCards> = {
   'check-cards': CheckCards,
   'steps-arrow': StepsArrow,
   'compare-pairs': ComparePairs,
+  'timeline-gantt': TimelineGantt,
+  'stair-steps': StairSteps,
+  'path-milestones': PathMilestones,
+  'balance-scale': BalanceScale,
+  'ticket-stub': TicketStub,
 };
 const Template = RENDERED[figure.template];
 if (!Template) {

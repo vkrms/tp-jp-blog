@@ -1,0 +1,44 @@
+---
+// Cost against reward with the net result (docs/figures.md → template `balance-scale`).
+// The heavier side sits lower: the offset is derived from the two values when they parse
+// as numbers, and stays level otherwise. Every amount is real article text.
+import { plain, rich, type Lang } from '../../i18n/ui';
+
+interface Props { data: Record<string, any>; lang: Lang }
+const { data, lang } = Astro.props;
+const cost = data?.cost ?? {};
+const reward = data?.reward ?? {};
+const net = data?.net ?? {};
+
+/** First number in a text pair: "5,000円" -> 5000, "¥5,000" -> 5000, otherwise NaN. */
+const amount = (pair: unknown) => {
+  const digits = plain(pair, lang).replace(/[^\d.]/g, '');
+  if (!digits) return Number.NaN;
+  const n = Number(digits);
+  return Number.isFinite(n) ? n : Number.NaN;
+};
+
+const c = amount(cost.value);
+const r = amount(reward.value);
+const largest = Math.max(c, r);
+const raw = Number.isFinite(largest) && largest > 0 ? Math.round(((c - r) / largest) * 40) : 0;
+const tilt = Math.max(-8, Math.min(8, raw));
+const netAmount = amount(net.value);
+const tone = Number.isFinite(netAmount) && netAmount < 0 ? 'neg' : 'pos';
+---
+<div class="balance" style={`--tilt:${tilt}px`}>
+  <div class="side cost">
+    <span class="lb" set:html={rich(cost.label, lang)} />
+    <span class="val" set:html={rich(cost.value, lang)} />
+  </div>
+  <span class="pivot" aria-hidden="true">vs</span>
+  <div class="side reward">
+    <span class="lb" set:html={rich(reward.label, lang)} />
+    <span class="val" set:html={rich(reward.value, lang)} />
+  </div>
+</div>
+<div class={`net ${tone}`}>
+  <span class="lb" set:html={rich(net.label, lang)} />
+  <span class="val" set:html={rich(net.value, lang)} />
+</div>
+{data.note ? <p class="balance-note" set:html={rich(data.note, lang)} /> : null}

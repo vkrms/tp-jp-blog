@@ -1,0 +1,121 @@
+---
+// Month-axis timeline: period bars and point milestones derived from the article's own
+// dates (docs/figures.md → template `timeline-gantt`). The axis and the bars are
+// decorative; every date is also written out in the row itself, so the text alone tells
+// the whole story and a screen reader needs no geometry.
+import { rich, plain, MONTHS, type Lang } from '../../i18n/ui';
+
+interface Props { data: Record<string, any>; lang: Lang }
+const { data, lang } = Astro.props;
+
+const DAY = 86_400_000;
+const rows = (data?.rows ?? []) as any[];
+if (rows.length < 2) throw new Error('figure: timeline-gantt needs at least two rows');
+
+const dayNo = (iso: string) =>
+  Date.UTC(Number(iso.slice(0, 4)), Number(iso.slice(5, 7)) - 1, Number(iso.slice(8, 10))) / DAY;
+
+const firstFrom = rows.map((r) => r.from as string).reduce((a, b) => (a < b ? a : b));
+const lastEnd = rows.map((r) => (r.to ?? r.from) as string).reduce((a, b) => (a > b ? a : b));
+const firstMonth = firstFrom.slice(0, 7);
+const lastMonth = lastEnd.slice(0, 7);
+
+// Axis: whole months, from the month of the earliest start to the month of the latest end.
+const months: string[] = [];
+for (let y = Number(firstMonth.slice(0, 4)), m = Number(firstMonth.slice(5, 7)); ; ) {
+  const key = `${y}-${String(m).padStart(2, '0')}`;
+  months.push(key);
+  if (key === lastMonth) break;
+  if (m === 12) { y += 1; m = 1; } else m += 1;
+  if (months.length > 18) throw new Error('figure: timeline-gantt spans more than 18 months');
+}
+
+const axisStart = dayNo(`${months[0]}-01`);
+const [lastY, lastM] = months[months.length - 1].split('-').map(Number);
+const axisEnd = Date.UTC(lastM === 12 ? lastY + 1 : lastY, lastM === 12 ? 0 : lastM, 1) / DAY;
+const span = axisEnd - axisStart;
+const axisYear = months[0].slice(0, 4);
+
+// Years spanning consecutive months, for the top row of the axis.
+const years = months.reduce<{ year: string; count: number }[]>((acc, key) => {
+  const year = key.slice(0, 4);
+  const tail = acc[acc.length - 1];
+  if (tail && tail.year === year) tail.count += 1;
+  else acc.push({ year, count: 1 });
+  return acc;
+}, []);
+
+const monthLabel = (key: string) =>
+  lang === 'ja' ? `${Number(key.slice(5, 7))}月` : MONTHS[Number(key.slice(5, 7)) - 1];
+
+/** `2026-11-27` -> `11/27` (`27 Nov`), with the year only when it differs from the reference. */
+const shortDate = (iso: string, refYear: string) => {
+  const year = iso.slice(0, 4);
+  const month = Number(iso.slice(5, 7));
+  const day = Number(iso.slice(8, 10));
+  if (lang === 'ja') return `${year !== refYear ? `${year}/` : ''}${month}/${day}`;
+  return `${day} ${MONTHS[month - 1]}${year !== refYear ? ` ${year}` : ''}`;
+};
+
+const period = (row: any) => {
+  if (row.when) return plain(row.when, lang);
+  const from = shortDate(row.from, axisYear);
+  if (row.from === row.to) return from;
+  // No end date: the row is still running, so read it as "from …".
+  if (!row.to) return lang === 'ja' ? `${from}〜` : `from ${from}`;
+  const to = shortDate(row.to, row.from.slice(0, 4));
+  return lang === 'ja' ? `${from}〜${to}` : `${from} – ${to}`;
+};
+
+const geometry = (row: any) => {
+  const start = Math.max(axisStart, Math.min(axisEnd, dayNo(row.from)));
+  // No `to` = still running: the bar reaches the axis end and fades out there.
+  const end = row.to ? Math.max(axisStart, Math.min(axisEnd, dayNo(row.to))) : axisEnd;
+  return {
+    left: ((start - axisStart) / span) * 100,
+    width: ((end - start) / span) * 100,
+    point: row.to !== undefined && end <= start,
+    open: !row.to,
+  };
+};
+---
+<div class="gantt">
+  <div class="gantt-x">
+    <div class="gantt-grid" style={`--cols:${months.length}`}>
+      <div class="axis-row" aria-hidden="true">
+        <span class="gap" />
+        <div class="axis">
+          <div class="years">
+            {years.map((y) => <span style={`grid-column: span ${y.count}`}>{y.year}</span>)}
+          </div>
+          <div class="months">
+            {months.map((m) => <span>{monthLabel(m)}</span>)}
+          </div>
+        </div>
+      </div>
+
+      <ul class="gantt-rows">
+        {rows.map((row) => {
+          const g = geometry(row);
+          return (
+            <li>
+              <span class="who">
+                <span class="lb" set:html={rich(row.label, lang)} />
+                <span class="per">
+                  {period(row)}
+                  {row.note ? <> · <span set:html={rich(row.note, lang)} /></> : null}
+                </span>
+              </span>
+              <span class="track" aria-hidden="true">
+                {g.point
+                  ? <span class="dot" style={`left:${g.left}%`} />
+                  : <span class={`bar${g.open ? ' open' : ''}`} style={`left:${g.left}%;width:${g.width}%`} />}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </div>
+  {data.note ? <p class="gantt-note" set:html={rich(data.note, lang)} /> : null}
+</div>

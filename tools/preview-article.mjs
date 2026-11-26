@@ -29,11 +29,14 @@ const figureHtml = (f) => {
   if (f.template === 'check-cards') {
     return `<figure class="dfig"><ul class="cards">${(d.items || []).map((it) => `<li><span class="lb">${t(it.label)}</span><span class="bd">${t(it.body)}</span>${it.source ? `<span class="note">${ui('出典：', 'Source: ')}${t(it.source)}</span>` : ''}</li>`).join('')}</ul>${cap}</figure>`;
   }
-  if (f.template === 'steps-arrow') {
+  if (f.template === 'steps-arrow' || f.template === 'stair-steps' || f.template === 'path-milestones') {
     return `<figure class="dfig"><ol class="flow">${(d.items || []).map((it, i) => `<li><span class="n">${i + 1}</span>${t(it.title)}</li>`).join('')}</ol>${cap}</figure>`;
   }
   if (f.template === 'compare-pairs') {
     return `<figure class="dfig"><div class="pairs">${(d.pairs || []).map((p) => `<div class="pair"><div class="no"><span class="tag">${ui('こう書かない', 'Not this')}</span>${t(p.avoid)}</div><div class="yes"><span class="tag">${ui('こう書く', 'This')}</span>${t(p.prefer)}</div></div>`).join('')}</div>${cap}</figure>`;
+  }
+  if (f.template === 'timeline-gantt') {
+    return `<figure class="dfig"><ul class="cards">${(d.rows || []).map((r) => `<li><span class="bd">${t(r.label)}</span><span class="note">${r.when ? t(r.when) : `${r.from}${r.to ? ` – ${r.to}` : ' –'}`}${r.note ? ` · ${t(r.note)}` : ''}</span></li>`).join('')}</ul>${d.note ? `<p class="note">${t(d.note)}</p>` : ''}${cap}</figure>`;
   }
   return `<figure class="dfig"><pre>${esc(JSON.stringify(f.data, null, 1))}</pre>${cap}</figure>`;
 };

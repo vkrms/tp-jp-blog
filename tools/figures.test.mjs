@@ -41,7 +41,7 @@ test('unknown field in the block', () => {
   assert.match(errs({ ...cards, src: 'images/x.jpg' }), /неизвестное поле «src»/);
 });
 
-test('caption is required for data figures, alt is not', () => {
+test('caption is required for these templates', () => {
   const { caption, ...noCaption } = cards;
   assert.match(errs(noCaption), /нужен caption/);
   assert.match(errs({ ...cards, caption: ['только ja', ''] }), /caption должен быть парой ja\/en/);
@@ -58,15 +58,13 @@ test('data must match the template: presence, type, min/max', () => {
   assert.match(errs({ ...cards, data: { items: 'x' } }), /неверный тип/);
 });
 
-test('raster figures need alt + brief and take no data', () => {
-  const photo = { kind: 'photo', template: 'check-cards', alt: ['空港', 'Airport'], brief: { biome: 'city', gender: 'woman' } };
-  // a raster kind still has to match an existing template's kind, which is a data template
-  assert.match(errs(photo), /kind/);
-  const good = { kind: 'photo', template: 'photo-scene', alt: ['空港', 'Airport'], brief: { biome: 'city', gender: 'woman' } };
-  // unknown template is reported, but alt/brief rules still hold for a raster kind
-  assert.match(errs(good), /шаблона «photo-scene» нет/);
-  assert.match(errs({ kind: 'photo', alt: ['空港', 'Airport'] }), /нужен brief/);
-  assert.match(errs({ kind: 'photo', brief: { biome: 'city' } }), /нужен alt/);
+test('raster and planned kinds are rejected with a clear message', () => {
+  assert.match(errs({ kind: 'photo', template: 'check-cards', alt: ['空港', 'Airport'], brief: {} }), /пока не поддерживается/);
+  assert.match(errs({ kind: 'composite', template: 'check-cards', data: {} }), /пока не поддерживается/);
+  assert.match(errs({ kind: 'poster', template: 'check-cards', data: {} }), /не из списка/);
+  // unsupported fields are rejected outright, not silently ignored
+  assert.match(errs({ ...cards, alt: ['空港', 'Airport'] }), /неизвестное поле «alt»/);
+  assert.match(errs({ ...cards, brief: {} }), /неизвестное поле «brief»/);
 });
 
 test('text pair helper accepts both content forms', () => {
@@ -78,11 +76,45 @@ test('text pair helper accepts both content forms', () => {
   assert.equal(isText(null), false);
 });
 
-test('manifest: every template declares a known kind, a caption policy and data fields', () => {
+test('timeline-gantt: ranges, optional fields and the ordering rule', () => {
+  const gantt = {
+    kind: 'infographic',
+    template: 'timeline-gantt',
+    caption: ['年末までの予定', 'The schedule to year-end'],
+    data: {
+      rows: [
+        { label: ['ふるさと納税', 'Furusato Nozei'], from: '2026-10-21', to: '2026-12-02' },
+        { label: ['ブラックフライデー', 'Black Friday'], from: '2026-11-27', to: '2026-11-27', when: ['11/27（金）', 'Fri 27 Nov'] },
+        { label: ['ANAとIHG', 'ANA and IHG'], from: '2027-01-01', note: ['一部は2月から', 'partly Feb'] },
+      ],
+      note: ['早めに準備する', 'Prepare early'],
+    },
+  };
+  ok(gantt);
+  assert.match(errs({ ...gantt, data: { ...gantt.data, note: ['только ja', ''] } }), /caption|note/);
+  assert.match(errs({ ...gantt, data: { rows: [{ label: ['a', 'b'], from: '2026-12-02', to: '2026-10-21' }, gantt.data.rows[0]] } }), /раньше/);
+  assert.match(errs({ ...gantt, data: { rows: [{ label: ['a', 'b'], from: '2026-10-21' }] } }), /минимум 2/);
+  assert.match(errs({ ...gantt, data: { rows: [{ label: ['a', 'b'], from: '21.10.2026' }, gantt.data.rows[0]] } }), /неверный тип/);
+  assert.match(errs({ ...gantt, data: { rows: [{ label: ['a', 'b'], from: '2026-10-21', from_to: 'x' }, gantt.data.rows[0]] } }), /лишнее поле/);
+});
+
+test('examples in tools/figures/examples.json stay valid', () => {
+  const file = JSON.parse(fs.readFileSync(new URL('./figures/examples.json', import.meta.url), 'utf8'));
+  assert.ok(file.examples.length >= 3, 'keep a few examples for every template');
+  for (const e of file.examples) {
+    assert.ok(e.name, 'every example is named');
+    assert.deepEqual(validateFigure(e.figure, manifest), [], e.name);
+  }
+});
+
+test('manifest: kinds and templates cannot drift apart', () => {
+  const produced = new Set(Object.values(manifest.templates).map((t) => t.kind));
+  assert.deepEqual([...produced].sort(), Object.keys(manifest.kinds).sort(), 'kinds must be exactly the kinds some template produces');
   for (const [id, t] of Object.entries(manifest.templates)) {
-    assert.ok(Object.keys(manifest.kinds).includes(t.kind), `${id}: unknown kind ${t.kind}`);
-    if ((manifest.raster_kinds ?? []).includes(t.kind)) assert.equal(t.data, undefined, `${id}: raster template must not declare data`);
-    else assert.ok(t.data && Object.keys(t.data).length > 0, `${id}: data spec is empty`);
+    assert.ok(t.data && Object.keys(t.data).length > 0, `${id}: data spec is empty`);
     if (t.caption) assert.equal(t.caption, 'required');
+  }
+  for (const id of Object.keys(manifest.planned_kinds ?? {})) {
+    assert.ok(!(id in manifest.kinds), `${id}: a planned kind must not also be validatable`);
   }
 });

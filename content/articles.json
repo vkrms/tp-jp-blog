@@ -59,6 +59,50 @@
        "リンクを貼るだけで終わりではありません。「読者が何に困っていて、この商品でどう解決できるか」を書くことが、成果につながる一番の近道です。",
        "Placing a link is not the end of it. Explaining what the reader struggles with and how the product helps is the shortest path to results."
       ]
+     },
+     {
+      "figure": {
+       "kind": "schematic",
+       "template": "stair-steps",
+       "caption": [
+        "5つの流れは、この順に積み上がる",
+        "The five steps stack up in this order"
+       ],
+       "data": {
+        "items": [
+         {
+          "title": [
+           "記事やSNS投稿で商品・サービスを紹介し、専用リンクを貼る",
+           "Recommend a product in an article or post and add your own link"
+          ]
+         },
+         {
+          "title": [
+           "読者がリンクをクリックして、広告主のサイトへ移動する",
+           "A reader clicks the link and lands on the advertiser’s site"
+          ]
+         },
+         {
+          "title": [
+           "読者が購入や会員登録などの「成果」につながる行動をする",
+           "The reader takes an action that counts as a result, such as buying or signing up"
+          ]
+         },
+         {
+          "title": [
+           "広告主が内容を確認し、成果を承認する",
+           "The advertiser reviews the result and approves it"
+          ]
+         },
+         {
+          "title": [
+           "承認された分の報酬が、あなたのアカウントに積み上がる",
+           "Approved rewards add up in your account"
+          ]
+         }
+        ]
+       }
+      }
      }
     ]
    },
@@ -785,6 +829,52 @@
          ]
         ]
        ]
+      }
+     },
+     {
+      "figure": {
+       "kind": "infographic",
+       "template": "balance-scale",
+       "caption": [
+        "仮の数字で見る、広告費と報酬のバランス",
+        "Ad cost against reward, with the example numbers"
+       ],
+       "data": {
+        "cost": {
+         "label": [
+          "100クリックの広告費",
+          "Ad cost for 100 clicks"
+         ],
+         "value": [
+          "5,000円",
+          "¥5,000"
+         ]
+        },
+        "reward": {
+         "label": [
+          "報酬の合計（2件）",
+          "Total reward (2 results)"
+         ],
+         "value": [
+          "6,000円",
+          "¥6,000"
+         ]
+        },
+        "net": {
+         "label": [
+          "差し引き",
+          "Net"
+         ],
+         "value": [
+          "+1,000円",
+          "+¥1,000"
+         ]
+        },
+        "note": [
+         "クリック単価50円・成果率2%・1件3,000円のとき",
+         "At ¥50 per click, 2% conversion and ¥3,000 per result"
+        ]
+       }
       }
      },
      {
@@ -2426,6 +2516,59 @@
          ]
         ]
        ]
+      }
+     },
+     {
+      "figure": {
+       "kind": "infographic",
+       "template": "timeline-gantt",
+       "caption": [
+        "年末までの主なテーマと時期（詳細は上の表）",
+        "Main themes and timing to year-end (detail in the table above)"
+       ],
+       "data": {
+        "rows": [
+         {
+          "label": [
+           "ふるさと納税・年末売れ筋サービス特集",
+           "Furusato Nozei and year-end features"
+          ],
+          "from": "2026-10-21",
+          "to": "2026-12-02"
+         },
+         {
+          "label": [
+           "ブラックフライデー",
+           "Black Friday"
+          ],
+          "from": "2026-11-27",
+          "to": "2026-11-27",
+          "when": [
+           "11/27（金）",
+           "Fri 27 Nov"
+          ]
+         },
+         {
+          "label": [
+           "ANAとIHGの新プログラム",
+           "New ANA and IHG programme"
+          ],
+          "from": "2027-01-01",
+          "when": [
+           "2027/1〜",
+           "from Jan 2027"
+          ],
+          "note": [
+           "一部は2月から",
+           "partly Feb"
+          ]
+         }
+        ],
+        "note": [
+         "ブラックフライデーの記事は早めに準備し、ANAとIHGの新プログラムは開始前の案内記事を書く",
+         "Prepare the Black Friday article early, and write the ANA and IHG preview before it starts"
+        ]
+       }
       }
      },
      {

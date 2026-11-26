@@ -24,6 +24,7 @@ const typeOk = (type, v) => {
     case 'number': return typeof v === 'number' && Number.isFinite(v);
     case 'date': return isDate(v);
     case 'array': return Array.isArray(v);
+    case 'object': return !!v && typeof v === 'object' && !Array.isArray(v);
     default: return false;
   }
 };
@@ -98,12 +99,36 @@ function dataErrors(data, template) {
     });
   }
 
+  // Template-level ordering rule, e.g. a timeline bar must not end before it starts:
+  // "range": { "array": "rows", "from": "from", "to": "to" }
+  if (template?.range) {
+    const { array, from, to } = template.range;
+    const list = data[array];
+    if (Array.isArray(list)) {
+      list.forEach((row, i) => {
+        const a = row?.[from];
+        const b = row?.[to];
+        if (typeof a === 'string' && typeof b === 'string' && isDate(a) && isDate(b) && a > b) {
+          errors.push(`figure: data.${array}[${i}].${to} (${b}) раньше ${from} (${a})`);
+        }
+      });
+    }
+  }
+
   return errors;
 }
 
-const FIELDS = new Set(['kind', 'template', 'data', 'alt', 'caption', 'brief', 'facts']);
+const FIELDS = new Set(['kind', 'template', 'data', 'caption', 'facts']);
 
-/** All errors for one `figure` block. Empty array = valid. */
+/**
+ * All errors for one `figure` block. Empty array = valid.
+ *
+ * Only kinds a template can produce are accepted (`manifest.kinds`), so `kind` always has
+ * a component behind it. A planned kind (`photo`, `illustration`, `composite`, `ui` in
+ * `planned_kinds`) returns a single "not supported yet" error: the fix is a different
+ * block (`img`), not a better figure. Photos inside an article stay `img` until raster
+ * figures have `src`, a component and a generator step.
+ */
 export function validateFigure(figure, manifest) {
   const errors = [];
   if (!figure || typeof figure !== 'object' || Array.isArray(figure)) {
@@ -115,10 +140,16 @@ export function validateFigure(figure, manifest) {
   }
 
   const kinds = Object.keys(manifest.kinds ?? {});
+  const planned = Object.keys(manifest.planned_kinds ?? {});
   const template = figure.template ? manifest.templates?.[figure.template] : undefined;
 
   if (!figure.kind) errors.push('figure: нет kind');
-  else if (!kinds.includes(figure.kind)) errors.push(`figure: kind «${figure.kind}» не из списка (${kinds.join(', ')})`);
+  else if (planned.includes(figure.kind)) {
+    // One actionable line instead of a template/data/field pile-up: the fix is a different block.
+    return [`figure: kind «${figure.kind}» пока не поддерживается (растровые и ui-фигуры — в плане; фото в статье остаётся блоком img)`];
+  } else if (!kinds.includes(figure.kind)) {
+    errors.push(`figure: kind «${figure.kind}» не из списка (${kinds.join(', ')})`);
+  }
 
   if (!figure.template) errors.push('figure: нет template');
   else if (!template) errors.push(`figure: шаблона «${figure.template}» нет в tools/figures/templates.json`);
@@ -127,25 +158,16 @@ export function validateFigure(figure, manifest) {
     errors.push(`figure: у шаблона «${figure.template}» kind «${template.kind}», а в блоке «${figure.kind}»`);
   }
 
-  const raster = (manifest.raster_kinds ?? []).includes(figure.kind);
-
-  if (raster) {
-    if (!isText(figure.alt)) errors.push('figure: растровой фигуре нужен alt на ja и en');
-    if (!figure.brief) errors.push('figure: растровой фигуре нужен brief (сцена для генератора)');
-    if (figure.data !== undefined) errors.push('figure: растровая фигура не использует data (сцена — в brief)');
-  } else if (template) {
-    if (template.caption === 'required' && !isText(figure.caption)) {
-      errors.push('figure: этому шаблону нужен caption на ja и en (вывод под фигурой)');
-    }
-    if (!figure.data || typeof figure.data !== 'object' || Array.isArray(figure.data)) {
-      errors.push('figure: нет data (объект по схеме шаблона)');
-    } else {
-      errors.push(...dataErrors(figure.data, template));
-    }
-    if (figure.brief !== undefined) errors.push('figure: brief — только для растровых фигур');
+  if (template && template.caption === 'required' && !isText(figure.caption)) {
+    errors.push('figure: этому шаблону нужен caption на ja и en (вывод под фигурой)');
   }
 
-  if (figure.alt !== undefined && !isText(figure.alt)) errors.push('figure: alt должен быть парой ja/en');
+  if (!figure.data || typeof figure.data !== 'object' || Array.isArray(figure.data)) {
+    errors.push('figure: нет data (объект по схеме шаблона)');
+  } else if (template) {
+    errors.push(...dataErrors(figure.data, template));
+  }
+
   if (figure.caption !== undefined && !isText(figure.caption)) errors.push('figure: caption должен быть парой ja/en');
   if (figure.facts !== undefined && (!Array.isArray(figure.facts) || !figure.facts.every((x) => typeof x === 'string' && x.trim()))) {
     errors.push('figure: facts — массив id фактов');

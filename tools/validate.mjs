@@ -21,7 +21,7 @@ for (const a of articles) {
     if (!BLOCK_KEYS.has(keys[0])) e(`неизвестный тип блока «${keys[0]}»`);
     if (b.figure) {
       for (const m of validateFigure(b.figure, figureManifest)) e(m);
-      if (!(figureManifest.raster_kinds || []).includes(b.figure.kind)) dataFigures.push(b.figure);
+      dataFigures.push(b.figure);
     }
   }
   if (dataFigures.length) {

@@ -1,0 +1,18 @@
+---
+// The same steps as a journey: numbered pins along a dashed path, the last one is the goal
+// (docs/figures.md → template `path-milestones`). Pins zigzag on wide screens and fall back
+// to a single left rail on mobile; the order and numbers are real text.
+import { rich, type Lang } from '../../i18n/ui';
+
+interface Props { data: Record<string, any>; lang: Lang }
+const { data, lang } = Astro.props;
+const items = (data?.items ?? []) as any[];
+---
+<ol class="path">
+  {items.map((item, i) => (
+    <li style={`--i:${i + 1}`}>
+      <span class="pin" aria-hidden="true">{i + 1}</span>
+      <span class="t" set:html={rich(item.title, lang)} />
+    </li>
+  ))}
+</ol>

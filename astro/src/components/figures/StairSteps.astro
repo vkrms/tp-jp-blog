@@ -1,0 +1,17 @@
+---
+// Ascending steps: each card sits one notch further right, the last one is the goal
+// (docs/figures.md → template `stair-steps`). Numbering is real text; the offset is pure CSS.
+import { rich, type Lang } from '../../i18n/ui';
+
+interface Props { data: Record<string, any>; lang: Lang }
+const { data, lang } = Astro.props;
+const items = (data?.items ?? []) as any[];
+---
+<ol class="stairs">
+  {items.map((item, i) => (
+    <li style={`--i:${i}`}>
+      <span class="n" aria-hidden="true">{i + 1}</span>
+      <span class="t" set:html={rich(item.title, lang)} />
+    </li>
+  ))}
+</ol>

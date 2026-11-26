@@ -1,0 +1,176 @@
+{
+  "_comment": "Synthetic examples for figure templates (docs/figures.md). NOT article content: never copy these into content/articles.json — a real figure only carries values that already exist in the article. Every example is validated by tools/figures.test.mjs, so a template change cannot silently break them.",
+  "examples": [
+    {
+      "name": "year-end calendar: multi-year axis, one open-ended row",
+      "figure": {
+        "kind": "infographic",
+        "template": "timeline-gantt",
+        "caption": [
+          "年末年始のセール予定（例）",
+          "Year-end and New Year sale schedule (example)"
+        ],
+        "data": {
+          "rows": [
+            {
+              "label": ["冬の国内線セール", "Winter domestic fare sale"],
+              "from": "2026-11-05",
+              "to": "2026-11-19"
+            },
+            {
+              "label": ["年末年始の帰省セール", "New Year travel-home sale"],
+              "from": "2026-12-01",
+              "to": "2026-12-20"
+            },
+            {
+              "label": ["初売りセール", "New Year’s first sale"],
+              "from": "2027-01-01",
+              "to": "2027-01-10"
+            },
+            {
+              "label": ["春休みの早期予約", "Spring holiday early booking"],
+              "from": "2027-02-01",
+              "when": ["2027/2〜", "from Feb 2027"],
+              "note": ["一部は3月から", "partly Mar"]
+            }
+          ],
+          "note": [
+            "初売りは1月上旬まで。春休みの案内は2月から出す",
+            "The first sale runs to early January; spring announcements start in February"
+          ]
+        }
+      }
+    },
+    {
+      "name": "single month: short windows of different lengths",
+      "figure": {
+        "kind": "infographic",
+        "template": "timeline-gantt",
+        "caption": [
+          "11月のセールは、期間の長さがこれだけ違う（例）",
+          "November sales differ this much in length (example)"
+        ],
+        "data": {
+          "rows": [
+            {
+              "label": ["11.11セール", "11.11 sale"],
+              "from": "2026-11-11",
+              "to": "2026-11-15"
+            },
+            {
+              "label": ["週末限定セール", "Weekend-only sale"],
+              "from": "2026-11-21",
+              "to": "2026-11-23"
+            },
+            {
+              "label": ["24時間セール", "24-hour sale"],
+              "from": "2026-11-28",
+              "to": "2026-11-29"
+            }
+          ],
+          "note": [
+            "同じ月でも、期間の長さはこれだけ違う",
+            "Within one month, the windows differ this much"
+          ]
+        }
+      }
+    },
+    {
+      "name": "long run: long bar, one-day milestone, far open end",
+      "figure": {
+        "kind": "infographic",
+        "template": "timeline-gantt",
+        "caption": [
+          "長期の特集と単日のイベント（例）",
+          "A long-running feature and a single-day event (example)"
+        ],
+        "data": {
+          "rows": [
+            {
+              "label": ["ふるさと納税の年末特集", "Year-end Furusato Nozei feature"],
+              "from": "2026-09-01",
+              "to": "2026-12-31"
+            },
+            {
+              "label": ["ブラックフライデー", "Black Friday"],
+              "from": "2026-11-27",
+              "to": "2026-11-27",
+              "when": ["11/27（金）", "Fri 27 Nov"]
+            },
+            {
+              "label": ["新しいポイント制度", "New points scheme"],
+              "from": "2027-03-01",
+              "when": ["2027/3〜", "from Mar 2027"]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "six steps as ascending stairs",
+      "figure": {
+        "kind": "schematic",
+        "template": "stair-steps",
+        "caption": ["6つのステップ（例）", "Six steps (example)"],
+        "data": {
+          "items": [
+            { "title": ["テーマを決める", "Pick a topic"] },
+            { "title": ["ブログを立ち上げる", "Set up the blog"] },
+            { "title": ["ASPに登録する", "Join an ASP"] },
+            { "title": ["案件を選ぶ", "Choose offers"] },
+            { "title": ["記事を書く", "Write articles"] },
+            { "title": ["数字を見直す", "Review the numbers"] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "the same six steps as a path",
+      "figure": {
+        "kind": "schematic",
+        "template": "path-milestones",
+        "caption": ["同じ6つのステップを、道のりとして（例）", "The same six steps as a journey (example)"],
+        "data": {
+          "items": [
+            { "title": ["テーマを決める", "Pick a topic"] },
+            { "title": ["ブログを立ち上げる", "Set up the blog"] },
+            { "title": ["ASPに登録する", "Join an ASP"] },
+            { "title": ["案件を選ぶ", "Choose offers"] },
+            { "title": ["記事を書く", "Write articles"] },
+            { "title": ["数字を見直す", "Review the numbers"] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "balance: cost against reward",
+      "figure": {
+        "kind": "infographic",
+        "template": "balance-scale",
+        "caption": ["広告費と報酬のバランス（例）", "Cost against reward (example)"],
+        "data": {
+          "cost": { "label": ["広告費", "Ad cost"], "value": ["5,000円", "¥5,000"] },
+          "reward": { "label": ["報酬", "Reward"], "value": ["6,000円", "¥6,000"] },
+          "net": { "label": ["差し引き", "Net"], "value": ["+1,000円", "+¥1,000"] },
+          "note": ["成果率2%で2件のとき", "At a 2% conversion rate, two results"]
+        }
+      }
+    },
+    {
+      "name": "ticket: one route and a price",
+      "figure": {
+        "kind": "ui",
+        "template": "ticket-stub",
+        "caption": ["セールの一例（例）", "One sale example (example)"],
+        "data": {
+          "from": ["TYO", "TYO"],
+          "to": ["AMS", "AMS"],
+          "cabin": ["片道・エコノミー", "One way · Economy"],
+          "price": ["3,690円から", "from ¥3,690"],
+          "tag": ["セール", "SALE"],
+          "note": ["手数料は別", "fees extra"]
+        }
+      }
+    }
+  ]
+}

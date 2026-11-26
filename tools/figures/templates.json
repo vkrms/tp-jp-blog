@@ -1,15 +1,16 @@
 {
-  "_comment": "Registry of in-article figure templates (docs/figures.md). Read by astro/src/data/figures.ts for rendering and by tools/lib/figures.mjs for validation, so both check the same ids and fields. Adding a template = an entry here + a component in astro/src/components/figures/ + a branch in DataFigure.astro.",
-  "version": 1,
+  "_comment": "Registry of in-article figure templates (docs/figures.md). Read by astro/src/data/figures.ts for rendering and by tools/lib/figures.mjs for validation, so both check the same ids and fields. Invariant: `kinds` lists exactly the kinds some template can produce — a kind without a template is not validatable. Adding a template = an entry here + a component in astro/src/components/figures/ + a branch in DataFigure.astro.",
+  "version": 2,
   "kinds": {
-    "photo": "Raster photo, text-free (image model, tools/featured-image). Needs alt + brief.",
-    "illustration": "Raster editorial illustration with a character, text-free (image model). Needs alt + brief.",
     "infographic": "Data graphic rendered as HTML from the article's own values. Real text, ja+en.",
     "schematic": "Steps / flow / process diagram rendered as HTML.",
-    "ui": "Pseudo-interface (card, ticket, mock UI) rendered as HTML.",
-    "composite": "Raster base plus an HTML overlay; any text lives in the overlay."
+    "ui": "Pseudo-interface (card, ticket, mock UI) rendered as HTML. Real text, ja+en."
   },
-  "raster_kinds": ["photo", "illustration"],
+  "planned_kinds": {
+    "photo": "Raster photo, text-free (image model). Needs `src`, a component and a generator step; until then a photo in an article is the `img` block.",
+    "illustration": "Raster editorial illustration with a character. Same as photo: covers and `img` today.",
+    "composite": "Raster base plus an HTML overlay; any text lives in the overlay. Planned."
+  },
   "templates": {
     "check-cards": {
       "kind": "infographic",
@@ -39,6 +40,69 @@
         "pairs": { "type": "array", "min": 1, "max": 4 },
         "pairs[].avoid": { "type": "text" },
         "pairs[].prefer": { "type": "text" }
+      }
+    },
+    "timeline-gantt": {
+      "kind": "infographic",
+      "ref": "deck 2026-11-26: Sales calendar to year-end",
+      "caption": "required",
+      "range": { "array": "rows", "from": "from", "to": "to" },
+      "data": {
+        "rows": { "type": "array", "min": 2, "max": 6 },
+        "rows[].label": { "type": "text" },
+        "rows[].from": { "type": "date" },
+        "rows[].to": { "type": "date", "optional": true },
+        "rows[].when": { "type": "text", "optional": true },
+        "rows[].note": { "type": "text", "optional": true },
+        "note": { "type": "text", "optional": true }
+      }
+    },
+    "stair-steps": {
+      "kind": "schematic",
+      "ref": "deck 2026-11-26: 6 steps, ascending cards",
+      "caption": "required",
+      "data": {
+        "items": { "type": "array", "min": 2, "max": 6 },
+        "items[].title": { "type": "text" }
+      }
+    },
+    "path-milestones": {
+      "kind": "schematic",
+      "ref": "deck 2026-11-26: 6 steps, pins on a path",
+      "caption": "required",
+      "data": {
+        "items": { "type": "array", "min": 2, "max": 6 },
+        "items[].title": { "type": "text" }
+      }
+    },
+    "balance-scale": {
+      "kind": "infographic",
+      "ref": "deck 2026-11-26: Ad spend vs reward",
+      "caption": "required",
+      "data": {
+        "cost": { "type": "object" },
+        "cost.label": { "type": "text" },
+        "cost.value": { "type": "text" },
+        "reward": { "type": "object" },
+        "reward.label": { "type": "text" },
+        "reward.value": { "type": "text" },
+        "net": { "type": "object" },
+        "net.label": { "type": "text" },
+        "net.value": { "type": "text" },
+        "note": { "type": "text", "optional": true }
+      }
+    },
+    "ticket-stub": {
+      "kind": "ui",
+      "ref": "deck 2026-11-26: boarding pass",
+      "caption": "required",
+      "data": {
+        "from": { "type": "text" },
+        "to": { "type": "text" },
+        "cabin": { "type": "text" },
+        "price": { "type": "text" },
+        "tag": { "type": "text", "optional": true },
+        "note": { "type": "text", "optional": true }
       }
     }
   }

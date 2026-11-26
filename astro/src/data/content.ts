@@ -18,23 +18,20 @@ export interface Img {
 export interface ArticleTable { head: Text[]; rows: Text[][] }
 
 /**
- * In-article figure (docs/figures.md). Data kinds (`infographic`, `schematic`, `ui`) render
- * from `data` as HTML; raster kinds (`photo`, `illustration`) use `alt` + `brief`.
+ * In-article figure (docs/figures.md). Every kind here is rendered from `data` as HTML.
+ * Raster kinds (photo, illustration, composite) are planned, not accepted yet: a photo in
+ * an article is still the `img` block.
  */
-export type FigureKind = 'photo' | 'illustration' | 'infographic' | 'schematic' | 'ui' | 'composite';
+export type FigureKind = 'infographic' | 'schematic';
 
 export interface Figure {
   kind: FigureKind;
   /** Template id from tools/figures/templates.json. */
   template: string;
   /** Template-specific values; every number also exists in the article body. */
-  data?: Record<string, unknown>;
-  /** ja+en takeaway, rendered in <figcaption>. Required for data figures. */
+  data: Record<string, unknown>;
+  /** ja+en takeaway, rendered in <figcaption>. Most templates require it. */
   caption?: Text;
-  /** ja+en description. Required for raster figures, optional otherwise. */
-  alt?: Text;
-  /** Generation scene for raster figures (same fields as image_brief). Never rendered. */
-  brief?: Record<string, unknown>;
   /** fact ids from content/facts.yaml, for traceability. Never rendered. */
   facts?: string[];
 }
