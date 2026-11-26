@@ -29,6 +29,9 @@
 - **Блок `say` не используй** (это был пузырь маскота; маскота на сайте больше нет). Вместо него — обычный абзац `p` или `point`.
 - **Писатель: только одобренные темы.** Бери из `content/queue.json` только записи со статусом `ready` или `approved`
   (по наибольшему спросу). `proposed`, `idea`, `held`, `published`/`used` — не писать. После статьи поставь её теме `published`.
+- **Писатель: бриф обложки.** Добавь новой статье поле `image_brief`: `{"biome": "...", "gender": "man|woman", "device": "phone|laptop", "action": "по-английски, что человек делает"}`.
+  `biome` — один из: mediterranean, tropical, jungle, desert, mountain, winter, city, japan_traditional, cherry_blossom, savanna, arctic,
+  lakeside, countryside (под тему и сезон статьи). Картинку генерирует код после проверки; без брифа он подберёт обложку сам.
 - **Писатель: очередь.** Выбранную при подборе тему и сильных кандидатов записывай в `content/queue.json` отдельными записями
   в формате из `agents/topic-discovery.md` §6 (`origin: "agent"`, `evidence`, `serp_gap`, `angle`, `score`), а не заметкой в чужой записи.
 

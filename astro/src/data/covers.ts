@@ -2,6 +2,7 @@
 // the generated ones come from tools/featured-image (see docs/featured-images.md) and are converted
 // to WebP before being committed here.
 import type { ImageMetadata } from 'astro';
+import { articles } from './content';
 import sales from '../assets/home/12e13e5d91.jpg';
 import market from '../assets/home/b8918e6bc1.jpg';
 import start from '../assets/home/02e620181b.jpg';
@@ -26,7 +27,7 @@ const cardBySlug = new Map(
 );
 export const coverCard = (slug: string) => cardBySlug.get(slug);
 
-export const covers: Record<string, { img: ImageMetadata; alt: [string, string] }> = {
+const manual: Record<string, { img: ImageMetadata; alt: [string, string] }> = {
   // from the design
   'sales-calendar': { img: sales, alt: ['雪の集落でスマホを見る旅行者と Travelpayouts の吹き出し', 'A smiling traveller in earmuffs checking her phone in a snowy village of thatched houses, beside a Travelpayouts speech bubble'] },
   'travel-demand': { img: market, alt: ['山小屋の外でノートPCを開くハイカー', 'A hiker in a yellow jacket working on a laptop outside a mountain hut, with snowy peaks behind'] },
@@ -43,3 +44,18 @@ export const covers: Record<string, { img: ImageMetadata; alt: [string, string] 
   'travel-blog-income': { img: blogIncome, alt: ['海辺の町を見下ろす石垣でノートPCを開く旅行者と Travelpayouts のロゴ', 'A traveller working on a laptop on a stone wall overlooking a coastal town, with the Travelpayouts logo'] },
   'click-reward': { img: clickReward, alt: ['オーロラ・黒砂海岸・ガラス屋根のロッジでスマホを見る旅行者の3枚のインスタント写真（トロムソ）', 'Three instant photos of a traveller with her phone under the aurora, on a black-sand coast and in a glass-roofed cabin, labelled Tromsø'] },
 };
+
+// Generated covers register themselves: any ../assets/home/<slug>-featured.webp belongs to that article
+// (tools/featured-image, run by the writer pipeline for every new article). Alt text = the article title.
+// Entries above win, so the hand-picked design covers and their hand-written alt texts stay as they are.
+const featuredFiles = import.meta.glob<ImageMetadata>('../assets/home/*-featured.webp', { eager: true, import: 'default' });
+const titleOf = (t: unknown): [string, string] =>
+  Array.isArray(t) ? [String(t[0] ?? ''), String(t[1] ?? '')] : [String((t as Record<string, string>)?.ja ?? ''), String((t as Record<string, string>)?.en ?? '')];
+const generated: Record<string, { img: ImageMetadata; alt: [string, string] }> = {};
+for (const [key, img] of Object.entries(featuredFiles)) {
+  const slug = key.slice(key.lastIndexOf('/') + 1).replace(/-featured\.webp$/, '');
+  const article = articles.find((a) => a.slug === slug);
+  if (article && !manual[slug]) generated[slug] = { img, alt: titleOf(article.title) };
+}
+
+export const covers: Record<string, { img: ImageMetadata; alt: [string, string] }> = { ...generated, ...manual };

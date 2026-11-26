@@ -83,7 +83,8 @@ async function main() {
     const expected = `${slug}-featured.webp`;
     // Only slugs whose live cover is this generated master get a card rendition; otherwise the
     // card would show a different picture than the article cover (e.g. a design illustration).
-    const usesGenerated = current === expected;
+    // No covers.ts entry = the cover registers itself from <slug>-featured.webp (covers.ts glob), so it is generated.
+    const usesGenerated = current === expected || !current;
 
     // Several styles for one slug are possible (tile/bubble/polaroid, plus --suffix runs): newest wins.
     const [src, ...older] = found.get(slug).sort((a, b) => b.mtime - a.mtime);
@@ -108,7 +109,7 @@ async function main() {
       older.length && `ignored ${older.length} older variant(s)`,
       offAspect && `⚠ ${meta.width}x${meta.height} is not 16:9`,
       // Not an error: covers.ts may still point at a design illustration, or not list the slug yet.
-      current !== expected && (current ? `covers.ts uses ${current}` : '⚠ no covers.ts entry'),
+      current && current !== expected && `covers.ts uses ${current}`,
     ].filter(Boolean);
 
     const cardLog = cardInfo

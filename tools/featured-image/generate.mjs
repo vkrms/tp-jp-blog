@@ -1,17 +1,23 @@
 #!/usr/bin/env node
 // Генерация featured-картинки статьи через OpenRouter.
 // Использование: node tools/featured-image/generate.mjs <slug> [--model=id] [--out=dir]
-// Ключ: OPENROUTER_KEY в .env. Логика промпта описана в docs/featured-images.md.
+// Ключ: OPENROUTER_KEY в env или .env. Логика промпта описана в docs/featured-images.md.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
-const env = Object.fromEntries(
-  readFileSync(resolve(ROOT, '.env'), 'utf8').split('\n')
-    .filter((l) => l.includes('=') && !l.startsWith('#'))
-    .map((l) => [l.slice(0, l.indexOf('=')).trim(), l.slice(l.indexOf('=') + 1).trim()]),
-);
+// Ключ: env OPENROUTER_KEY (GitHub Actions) или .env (локально).
+const env = (() => {
+  if (process.env.OPENROUTER_KEY) return { OPENROUTER_KEY: process.env.OPENROUTER_KEY };
+  try {
+    return Object.fromEntries(
+      readFileSync(resolve(ROOT, '.env'), 'utf8').split('\n')
+        .filter((l) => l.includes('=') && !l.startsWith('#'))
+        .map((l) => [l.slice(0, l.indexOf('=')).trim(), l.slice(l.indexOf('=') + 1).trim()]),
+    );
+  } catch { return {}; }
+})();
 
 // Биом = набор сцен фона + одежда/снаряжение по полу. Писатель выбирает только `biome` (и при желании свою `scene`),
 // а конкретная сцена и наряд выбираются по хэшу слага (или --scene=N / --outfit=N).
@@ -147,6 +153,28 @@ export const BRIEFS = {
   'click-reward': { biome: 'arctic', gender: 'woman', device: 'phone', action: 'standing in the snow with a smartphone, delighted' },
 };
 
+// Бриф статьи: ручной (BRIEFS) → от писателя (article.image_brief, если корректный) → по умолчанию из хэша слага.
+// Так у любой новой статьи есть картинка, даже если писатель бриф не вернул.
+const ACTIONS = {
+  phone: ['standing outdoors, checking a smartphone with a relaxed smile', 'walking slowly, glancing at a smartphone with a curious look', 'standing at a viewpoint, reading something on a smartphone and smiling'],
+  laptop: ['sitting at an outdoor table with an open laptop', 'sitting on a low wall, working on an open laptop on their knees', 'sitting on a terrace bench with an open laptop, a drink beside them'],
+};
+export function resolveBrief(slug, article = {}) {
+  if (BRIEFS[slug]) return BRIEFS[slug];
+  const b = article.image_brief;
+  if (b && BIOMES[b.biome] && ['man', 'woman'].includes(b.gender) && ['phone', 'laptop'].includes(b.device) && typeof b.action === 'string' && b.action.trim()) {
+    return { biome: b.biome, gender: b.gender, device: b.device, action: b.action.trim(), ...(typeof b.scene === 'string' && b.scene.trim() ? { scene: b.scene.trim() } : {}) };
+  }
+  const biomes = Object.keys(BIOMES);
+  const device = hash(slug, 'device') % 2 ? 'laptop' : 'phone';
+  return {
+    biome: biomes[hash(slug, 'biome') % biomes.length],
+    gender: hash(slug, 'gender') % 2 ? 'woman' : 'man',
+    device,
+    action: ACTIONS[device][hash(slug, 'action') % ACTIONS[device].length],
+  };
+}
+
 // ───────────────────────── Стили (шаблоны) ─────────────────────────
 // Каждый стиль = эталон-картинка + набор раскладок + сборщик промпта. Новый шаблон = новая запись в STYLES.
 // Общие для всех стилей: японские персонажи, одежда по биому, ракурс, запрет на посторонний текст.
@@ -252,17 +280,18 @@ async function main() {
   const num = (k) => (arg(k, '') === '' ? undefined : Number(arg(k, '')));
   const model = arg('model', 'google/gemini-3.1-flash-image');
   const outDir = resolve(ROOT, arg('out', 'out/featured'));
-  const baseBrief = BRIEFS[slug];
-  if (!baseBrief) throw new Error(`no brief for "${slug}"`);
+  const cats = JSON.parse(readFileSync(resolve(ROOT, 'content/categories.json'), 'utf8'));
+  const arts = JSON.parse(readFileSync(resolve(ROOT, 'content/articles.json'), 'utf8'));
+  const art = (Array.isArray(arts) ? arts : arts.articles).find((a) => a.slug === slug);
+  if (!art) throw new Error(`no article "${slug}" in content/articles.json`);
+  if (!env.OPENROUTER_KEY) throw new Error('OPENROUTER_KEY is not set (env or .env)');
+  const baseBrief = resolveBrief(slug, art);
   const brief = { ...baseBrief, scene: baseBrief.scene ?? pickScene(slug, baseBrief.biome, num('scene')) };
   const lang = arg('lang', 'ja');
   const styleName = pickStyle(slug, arg('style', ''));
   const style = STYLES[styleName];
   const layout = pickLayout(slug, styleName, num('layout'));
 
-  const cats = JSON.parse(readFileSync(resolve(ROOT, 'content/categories.json'), 'utf8'));
-  const arts = JSON.parse(readFileSync(resolve(ROOT, 'content/articles.json'), 'utf8'));
-  const art = (Array.isArray(arts) ? arts : arts.articles).find((a) => a.slug === slug);
   const hex = cats.find((c) => c.id === art.category).c;
   const tint = (h, k) => '#' + [1, 3, 5].map((i) => Math.round(255 - (255 - parseInt(h.slice(i, i + 2), 16)) * k).toString(16).padStart(2, '0')).join('');
   const prompt = style.build({

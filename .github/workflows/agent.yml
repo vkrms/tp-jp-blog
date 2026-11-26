@@ -84,13 +84,38 @@ jobs:
           AGENT_SLUG: ${{ inputs.slug }}
         run: node tools/agent-gate.mjs post --task "${{ inputs.task }}" --slug "$AGENT_SLUG" --base "$(git rev-parse HEAD)"
 
+      - name: Featured images for new articles
+        id: images
+        if: inputs.task == 'writer' && (steps.gate.outputs.decision == 'merge' || steps.gate.outputs.decision == 'hold')
+        env:
+          OPENROUTER_KEY: ${{ secrets.OPENROUTER_KEY }}
+        run: |
+          npm ci --no-audit --no-fund   # sharp for the WebP conversion
+          node tools/featured-image/new-covers.mjs --base "$(git rev-parse HEAD)"
+
+      # A new article without its featured image must not go live: a failed image turns merge into hold.
+      - name: Final decision
+        id: final
+        if: steps.gate.outputs.decision == 'merge' || steps.gate.outputs.decision == 'hold'
+        env:
+          DECISION: ${{ steps.gate.outputs.decision }}
+          IMAGES_OK: ${{ steps.images.outputs.images_ok }}
+        run: |
+          d="$DECISION"
+          if [ "$d" = "merge" ] && [ "$IMAGES_OK" = "false" ]; then
+            d="hold"
+            printf '\n- обложка новой статьи не создана — PR ждёт человека\n' >> agent-out/gate.md
+          fi
+          echo "decision=$d" >> "$GITHUB_OUTPUT"
+          echo "final decision: $d"
+
       - name: Open PR
         id: pr
-        if: steps.gate.outputs.decision == 'merge' || steps.gate.outputs.decision == 'hold'
+        if: steps.final.outputs.decision == 'merge' || steps.final.outputs.decision == 'hold'
         env:
           GH_TOKEN: ${{ github.token }}
           TITLE: ${{ steps.gate.outputs.title }}
-          DECISION: ${{ steps.gate.outputs.decision }}
+          DECISION: ${{ steps.final.outputs.decision }}
           TASK: ${{ inputs.task }}
         run: |
           node tools/agent-run.mjs pr-body
@@ -99,6 +124,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
           git add content/articles.json content/facts.yaml content/sources.json content/queue.json content/glossary.json
+          git add astro/src/assets/home/ 2>/dev/null || true   # featured images generated for new articles
           git commit -q -m "content(${TASK}): ${TITLE:-agent run ${{ github.run_id }}}"
           git push -q origin "$branch"
           prefix=""; [ "$DECISION" = "hold" ] && prefix="[needs human] "
@@ -107,7 +133,7 @@ jobs:
           echo "PR: $url"
 
       - name: Merge and deploy
-        if: steps.gate.outputs.decision == 'merge' && !inputs.dry_run
+        if: steps.final.outputs.decision == 'merge' && !inputs.dry_run
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

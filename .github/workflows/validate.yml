@@ -12,4 +12,4 @@ jobs:
         with: {node-version: 24}
       - run: node tools/terms.mjs   # «updater», not обновлятор/апдейтер (see AGENTS.md)
       - run: node tools/validate.mjs
-      - run: node --test tools/*.test.mjs
+      - run: node --test tools/*.test.mjs tools/featured-image/*.test.mjs
