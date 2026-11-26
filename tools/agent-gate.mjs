@@ -1,0 +1,57 @@
+// CLI вокруг tools/lib/agent-gate.mjs для GitHub Actions (.github/workflows/agent.yml).
+//   node tools/agent-gate.mjs pre  --task writer
+//   node tools/agent-gate.mjs post --task editor --slug ai-seo --base <sha>
+// Пишет решение в $GITHUB_OUTPUT (если есть) и в agent-out/gate.md; код выхода 0, кроме сбоев самого скрипта.
+import fs from 'node:fs';
+import { execFileSync, spawnSync } from 'node:child_process';
+import { parsePolicy, preCheck, postCheck } from './lib/agent-gate.mjs';
+
+const ROOT = new URL('../', import.meta.url);
+const read = (p) => fs.readFileSync(new URL(p, ROOT), 'utf8');
+const arg = (name, d = '') => { const i = process.argv.indexOf(`--${name}`); return i > 0 ? process.argv[i + 1] : d; };
+const git = (...a) => execFileSync('git', a, { cwd: ROOT, encoding: 'utf8' });
+
+const mode = process.argv[2];
+const task = arg('task');
+if (!['pre', 'post'].includes(mode) || !['writer', 'updater', 'editor'].includes(task)) {
+  console.error('usage: node tools/agent-gate.mjs pre|post --task writer|updater|editor [--slug s] [--base sha]');
+  process.exit(2);
+}
+
+const output = (pairs) => {
+  if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, Object.entries(pairs).map(([k, v]) => `${k}=${v}\n`).join(''));
+};
+const policy = parsePolicy(read('content/policy.yaml'));
+const articles = JSON.parse(read('content/articles.json'));
+
+if (mode === 'pre') {
+  const r = preCheck({ task, policy, articles });
+  console.log(r.run ? `pre-check: ok (${task})` : `pre-check: skip — ${r.reason}`);
+  output({ run: r.run, reason: r.reason ?? '', topic_discovery: policy.topic_discovery });
+  process.exit(0);
+}
+
+// post
+const base = arg('base') || git('rev-parse', 'HEAD').trim();
+const changedFiles = [...new Set([
+  ...git('diff', '--name-only', base).split('\n'),
+  ...git('ls-files', '--others', '--exclude-standard').split('\n'),
+].filter(Boolean))];
+const baseArticles = JSON.parse(git('show', `${base}:content/articles.json`));
+const validator = spawnSync('node', ['tools/validate.mjs'], { cwd: ROOT, encoding: 'utf8' });
+let report = null;
+try { report = JSON.parse(read('agent-out/report.json')); } catch { /* нет отчёта → hold */ }
+
+const r = postCheck({ task, slug: arg('slug'), policy, baseArticles, newArticles: articles, changedFiles, validatorOk: validator.status === 0, report });
+
+const md = [
+  `### Gate: **${r.decision}**`,
+  r.reasons.length ? r.reasons.map((x) => `- ${x}`).join('\n') : '- все проверки пройдены',
+  r.summary.added?.length ? `\nНовые статьи: ${r.summary.added.join(', ')}` : '',
+  r.summary.changed?.length ? `Изменённые статьи: ${r.summary.changed.join(', ')}` : '',
+  '\n<details><summary>Валидатор</summary>\n\n```\n' + (validator.stdout + validator.stderr).trim() + '\n```\n</details>',
+].filter(Boolean).join('\n');
+fs.mkdirSync(new URL('agent-out/', ROOT), { recursive: true });
+fs.writeFileSync(new URL('agent-out/gate.md', ROOT), md + '\n');
+console.log(md);
+output({ decision: r.decision, title: (report?.title || '').replace(/\n/g, ' ').slice(0, 120) });

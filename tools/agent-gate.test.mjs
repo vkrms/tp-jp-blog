@@ -1,0 +1,93 @@
+// node --test tools/   — проверки решений гейта (tools/lib/agent-gate.mjs).
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { parsePolicy, preCheck, postCheck } from './lib/agent-gate.mjs';
+
+const real = JSON.parse(fs.readFileSync(new URL('../content/articles.json', import.meta.url), 'utf8'));
+const policy = parsePolicy(fs.readFileSync(new URL('../content/policy.yaml', import.meta.url), 'utf8'));
+const NOW = new Date('2026-11-26T12:00:00Z');
+const clone = (x) => structuredClone(x);
+const okReport = { title: 't', needs_human: false, injection_suspected: false };
+const run = (over) => postCheck({ task: 'updater', policy, baseArticles: real, newArticles: real, changedFiles: ['content/articles.json'],
+  validatorOk: true, report: okReport, now: NOW, ...over });
+const article = (slug, date) => ({ ...clone(real[0]), slug, updated_at: date, update_log: [{ date, public: { ja: '初版を公開', en: 'First published' } }] });
+
+test('policy.yaml is parsed', () => {
+  assert.equal(policy.publish_mode, 'auto');
+  assert.equal(policy.paused, false);
+  assert.equal(policy.max_new_articles_per_week, 2);
+  assert.equal(policy.max_changed_articles_per_run, 10);
+  assert.equal(policy.topic_discovery, true);
+  assert.equal(parsePolicy('garbage').paused, true, 'unreadable policy means paused');
+});
+
+test('pre-check: pause and weekly limit', () => {
+  assert.equal(preCheck({ task: 'updater', policy, articles: real, now: NOW }).run, true);
+  assert.equal(preCheck({ task: 'writer', policy: { ...policy, paused: true }, articles: real, now: NOW }).run, false);
+  const twoNew = [...real, article('n1', '2026-11-24'), article('n2', '2026-11-25')];
+  assert.equal(preCheck({ task: 'writer', policy, articles: twoNew, now: NOW }).run, false);
+  assert.equal(preCheck({ task: 'updater', policy, articles: twoNew, now: NOW }).run, true, 'limit is for the writer only');
+});
+
+test('clean updater change merges', () => {
+  const next = clone(real);
+  next[0].sections[0].b.push({ p: ['追加', 'Added'] });
+  assert.equal(run({ newArticles: next }).decision, 'merge');
+});
+
+test('no changes → empty', () => {
+  assert.equal(run({ changedFiles: ['agent-out/report.json'] }).decision, 'empty');
+});
+
+test('forbidden files, validator errors and deleted articles are rejected', () => {
+  assert.equal(run({ changedFiles: ['content/articles.json', '.github/workflows/deploy.yml'] }).decision, 'reject');
+  assert.equal(run({ validatorOk: false }).decision, 'reject');
+  assert.equal(run({ newArticles: real.slice(1) }).decision, 'reject');
+  const renamed = clone(real); renamed[0].slug = 'renamed';
+  assert.equal(run({ newArticles: renamed }).decision, 'reject');
+});
+
+test('writer: one new article per run, weekly cap holds', () => {
+  const one = [...real, article('new-one', '2026-11-26')];
+  assert.equal(run({ task: 'writer', newArticles: one }).decision, 'merge');
+  const two = [...one, article('new-two', '2026-11-26')];
+  assert.equal(run({ task: 'writer', newArticles: two }).decision, 'reject');
+  const base = [...real, article('a', '2026-11-23'), article('b', '2026-11-24')];
+  assert.equal(run({ task: 'writer', baseArticles: base, newArticles: [...base, article('c', '2026-11-26')] }).decision, 'hold');
+});
+
+test('updater and editor may not create articles', () => {
+  assert.equal(run({ newArticles: [...real, article('x', '2026-11-26')] }).decision, 'reject');
+  assert.equal(run({ task: 'editor', slug: 'ai-seo', newArticles: [...real, article('x', '2026-11-26')] }).decision, 'reject');
+});
+
+test('editor touching other articles holds', () => {
+  const next = clone(real);
+  const i = next.findIndex((a) => a.slug === 'ai-seo');
+  next[i].eyebrow = ['新', 'New'];
+  assert.equal(run({ task: 'editor', slug: 'ai-seo', newArticles: next }).decision, 'merge');
+  next[0].eyebrow = ['新', 'New'];
+  assert.equal(run({ task: 'editor', slug: 'ai-seo', newArticles: next }).decision, 'hold');
+});
+
+test('date freshening without an update_log line holds', () => {
+  const next = clone(real);
+  next[0].updated_at = '2026-11-26';
+  assert.equal(run({ newArticles: next }).decision, 'hold');
+  next[0].update_log.push({ date: '2026-11-26', public: { ja: '数字を更新', en: 'Figures updated' } });
+  assert.equal(run({ newArticles: next }).decision, 'merge');
+});
+
+test('too many changed articles holds', () => {
+  const next = clone(real).map((a) => ({ ...a, read_minutes: a.read_minutes + 1 }));
+  assert.equal(run({ policy: { ...policy, max_changed_articles_per_run: 3 }, newArticles: next }).decision, 'hold');
+});
+
+test('report flags, missing report and review mode hold', () => {
+  const next = clone(real); next[0].read_minutes += 1;
+  assert.equal(run({ newArticles: next, report: null }).decision, 'hold');
+  assert.equal(run({ newArticles: next, report: { ...okReport, needs_human: true, needs_human_reason: 'x' } }).decision, 'hold');
+  assert.equal(run({ newArticles: next, report: { ...okReport, injection_suspected: true } }).decision, 'hold');
+  assert.equal(run({ newArticles: next, policy: { ...policy, publish_mode: 'review' } }).decision, 'hold');
+});
