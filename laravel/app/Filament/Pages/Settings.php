@@ -57,18 +57,18 @@ class Settings extends Page
             ->components([
                 Section::make('Публикация')->columns(2)->schema([
                     Toggle::make('paused')->label('Пауза (аварийный стоп)')
-                        ->helperText('Писатель и апдейтер ничего не публикуют, пока включено.')
+                        ->helperText('Писатель и updater ничего не публикуют, пока включено.')
                         ->onColor('danger')->columnSpanFull(),
                     Select::make('publish_mode')->label('Режим публикации')->required()
                         ->options(['auto' => 'auto — публиковать сразу, если проверки прошли', 'review' => 'review — всё ждёт человека'])
                         ->helperText('auto с запуска (решение владельца контента); review — на случай инцидента.'),
                     TextInput::make('max_new_articles_per_week')->label('Новых статей в неделю, макс.')->numeric()->minValue(0)->required(),
-                    TextInput::make('max_changed_articles_per_run')->label('Изменённых статей за запуск апдейтера, макс.')->numeric()->minValue(1)->required()
+                    TextInput::make('max_changed_articles_per_run')->label('Изменённых статей за запуск updater, макс.')->numeric()->minValue(1)->required()
                         ->helperText('Больше — запуск ждёт человека.'),
                 ]),
                 Section::make('Бюджет ИИ (один ключ OpenRouter)')->columns(2)->schema([
                     TextInput::make('ai_monthly_budget_usd')->label('Месячный бюджет, $')->numeric()->minValue(0)->placeholder('не задан'),
-                    TextInput::make('ai_reserved_for_agents_usd')->label('Резерв под писателя и апдейтера, $')->numeric()->minValue(0)->placeholder('не задан')
+                    TextInput::make('ai_reserved_for_agents_usd')->label('Резерв под писателя и updater, $')->numeric()->minValue(0)->placeholder('не задан')
                         ->helperText('ИИ-действия редактора блокируются, когда расход за месяц больше «бюджет − резерв» (§9.1).'),
                 ]),
                 Section::make('Отчёты')->schema([

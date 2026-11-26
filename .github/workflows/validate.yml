@@ -10,5 +10,6 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with: {node-version: 24}
+      - run: node tools/terms.mjs   # «updater», not обновлятор/апдейтер (see AGENTS.md)
       - run: node tools/validate.mjs
       - run: node --test tools/*.test.mjs

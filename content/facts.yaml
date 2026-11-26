@@ -1,5 +1,5 @@
 # Реестр фактов. Темы права, налогов и условий ASP исключены из проекта (см. content/rules.json -> excluded_topics).
-# Реестр фактов. Статья ссылается на факт по fact_id; агент-обновлятор меняет value здесь и в тексте статей из used_in.
+# Реестр фактов. Статья ссылается на факт по fact_id; агент-updater меняет value здесь и в тексте статей из used_in.
 # refresh: week | month | quarter | year. checked_at ставит агент при каждой проверке.
 facts:
   - {fact_id: jao.survey.share_30k, value: "12.4% зарабатывают >=30 000 иен/мес (2023: 9.4%, 2021: 8.7%, 2013: 2.4%)", source_id: jao25, source_url: "https://www.japan-affiliate.org/news/survey2025/", source_date: "2026-06-12", used_in: [earn-or-not, income-guide], refresh: year}

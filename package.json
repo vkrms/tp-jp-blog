@@ -14,7 +14,7 @@
     "deploy": "sh tools/deploy.sh --yes",
     "deploy:dry": "sh tools/deploy.sh",
     "preview": "npm run preview -w astro",
-    "check": "node tools/validate.mjs && npm run check -w astro",
+    "check": "node tools/terms.mjs && node tools/validate.mjs && npm run check -w astro",
     "beautify": "node tools/beautify-html.mjs",
     "slim": "node tools/slim-html.mjs",
     "covers": "node tools/featured-image/convert.mjs --all",
@@ -24,7 +24,9 @@
     "agent:write:live": "gh workflow run write.yml -f dry_run=false",
     "agent:edit": "gh workflow run edit.yml -f dry_run=true",
     "agent:edit:live": "gh workflow run edit.yml -f dry_run=false",
-    "agent:runs": "gh run list --limit 10"
+    "agent:runs": "gh run list --limit 10",
+    "terms": "node tools/terms.mjs",
+    "terms:fix": "node tools/terms.mjs --fix"
   },
   "devDependencies": {
     "js-beautify": "^2.0.3",
