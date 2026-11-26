@@ -34,6 +34,33 @@
    "topic": "Новые темы: брать из Google Sheet Аси + новости TRAICY/TravelVoice + изменения у JAO/CAA",
    "status": "idea",
    "reason": "агент предлагает, редактор утверждает"
+  },
+  {
+   "keyword": "旅行ブログ アフィリエイト",
+   "topic": "旅行ブログのアフィリエイトの始め方",
+   "intent": "始め方",
+   "status": "approved",
+   "origin": "agent",
+   "demand_estimate": "подсказки+PAA, ~9 разных сайтов в топе",
+   "serp_gap": "общие гайды, фокус на технической настройке, нет свежих данных о туристическом спросе",
+   "angle": "свежие данные JNTO (октябрь 2026) о росте выездного туризма; типы контента; связь с Travelpayouts",
+   "evidence": [
+    {
+     "query": "旅行 アフィリエイト 始め方",
+     "urls": [
+      "https://aruru.co.jp/travel-affiliate-howto/",
+      "https://www.xserver.ne.jp/blog/travel-blog-start-guide/",
+      "https://10to1travel.com/travel-blog-affiliate-1836.html"
+     ],
+     "checked_at": "2026-11-26"
+    }
+   ],
+   "sources_planned": [
+    "tvout_oct",
+    "tvin_oct",
+    "jao25"
+   ],
+   "score": 9.5
   }
  ],
  "blocked_topics": [

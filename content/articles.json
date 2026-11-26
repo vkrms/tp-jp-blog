@@ -1619,6 +1619,7 @@
   "sources": [],
   "related": [
    "travel-blog-income",
+   "travel-blog-affiliate",
    "earn-or-not",
    "what-is-affiliate"
   ],
@@ -1897,6 +1898,7 @@
   ],
   "sources": [],
   "related": [
+   "travel-blog-affiliate",
    "sales-calendar",
    "travel-demand"
   ],
@@ -4102,5 +4104,362 @@
   ],
   "review_status": "draft",
   "icon": "link"
+ },
+ {
+  "slug": "travel-blog-affiliate",
+  "category": "travel",
+  "level": 0,
+  "read_minutes": 7,
+  "keyword": "旅行ブログ アフィリエイト / 旅行アフィリエイト 始め方",
+  "title": {
+   "ja": "旅行ブログのアフィリエイト：始め方と収益につながる記事の書き方",
+   "en": "Travel blog affiliate: how to start and write posts that lead to income"
+  },
+  "eyebrow": {
+   "ja": "旅行アフィリエイト",
+   "en": "Travel affiliate"
+  },
+  "answer_first": {
+   "ja": "旅行ブログのアフィリエイトは、宿泊、航空券、現地アクティビティなどを紹介し、読者が予約すると報酬が得られる仕組みです。[2026年10月の日本からの出国者数は127万8千人](https://www.travelvoice.jp/20261118-160890)、前年同月比+2.3%と回復傾向にあり、旅行情報への需要も高まっています。",
+   "en": "Travel blog affiliate marketing earns rewards when you recommend hotels, flights and local activities and readers book through your links. [October 2026 saw 1.278 million outbound travellers from Japan](https://www.travelvoice.jp/20261118-160890), up 2.3% year on year, and demand for travel information is growing."
+  },
+  "sections": [
+   {
+    "h": [
+     "なぜ今、旅行アフィリエイトなのか",
+     "Why travel affiliate now"
+    ],
+    "b": [
+     {
+      "p": [
+       "日本からの海外旅行者数は、2019年のピークから減少していましたが、2026年に入って回復の兆しが見えています。[日本政府観光局（JNTO）によると、2026年10月の出国者数は127万8千人で、前年同月比+2.3%](https://www.travelvoice.jp/20261118-160890)となりました。",
+       "Outbound travel from Japan fell from its 2019 peak but is showing signs of recovery in 2026. [The Japan National Tourism Organization (JNTO) reports 1.278 million outbound travellers in October 2026, up 2.3% year on year](https://www.travelvoice.jp/20261118-160890)."
+      ]
+     },
+     {
+      "p": [
+       "[同じ月の訪日外客数は391万2500人（+0.4%）で、月間で過去最高を記録](https://www.travelvoice.jp/20261118-160889)しました。旅行需要の高まりに伴い、「どこに泊まるか」「どう行くか」といった情報を探す読者も増えています。",
+       "[Inbound visitors to Japan numbered 3.9125 million in the same month (+0.4%), a monthly record](https://www.travelvoice.jp/20261118-160889). Rising travel demand means more readers searching for where to stay and how to get there."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "旅行ブログで紹介できるもの",
+     "What you can recommend on a travel blog"
+    ],
+    "b": [
+     {
+      "p": [
+       "旅行には、予約が必要な場面が多くあります。それぞれに対応するアフィリエイトプログラムがあります。",
+       "Travel involves many booking moments, and there are affiliate programmes for each."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "カテゴリ",
+         "Category"
+        ],
+        [
+         "例",
+         "Examples"
+        ],
+        [
+         "読者が探す場面",
+         "When readers search"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "宿泊施設",
+          "Accommodation"
+         ],
+         [
+          "ホテル、旅館、民泊の予約サイト",
+          "Hotel, ryokan, vacation rental sites"
+         ],
+         [
+          "目的地が決まった後",
+          "After deciding where to go"
+         ]
+        ],
+        [
+         [
+          "航空券・交通",
+          "Flights and transport"
+         ],
+         [
+          "航空券予約、鉄道パス、レンタカー",
+          "Flight booking, rail passes, car rental"
+         ],
+         [
+          "出発日を決めるとき",
+          "When setting departure dates"
+         ]
+        ],
+        [
+         [
+          "現地体験",
+          "Local activities"
+         ],
+         [
+          "ツアー、アクティビティ予約",
+          "Tours, activity booking"
+         ],
+         [
+          "行程を考えているとき",
+          "When planning the itinerary"
+         ]
+        ],
+        [
+         [
+          "旅行保険・準備",
+          "Insurance and preparation"
+         ],
+         [
+          "海外旅行保険、WiFiレンタル",
+          "Travel insurance, WiFi rental"
+         ],
+         [
+          "出発前の準備段階",
+          "While preparing before departure"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "Travelpayoutsは、宿泊・航空券・保険・レンタカーなど、11の旅行カテゴリのプログラムを一か所で扱えるプラットフォームです。",
+        "Travelpayouts is a platform that brings programmes from 11 travel categories—hotels, flights, insurance, car rental and more—together in one place."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "どんな記事を書けばいい？",
+     "What kind of articles to write"
+    ],
+    "b": [
+     {
+      "p": [
+       "旅行ブログの記事は、大きく3つのタイプに分かれます。それぞれ役割が違います。",
+       "Travel blog posts fall into three main types, each with a different role."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "記事のタイプ",
+         "Type"
+        ],
+        [
+         "役割",
+         "Role"
+        ],
+        [
+         "例",
+         "Example"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "体験記・旅行記",
+          "Trip reports"
+         ],
+         [
+          "実際に行った記録で信頼をつくる",
+          "Build trust with first-hand accounts"
+         ],
+         [
+          "「3泊4日の台北旅行」",
+          "\"Three nights in Taipei\""
+         ]
+        ],
+        [
+         [
+          "ガイド・まとめ",
+          "Guides and round-ups"
+         ],
+         [
+          "計画中の読者に選択肢を示す",
+          "Show options to readers who are planning"
+         ],
+         [
+          "「ソウル おすすめホテル5選」",
+          "\"Five recommended hotels in Seoul\""
+         ]
+        ],
+        [
+         [
+          "ノウハウ・Tips",
+          "Tips and how-tos"
+         ],
+         [
+          "疑問を解決し、読者の不安を減らす",
+          "Answer questions and reduce readers' worries"
+         ],
+         [
+          "「初めての一人旅 持ち物リスト」",
+          "\"Packing list for your first solo trip\""
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "say": [
+       "体験記は、他のサイトとの違いを出しやすい記事です。「実際にどうだったか」が分かる写真や、失敗談も入れると、読者の参考になります。",
+       "Trip reports are the easiest way to stand out. Photos showing 'what it was really like' and stories of what went wrong help readers judge for themselves."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "初心者が始める3つのステップ",
+     "Three steps to start"
+    ],
+    "b": [
+     {
+      "steps": [
+       [
+        "扱う地域やテーマを1つ決める",
+        "Pick one region or theme"
+       ],
+       [
+        "ブログまたはSNSアカウントを用意する",
+        "Set up a blog or social media account"
+       ],
+       [
+        "最初の記事を3本書く",
+        "Write your first three posts"
+       ]
+      ]
+     },
+     {
+      "p": [
+       "最初から完璧な記事を書く必要はありません。公開後に、読者の反応を見て書き直していきます。",
+       "You do not need perfect articles from the start. Publish, then rewrite guided by how readers respond."
+      ]
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "記事を書く前に、紹介するサービスの条件を確認してください。プログラムによっては、特定の媒体での利用が制限されている場合があります。",
+        "Before writing, check the terms of the services you plan to recommend. Some programmes restrict use on certain channels."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "「行ったことがない場所」は書けるのか",
+     "Can you write about places you have not visited"
+    ],
+    "b": [
+     {
+      "p": [
+       "行ったことのない場所について書くこと自体は問題ありませんが、**自分が行った場所として書くことは避けてください**。読者は、実際の体験を求めて記事を読んでいます。",
+       "Writing about places you have not visited is not wrong in itself, but **do not present them as somewhere you went**. Readers come for first-hand experience."
+      ]
+     },
+     {
+      "p": [
+       "もし他の場所を扱う場合は、公式サイトや旅行ニュースなど、信頼できる情報源を明記し、「実際に訪れた記録」とは区別して書きます。",
+       "If you do cover other places, cite reliable sources such as official sites or travel news, and clearly separate it from trip reports."
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "旅行経験が少なくても始められますか？",
+     "Can I start with little travel experience?"
+    ],
+    [
+     "始められます。まず、自分が行ったことのある場所や、これから行く予定の場所について書きましょう。",
+     "Yes. Start with places you have been to or are planning to visit."
+    ]
+   ],
+   [
+    [
+     "ブログとSNS、どちらがいいですか？",
+     "Blog or social media?"
+    ],
+    [
+     "ブログは検索から長く読まれやすく、SNSは反応が早く拡散しやすい特徴があります。両方を組み合わせることもできます。",
+     "Blogs are found through search and read for longer; social media spreads fast and gives quick feedback. You can combine both."
+    ]
+   ],
+   [
+    [
+     "どのくらいの記事数が必要ですか？",
+     "How many articles do I need?"
+    ],
+    [
+     "決まった数はありませんが、最初は10本を目安に書き、読者の反応を見ながら改善していくとよいでしょう。",
+     "There is no fixed number, but aim for ten as a start and improve as you see how readers respond."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "2026年の旅行需要は回復傾向にあり、旅行情報を探す読者が増えています。",
+    "Travel demand is recovering in 2026 and more readers are searching for travel information."
+   ],
+   [
+    "旅行ブログでは、宿泊・航空券・現地体験など、予約が必要な場面で商品を紹介できます。",
+    "On a travel blog you can recommend products for booking moments: stays, flights, local activities."
+   ],
+   [
+    "まず体験記を書き、読者の役に立つ情報を積み重ねていくことが大切です。",
+    "Start with trip reports and build up information that helps readers."
+   ]
+  ],
+  "sources": [
+   "tvout_oct",
+   "tvin_oct"
+  ],
+  "related": [
+   "pick-niche",
+   "travel-blog-income"
+  ],
+  "updated_at": "2026-11-26",
+  "update_log": [
+   {
+    "date": "2026-11-26",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。JNTO 2026年10月データ（TravelVoice経由）で旅行需要の回復を確認。Travelpayoutsについては11カテゴリの記載のみ（TP Messagings）。体験記と公式情報の区別を明記。行ったことのない場所を体験記として書くことを避けるよう注意喚起。",
+     "en": "First version. JNTO October 2026 data (via TravelVoice) confirms travel demand recovery. Travelpayouts mentioned only for 11 categories (TP Messagings). Distinction between trip reports and official information clarified. Warning added against presenting unvisited places as first-hand reports."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "plane"
  }
 ]
