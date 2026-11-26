@@ -18,12 +18,32 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, 
 // пара [ja,en] -> два span; переключатель языка скрывает один из них
 const t = (x) => { const [ja, en] = Array.isArray(x) ? x : [x.ja, x.en]; return `<span lang="ja">${md(ja)}</span><span lang="en">${md(en)}</span>`; };
 const md = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+// подпись интерфейса предпросмотра на двух языках (как t(), но для строк кода)
+const ui = (ja, en) => `<span lang="ja">${esc(ja)}</span><span lang="en">${esc(en)}</span>`;
+
+// Фигуры из данных статьи (docs/figures.md). Предпросмотр показывает их упрощённо —
+// настоящая вёрстка живёт в astro/src/components/figures/.
+const figureHtml = (f) => {
+  const cap = f.caption ? `<figcaption>${t(f.caption)}</figcaption>` : '';
+  const d = f.data || {};
+  if (f.template === 'check-cards') {
+    return `<figure class="dfig"><ul class="cards">${(d.items || []).map((it) => `<li><span class="lb">${t(it.label)}</span><span class="bd">${t(it.body)}</span>${it.source ? `<span class="note">${ui('出典：', 'Source: ')}${t(it.source)}</span>` : ''}</li>`).join('')}</ul>${cap}</figure>`;
+  }
+  if (f.template === 'steps-arrow') {
+    return `<figure class="dfig"><ol class="flow">${(d.items || []).map((it, i) => `<li><span class="n">${i + 1}</span>${t(it.title)}</li>`).join('')}</ol>${cap}</figure>`;
+  }
+  if (f.template === 'compare-pairs') {
+    return `<figure class="dfig"><div class="pairs">${(d.pairs || []).map((p) => `<div class="pair"><div class="no"><span class="tag">${ui('こう書かない', 'Not this')}</span>${t(p.avoid)}</div><div class="yes"><span class="tag">${ui('こう書く', 'This')}</span>${t(p.prefer)}</div></div>`).join('')}</div>${cap}</figure>`;
+  }
+  return `<figure class="dfig"><pre>${esc(JSON.stringify(f.data, null, 1))}</pre>${cap}</figure>`;
+};
 
 const block = (b) => { const h = blockHtml(b); return isNew(b) && !b.p ? `<div class="newblk">${h}</div>` : h; };
 const blockHtml = (b) => {
   if (b.p) return `<p class="${isNew(b) ? 'new' : ''}">${t(b.p)}</p>`;
   if (b.h3) return `<h3>${t(b.h3)}</h3>`;
   if (b.img) return `<figure><img src="../../content/${b.img.src}" alt="${esc(b.img.alt[0])}" loading="lazy"><figcaption>${t(b.img.caption)}</figcaption></figure>`;
+  if (b.figure) return figureHtml(b.figure);
   if (b.table) {
     const head = b.table.head.map((h) => `<th>${t(h)}</th>`).join('');
     const rows = b.table.rows.map((r) => `<tr>${r.map((c) => `<td>${t(c)}</td>`).join('')}</tr>`).join('');
@@ -56,6 +76,21 @@ const html = `<!doctype html>
   p{margin:14px 0}
   h3{font-size:18px;line-height:1.5;color:var(--color-ink);margin:30px 0 6px}
   figure{margin:22px 0}figure img{width:100%;border-radius:12px;display:block}figcaption{font-size:13px;color:var(--color-muted);margin-top:6px}
+  .dfig .cards{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+  .dfig .cards li{display:grid;gap:3px;padding:12px 14px;border:1px solid var(--color-primary-100);border-radius:12px;margin:0}
+  .dfig .cards .lb{justify-self:start;padding:0 10px;border-radius:99px;background:var(--color-primary-100);color:var(--color-primary-pressed);font-size:12px;font-weight:700}
+  .dfig .cards .bd{font-weight:700;color:var(--color-ink);font-size:14px}
+  .dfig .cards .note{color:var(--color-muted);font-size:12px}
+  .dfig .flow{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+  .dfig .flow li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;padding:10px 14px;border:1px solid var(--color-primary-100);border-radius:12px;margin:0;font-weight:700;font-size:14px}
+  .dfig .flow .n{display:grid;place-items:center;width:26px;height:26px;border-radius:99px;background:var(--color-primary-100);color:var(--color-primary-pressed);font-size:12px}
+  .dfig .pairs{display:grid;gap:10px}
+  .dfig .pair{display:grid;gap:6px}
+  .dfig .pair .no,.dfig .pair .yes{padding:10px 14px;border-radius:12px;font-size:14px}
+  .dfig .pair .no{background:var(--color-surface-muted);border:1px solid var(--color-line);color:var(--color-secondary)}
+  .dfig .pair .yes{background:var(--color-primary-50);border:1px solid var(--color-primary-200);font-weight:700}
+  .dfig .tag{display:inline-block;margin-right:8px;padding:0 8px;border-radius:99px;font-size:10px;font-weight:700;background:var(--color-surface-soft);color:var(--color-label)}
+  .dfig .yes .tag{background:var(--color-primary);color:#fff}
   .newblk{background:var(--color-primary-50);outline:2px solid var(--color-primary-100);outline-offset:6px;border-radius:6px}
   p.new{background:var(--color-primary-100);border-left:3px solid var(--color-primary);padding:8px 14px;border-radius:6px}
   .tw{overflow-x:auto;margin:18px 0}

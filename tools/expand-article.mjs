@@ -8,6 +8,7 @@ import { execFileSync } from 'node:child_process';
 import { stats } from './article-stats.mjs';
 import { BIOMES, pickOutfit, pickCamera } from './featured-image/generate.mjs';
 import { chat, normUrl, registryDomains } from './lib/openrouter.mjs';
+import { validateFigure } from './lib/figures.mjs';
 
 const ROOT = new URL('../', import.meta.url);
 const read = (p) => fs.readFileSync(new URL(p, ROOT), 'utf8');
@@ -27,6 +28,9 @@ const rules = JSON.parse(read('content/rules.json'));
 const registry = JSON.parse(read('content/sources.json')).sources.filter((s) => (article.sources || []).includes(s.id));
 const T = profile.target;
 const MAX_IMAGES = 6;
+const MAX_FIGURES = 3;
+const figureManifest = JSON.parse(read('tools/figures/templates.json'));
+const FIGURE_TEMPLATES = Object.keys(figureManifest.templates).join('|');
 
 const web = process.argv.includes('--web');
 let usage = { prompt_tokens: 0, completion_tokens: 0, cost: 0, searches: 0 };
@@ -58,6 +62,10 @@ function blockErrors(b, where) {
       break;
     case 'img':
       if (!v || typeof v.scene !== 'string' || !BIOMES[v.biome] || !['man', 'woman'].includes(v.gender) || !isPair(v.alt) || !isPair(v.caption)) e.push(`${where}: img needs scene (English), biome (one of ${Object.keys(BIOMES).join('|')}), gender (man|woman), alt [ja,en], caption [ja,en]`);
+      break;
+    case 'figure':
+      if (!v || typeof v !== 'object' || Array.isArray(v)) e.push(`${where}: figure must be an object`);
+      else validateFigure(v, figureManifest).forEach((m) => e.push(`${where}: ${m}`));
       break;
     default: e.push(`${where}: unknown block type "${k[0]}"`);
   }
@@ -117,7 +125,7 @@ function check(ops) {
     const okNums = allowedNums(o, errs, w);
     if (o.cite && (!web || !Array.isArray(o.cite))) errs.push(`${w}: cite is only allowed with --web and must be an array`);
     for (const b of blocks) {
-      if (b?.img) images++;
+      if (b?.img || b?.figure) images++;
       const t = textOf(b || {}) + (o.h ? JSON.stringify(o.h) : '');
       for (const n of numsOf(t)) if (!okNums.has(n)) errs.push(`${w}: number "${n}" is neither in the article nor in a cited search result`);
       if (/https?:\/\//i.test(t)) errs.push(`${w}: URLs are not allowed in the text`);
@@ -164,6 +172,7 @@ BLOCK (exactly one key):
 - {"table":{"head":[[ja,en],...],"rows":[[[ja,en],...],...]}}  >= 2 rows; ONLY re-organise facts already in the article (e.g. which source to use for what, what to check at each moment); never add new data
 - {"point":[[label ja,en],[text ja,en]]} / {"warn":[...]}  short callout
 - {"img":{"scene":"<English: concrete photo scene, no text in it>","biome":"<one of ${Object.keys(BIOMES).join('|')}>","gender":"man|woman","alt":[ja,en],"caption":[ja,en]}}  an illustration photo of a Japanese traveller doing something that matches the surrounding text (e.g. checking a sale on a phone at an airport lounge, writing on a laptop at a cafe, planning a trip at a desk). At most ${MAX_IMAGES} images, spread through the article, never two images in a row, never right before a heading.
+- {"figure":{"kind":"infographic|schematic","template":"<one of ${FIGURE_TEMPLATES}>","data":{...},"caption":[ja,en]}}  an HTML figure (real text, no raster) built ONLY from values already in the article: "check-cards" = what to check and when ({"items":[{"label":[ja,en],"body":[ja,en],"source":[ja,en]?}]}), "steps-arrow" = 2-6 steps in a row ({"items":[{"title":[ja,en]}]}), "compare-pairs" = "Not this / This" pairs for prices or phrasing ({"pairs":[{"avoid":[ja,en],"prefer":[ja,en]}]}). At most ${MAX_FIGURES} figures. A figure SUMMARISES a table, steps or list that stays in the article: it may sit before the detailed block, never replace it, and never two figures in a row. Data figures never invent numbers: every value must already be in the article.
 
 HARD RULES
 1. Never invent facts: NO new number, date, price, percentage, brand/airline/hotel name, sale or statistic that is not already in the article${web ? ' or in a search result you cite via "cite"' : ''}. Do not invent quotes from people. Reuse existing figures exactly as written. Where data would be needed, explain the method or reasoning instead.

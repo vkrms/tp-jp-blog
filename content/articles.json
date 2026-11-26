@@ -2493,6 +2493,44 @@
     ],
     "b": [
      {
+      "figure": {
+       "kind": "schematic",
+       "template": "steps-arrow",
+       "caption": [
+        "セール記事を書いて更新するまでの4ステップ（詳細は下の手順）",
+        "Four steps from writing a sale article to updating it (detail in the steps below)"
+       ],
+       "data": {
+        "items": [
+         {
+          "title": [
+           "記事の冒頭に、セール期間と旅行できる期間を書く",
+           "Put the sale period and the travel period at the top"
+          ]
+         },
+         {
+          "title": [
+           "価格は「〜円から」と書き、手数料が別かどうかを添える",
+           "Write prices as “from ¥…” and say whether fees are extra"
+          ]
+         },
+         {
+          "title": [
+           "期限の翌日に、記事を「終了」に更新する",
+           "Update the article to “ended” the day after the deadline"
+          ]
+         },
+         {
+          "title": [
+           "次のセールの記事にリンクする",
+           "Link to the next sale article"
+          ]
+         }
+        ]
+       }
+      }
+     },
+     {
       "h3": [
        "期限切れを防ぐ手順",
        "Steps to prevent expired information"
@@ -2657,6 +2695,50 @@
       ]
      },
      {
+      "figure": {
+       "kind": "infographic",
+       "template": "compare-pairs",
+       "caption": [
+        "価格と期間は、条件を添えて書く",
+        "Write prices and periods with their conditions"
+       ],
+       "data": {
+        "pairs": [
+         {
+          "avoid": [
+           "欧州往復が177,680円から",
+           "Europe round trip from ¥177,680"
+          ],
+          "prefer": [
+           "エコノミー往復、東京・大阪→アムステルダム、177,680円から",
+           "Economy round trip, Tokyo or Osaka → Amsterdam, from ¥177,680"
+          ]
+         },
+         {
+          "avoid": [
+           "11/9まで",
+           "until 9 Nov"
+          ],
+          "prefer": [
+           "11/9 16:59まで",
+           "until 9 Nov, 16:59"
+          ]
+         },
+         {
+          "avoid": [
+           "3,690円から",
+           "from ¥3,690"
+          ],
+          "prefer": [
+           "片道3,690円から（手数料は別）",
+           "from ¥3,690 one way, fees extra"
+          ]
+         }
+        ]
+       }
+      }
+     },
+     {
       "h3": [
        "複数のセールをまとめるとき",
        "When you cover several sales at once"
@@ -2765,6 +2847,76 @@
        "セール記事の更新は、公開前、期限の当日、期限の翌日、そして週に1回の見直しに分けて考えると、抜け漏れが減ります。次の表は、それぞれのタイミングで確認することと、使う情報源をまとめたものです。",
        "Updating sale articles is easier to manage if you split it into before publishing, the deadline day, the day after the deadline and a weekly review. The table below summarises what to check at each moment and which source to use."
       ]
+     },
+     {
+      "figure": {
+       "kind": "infographic",
+       "template": "check-cards",
+       "caption": [
+        "タイミングごとの確認事項（詳細は下の表）",
+        "What to check at each stage (detail in the table below)"
+       ],
+       "data": {
+        "items": [
+         {
+          "label": [
+           "公開前",
+           "Before publishing"
+          ],
+          "body": [
+           "セール期間（時刻を含む）、旅行できる期間、価格の条件",
+           "Sale period (including time), travel period, price conditions"
+          ],
+          "source": [
+           "TRAICYで速報を知り、公式ページで確認",
+           "Learn from TRAICY, confirm on the official page"
+          ]
+         },
+         {
+          "label": [
+           "期限の当日",
+           "Deadline day"
+          ],
+          "body": [
+           "冒頭や表に、期限までの案内が分かりやすく書かれているか",
+           "Whether the opening and tables make the deadline clear"
+          ],
+          "source": [
+           "自分の記事",
+           "Your own article"
+          ]
+         },
+         {
+          "label": [
+           "期限の翌日",
+           "Day after the deadline"
+          ],
+          "body": [
+           "記事を「終了」に更新し、次のセールへ案内する",
+           "Update to “ended” and point to the next sale"
+          ],
+          "source": [
+           "自分の記事と、次のセールの記事",
+           "Your article and the next sale article"
+          ]
+         },
+         {
+          "label": [
+           "週に1回",
+           "Weekly"
+          ],
+          "body": [
+           "掲載中の項目の期限と価格が変わっていないか",
+           "Whether deadlines and prices of listed items have changed"
+          ],
+          "source": [
+           "各社の公式ページ",
+           "Official pages"
+          ]
+         }
+        ]
+       }
+      }
      },
      {
       "table": {

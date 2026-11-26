@@ -98,6 +98,7 @@ Astro лежит в корне репозитория, рядом с `content/`:
 | `p` | Text | абзац |
 | `h3` | Text | подзаголовок |
 | `img` | `{src, alt: Text, caption: Text, prompt_scene?}` | картинка с подписью (`src` относительно `content/`) |
+| `figure` | `{kind, template, data?, caption?, alt?, brief?, facts?}` | фигура из данных статьи (HTML, без растра) — `docs/figures.md` |
 | `table` | `{head: Text[], rows: Text[][]}` | таблица с горизонтальной прокруткой на мобильных |
 | `steps` | Text[] | нумерованные шаги |
 | `list` | Text[] | чек-лист |
@@ -108,7 +109,7 @@ Astro лежит в корне репозитория, рядом с `content/`:
 
 Неизвестный ключ блока ломает сборку: схема Zod падает с понятной ошибкой.
 
-**Не выводится на сайт никогда:** `update_log[].internal_note`, `img.prompt_scene`, `sources`, `keyword`, `review_status`.
+**Не выводится на сайт никогда:** `update_log[].internal_note`, `img.prompt_scene`, `figure.brief`, `figure.facts`, `sources`, `keyword`, `review_status`.
 
 ### 3.3 Валидация
 - **Схема Zod** в `src/content.config.ts`. Неверная структура — сборка не проходит, деплоя нет.

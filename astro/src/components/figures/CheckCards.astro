@@ -1,0 +1,20 @@
+---
+// "What to check, and when" cards (docs/figures.md → template `check-cards`).
+// Every string is real article text: no raster, no baked-in glyphs.
+import { rich, tr, T, type Lang } from '../../i18n/ui';
+
+interface Props { data: Record<string, any>; lang: Lang }
+const { data, lang } = Astro.props;
+const items = (data?.items ?? []) as any[];
+---
+<ul class="cards">
+  {items.map((item) => (
+    <li>
+      <span class="lb" set:html={rich(item.label, lang)} />
+      <span class="bd" set:html={rich(item.body, lang)} />
+      {item.source ? (
+        <span class="note">{tr(T.figSource, lang)}<span set:html={rich(item.source, lang)} /></span>
+      ) : null}
+    </li>
+  ))}
+</ul>

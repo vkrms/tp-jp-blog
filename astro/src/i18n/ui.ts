@@ -73,6 +73,10 @@ export const T = {
   // 更新前 / 更新後 labels for the diff block
   before: ['更新前', 'Before'],
   after: ['更新後', 'After'],
+  // data figures (docs/figures.md)
+  figSource: ['出典：', 'Source: '],
+  figNot: ['こう書かない', 'Not this'],
+  figYes: ['こう書く', 'This'],
 } as const;
 
 export const tr = (p: P | readonly [string, string], l: Lang) => p[l === 'ja' ? 0 : 1];

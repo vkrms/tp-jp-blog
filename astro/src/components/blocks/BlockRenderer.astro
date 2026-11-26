@@ -6,6 +6,7 @@ import type { Block, ArticleTable, Img } from '../../data/content';
 import Paragraph from './Paragraph.astro';
 import SubHeading from './SubHeading.astro';
 import Figure from './Figure.astro';
+import DataFigure from '../figures/DataFigure.astro';
 import DataTable from './DataTable.astro';
 import Steps from './Steps.astro';
 import CheckList from './CheckList.astro';
@@ -19,6 +20,8 @@ const b = block as Record<string, any>;
 {b.p !== undefined && <Paragraph text={b.p} lang={lang} />}
 {b.h3 !== undefined && <SubHeading text={b.h3} lang={lang} />}
 {b.img && <Figure img={b.img as Img} lang={lang} />}
+{/* In-article figures rendered from article data (docs/figures.md). */}
+{b.figure && <DataFigure figure={b.figure} lang={lang} />}
 {b.table && <DataTable table={b.table as ArticleTable} lang={lang} />}
 {b.steps && <Steps steps={b.steps} lang={lang} />}
 {b.list && <CheckList items={b.list} lang={lang} />}

@@ -1,0 +1,31 @@
+---
+// Data figure dispatcher (docs/figures.md). A figure is rendered from the article's own
+// values, so all of its text is real text: selectable, translatable, accessible.
+// The registry in tools/figures/templates.json and the map below must agree — a template
+// with no component fails the build instead of rendering nothing.
+import { rich, type Lang } from '../../i18n/ui';
+import { requireTemplate } from '../../data/figures';
+import type { Figure } from '../../data/content';
+import CheckCards from './CheckCards.astro';
+import StepsArrow from './StepsArrow.astro';
+import ComparePairs from './ComparePairs.astro';
+
+interface Props { figure: Figure; lang: Lang }
+const { figure, lang } = Astro.props;
+requireTemplate(figure);
+
+const RENDERED: Record<string, typeof CheckCards> = {
+  'check-cards': CheckCards,
+  'steps-arrow': StepsArrow,
+  'compare-pairs': ComparePairs,
+};
+const Template = RENDERED[figure.template];
+if (!Template) {
+  throw new Error(`figure: no component for template "${figure.template}" — add one in astro/src/components/figures/`);
+}
+const data = (figure.data ?? {}) as Record<string, any>;
+---
+<figure class="dfig" data-kind={figure.kind} data-template={figure.template}>
+  <Template data={data} lang={lang} />
+  {figure.caption ? <figcaption set:html={rich(figure.caption, lang)} /> : null}
+</figure>

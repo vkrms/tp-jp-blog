@@ -1,0 +1,23 @@
+---
+// "Not this / This" pairs (docs/figures.md → template `compare-pairs`).
+// The labels live in i18n (T.figNot / T.figYes), the copy comes from the article.
+import { rich, tr, T, type Lang } from '../../i18n/ui';
+
+interface Props { data: Record<string, any>; lang: Lang }
+const { data, lang } = Astro.props;
+const pairs = (data?.pairs ?? []) as any[];
+---
+<div class="pairs">
+  {pairs.map((pair) => (
+    <div class="pair">
+      <div class="no">
+        <span class="tag">{tr(T.figNot, lang)}</span>
+        <p set:html={rich(pair.avoid, lang)} />
+      </div>
+      <div class="yes">
+        <span class="tag">{tr(T.figYes, lang)}</span>
+        <p set:html={rich(pair.prefer, lang)} />
+      </div>
+    </div>
+  ))}
+</div>

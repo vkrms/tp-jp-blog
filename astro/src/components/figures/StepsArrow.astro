@@ -1,0 +1,17 @@
+---
+// Numbered flow; arrows appear between cards only on wide screens
+// (docs/figures.md → template `steps-arrow`).
+import { rich, type Lang } from '../../i18n/ui';
+
+interface Props { data: Record<string, any>; lang: Lang }
+const { data, lang } = Astro.props;
+const items = (data?.items ?? []) as any[];
+---
+<ol class="flow">
+  {items.map((item, i) => (
+    <li>
+      <span class="n" aria-hidden="true">{i + 1}</span>
+      <span class="t" set:html={rich(item.title, lang)} />
+    </li>
+  ))}
+</ol>

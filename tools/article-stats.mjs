@@ -26,12 +26,17 @@ export function stats(a) {
       else if (k === 'table') chars += v.rows.flat().reduce((n, x) => n + jaLen(x), 0);
       else if (k === 'point' || k === 'warn' || k === 'diff' || k === 'say') chars += v.reduce((n, x) => n + jaLen(x), 0);
       else if (k === 'img') chars += jaLen(v.caption);
+      // `figure` is a visual summary of values that already exist in the article,
+      // so its text is not counted in the character budget (docs/figures.md §8).
     }
   }
   chars += jaLen(a.answer_first) + a.faq.reduce((n, f) => n + jaLen(f[0]) + jaLen(f[1]), 0) + a.matome.reduce((n, m) => n + jaLen(m), 0);
   const bodyChars = chars;
+  // `figure` counts as a visual slot (via `images`) but not a second time as a structural block:
+  // it summarises a table/steps block that is already structural, and counting both inflates
+  // the structural total and skews paragraphs-per-structural-block (docs/figures.md §8).
   const structural = (types.list || 0) + (types.steps || 0) + (types.table || 0) + (types.img || 0) + (types.point || 0) + (types.warn || 0) + (types.diff || 0) + (types.quote || 0);
-  return { slug: a.slug, sections: a.sections.length, h3: types.h3 || 0, chars: bodyChars, paraChars, paragraphs: types.p || 0, lists: (types.list || 0) + (types.steps || 0), tables: types.table || 0, images: types.img || 0, callouts: (types.point || 0) + (types.warn || 0), diffs: types.diff || 0, quotes: types.quote || 0, faq: a.faq.length, structural, paraShare: +(paraChars / bodyChars).toFixed(2), paraPerStructural: structural ? +((types.p || 0) / structural).toFixed(1) : null };
+  return { slug: a.slug, sections: a.sections.length, h3: types.h3 || 0, chars: bodyChars, paraChars, paragraphs: types.p || 0, lists: (types.list || 0) + (types.steps || 0), tables: types.table || 0, images: (types.img || 0) + (types.figure || 0), figures: types.figure || 0, callouts: (types.point || 0) + (types.warn || 0), diffs: types.diff || 0, quotes: types.quote || 0, faq: a.faq.length, structural, paraShare: +(paraChars / bodyChars).toFixed(2), paraPerStructural: structural ? +((types.p || 0) / structural).toFixed(1) : null };
 }
 
 if (process.argv[1] === new URL(import.meta.url).pathname) {

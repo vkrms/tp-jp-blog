@@ -1,0 +1,45 @@
+{
+  "_comment": "Registry of in-article figure templates (docs/figures.md). Read by astro/src/data/figures.ts for rendering and by tools/lib/figures.mjs for validation, so both check the same ids and fields. Adding a template = an entry here + a component in astro/src/components/figures/ + a branch in DataFigure.astro.",
+  "version": 1,
+  "kinds": {
+    "photo": "Raster photo, text-free (image model, tools/featured-image). Needs alt + brief.",
+    "illustration": "Raster editorial illustration with a character, text-free (image model). Needs alt + brief.",
+    "infographic": "Data graphic rendered as HTML from the article's own values. Real text, ja+en.",
+    "schematic": "Steps / flow / process diagram rendered as HTML.",
+    "ui": "Pseudo-interface (card, ticket, mock UI) rendered as HTML.",
+    "composite": "Raster base plus an HTML overlay; any text lives in the overlay."
+  },
+  "raster_kinds": ["photo", "illustration"],
+  "templates": {
+    "check-cards": {
+      "kind": "infographic",
+      "ref": "deck 2026-11-26: What to check, and when",
+      "caption": "required",
+      "data": {
+        "items": { "type": "array", "min": 2, "max": 5 },
+        "items[].label": { "type": "text" },
+        "items[].body": { "type": "text" },
+        "items[].source": { "type": "text", "optional": true }
+      }
+    },
+    "steps-arrow": {
+      "kind": "schematic",
+      "ref": "deck 2026-11-26: 4 steps for a sale article",
+      "caption": "required",
+      "data": {
+        "items": { "type": "array", "min": 2, "max": 6 },
+        "items[].title": { "type": "text" }
+      }
+    },
+    "compare-pairs": {
+      "kind": "infographic",
+      "ref": "deck 2026-11-26: Write prices with conditions",
+      "caption": "required",
+      "data": {
+        "pairs": { "type": "array", "min": 1, "max": 4 },
+        "pairs[].avoid": { "type": "text" },
+        "pairs[].prefer": { "type": "text" }
+      }
+    }
+  }
+}

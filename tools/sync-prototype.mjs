@@ -23,6 +23,8 @@ const block = (b) => {
   if (b.p) return `{p:${pair(b.p)}}`;
   if (b.h3) return `{h3:${pair(b.h3)}}`;
   if (b.img) return `{img:{src:${str(b.img.src)},alt:${pair(b.img.alt)},caption:${pair(b.img.caption)}}}`;
+  // Прототип рисует только старые блоки; figure переносится как есть, чтобы файл данных оставался целым.
+  if (b.figure) return `{figure:${JSON.stringify(b.figure)}}`;
   if (b.list) return `{list:[${b.list.map(pair).join(',')}]}`;
   if (b.steps) return `{steps:[${b.steps.map(pair).join(',')}]}`;
   if (b.table) return `{table:{head:[${b.table.head.map(pair).join(',')}],rows:[${b.table.rows.map((r) => `[${r.map(pair).join(',')}]`).join(',\n   ')}]}}`;

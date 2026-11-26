@@ -1,15 +1,33 @@
 // Валидатор контента. Запуск: node tools/validate.mjs   (exit code 1, если есть ошибки)
 import fs from 'node:fs';
+import { validateFigure } from './lib/figures.mjs';
 const read = p => JSON.parse(fs.readFileSync(new URL('../content/' + p, import.meta.url), 'utf8'));
 const articles = read('articles.json');
 const { sources } = read('sources.json');
 const rules = read('rules.json');
+const figureManifest = JSON.parse(fs.readFileSync(new URL('../tools/figures/templates.json', import.meta.url), 'utf8'));
+const BLOCK_KEYS = new Set(['p', 'h3', 'img', 'figure', 'table', 'steps', 'list', 'say', 'point', 'warn', 'diff']);
 const srcIds = new Set(sources.map(s => s.id));
 const errors = [], warns = [];
 const text = a => JSON.stringify([a.title, a.answer_first, a.sections, a.faq, a.matome]);
 for (const a of articles) {
   const e = m => errors.push(`${a.slug}: ${m}`), w = m => warns.push(`${a.slug}: ${m}`);
   for (const f of rules.required_fields) if (a[f] == null || (Array.isArray(a[f]) && !a[f].length && f !== 'sources')) e(`нет поля ${f}`);
+  // Блоки (docs/spec-stage1.md §3.2): один ключ, известный тип; фигуры — по реестру шаблонов (docs/figures.md).
+  const dataFigures = [];
+  for (const s of a.sections || []) for (const b of s.b || []) {
+    const keys = Object.keys(b || {});
+    if (keys.length !== 1) { e(`блок должен иметь один ключ, а их ${keys.length}${keys.length ? ` (${keys.join(', ')})` : ''}`); continue; }
+    if (!BLOCK_KEYS.has(keys[0])) e(`неизвестный тип блока «${keys[0]}»`);
+    if (b.figure) {
+      for (const m of validateFigure(b.figure, figureManifest)) e(m);
+      if (!(figureManifest.raster_kinds || []).includes(b.figure.kind)) dataFigures.push(b.figure);
+    }
+  }
+  if (dataFigures.length) {
+    const structured = (a.sections || []).some(s => (s.b || []).some(b => b.table || b.steps || b.list));
+    if (!structured) w('есть data-фигура, но в статье нет ни таблицы, ни шагов, ни списка: данные живут только в картинке');
+  }
   for (const s of a.sources || []) if (!srcIds.has(s)) e(`источник ${s} не в реестре`);
   if ((a.faq || []).length < rules.faq_min || (a.faq || []).length > rules.faq_max) w(`FAQ: ${(a.faq || []).length} (нужно ${rules.faq_min}-${rules.faq_max})`);
   if (a.answer_first?.ja && a.answer_first.ja.replace(/\*\*/g, '').length > rules.answer_first_max_chars_ja) w(`ответ в начале длиннее ${rules.answer_first_max_chars_ja} знаков`);

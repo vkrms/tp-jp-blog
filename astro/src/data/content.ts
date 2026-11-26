@@ -17,11 +17,34 @@ export interface Img {
 
 export interface ArticleTable { head: Text[]; rows: Text[][] }
 
+/**
+ * In-article figure (docs/figures.md). Data kinds (`infographic`, `schematic`, `ui`) render
+ * from `data` as HTML; raster kinds (`photo`, `illustration`) use `alt` + `brief`.
+ */
+export type FigureKind = 'photo' | 'illustration' | 'infographic' | 'schematic' | 'ui' | 'composite';
+
+export interface Figure {
+  kind: FigureKind;
+  /** Template id from tools/figures/templates.json. */
+  template: string;
+  /** Template-specific values; every number also exists in the article body. */
+  data?: Record<string, unknown>;
+  /** ja+en takeaway, rendered in <figcaption>. Required for data figures. */
+  caption?: Text;
+  /** ja+en description. Required for raster figures, optional otherwise. */
+  alt?: Text;
+  /** Generation scene for raster figures (same fields as image_brief). Never rendered. */
+  brief?: Record<string, unknown>;
+  /** fact ids from content/facts.yaml, for traceability. Never rendered. */
+  facts?: string[];
+}
+
 /** A section body block. Exactly one key is set (see docs/spec-stage1.md §3.2). */
 export type Block =
   | { p: Text }
   | { h3: Text }
   | { img: Img }
+  | { figure: Figure }
   | { table: ArticleTable }
   | { steps: Text[] }
   | { list: Text[] }
