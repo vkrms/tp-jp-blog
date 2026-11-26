@@ -1,0 +1,18 @@
+---
+// The same ordered list as a stack: each card sits slightly narrower and behind the one
+// before it (docs/figures.md → template `stacked-cards`). Numbers are real text; the
+// narrowing is decoration.
+import { rich, type Lang } from '../../i18n/ui';
+
+interface Props { data: Record<string, any>; lang: Lang }
+const { data, lang } = Astro.props;
+const items = (data?.items ?? []) as any[];
+---
+<ol class="stack">
+  {items.map((item, i) => (
+    <li style={`--i:${i};z-index:${items.length - i}`}>
+      <span class="n" aria-hidden="true">{i + 1}</span>
+      <span class="t" set:html={rich(item.title, lang)} />
+    </li>
+  ))}
+</ol>

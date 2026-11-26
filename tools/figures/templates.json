@@ -104,6 +104,15 @@
         "tag": { "type": "text", "optional": true },
         "note": { "type": "text", "optional": true }
       }
+    },
+    "stacked-cards": {
+      "kind": "infographic",
+      "ref": "deck 2026-11-26: numbered stack",
+      "caption": "required",
+      "data": {
+        "items": { "type": "array", "min": 2, "max": 6 },
+        "items[].title": { "type": "text" }
+      }
     }
   }
 }

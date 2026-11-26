@@ -175,6 +175,12 @@ mark { background: var(--color-primary-100); color: inherit; font-weight: 700; p
 .dfig .net.neg .val { color: var(--color-error); }
 .dfig .balance-note { margin: var(--space-8) 0 0; color: var(--color-muted); font-size: var(--type-note-size); line-height: 1.5; text-align: center; }
 
+/* stacked-cards: the list as a narrowing stack, earlier cards on top */
+.dfig .stack { display: grid; justify-items: center; }
+.dfig .stack li { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-16); align-items: center; width: calc(100% - var(--i) * 5%); padding: var(--space-16) var(--space-20); border: 1px solid var(--color-line); border-radius: var(--radius-surface); background: var(--color-surface); color: var(--color-ink); font-size: var(--type-small-size); font-weight: 700; line-height: 1.6; }
+.dfig .stack li + li { margin-top: calc(-1 * var(--space-12)); }
+.dfig .stack .n { display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--radius-full); border: 1px solid var(--color-primary-200); background: var(--color-primary-50); color: var(--color-primary-pressed); font-size: var(--type-note-bold-size); font-weight: 700; }
+
 /* ticket-stub: boarding pass with a perforated stub and a decorative barcode */
 .dfig .ticket { display: grid; grid-template-columns: minmax(0, 1fr) auto; overflow: hidden; border: 1px solid var(--color-line-strong); border-radius: var(--radius-surface); background: var(--color-surface); }
 .dfig .ticket .tmain { display: grid; gap: var(--space-6); padding: var(--space-20); }

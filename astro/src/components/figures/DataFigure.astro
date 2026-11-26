@@ -14,6 +14,7 @@ import StairSteps from './StairSteps.astro';
 import PathMilestones from './PathMilestones.astro';
 import BalanceScale from './BalanceScale.astro';
 import TicketStub from './TicketStub.astro';
+import StackedCards from './StackedCards.astro';
 
 interface Props { figure: Figure; lang: Lang }
 const { figure, lang } = Astro.props;
@@ -28,6 +29,7 @@ const RENDERED: Record<string, typeof CheckCards> = {
   'path-milestones': PathMilestones,
   'balance-scale': BalanceScale,
   'ticket-stub': TicketStub,
+  'stacked-cards': StackedCards,
 };
 const Template = RENDERED[figure.template];
 if (!Template) {

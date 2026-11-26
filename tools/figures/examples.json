@@ -171,6 +171,24 @@
           "note": ["手数料は別", "fees extra"]
         }
       }
+    },
+    {
+      "name": "the same six steps as a stack",
+      "figure": {
+        "kind": "infographic",
+        "template": "stacked-cards",
+        "caption": ["同じ6つのステップを、カードの重なりで（例）", "The same six steps as a stack (example)"],
+        "data": {
+          "items": [
+            { "title": ["テーマを決める", "Pick a topic"] },
+            { "title": ["ブログを立ち上げる", "Set up the blog"] },
+            { "title": ["ASPに登録する", "Join an ASP"] },
+            { "title": ["案件を選ぶ", "Choose offers"] },
+            { "title": ["記事を書く", "Write articles"] },
+            { "title": ["数字を見直す", "Review the numbers"] }
+          ]
+        }
+      }
     }
   ]
 }
