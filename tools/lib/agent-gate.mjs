@@ -62,10 +62,13 @@ export function preCheck({ task, policy, articles, now = new Date() }) {
  *   reject — нарушение границ (чужие файлы, удаление статей, ошибки валидатора): PR не открывать;
  *   empty  — агент ничего не изменил.
  */
-export function postCheck({ task, slug, policy, baseArticles, newArticles, changedFiles, validatorOk, report, numberCheck = null, topicCheck = null, now = new Date() }) {
-  const reject = [], hold = [];
-  const files = changedFiles.filter((f) => !f.startsWith('agent-out/'));
-  if (!files.length) return { decision: 'empty', reasons: ['агент ничего не изменил'], summary: {} };
+export function postCheck({ task, slug, policy, baseArticles, newArticles, changedFiles, untrackedFiles = [], validatorOk, report, numberCheck = null, topicCheck = null, now = new Date() }) {
+  const reject = [], hold = [], notes = [];
+  // Новые неотслеживаемые файлы вне content/ — черновики агента (скрипты и т. п.): не коммитятся, только отмечаем.
+  const scratch = untrackedFiles.filter((f) => !ALLOWED_FILES.includes(f) && !f.startsWith('agent-out/'));
+  if (scratch.length) notes.push(`временные файлы агента не публикуются: ${scratch.join(', ')}`);
+  const files = changedFiles.filter((f) => !f.startsWith('agent-out/') && !scratch.includes(f));
+  if (!files.length) return { decision: 'empty', reasons: ['агент ничего не изменил', ...notes], summary: {} };
 
   for (const f of files) if (!ALLOWED_FILES.includes(f)) reject.push(`изменён запрещённый файл: ${f}`);
   if (!validatorOk) reject.push('node tools/validate.mjs: есть ошибки');
@@ -79,6 +82,9 @@ export function postCheck({ task, slug, policy, baseArticles, newArticles, chang
   if (removed.length) reject.push(`удалены или переименованы статьи: ${removed.join(', ')} (slug после публикации не меняется)`);
 
   if (task === 'writer') {
+    for (const s of added) {
+      if (!(next.get(s).sources ?? []).length) hold.push(`${s}: у новой статьи нет источников (sources пуст) — факты нечем проверить`);
+    }
     if (added.length > 1) reject.push(`за запуск больше одной новой статьи: ${added.join(', ')}`);
     const week = publishedLastWeek(baseArticles, now).length + added.length;
     if (week > policy.max_new_articles_per_week) hold.push(`лимит новых статей за 7 дней: ${week} > ${policy.max_new_articles_per_week}`);
@@ -123,5 +129,5 @@ export function postCheck({ task, slug, policy, baseArticles, newArticles, chang
   if (policy.publish_mode !== 'auto') hold.push(`publish_mode = ${policy.publish_mode}`);
 
   const decision = reject.length ? 'reject' : hold.length ? 'hold' : 'merge';
-  return { decision, reasons: [...reject, ...hold], summary: { added, changed, removed } };
+  return { decision, reasons: [...reject, ...hold, ...notes], summary: { added, changed, removed } };
 }

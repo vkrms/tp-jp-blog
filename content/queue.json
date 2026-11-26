@@ -2,6 +2,13 @@
  "_comment": "Очередь тем для агента-автора. status: held = сознательно не пишем (спрос около нуля); idea = кандидат, нужна проверка ключа и источников. Ключи — от Аси (Google Sheet «Travelpayouts Japan», вкладки Translation Queries и SEO Articles JP).",
  "queue": [
   {
+   "keyword": "YouTube アフィリエイト",
+   "topic": "YouTubeのアフィリエイト",
+   "monthly": null,
+   "status": "held",
+   "reason": "Тема держится на правилах площадок и ASP (где можно ставить ссылки, PR-маркировка) — исключённая тема по сути; дважды отклонена гейтом (2026-11-26)."
+  },
+  {
    "keyword": "ピンタレスト アフィリエイト",
    "topic": "Pinterestのアフィリエイト",
    "monthly": 50,

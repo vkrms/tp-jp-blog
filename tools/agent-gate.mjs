@@ -36,10 +36,8 @@ if (mode === 'pre') {
 
 // post
 const base = arg('base') || git('rev-parse', 'HEAD').trim();
-const changedFiles = [...new Set([
-  ...git('diff', '--name-only', base).split('\n'),
-  ...git('ls-files', '--others', '--exclude-standard').split('\n'),
-].filter(Boolean))];
+const untrackedFiles = git('ls-files', '--others', '--exclude-standard').split('\n').filter(Boolean);
+const changedFiles = [...new Set([...git('diff', '--name-only', base).split('\n'), ...untrackedFiles].filter(Boolean))];
 const baseArticles = JSON.parse(git('show', `${base}:content/articles.json`));
 const validator = spawnSync('node', ['tools/validate.mjs'], { cwd: ROOT, encoding: 'utf8' });
 let report = null;
@@ -55,7 +53,7 @@ const brokenJson = ['content/articles.json', 'content/queue.json', 'content/sour
   .filter((f) => { try { JSON.parse(read(f)); return false; } catch { return true; } });
 const r = brokenJson.length
   ? { decision: 'reject', reasons: brokenJson.map((f) => `${f}: не разбирается как JSON (см. agent-out/repairs.md)`), summary: {} }
-  : postCheck({ task, slug: arg('slug'), policy, baseArticles, newArticles: articles, changedFiles, validatorOk: validator.status === 0, report, numberCheck, topicCheck });
+  : postCheck({ task, slug: arg('slug'), policy, baseArticles, newArticles: articles, changedFiles, untrackedFiles, validatorOk: validator.status === 0, report, numberCheck, topicCheck });
 
 const md = [
   `### Gate: **${r.decision}**`,

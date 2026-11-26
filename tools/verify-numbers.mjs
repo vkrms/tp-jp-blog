@@ -48,6 +48,7 @@ try {
       try { pages.push({ url, text: await fetchText(url) }); check.pages.push({ url, ok: true }); }
       catch (e) { check.pages.push({ url, ok: false, error: e.message }); }
     }
+    if (!urls.length) throw new Error('у изменённых статей нет ссылок и источников из реестра — сверять не с чем');
     if (!pages.length) throw new Error('не удалось скачать ни одной страницы-источника');
     const { content, usage } = await chat({ model: MODEL, messages: buildMessages(figures, pages), temperature: 0, max_tokens: 4000, title: 'seo-blog-verify' });
     check.results = parseResults(content);

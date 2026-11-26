@@ -120,3 +120,16 @@ test('excluded topics found by the meaning check hold', () => {
   assert.equal(run({ newArticles: next, topicCheck: found }).decision, 'hold');
   assert.equal(run({ newArticles: next, topicCheck: { items: 2, findings: [] } }).decision, 'merge');
 });
+
+test('agent scratch files are ignored, modified tracked code still rejects', () => {
+  const next = clone(real); next[0].read_minutes += 1;
+  const r = run({ newArticles: next, changedFiles: ['content/articles.json', 'fix-quotes.py'], untrackedFiles: ['fix-quotes.py'] });
+  assert.equal(r.decision, 'merge');
+  assert.match(r.reasons.join(' '), /fix-quotes\.py/);
+  assert.equal(run({ newArticles: next, changedFiles: ['content/articles.json', 'tools/validate.mjs'] }).decision, 'reject');
+});
+
+test('a new article without sources holds', () => {
+  const a = article('no-src', '2026-11-26'); a.sources = [];
+  assert.equal(run({ task: 'writer', newArticles: [...real, a] }).decision, 'hold');
+});
