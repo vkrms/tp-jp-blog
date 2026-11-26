@@ -500,7 +500,8 @@
    "moshimohelp"
   ],
   "related": [
-   "earn-or-not"
+   "earn-or-not",
+   "market-size"
   ],
   "updated_at": "2026-11-09",
   "update_log": [
@@ -1620,7 +1621,8 @@
   "related": [
    "travel-blog-income",
    "earn-or-not",
-   "what-is-affiliate"
+   "what-is-affiliate",
+   "market-size"
   ],
   "updated_at": "2026-11-09",
   "update_log": [
@@ -4102,5 +4104,447 @@
   ],
   "review_status": "draft",
   "icon": "link"
+ },
+ {
+  "slug": "market-size",
+  "category": "basics",
+  "level": 0,
+  "read_minutes": 6,
+  "keyword": "アフィリエイト 市場規模",
+  "title": {
+   "ja": "アフィリエイト市場規模の推移：2024→2029予測と初心者への影響",
+   "en": "Affiliate market size trends: 2024→2029 forecast and what it means for beginners"
+  },
+  "eyebrow": {
+   "ja": "市場規模",
+   "en": "Market size"
+  },
+  "answer_first": {
+   "ja": "[矢野経済研究所の2026年調査](https://www.yano.co.jp/press-release/show/press_id/4056)によると、国内アフィリエイト市場は**2024年度4,379億円**から**2029年度には約5,883億円**へ成長する見通しです。市場は拡大していますが、成長ペースは鈍化し、成熟期に向かっています。",
+   "en": "According to a 2026 survey by Yano Research Institute, the domestic affiliate market will grow from **¥437.9 billion in FY2024** to **about ¥588.3 billion in FY2029**. The market is expanding, but growth is slowing as it moves toward maturity."
+  },
+  "sections": [
+   {
+    "h": [
+     "市場規模の推移：4,379億円から5,883億円へ",
+     "Market size trend: from ¥437.9bn to ¥588.3bn"
+    ],
+    "b": [
+     {
+      "p": [
+       "[矢野経済研究所が2026年3月に発表した調査](https://www.yano.co.jp/press-release/show/press_id/4056)では、国内アフィリエイト市場の規模を次のように示しています。",
+       "A survey published by Yano Research Institute in March 2026 shows the size of the domestic affiliate market as follows."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "年度",
+         "Fiscal year"
+        ],
+        [
+         "市場規模",
+         "Market size"
+        ],
+        [
+         "前年度比",
+         "Year on year"
+        ],
+        [
+         "区分",
+         "Status"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "2024年度",
+          "FY2024"
+         ],
+         [
+          "4,379億円",
+          "¥437.9bn"
+         ],
+         [
+          "+6.5%",
+          "+6.5%"
+         ],
+         [
+          "実績",
+          "Actual"
+         ]
+        ],
+        [
+         [
+          "2025年度",
+          "FY2025"
+         ],
+         [
+          "4,598億円",
+          "¥459.8bn"
+         ],
+         [
+          "+5.0%",
+          "+5.0%"
+         ],
+         [
+          "見込み",
+          "Estimate"
+         ]
+        ],
+        [
+         [
+          "2029年度",
+          "FY2029"
+         ],
+         [
+          "約5,883億円",
+          "About ¥588.3bn"
+         ],
+         [
+          "—",
+          "—"
+         ],
+         [
+          "予測",
+          "Forecast"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "p": [
+       "年平均成長率（CAGR）は「約6%台」と見られています。市場は拡大を続けていますが、成長ペースは過去と比べて穏やかになる見通しです。",
+       "The compound annual growth rate (CAGR) is put at 'about 6%'. The market continues to expand, but the pace of growth is expected to be more modest than in the past."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "「市場が拡大」は初心者に何を意味するか",
+     "What 'market expansion' means for beginners"
+    ],
+    "b": [
+     {
+      "p": [
+       "市場規模が大きくなると、読者の関心が高まり、広告主の予算も増える傾向があります。ただし、それは同時に**参入する人も増える**ことを意味します。",
+       "When the market size grows, reader interest tends to rise and advertisers' budgets increase. But it also means **more people are entering the space**."
+      ]
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "市場の拡大は「チャンスの増加」ですが、「簡単になる」わけではありません。競争も同時に強まります。",
+        "Market expansion means 'more opportunity', not 'getting easier'. Competition grows at the same time."
+       ]
+      ]
+     },
+     {
+      "p": [
+       "矢野経済研究所の調査では、ASP市場について「過去のような年率10%を超える高成長は見込みにくい」とも述べられています。つまり、新規参入者が増える中で、一人ひとりが得られる成果の伸びは限られている可能性があります。",
+       "The Yano survey states that for the ASP market 'growth above 10% a year, as in the past, is hard to expect'. In other words, as new entrants increase, the growth in results each person can achieve may be limited."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "参加者の収入：12.4%が月3万円以上、52.5%が月1,000円未満",
+     "Participant income: 12.4% earn ¥30,000+ per month, 52.5% under ¥1,000"
+    ],
+    "b": [
+     {
+      "p": [
+       "市場全体の規模とは別に、実際に運営している人の収入はどうでしょうか。[日本アフィリエイト協議会（JAO）が2025年に実施した調査](https://www.japan-affiliate.org/news/survey2025/)では、次のような結果が出ています。",
+       "Apart from the overall market size, what about the income of people actually running sites? A survey conducted by the Japan Affiliate Organization (JAO) in 2025 showed the following results."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "収入帯",
+         "Income bracket"
+        ],
+        [
+         "2025年",
+         "2025"
+        ],
+        [
+         "2023年",
+         "2023"
+        ],
+        [
+         "2021年",
+         "2021"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "月3万円以上",
+          "¥30,000+ per month"
+         ],
+         [
+          "12.4%",
+          "12.4%"
+         ],
+         [
+          "9.4%",
+          "9.4%"
+         ],
+         [
+          "8.7%",
+          "8.7%"
+         ]
+        ],
+        [
+         [
+          "月1,000円未満",
+          "Under ¥1,000 per month"
+         ],
+         [
+          "52.5%",
+          "52.5%"
+         ],
+         [
+          "66.2%",
+          "66.2%"
+         ],
+         [
+          "68.6%",
+          "68.6%"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "p": [
+       "調査では、2013年には月3万円以上の人は2.4%でしたが、2025年には12.4%へと「5倍以上に増えた」と述べられています。一方で、半数以上は月1,000円に満たない状況が続いています。",
+       "The survey states that in 2013 the share earning ¥30,000 or more a month was 2.4%, which 'increased more than five times' to 12.4% in 2025. On the other hand, more than half continue to earn less than ¥1,000 a month."
+      ]
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "市場規模が「4,000億円超」でも、それは業界全体の数字で、個人の収入を示すものではありません。約半数が月1,000円未満という現実と合わせて理解してください。",
+        "Even if the market size is 'over ¥400 billion', that is a figure for the whole industry and does not indicate individual income. Understand it alongside the reality that about half earn less than ¥1,000 a month."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "市場に影響する3つの変化",
+     "Three changes affecting the market"
+    ],
+    "b": [
+     {
+      "p": [
+       "矢野経済研究所の調査では、市場の成長を左右する要素として次の3つが挙げられています。",
+       "The Yano survey mentions the following three factors that influence market growth."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "変化",
+         "Change"
+        ],
+        [
+         "内容",
+         "Description"
+        ],
+        [
+         "初心者への影響",
+         "Impact on beginners"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "AI検索の影響",
+          "AI search impact"
+         ],
+         [
+          "AI Summaryが検索結果に表示され、オーガニックトラフィックが減少する懸念",
+          "AI Summary appears in search results, raising concerns about reduced organic traffic"
+         ],
+         [
+          "SEO頼みの戦略はリスクが高くなる",
+          "SEO-only strategies become riskier"
+         ]
+        ],
+        [
+         [
+          "EC-mall型の安定需要",
+          "Stable demand for EC-mall model"
+         ],
+         [
+          "楽天市場やAmazonなど、モール型の案件は安定した需要を保つ",
+          "Mall-based programs such as Rakuten Ichiba and Amazon maintain stable demand"
+         ],
+         [
+          "比較記事やレビュー記事が書きやすい",
+          "Easier to write comparison and review posts"
+         ]
+        ],
+        [
+         [
+          "SNS・動画の成長",
+          "Growth of social and video"
+         ],
+         [
+          "InstagramやYouTubeなど、ブログ以外の媒体が伸びている",
+          "Channels other than blogs, such as Instagram and YouTube, are growing"
+         ],
+         [
+          "文章が苦手でも、別の手段がある",
+          "Alternative methods exist even if writing is not your strength"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "say": [
+       "AI検索の影響は「現時点では限定的」とされていますが、アフィリエイトサイトが引用されることで、逆に露出が増える可能性も指摘されています。",
+       "The impact of AI search is said to be 'limited at present', but it is also noted that affiliate sites may gain more exposure by being cited."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "数字をどう読むか：成長する市場、成熟する競争",
+     "How to read the numbers: growing market, maturing competition"
+    ],
+    "b": [
+     {
+      "p": [
+       "矢野経済研究所は、市場が「成長期から成熟期・再編期へ移行する」と述べています。これは、規模は拡大するものの、新規参入者にとっては**既存のサイトとの差別化がより重要になる**ことを意味します。",
+       "Yano Research Institute states that the market is 'shifting from a growth phase to maturity and reconfiguration'. This means that although the size is expanding, **differentiation from existing sites becomes more important** for new entrants."
+      ]
+     },
+     {
+      "list": [
+       [
+        "市場全体は拡大している（2029年まで年6%成長）",
+        "The overall market is expanding (6% annual growth to 2029)"
+       ],
+       [
+        "参加者の収入は二極化している（上位12.4%が月3万円以上、半数以上が月1,000円未満）",
+        "Participant income is polarised (top 12.4% earn ¥30,000+ a month, more than half under ¥1,000)"
+       ],
+       [
+        "競争は強まり、「ただ記事を書く」だけでは成果が出にくくなる",
+        "Competition is intensifying; 'just writing articles' is less likely to bring results"
+       ],
+       [
+        "EC-mall型、SNS、動画など、多様な手段がある",
+        "Diverse methods exist: EC-mall programs, social media, video"
+       ]
+      ]
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "市場の拡大は「参入しやすい」のではなく、「続けている人にとっては機会が増える」という意味です。最初から長期的な視点で取り組むことが大切です。",
+        "Market expansion does not mean 'easy to enter', but 'more opportunity for those who keep going'. It is important to approach it with a long-term perspective from the start."
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "市場が成長しているのに、なぜ稼げない人が多いのですか？",
+     "Why do many people not earn even though the market is growing?"
+    ],
+    [
+     "市場規模は業界全体の数字で、個人の収入とは別です。参入者が増えれば、一人ひとりの競争も激しくなります。",
+     "Market size is a figure for the whole industry, separate from individual income. As entrants increase, competition for each person intensifies."
+    ]
+   ],
+   [
+    [
+     "2029年に市場が約6,000億円になるのは、初心者にとって良いニュースですか？",
+     "Is the market reaching about ¥600 billion in 2029 good news for beginners?"
+    ],
+    [
+     "良い面もあります。広告主の予算が増えれば、紹介できる案件も増えます。ただし、同時に競合も増えるため、差別化が必要です。",
+     "There is a positive side. If advertisers' budgets grow, more programs become available to promote. But competition also grows at the same time, so differentiation is needed."
+    ]
+   ],
+   [
+    [
+     "AI検索の影響で、アフィリエイトは終わるのですか？",
+     "Will affiliate marketing end because of AI search?"
+    ],
+    [
+     "矢野経済研究所の調査では、影響は「現時点では限定的」とされています。アフィリエイトサイトが引用されることで、逆に露出が増える可能性もあります。",
+     "According to the Yano survey, the impact is 'limited at present'. Affiliate sites may even gain more exposure by being cited."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "国内アフィリエイト市場は、2024年度4,379億円から2029年度に約5,883億円へ成長する見通し（矢野経済研究所）。",
+    "The domestic affiliate market is forecast to grow from ¥437.9 billion in FY2024 to about ¥588.3 billion in FY2029 (Yano Research Institute)."
+   ],
+   [
+    "市場は拡大しているが、成長ペースは鈍化し、成熟期に向かっている。競争も強まる。",
+    "The market is expanding, but growth is slowing as it moves toward maturity. Competition is also intensifying."
+   ],
+   [
+    "月3万円以上を得ている人は12.4%に増えたが、半数以上は月1,000円未満。市場規模と個人収入は別物。",
+    "The share earning ¥30,000 or more a month has risen to 12.4%, but more than half earn less than ¥1,000. Market size and individual income are separate."
+   ]
+  ],
+  "sources": [
+   "yano",
+   "jao25"
+  ],
+  "related": [
+   "what-is-affiliate",
+   "earn-or-not",
+   "pick-niche"
+  ],
+  "updated_at": "2026-11-26",
+  "update_log": [
+   {
+    "date": "2026-11-26",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。矢野経済研究所（2026-03-18）とJAO調査（2026-06-12）のデータをもとに、市場規模の推移と初心者への影響を解説。AI検索の影響、EC-mall型の安定需要、SNS・動画の成長について記載。市場全体の拡大と個人収入の二極化を対比。",
+     "en": "First version. Based on data from Yano Research Institute (2026-03-18) and JAO survey (2026-06-12), explains market size trends and impact on beginners. Covers AI search impact, stable EC-mall demand, and social/video growth. Contrasts overall market expansion with income polarisation among individuals."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "chart-line"
  }
 ]
