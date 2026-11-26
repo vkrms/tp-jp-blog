@@ -70,6 +70,13 @@ jobs:
           VERIFY_MODEL: ${{ vars.VERIFY_MODEL || 'anthropic/claude-sonnet-4.5' }}
         run: node tools/verify-numbers.mjs --base "$(git rev-parse HEAD)"
 
+      - name: Check new text for excluded topics
+        if: steps.pre.outputs.run == 'true'
+        env:
+          OPENROUTER_KEY: ${{ secrets.OPENROUTER_KEY }}
+          VERIFY_MODEL: ${{ vars.VERIFY_MODEL || 'anthropic/claude-sonnet-4.5' }}
+        run: node tools/check-topics.mjs --base "$(git rev-parse HEAD)"
+
       - name: Gate
         id: gate
         if: steps.pre.outputs.run == 'true'

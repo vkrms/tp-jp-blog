@@ -113,3 +113,10 @@ test('a figure that does not match its source holds', () => {
   const falseAlarm = { statements: 1, results: [{ status: 'mismatch', figure: '3,912,500', article_value: 3912500, source_value: 3912500 }] };
   assert.equal(run({ newArticles: next, numberCheck: falseAlarm }).decision, 'merge');
 });
+
+test('excluded topics found by the meaning check hold', () => {
+  const next = clone(real); next[0].read_minutes += 1;
+  const found = { items: 2, findings: [{ slug: 'x', topic: 'law_ads', evidence: 'PR表示が義務', reason: 'labelling duty' }] };
+  assert.equal(run({ newArticles: next, topicCheck: found }).decision, 'hold');
+  assert.equal(run({ newArticles: next, topicCheck: { items: 2, findings: [] } }).decision, 'merge');
+});

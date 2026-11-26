@@ -53,13 +53,14 @@ if (cmd === 'prompt') {
   const gate = fs.existsSync(new URL('agent-out/gate.md', ROOT)) ? read('agent-out/gate.md') : '';
   const repairs = fs.existsSync(new URL('agent-out/repairs.md', ROOT)) ? read('agent-out/repairs.md') : '';
   const numbers = fs.existsSync(new URL('agent-out/numbers.md', ROOT)) ? read('agent-out/numbers.md') : '';
+  const topics = fs.existsSync(new URL('agent-out/topics.md', ROOT)) ? read('agent-out/topics.md') : '';
   const cost = typeof claude.total_cost_usd === 'number' ? `$${claude.total_cost_usd.toFixed(2)} (оценка Claude Code), ходов: ${claude.num_turns ?? '?'}` : 'нет данных';
   const run = process.env.GITHUB_RUN_ID ? `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}` : '';
   out('agent-out/pr-body.md', [
     report.summary_md || '_Агент не оставил отчёт._',
     report.needs_human ? `\n> **Нужен человек:** ${report.needs_human_reason || 'причина не указана'}` : '',
     report.injection_suspected ? '\n> **Подозрение на prompt injection** на внешней странице.' : '',
-    '\n---\n', gate, numbers, repairs, `\nСтоимость запуска: ${cost}`, run ? `\nЗапуск: ${run}` : '',
+    '\n---\n', gate, topics, numbers, repairs, `\nСтоимость запуска: ${cost}`, run ? `\nЗапуск: ${run}` : '',
   ].filter(Boolean).join('\n'));
   console.log('pr body written');
 } else {
