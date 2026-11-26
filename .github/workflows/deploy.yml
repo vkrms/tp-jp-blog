@@ -1,0 +1,41 @@
+# Build the site from content/ and rsync it to Hostinger (tools/deploy.sh). Runs on pushes to main that touch the
+# site, after agent merges (started by agent.yml), or manually.
+name: deploy
+on:
+  push:
+    branches: [main]
+    paths: ['content/**', 'astro/**', 'package.json', 'package-lock.json', 'tools/deploy.sh', 'tools/rsync-exclude.txt']
+  workflow_dispatch: {}
+permissions: {contents: read}
+concurrency: {group: deploy, cancel-in-progress: false} # never cut an rsync in half
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 24, cache: npm}
+      - run: npm ci
+      - name: Validate content
+        run: node tools/validate.mjs
+      - name: Type check
+        run: npm exec -w astro -- astro check
+      - name: Build (production)
+        run: npm run build:prod
+      - name: Deploy
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          umask 077
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$RUNNER_TEMP/deploy_key"
+          # tools/deploy.sh reads its settings from .env
+          {
+            echo "DEPLOY_HOST=$DEPLOY_HOST"; echo "DEPLOY_PORT=$DEPLOY_PORT"; echo "DEPLOY_USER=$DEPLOY_USER"
+            echo "DEPLOY_PATH=$DEPLOY_PATH"; echo "DEPLOY_SSH_KEY=$RUNNER_TEMP/deploy_key"
+          } > .env
+          sh tools/deploy.sh --yes --skip-build

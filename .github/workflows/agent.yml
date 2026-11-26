@@ -1,0 +1,113 @@
+# Reusable agent run (docs/launch-plan.md): pre-check → Claude Code (via OpenRouter) → gate → PR → merge → deploy.
+# The model only edits files in the checkout; tools/agent-gate.mjs (code) decides what is merged.
+name: agent (reusable)
+on:
+  workflow_call:
+    inputs:
+      task: {type: string, required: true}            # writer | updater | editor
+      slug: {type: string, default: ''}               # editor only
+      instruction: {type: string, default: ''}        # editor only
+      dry_run: {type: boolean, default: false}        # true: open the PR, never merge
+    secrets:
+      OPENROUTER_KEY: {required: true}
+
+permissions: {}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions: {contents: write, pull-requests: write, actions: write}
+    concurrency: {group: agent-content, cancel-in-progress: false} # one agent at a time edits content
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: 24}
+
+      - name: Pre-check (pause, weekly limit)
+        id: pre
+        run: node tools/agent-gate.mjs pre --task "${{ inputs.task }}"
+
+      - name: Install Claude Code
+        if: steps.pre.outputs.run == 'true'
+        run: npm install -g @anthropic-ai/claude-code@2.1.332
+
+      - name: Build prompt and tool permissions
+        if: steps.pre.outputs.run == 'true'
+        env:
+          # passed via env, never interpolated into the shell
+          AGENT_SLUG: ${{ inputs.slug }}
+          AGENT_INSTRUCTION: ${{ inputs.instruction }}
+          TOPIC_DISCOVERY: ${{ steps.pre.outputs.topic_discovery }}
+        run: node tools/agent-run.mjs prompt --task "${{ inputs.task }}"
+
+      - name: Run agent
+        if: steps.pre.outputs.run == 'true'
+        env:
+          ANTHROPIC_BASE_URL: https://openrouter.ai/api
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.OPENROUTER_KEY }}
+          ANTHROPIC_API_KEY: ''
+          ANTHROPIC_DEFAULT_HAIKU_MODEL: ${{ vars.AGENT_SMALL_MODEL || 'anthropic/claude-haiku-4.5' }}
+          AGENT_MODEL: ${{ vars.AGENT_MODEL || 'anthropic/claude-sonnet-4.5' }}
+          DISABLE_TELEMETRY: '1'
+        run: |
+          claude -p "$(cat agent-out/prompt.md)" \
+            --model "$AGENT_MODEL" \
+            --allowedTools "$(cat agent-out/tools.txt)" \
+            --max-turns 150 \
+            --output-format json > agent-out/claude.json || echo "::warning::agent exited with an error; the gate decides what happens"
+          node -e 'const d=require("./agent-out/claude.json"); console.log(`cost ~$${(d.total_cost_usd??0).toFixed(2)}, turns ${d.num_turns}, error ${d.is_error}`)' || true
+
+      - name: Gate
+        id: gate
+        if: steps.pre.outputs.run == 'true'
+        env:
+          AGENT_SLUG: ${{ inputs.slug }}
+        run: node tools/agent-gate.mjs post --task "${{ inputs.task }}" --slug "$AGENT_SLUG" --base "$(git rev-parse HEAD)"
+
+      - name: Open PR
+        id: pr
+        if: steps.gate.outputs.decision == 'merge' || steps.gate.outputs.decision == 'hold'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: ${{ steps.gate.outputs.title }}
+          DECISION: ${{ steps.gate.outputs.decision }}
+          TASK: ${{ inputs.task }}
+        run: |
+          node tools/agent-run.mjs pr-body
+          branch="bot/${TASK}-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add content/articles.json content/facts.yaml content/sources.json content/queue.json content/glossary.json
+          git commit -q -m "content(${TASK}): ${TITLE:-agent run ${{ github.run_id }}}"
+          git push -q origin "$branch"
+          prefix=""; [ "$DECISION" = "hold" ] && prefix="[needs human] "
+          url=$(gh pr create --base main --head "$branch" --title "${prefix}${TASK}: ${TITLE:-agent run}" --body-file agent-out/pr-body.md)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "PR: $url"
+
+      - name: Merge and deploy
+        if: steps.gate.outputs.decision == 'merge' && !inputs.dry_run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr merge "${{ steps.pr.outputs.url }}" --squash --delete-branch
+          # merges made with GITHUB_TOKEN do not trigger push workflows; start the deploy explicitly
+          gh workflow run deploy.yml --ref main
+
+      - name: Rejected
+        if: steps.gate.outputs.decision == 'reject'
+        run: |
+          echo "::error::gate rejected the agent's changes; nothing was committed (see the agent-out artifact)"
+          exit 1
+
+      - name: Upload run artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-${{ inputs.task }}-${{ github.run_id }}
+          path: agent-out/
+          if-no-files-found: ignore
+          retention-days: 30

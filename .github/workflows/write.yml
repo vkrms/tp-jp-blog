@@ -1,26 +1,17 @@
-# ШАБЛОН (не проверялся). Раз в неделю агент-автор пишет одну новую статью из очереди и открывает PR.
-# Запуск агента: Claude Code в headless-режиме (`claude -p`) с промптом из agents/writer.md.
-# Авторизация: токен подписки Claude Team (секрет CLAUDE_CODE_OAUTH_TOKEN, выдаётся командой `claude setup-token`). Нужно разрешение Actions создавать PR.
-# Если IT/админ Team не разрешат токен подписки — заменить на ANTHROPIC_API_KEY (организация в Claude Console).
-# Агент не имеет прав деплоя: только ветка + PR. Влив PR — по policy.yaml (auto-merge при зелёном validate) или вручную.
-name: write-article
+# Writer: one new article per run (max 2 per week, content/policy.yaml). Mon and Thu 09:00 JST.
+name: "agent: write"
 on:
-  schedule: [{cron: "0 21 * * 2"}]   # воскресенье 21:00 UTC = понедельник утро в Японии
-  workflow_dispatch: {}
+  schedule: [{cron: "0 0 * * 1,4"}]
+  workflow_dispatch:
+    inputs:
+      dry_run: {type: boolean, default: false, description: "Open the PR but never merge"}
 jobs:
-  update:
-    runs-on: ubuntu-latest
-    permissions: {contents: write, pull-requests: write}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: {node-version: 22}
-      - run: npm install -g @anthropic-ai/claude-code
-      - run: claude -p "$(cat agents/writer.md)" --permission-mode acceptEdits --allowedTools "Read,Write,Edit,WebFetch,WebSearch,Bash(node tools/validate.mjs)"
-        env: {CLAUDE_CODE_OAUTH_TOKEN: "${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}"}
-      - run: node tools/validate.mjs
-      - uses: peter-evans/create-pull-request@v6
-        with:
-          branch: bot/write-${{ github.run_id }}
-          title: "Новая статья из очереди"
-          body-path: .bot-report.md   # агент пишет отчёт сюда: что изменилось, откуда, что не удалось проверить
+  write:
+    # scheduled runs only once agents are switched on (repo variable AGENTS_ENABLED=true)
+    if: github.event_name != 'schedule' || vars.AGENTS_ENABLED == 'true'
+    uses: ./.github/workflows/agent.yml
+    permissions: {contents: write, pull-requests: write, actions: write}
+    with:
+      task: writer
+      dry_run: ${{ inputs.dry_run || false }}
+    secrets: inherit

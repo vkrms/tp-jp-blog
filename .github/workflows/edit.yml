@@ -1,0 +1,19 @@
+# Editor: agentic edit of one article on request (Actions tab → "agent: edit" → Run workflow,
+# or: gh workflow run edit.yml -f slug=ai-seo -f instruction="...").
+name: "agent: edit"
+on:
+  workflow_dispatch:
+    inputs:
+      slug: {type: string, required: true, description: "Article slug, e.g. ai-seo"}
+      instruction: {type: string, required: true, description: "What to change (any language)"}
+      dry_run: {type: boolean, default: false, description: "Open the PR but never merge"}
+jobs:
+  edit:
+    uses: ./.github/workflows/agent.yml
+    permissions: {contents: write, pull-requests: write, actions: write}
+    with:
+      task: editor
+      slug: ${{ inputs.slug }}
+      instruction: ${{ inputs.instruction }}
+      dry_run: ${{ inputs.dry_run }}
+    secrets: inherit

@@ -1,26 +1,16 @@
-# ШАБЛОН (не проверялся). Раз в неделю агент-обновлятор проверяет источники и открывает PR.
-# Запуск агента: Claude Code в headless-режиме (`claude -p`) с промптом из agents/updater.md.
-# Авторизация: токен подписки Claude Team (секрет CLAUDE_CODE_OAUTH_TOKEN, выдаётся командой `claude setup-token`). Нужно разрешение Actions создавать PR.
-# Если IT/админ Team не разрешат токен подписки — заменить на ANTHROPIC_API_KEY (организация в Claude Console).
-# Агент не имеет прав деплоя: только ветка + PR. Влив PR — по policy.yaml (auto-merge при зелёном validate) или вручную.
-name: update-articles
+# Updater: facts due for refresh, source links, expired sales. Wed 09:00 JST.
+name: "agent: update"
 on:
-  schedule: [{cron: "0 21 * * 0"}]   # воскресенье 21:00 UTC = понедельник утро в Японии
-  workflow_dispatch: {}
+  schedule: [{cron: "0 0 * * 3"}]
+  workflow_dispatch:
+    inputs:
+      dry_run: {type: boolean, default: false, description: "Open the PR but never merge"}
 jobs:
   update:
-    runs-on: ubuntu-latest
-    permissions: {contents: write, pull-requests: write}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: {node-version: 22}
-      - run: npm install -g @anthropic-ai/claude-code
-      - run: claude -p "$(cat agents/updater.md)" --permission-mode acceptEdits --allowedTools "Read,Write,Edit,WebFetch,WebSearch,Bash(node tools/validate.mjs)"
-        env: {CLAUDE_CODE_OAUTH_TOKEN: "${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}"}
-      - run: node tools/validate.mjs
-      - uses: peter-evans/create-pull-request@v6
-        with:
-          branch: bot/update-${{ github.run_id }}
-          title: "Обновление статей по источникам"
-          body-path: .bot-report.md   # агент пишет отчёт сюда: что изменилось, откуда, что не удалось проверить
+    if: github.event_name != 'schedule' || vars.AGENTS_ENABLED == 'true'
+    uses: ./.github/workflows/agent.yml
+    permissions: {contents: write, pull-requests: write, actions: write}
+    with:
+      task: updater
+      dry_run: ${{ inputs.dry_run || false }}
+    secrets: inherit
