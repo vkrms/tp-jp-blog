@@ -18,7 +18,9 @@ test('policy.yaml is parsed', () => {
   assert.equal(policy.paused, false);
   assert.equal(policy.max_new_articles_per_week, 2);
   assert.equal(policy.max_changed_articles_per_run, 10);
-  assert.equal(policy.topic_discovery, true);
+  assert.equal(policy.topic_discovery, /topic_discovery:[^\n]*\n\s+enabled:\s*true/.test(fs.readFileSync(new URL('../content/policy.yaml', import.meta.url), 'utf8')));
+  assert.equal(parsePolicy('topic_discovery:   # c\n  enabled: true\n').topic_discovery, true);
+  assert.equal(parsePolicy('topic_discovery:\n  enabled: false  # off\n').topic_discovery, false);
   assert.equal(parsePolicy('garbage').paused, true, 'unreadable policy means paused');
 });
 

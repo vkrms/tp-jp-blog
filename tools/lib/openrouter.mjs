@@ -44,8 +44,9 @@ export function registerCitations(article, urls, citations) {
 }
 
 // chat(): возвращает { content, usage, citations: [{url,title,content}], searches }
-export async function chat({ model, messages, temperature = 0.4, max_tokens = 6000, web = false, title = 'seo-blog' }) {
+export async function chat({ model, messages, temperature = 0.4, max_tokens = 6000, web = false, title = 'seo-blog', json = false }) {
   const body = { model, messages, temperature, max_tokens, usage: { include: true } };
+  if (json) body.response_format = { type: 'json_object' }; // ответ — только JSON (если модель/провайдер поддерживает)
   if (web) { body.tools = [webTool()]; body.max_tool_calls = 10; }
   const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',

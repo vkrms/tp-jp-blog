@@ -50,9 +50,16 @@ try {
     }
     if (!urls.length) throw new Error('у изменённых статей нет ссылок и источников из реестра — сверять не с чем');
     if (!pages.length) throw new Error('не удалось скачать ни одной страницы-источника');
-    const { content, usage } = await chat({ model: MODEL, messages: buildMessages(figures, pages), temperature: 0, max_tokens: 4000, title: 'seo-blog-verify' });
-    check.results = parseResults(content);
-    check.cost_usd = usage?.cost ?? null;
+    // Модель иногда отдаёт невалидный JSON (неэкранированные кавычки в цитатах): JSON-режим и один повтор.
+    let messages = buildMessages(figures, pages);
+    for (let attempt = 1; ; attempt++) {
+      const { content, usage } = await chat({ model: MODEL, messages, temperature: 0, max_tokens: 6000, title: 'seo-blog-verify', json: true });
+      try { check.results = parseResults(content); check.cost_usd = usage?.cost ?? null; break; }
+      catch (e) {
+        if (attempt >= 2) throw new Error(`ответ модели не JSON: ${e.message}`);
+        messages = [...messages, { role: 'assistant', content }, { role: 'user', content: 'That was not valid JSON. Reply again with valid JSON only, escaping double quotes inside strings.' }];
+      }
+    }
   }
 } catch (e) {
   check.error = e.message.slice(0, 200);

@@ -20,8 +20,15 @@ try {
   const items = changedText(baseArticles, newArticles);
   check = { items: items.length, model: MODEL };
   if (items.length) {
-    const { content } = await chat({ model: MODEL, messages: buildMessages(items, excluded), temperature: 0, max_tokens: 2000, title: 'seo-blog-topics' });
-    check.findings = parseFindings(content);
+    let messages = buildMessages(items, excluded);
+    for (let attempt = 1; ; attempt++) {
+      const { content } = await chat({ model: MODEL, messages, temperature: 0, max_tokens: 3000, title: 'seo-blog-topics', json: true });
+      try { check.findings = parseFindings(content); break; }
+      catch (e) {
+        if (attempt >= 2) throw new Error(`ответ модели не JSON: ${e.message}`);
+        messages = [...messages, { role: 'assistant', content }, { role: 'user', content: 'That was not valid JSON. Reply again with valid JSON only, escaping double quotes inside strings.' }];
+      }
+    }
   }
 } catch (e) {
   check.error = e.message.slice(0, 200);
