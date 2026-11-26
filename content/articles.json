@@ -3755,6 +3755,7 @@
   ],
   "sources": [],
   "related": [
+   "youtube-affiliate",
    "start-guide",
    "travel-blog-income"
   ],
@@ -3896,6 +3897,7 @@
    "a8camp"
   ],
   "related": [
+   "youtube-affiliate",
    "what-is-affiliate",
    "income-guide"
   ],
@@ -4102,5 +4104,368 @@
   ],
   "review_status": "draft",
   "icon": "link"
+ },
+ {
+  "slug": "youtube-affiliate",
+  "category": "traffic",
+  "level": 0,
+  "read_minutes": 7,
+  "keyword": "YouTube アフィリエイト",
+  "title": {
+   "ja": "YouTubeアフィリエイトとは？始め方とリンクの貼り方を解説",
+   "en": "What is YouTube affiliate marketing? How to start and where to place links"
+  },
+  "eyebrow": {
+   "ja": "YouTubeアフィリエイト",
+   "en": "YouTube affiliate"
+  },
+  "answer_first": {
+   "ja": "YouTubeアフィリエイトは、動画の説明欄に商品やサービスのリンクを置き、視聴者がそこから購入や申し込みをすると**報酬が得られる仕組み**です。登録者数が少なくても始められますが、PRの表示義務やリンクの貼り方には決まりがあります。",
+   "en": "YouTube affiliate marketing means placing product or service links in video descriptions and **earning a reward** when viewers buy or sign up through them. You can start with few subscribers, but there are rules on PR disclosure and link placement."
+  },
+  "sections": [
+   {
+    "h": [
+     "YouTubeアフィリエイトとは",
+     "What it is"
+    ],
+    "b": [
+     {
+      "p": [
+       "動画の説明欄に商品やサービスのアフィリエイトリンクを置き、視聴者がそのリンク経由で購入や登録をすると、成果に応じて報酬がもらえます。",
+       "You place affiliate links for products or services in video descriptions, and when viewers buy or sign up through those links, you earn a reward for the result."
+      ]
+     },
+     {
+      "p": [
+       "YouTubeの広告収入（AdSense）とは別の仕組みです。広告収入には登録者数1,000人以上と年間4,000時間以上の再生時間が必要ですが、アフィリエイトにはそうした条件がありません。",
+       "This is separate from YouTube ad revenue (AdSense). Ad revenue requires 1,000+ subscribers and 4,000+ watch hours annually, but affiliate marketing has no such conditions."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "どこにリンクを貼れるか",
+     "Where you can place links"
+    ],
+    "b": [
+     {
+      "p": [
+       "[A8.net](https://www.a8.net/as/youtube/)によると、アフィリエイトリンクを置ける場所は次のとおりです。",
+       "According to [A8.net](https://www.a8.net/as/youtube/), you can place affiliate links in the following locations."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "場所",
+         "Location"
+        ],
+        [
+         "説明",
+         "Description"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "動画の説明欄",
+          "Video description"
+         ],
+         [
+          "もっとも一般的な場所。動画の下に表示される",
+          "The most common location, shown below the video"
+         ]
+        ],
+        [
+         [
+          "チャンネルの「概要」",
+          "Channel About section"
+         ],
+         [
+          "チャンネル全体の説明欄",
+          "The description section of the whole channel"
+         ]
+        ],
+        [
+         [
+          "リンクしたサイトやSNS",
+          "Linked sites or social accounts"
+         ],
+         [
+          "チャンネルから紹介したサイトの中",
+          "Within sites you link from the channel"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "**動画内にリンクを直接表示することはできません**。YouTubeのカード機能にもアフィリエイトリンクは置けません。リンクは説明欄に置き、視聴者にそこへ誘導します。",
+        "**You cannot display links directly inside the video**. You also cannot place affiliate links in YouTube cards. Place links in the description and guide viewers there."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "始め方の4ステップ",
+     "How to start in four steps"
+    ],
+    "b": [
+     {
+      "steps": [
+       [
+        "ASPに登録し、YouTubeチャンネルをメディアとして追加する",
+        "Register with an ASP and add your YouTube channel as media"
+       ],
+       [
+        "「SNS・YouTube OK」と表示された案件を選ぶ",
+        "Choose programmes marked \"SNS・YouTube OK\""
+       ],
+       [
+        "提携を申請し、承認されたらアフィリエイトリンクを取得する",
+        "Apply to join, and once approved generate your affiliate link"
+       ],
+       [
+        "動画の説明欄にリンクと、PRの表示を入れる",
+        "Place the link and a PR disclosure in the video description"
+       ]
+      ]
+     },
+     {
+      "point": [
+       [
+        "ポイント",
+        "Key point"
+       ],
+       [
+        "[もしもアフィリエイト](https://af.moshimo.com/af/www/support/instagram/how-to)では、案件を選ぶときに「SNS・YouTube OK」の表示がある案件を選びます。すべての案件がYouTubeで使えるわけではありません。",
+        "At [Moshimo Affiliate](https://af.moshimo.com/af/www/support/instagram/how-to), choose programmes marked \"SNS・YouTube OK\". Not all programmes allow YouTube."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "PR表示義務",
+     "PR disclosure requirement"
+    ],
+    "b": [
+     {
+      "p": [
+       "2023年10月から、[A8.netの定め](https://www.a8.net/as/sns/)により、アフィリエイトリンクを含む投稿には**「PR投稿」「広告投稿」などの表示が義務づけられています**。",
+       "From October 2023, [A8.net's rules](https://www.a8.net/as/sns/) require all posts with affiliate links to carry a disclosure such as **\"PR投稿\" or \"広告投稿\"**."
+      ]
+     },
+     {
+      "p": [
+       "YouTubeでは、動画の説明欄にPR表示を書くほか、YouTube Studioの「有料プロモーション設定」で動画に有料プロモーションが含まれることをマークします。",
+       "On YouTube, write the PR disclosure in the video description and also mark the video as containing paid promotion through YouTube Studio's paid promotion setting."
+      ]
+     },
+     {
+      "warn": [
+       [
+        "注意",
+        "Caution"
+       ],
+       [
+        "PR表示を付けずに投稿すると、提携解除や問題になる場合があります。",
+        "Posting without a PR disclosure may result in termination of your agreement and other issues."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "ブログとの違い",
+     "How it differs from blogs"
+    ],
+    "b": [
+     {
+      "p": [
+       "YouTubeとブログ、どちらでもアフィリエイトはできますが、特徴が違います。",
+       "Both YouTube and blogs support affiliate marketing, but they have different characteristics."
+      ]
+     },
+     {
+      "table": {
+       "head": [
+        [
+         "",
+         ""
+        ],
+        [
+         "YouTube",
+         "YouTube"
+        ],
+        [
+         "ブログ",
+         "Blog"
+        ]
+       ],
+       "rows": [
+        [
+         [
+          "費用",
+          "Cost"
+         ],
+         [
+          "無料で始められる",
+          "Free to start"
+         ],
+         [
+          "ドメインとサーバーが必要（月1,000円前後）",
+          "Domain and hosting needed (about ¥1,000/month)"
+         ]
+        ],
+        [
+         [
+          "制作時間",
+          "Production time"
+        ],
+         [
+          "撮影と編集に時間がかかる",
+          "Filming and editing take time"
+         ],
+         [
+          "記事を書く時間だけ",
+          "Writing time only"
+         ]
+        ],
+        [
+         [
+          "拡散",
+          "Spread"
+         ],
+         [
+          "関連動画から広がりやすい",
+          "Spreads through related videos"
+         ],
+         [
+          "検索から長く読まれる",
+          "Found through search for a long time"
+         ]
+        ],
+        [
+         [
+          "成果",
+          "Results"
+         ],
+         [
+          "視聴者は受け身で見ている",
+          "Viewers watch passively"
+         ],
+         [
+          "検索で来た読者は解決策を探している",
+          "Search visitors are actively looking for solutions"
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "say": [
+       "どちらが稼げるかではなく、「自分がどちらを続けられるか」で選ぶほうが、結果につながります。",
+       "The question is not which earns more, but which you can sustain, and that is what leads to results."
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   [
+    [
+     "登録者数が少なくても始められますか？",
+     "Can I start with few subscribers?"
+    ],
+    [
+     "始められます。アフィリエイトには登録者数や再生時間の条件がありません。",
+     "Yes. Affiliate marketing has no subscriber or watch-hour requirements."
+    ]
+   ],
+   [
+    [
+     "動画内にリンクは貼れますか？",
+     "Can I place links inside the video?"
+    ],
+    [
+     "貼れません。リンクは説明欄に置き、視聴者にそこを見るように伝えます。",
+     "No. Place links in the description and tell viewers to look there."
+    ]
+   ],
+   [
+    [
+     "PRの表示は必須ですか？",
+     "Is a PR disclosure required?"
+    ],
+    [
+     "必須です。2023年10月から、アフィリエイトリンクを含む投稿には「PR投稿」などの表示が義務づけられています。",
+     "Yes. From October 2023, posts with affiliate links must carry a disclosure such as \"PR投稿\"."
+    ]
+   ],
+   [
+    [
+     "YouTubeとブログを両方やるのはどうですか？",
+     "What about doing both YouTube and a blog?"
+    ],
+    [
+     "できます。相互に誘導することで、どちらの効果も高まります。",
+     "You can. Directing traffic between them raises the effectiveness of both."
+    ]
+   ]
+  ],
+  "matome": [
+   [
+    "リンクは動画の説明欄とチャンネルの「概要」に置く。動画内には置けない。",
+    "Place links in video descriptions and the channel About section, not inside videos."
+   ],
+   [
+    "「SNS・YouTube OK」の案件を選び、PR表示を必ず付ける（2023年10月から義務）。",
+    "Choose programmes marked \"SNS・YouTube OK\" and always include a PR disclosure (required from October 2023)."
+   ],
+   [
+    "ブログと違い、制作に時間がかかるが、費用は無料で始められる。",
+    "Unlike blogs, production takes time but you can start for free."
+   ]
+  ],
+  "sources": [
+   "a8youtube",
+   "a8sns",
+   "moshimo"
+  ],
+  "related": [
+   "instagram",
+   "start-guide",
+   "what-is-affiliate"
+  ],
+  "updated_at": "2026-11-26",
+  "update_log": [
+   {
+    "date": "2026-11-26",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。A8.netとMoshimo Affiliateの公式ガイドをもとに、リンクの貼り方とPR表示義務（2023年10月〜）を説明。ブログとの比較を追加。",
+     "en": "First version. Explained link placement and PR disclosure requirement (from October 2023) based on A8.net and Moshimo Affiliate official guides. Added blog comparison."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "video"
  }
 ]

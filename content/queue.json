@@ -23,10 +23,45 @@
    "reason": "国内ASPは月払いが中心。需要が小さい"
   },
   {
-   "keyword": "(next)",
-   "topic": "Новые темы: брать из Google Sheet Аси + новости TRAICY/TravelVoice + изменения у JAO/CAA",
+   "keyword": "YouTube アフィリエイト",
+   "topic": "YouTubeアフィリエイト",
+   "intent": "とは / 始め方",
+   "status": "approved",
+   "origin": "agent",
+   "demand_estimate": "множественные подсказки, 9+ страниц в топе, интенты とは/始め方/やり方",
+   "serp_gap": "личные блоги и общие гайды без конкретики по официальным правилам ASP, устаревшие данные по закону о PR-пометке",
+   "angle": "официальные требования A8.net и Moshimo (tier 1), закон о стелс-маркетинге (октябрь 2023) и обязательная PR-пометка, сравнение с блогом и Instagram, конкретные места размещения ссылок",
+   "evidence": [
+    {"query": "YouTube アフィリエイト 始め方", "urls": ["https://flip-nine.jp/media/youtube-affiliate-start/", "https://www.xserver.ne.jp/blog/youtube_vs_blog/"], "checked_at": "2026-11-26"}
+   ],
+   "sources_planned": ["a8youtube", "a8sns", "moshimo"],
+   "score": 10
+  },
+  {
+   "keyword": "X アフィリエイト",
+   "topic": "X（旧Twitter）アフィリエイト",
+   "intent": "やり方",
    "status": "idea",
-   "reason": "агент предлагает, редактор утверждает"
+   "origin": "agent",
+   "demand_estimate": "подсказки, 9+ страниц",
+   "serp_gap": "общие гайды, предупреждения о рисках без систематизации",
+   "angle": "сравнение с Instagram (есть статья), риски и правила, официальные данные ASP",
+   "evidence": [{"query": "X アフィリエイト やり方", "urls": ["https://www.valuecommerce.ne.jp/stepup/x_affiliate"], "checked_at": "2026-11-26"}],
+   "sources_planned": ["a8sns", "moshimo"],
+   "score": 8
+  },
+  {
+   "keyword": "TikTok アフィリエイト",
+   "topic": "TikTokアフィリエイト",
+   "intent": "始め方 / やり方",
+   "status": "idea",
+   "origin": "agent",
+   "demand_estimate": "подсказки, 9+ страниц",
+   "serp_gap": "смешение TikTok Shop и обычных ASP, требования 1000+ фолловеров без подтверждения",
+   "angle": "TikTok Shop vs обычные ASP, официальные требования",
+   "evidence": [{"query": "TikTok アフィリエイト", "urls": ["https://www.value-domain.com/media/tiktok-affiliate/"], "checked_at": "2026-11-26"}],
+   "sources_planned": ["a8sns", "moshimo"],
+   "score": 7
   }
  ],
  "blocked_topics": [

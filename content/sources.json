@@ -245,6 +245,26 @@
    "url": "https://www.suzukikenichi.com/blog/human-review-for-ai-articles-no-fake-experts-google-reinforces-content-trustworthiness/",
    "published": "2026-10-05",
    "type": "seo"
+  },
+  {
+   "id": "a8youtube",
+   "name": {
+    "ja": "A8.net「YouTubeを使ったアフィリエイトガイド」",
+    "en": "A8.net YouTube affiliate guide"
+   },
+   "url": "https://www.a8.net/as/youtube/",
+   "published": "n/a",
+   "type": "asp"
+  },
+  {
+   "id": "a8sns",
+   "name": {
+    "ja": "A8.net「SNSアフィリエイトガイドライン」",
+    "en": "A8.net SNS affiliate guideline"
+   },
+   "url": "https://www.a8.net/as/sns/",
+   "published": "n/a",
+   "type": "asp"
   }
  ]
 }
