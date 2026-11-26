@@ -69,6 +69,11 @@ Blocks 1–4 can be built tonight/early; block 5 needs real model calls and a hu
 - **Personal GitHub account** (`vkrms/tp-jp-blog`, public) runs Actions; Actions **deploys to Hostinger** via `tools/deploy.sh`.
 - Rehearsal (local, same steps as CI): editor shortened the `ai-seo` title 39 → 23 chars, 2-line diff, date untouched,
   gate `merge`, ~$0.43 / 2 min.
+- Rehearsal, writer (topic discovery, empty queue): new article `free-blog-vs-wordpress`, title 28 chars, JAO figures
+  correct with inline source links, site builds (33 pages); ~$2.12 / 10.5 min, 45 turns. Misses: an unapproved claim about
+  Travelpayouts (now held by the gate), no inbound links from existing articles, topic not recorded in the queue format
+  (both added to `agents/runtime.md`). Expected model spend at the planned cadence: roughly $20–30/month
+  (8–9 writer runs, 4–5 updater runs, ad-hoc edits), to be confirmed against the OpenRouter dashboard.
 
 ## Go-live checklist (you)
 1. **Repo settings** → Actions → General → Workflow permissions: *Read and write*, and tick
