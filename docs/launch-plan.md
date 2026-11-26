@@ -72,8 +72,9 @@ Blocks 1–4 can be built tonight/early; block 5 needs real model calls and a hu
 - Rehearsal, writer (topic discovery, empty queue): new article `free-blog-vs-wordpress`, title 28 chars, JAO figures
   correct with inline source links, site builds (33 pages); ~$2.12 / 10.5 min, 45 turns. Misses: an unapproved claim about
   Travelpayouts (now held by the gate), no inbound links from existing articles, topic not recorded in the queue format
-  (both added to `agents/runtime.md`). Expected model spend at the planned cadence: roughly $20–30/month
-  (8–9 writer runs, 4–5 updater runs, ad-hoc edits), to be confirmed against the OpenRouter dashboard.
+  (both added to `agents/runtime.md`). Expected model spend at the planned cadence: roughly **$40–55/month**
+  (writer ~9 × $2.1 ≈ $19; editor ~20 × $0.43 ≈ $9; updater 4–5 runs, not measured yet, guessed $2–5 each), to be
+  confirmed against the OpenRouter dashboard.
 
 ## Go-live checklist (you)
 1. **Repo settings** → Actions → General → Workflow permissions: *Read and write*, and tick
