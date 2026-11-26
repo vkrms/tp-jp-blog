@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "description": "Travelpayouts JP SEO blog monorepo: astro/ (public site), laravel/ (admin + orchestrator), shared content and tooling",
-  "workspaces": ["astro"],
+  "workspaces": [
+    "astro"
+  ],
   "scripts": {
     "dev": "npm run dev -w astro",
     "build": "npm run build -w astro",
@@ -15,7 +17,14 @@
     "check": "node tools/validate.mjs && npm run check -w astro",
     "beautify": "node tools/beautify-html.mjs",
     "slim": "node tools/slim-html.mjs",
-    "covers": "node tools/featured-image/convert.mjs --all"
+    "covers": "node tools/featured-image/convert.mjs --all",
+    "agent:update": "gh workflow run update.yml -f dry_run=true",
+    "agent:update:live": "gh workflow run update.yml -f dry_run=false",
+    "agent:write": "gh workflow run write.yml -f dry_run=true",
+    "agent:write:live": "gh workflow run write.yml -f dry_run=false",
+    "agent:edit": "gh workflow run edit.yml -f dry_run=true",
+    "agent:edit:live": "gh workflow run edit.yml -f dry_run=false",
+    "agent:runs": "gh run list --limit 10"
   },
   "devDependencies": {
     "js-beautify": "^2.0.3",
