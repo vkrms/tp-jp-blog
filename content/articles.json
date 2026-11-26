@@ -2176,8 +2176,8 @@
      },
      {
       "p": [
-       "TRAICYが伝えた、11月上旬のセールの例です。いずれも2026年11月9日に確認した内容で、**期限が過ぎると変わります**。",
-       "Examples reported by TRAICY in early November, checked on 9 November 2026. **They change once they expire.**"
+       "TRAICYが伝えた、11月上旬のセールの例です。いずれも2026年11月9日に確認した内容で、**期限が過ぎると変わります**。（2026年11月26日更新：下記のセールはすべて終了しました）",
+       "Examples reported by TRAICY in early November, checked on 9 November 2026. **They change once they expire.** (Updated 26 Nov 2026: all sales below have ended)"
       ]
      },
      {
@@ -3024,7 +3024,7 @@
    "travel-demand",
    "travel-blog-income"
   ],
-  "updated_at": "2026-11-11",
+  "updated_at": "2026-11-26",
   "update_log": [
    {
     "date": "2026-11-09",
@@ -3058,6 +3058,17 @@
      "ja": "エディタ処理（anthropic/claude-sonnet-5.5）。本文2366→5627字、段落14→34、画像4点を追加。既存のブロック・数字は変更なし。参照: content/article-profile.json",
      "en": "Editor pass (anthropic/claude-sonnet-5.5). Text 2366→5627 chars, paragraphs 14→34, 4 images added. Existing blocks and figures unchanged. Profile: content/article-profile.json"
     }
+   },
+   {
+    "date": "2026-11-26",
+    "public": {
+     "ja": "セール情報を更新",
+     "en": "Updated sale information"
+    },
+    "internal_note": {
+     "ja": "表内のセール（Etihad 11.11、Jetstar、Toki Air、KLM）はすべて終了済み（11/9–11/24）。終了の旨を追記。表・条件は変更なし。",
+     "en": "All sales in the table (Etihad 11.11, Jetstar, Toki Air, KLM) have ended (9–24 Nov). Added note to that effect. Table and conditions unchanged."
+    }
    }
   ],
   "review_status": "draft",
@@ -3078,14 +3089,14 @@
    "en": "Outbound travel data"
   },
   "answer_first": {
-   "ja": "2026年9月の日本人出国者数は**148万1,900人**（前年同月比+6.3%）で、3か月ぶりに増えました。ただし2019年9月と比べると15.4%少なく、1〜9月累計も2019年比で25.6%少ない状況です。数字は毎月更新されます。",
-   "en": "Japanese outbound travellers in September 2026 were **1,481,900** (+6.3% year on year), the first rise in three months. That is still 15.4% below September 2019, and January–September is 25.6% below 2019. The numbers update monthly."
+   "ja": "2026年10月の日本人出国者数は**127万1,800人**（前年同月比+2.3%）で、2か月連続で増えました。ただし2019年10月と比べると23.5%少なく、1〜10月累計も2019年比で25.4%少ない状況です。数字は毎月更新されます。",
+   "en": "Japanese outbound travellers in October 2026 were **1,271,800** (+2.3% year on year), the second consecutive monthly rise. That is still 23.5% below October 2019, and January–October is 25.4% below 2019. The numbers update monthly."
   },
   "sections": [
    {
     "h": [
-     "2026年9月の出国者数",
-     "Outbound travellers, September 2026"
+     "2026年10月の出国者数",
+     "Outbound travellers, October 2026"
     ],
     "b": [
      {
@@ -3111,38 +3122,38 @@
        "rows": [
         [
          [
-          "2026年9月",
-          "Sep 2026"
+          "2026年10月",
+          "Oct 2026"
          ],
          [
-          "1,481,900人",
-          "1,481,900"
+          "1,271,800人",
+          "1,271,800"
          ],
          [
-          "+6.3%",
-          "+6.3%"
+          "+2.3%",
+          "+2.3%"
          ],
          [
-          "−15.4%（2019年9月は1,751,477人）",
-          "−15.4% (Sep 2019: 1,751,477)"
+          "−23.5%（2019年10月は1,663,474人）",
+          "−23.5% (Oct 2019: 1,663,474)"
          ]
         ],
         [
          [
-          "2026年1〜9月累計",
-          "Jan–Sep 2026"
+          "2026年1〜10月累計",
+          "Jan–Oct 2026"
          ],
          [
-          "11,206,400人",
-          "11,206,400"
+          "12,478,300人",
+          "12,478,300"
          ],
          [
-          "+3.2%",
-          "+3.2%"
+          "+3.1%",
+          "+3.1%"
          ],
          [
-          "−25.6%",
-          "−25.6%"
+          "−25.4%",
+          "−25.4%"
          ]
         ]
        ]
@@ -3150,8 +3161,8 @@
      },
      {
       "p": [
-       "9月に増えた理由は、7日間の連休（シルバーウィーク）があったことと説明されています。出典はJNTO（日本政府観光局）の発表を、TravelVoiceが図解したものです。",
-       "The rise is explained by a seven-day holiday stretch (Silver Week). The figures are the JNTO’s announcement as illustrated by TravelVoice."
+       "10月は2か月連続で前年を超えました。出典は[JNTO（日本政府観光局）の発表](https://www.travelvoice.jp/20261118-160890)を、TravelVoiceが図解したものです（2026年11月18日公表）。",
+       "October marks the second consecutive month above the previous year. The figures are the [JNTO’s announcement as illustrated by TravelVoice](https://www.travelvoice.jp/20261118-160890) (published 18 November 2026)."
       ]
      }
     ]
@@ -3177,12 +3188,12 @@
        "rows": [
         [
          [
-          "訪日外客数（2026年9月）",
-          "Inbound visitors, Sep 2026"
+          "訪日外客数（2026年10月）",
+          "Inbound visitors, Oct 2026"
          ],
          [
-          "3,103,700人（前年同月比−5.0%）",
-          "3,103,700 (−5.0% year on year)"
+          "[3,912,500人（前年同月比+0.4%、単月の過去最多を記録）](https://www.travelvoice.jp/20261118-160889)",
+          "[3,912,500 (+0.4% year on year, record monthly high)](https://www.travelvoice.jp/20261118-160889)"
          ]
         ],
         [
@@ -3210,8 +3221,8 @@
      },
      {
       "p": [
-       "WTMの調査では、**AIに予約まで任せてもよい人は36%**、AIをアイデア集めに使う人は53%、価格比較に使う人は58%でした。旅行のメディアにとって、AIが入口になりつつあることを示す数字です。",
-       "In the WTM survey, **36% would let AI complete a booking**, 53% use AI for ideas and 58% to compare prices. It shows AI becoming an entry point for travel media."
+       "[WTMの調査](https://www.travelvoice.jp/20261106-160802)では、**AIに予約まで任せてもよい人は36%**、AIをアイデア集めに使う人は53%、価格比較に使う人は58%でした。旅行のメディアにとって、AIが入口になりつつあることを示す数字です。",
+       "In the [WTM survey](https://www.travelvoice.jp/20261106-160802), **36% would let AI complete a booking**, 53% use AI for ideas and 58% to compare prices. It shows AI becoming an entry point for travel media."
       ]
      }
     ]
@@ -3295,8 +3306,8 @@
   ],
   "matome": [
    [
-    "2026年9月の出国者数は148万1,900人（+6.3%）。ただし2019年9月より15.4%少ない。",
-    "September 2026 outbound travellers: 1,481,900 (+6.3%), still 15.4% below September 2019."
+    "2026年10月の出国者数は127万1,800人（+2.3%）。ただし2019年10月より23.5%少ない。",
+    "October 2026 outbound travellers: 1,271,800 (+2.3%), still 23.5% below October 2019."
    ],
    [
     "数字は、月と出典を書いて使う。",
@@ -3308,8 +3319,8 @@
    ]
   ],
   "sources": [
-   "tvout",
-   "tvin",
+   "tvout_oct",
+   "tvin_oct",
    "tvwtm"
   ],
   "related": [
@@ -3317,7 +3328,7 @@
    "travel-blog-income",
    "earn-or-not"
   ],
-  "updated_at": "2026-11-09",
+  "updated_at": "2026-11-26",
   "update_log": [
    {
     "date": "2026-11-09",
@@ -3328,6 +3339,17 @@
     "internal_note": {
      "ja": "初版を作成。TravelVoiceの記事（2026年10月21日、11月6日）にもとづく。JNTOの一次ページは未確認。",
      "en": "First version based on TravelVoice articles (21 Oct and 6 Nov 2026). The JNTO primary page is not yet checked."
+    }
+   },
+   {
+    "date": "2026-11-26",
+    "public": {
+     "ja": "2026年10月の出国者数に更新",
+     "en": "Updated to October 2026 outbound travellers"
+    },
+    "internal_note": {
+     "ja": "更新前：2026年9月 1,481,900人（+6.3%）。更新後：2026年10月 1,271,800人（+2.3%、2019年比−23.5%）。訪日外客数も10月データに更新（3,912,500人、+0.4%、過去最多）。出典：TravelVoice 2026年11月18日公表。出典リンクを追加。",
+     "en": "Before: Sep 2026 1,481,900 (+6.3%). After: Oct 2026 1,271,800 (+2.3%, −23.5% vs 2019). Inbound also updated to Oct (3,912,500, +0.4%, record high). Source: TravelVoice 18 Nov 2026. Added source links."
     }
    }
   ],

@@ -147,6 +147,26 @@
    "type": "news"
   },
   {
+   "id": "tvout_oct",
+   "name": {
+    "ja": "TravelVoice「JNTO 訪日・出国者数（出国者）2026年10月」",
+    "en": "TravelVoice: JNTO outbound travellers, Oct 2026"
+   },
+   "url": "https://www.travelvoice.jp/20261118-160890",
+   "published": "2026-11-18",
+   "type": "news"
+  },
+  {
+   "id": "tvin_oct",
+   "name": {
+    "ja": "TravelVoice「JNTO 訪日外客数 2026年10月」",
+    "en": "TravelVoice: JNTO inbound visitors, Oct 2026"
+   },
+   "url": "https://www.travelvoice.jp/20261118-160889",
+   "published": "2026-11-18",
+   "type": "news"
+  },
+  {
    "id": "tr1",
    "name": {
     "ja": "TRAICY「エティハド航空 11.11セール」",
