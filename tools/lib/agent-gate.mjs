@@ -1,3 +1,5 @@
+import { holdReasons as numberHoldReasons } from './verify-numbers.mjs';
+
 // Решение о публикации результата агента — код, а не модель (docs/launch-plan.md, «Guardrails»).
 // Чистые функции без git и файлов: их проверяют тесты (tools/agent-gate.test.mjs), CLI — tools/agent-gate.mjs.
 
@@ -59,7 +61,7 @@ export function preCheck({ task, policy, articles, now = new Date() }) {
  *   reject — нарушение границ (чужие файлы, удаление статей, ошибки валидатора): PR не открывать;
  *   empty  — агент ничего не изменил.
  */
-export function postCheck({ task, slug, policy, baseArticles, newArticles, changedFiles, validatorOk, report, now = new Date() }) {
+export function postCheck({ task, slug, policy, baseArticles, newArticles, changedFiles, validatorOk, report, numberCheck = null, now = new Date() }) {
   const reject = [], hold = [];
   const files = changedFiles.filter((f) => !f.startsWith('agent-out/'));
   if (!files.length) return { decision: 'empty', reasons: ['агент ничего не изменил'], summary: {} };
@@ -105,6 +107,9 @@ export function postCheck({ task, slug, policy, baseArticles, newArticles, chang
     const fresh = tpSentences(next.get(s)).filter((t) => !knownTp.has(t));
     if (fresh.length) hold.push(`${s}: новые утверждения о Travelpayouts — сверить с TP Messagings: «${fresh[0].slice(0, 90)}»${fresh.length > 1 ? ` (+${fresh.length - 1})` : ''}`);
   }
+
+  // Автосверка изменённых цифр с источниками (tools/verify-numbers.mjs): расхождение — PR ждёт человека.
+  hold.push(...numberHoldReasons(numberCheck));
 
   if (!report) hold.push('нет отчёта агента (agent-out/report.json)');
   else {

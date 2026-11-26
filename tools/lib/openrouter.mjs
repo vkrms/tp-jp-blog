@@ -6,6 +6,7 @@ const ROOT = new URL('../../', import.meta.url);
 const read = (p) => fs.readFileSync(new URL(p, ROOT), 'utf8');
 
 export function apiKey() {
+  if (process.env.OPENROUTER_KEY) return process.env.OPENROUTER_KEY; // CI (GitHub Actions secret)
   const env = Object.fromEntries(read('.env').split('\n').filter((l) => l.includes('=') && !l.startsWith('#')).map((l) => [l.slice(0, l.indexOf('=')).trim(), l.slice(l.indexOf('=') + 1).trim()]));
   return env.OPENROUTER_KEY;
 }

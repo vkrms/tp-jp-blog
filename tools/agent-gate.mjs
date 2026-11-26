@@ -44,6 +44,8 @@ const baseArticles = JSON.parse(git('show', `${base}:content/articles.json`));
 const validator = spawnSync('node', ['tools/validate.mjs'], { cwd: ROOT, encoding: 'utf8' });
 let report = null;
 try { report = JSON.parse(read('agent-out/report.json')); } catch { /* нет отчёта → hold */ }
+let numberCheck = null;
+try { numberCheck = JSON.parse(read('agent-out/numbers.json')); } catch { /* сверка не запускалась */ }
 
 // Сломанный JSON (агент испортил файл и ремонт не помог) — это отказ, а не падение скрипта.
 const brokenJson = ['content/articles.json', 'content/queue.json', 'content/sources.json', 'content/glossary.json']
@@ -51,7 +53,7 @@ const brokenJson = ['content/articles.json', 'content/queue.json', 'content/sour
   .filter((f) => { try { JSON.parse(read(f)); return false; } catch { return true; } });
 const r = brokenJson.length
   ? { decision: 'reject', reasons: brokenJson.map((f) => `${f}: не разбирается как JSON (см. agent-out/repairs.md)`), summary: {} }
-  : postCheck({ task, slug: arg('slug'), policy, baseArticles, newArticles: articles, changedFiles, validatorOk: validator.status === 0, report });
+  : postCheck({ task, slug: arg('slug'), policy, baseArticles, newArticles: articles, changedFiles, validatorOk: validator.status === 0, report, numberCheck });
 
 const md = [
   `### Gate: **${r.decision}**`,

@@ -105,3 +105,11 @@ test('new claims about Travelpayouts hold, existing ones do not', () => {
   const next = clone(real); next[i].read_minutes += 1;
   assert.equal(run({ newArticles: next }).decision, 'merge');
 });
+
+test('a figure that does not match its source holds', () => {
+  const next = clone(real); next[0].read_minutes += 1;
+  const bad = { statements: 1, results: [{ status: 'mismatch', figure: '1,663,710', article_value: 1663710, source_value: 1663474, source_says: '166万3474人' }] };
+  assert.equal(run({ newArticles: next, numberCheck: bad }).decision, 'hold');
+  const falseAlarm = { statements: 1, results: [{ status: 'mismatch', figure: '3,912,500', article_value: 3912500, source_value: 3912500 }] };
+  assert.equal(run({ newArticles: next, numberCheck: falseAlarm }).decision, 'merge');
+});
