@@ -27,7 +27,10 @@
     "agent:runs": "gh run list --limit 10",
     "terms": "node tools/terms.mjs",
     "terms:fix": "node tools/terms.mjs --fix",
-    "agent:plan": "node tools/agent-plan.mjs"
+    "agent:plan": "node tools/agent-plan.mjs",
+    "agents:on": "gh variable set AGENTS_ENABLED --body true",
+    "agents:off": "gh variable set AGENTS_ENABLED --body false",
+    "agents:status": "echo \"AGENTS_ENABLED=$(gh variable get AGENTS_ENABLED)\" && node tools/agent-plan.mjs"
   },
   "devDependencies": {
     "js-beautify": "^2.0.3",
