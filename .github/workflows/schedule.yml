@@ -1,0 +1,31 @@
+# Weekly agent schedule: every week has 1 or 2 slots on random weekdays, each slot a new article (writer) or an
+# update (updater), chosen by tools/agent-plan.mjs (deterministic per ISO week, Japan time). Runs Mon–Fri 09:00 JST
+# and starts the agent only when today has a slot. Preview the plan: npm run agent:plan
+name: "agent: schedule"
+on:
+  schedule: [{cron: "0 0 * * 1-5"}]
+  workflow_dispatch: {}
+permissions: {}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    permissions: {contents: read}
+    outputs:
+      task: ${{ steps.plan.outputs.task }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: {node-version: 24}
+      - id: plan
+        env:
+          AGENT_PLAN_SALT: ${{ vars.AGENT_PLAN_SALT }}
+        run: node tools/agent-plan.mjs --today
+  run:
+    needs: plan
+    # agents run only once switched on (repo variable AGENTS_ENABLED=true)
+    if: needs.plan.outputs.task != 'none' && vars.AGENTS_ENABLED == 'true'
+    uses: ./.github/workflows/agent.yml
+    permissions: {contents: write, pull-requests: write, actions: write}
+    with:
+      task: ${{ needs.plan.outputs.task }}
+    secrets: inherit

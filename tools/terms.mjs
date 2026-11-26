@@ -15,7 +15,8 @@ export const TERMS = [
 ];
 const EXT = /\.(md|json|ya?ml|mjs|js|ts|astro|php|txt|html)$/;
 const SKIP = /(^|\/)(node_modules|vendor|dist|prototype)\//;
-const SELF = 'tools/terms.mjs';
+// Файлы, где старые слова названы намеренно (само правило): их не проверяем и не правим.
+const ALLOW = new Set(['tools/terms.mjs', 'AGENTS.md', '.github/workflows/validate.yml']);
 
 export function replaceTerms(text) {
   let count = 0;
@@ -30,7 +31,7 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) main();
 function main() {
   const files = execFileSync('git', ['ls-files'], { cwd: ROOT, encoding: 'utf8' })
     .split('\n')
-    .filter((f) => f && EXT.test(f) && !SKIP.test(f) && f !== SELF && !f.endsWith('.test.mjs'));
+    .filter((f) => f && EXT.test(f) && !SKIP.test(f) && !ALLOW.has(f) && !f.endsWith('.test.mjs'));
 
   const fix = process.argv.includes('--fix');
   const hits = [];

@@ -26,7 +26,8 @@
     "agent:edit:live": "gh workflow run edit.yml -f dry_run=false",
     "agent:runs": "gh run list --limit 10",
     "terms": "node tools/terms.mjs",
-    "terms:fix": "node tools/terms.mjs --fix"
+    "terms:fix": "node tools/terms.mjs --fix",
+    "agent:plan": "node tools/agent-plan.mjs"
   },
   "devDependencies": {
     "js-beautify": "^2.0.3",

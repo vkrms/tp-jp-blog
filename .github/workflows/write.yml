@@ -1,17 +1,14 @@
-# Writer: one new article per run (max 2 per week, content/policy.yaml). Mon and Thu 09:00 JST.
+# Writer: one new article per run (max 2 per week, content/policy.yaml). Manual runs only; the weekly schedule is schedule.yml.
 name: "agent: write"
 on:
-  schedule: [{cron: "0 0 * * 1,4"}]
   workflow_dispatch:
     inputs:
       dry_run: {type: boolean, default: false, description: "Open the PR but never merge"}
 jobs:
   write:
-    # scheduled runs only once agents are switched on (repo variable AGENTS_ENABLED=true)
-    if: github.event_name != 'schedule' || vars.AGENTS_ENABLED == 'true'
     uses: ./.github/workflows/agent.yml
     permissions: {contents: write, pull-requests: write, actions: write}
     with:
       task: writer
-      dry_run: ${{ inputs.dry_run || false }}
+      dry_run: ${{ inputs.dry_run }}
     secrets: inherit

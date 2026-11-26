@@ -1,16 +1,14 @@
-# Updater: facts due for refresh, source links, expired sales. Wed 09:00 JST.
+# Updater: facts due for refresh, source links, expired sales. Manual runs only; the weekly schedule is schedule.yml.
 name: "agent: update"
 on:
-  schedule: [{cron: "0 0 * * 3"}]
   workflow_dispatch:
     inputs:
       dry_run: {type: boolean, default: false, description: "Open the PR but never merge"}
 jobs:
   update:
-    if: github.event_name != 'schedule' || vars.AGENTS_ENABLED == 'true'
     uses: ./.github/workflows/agent.yml
     permissions: {contents: write, pull-requests: write, actions: write}
     with:
       task: updater
-      dry_run: ${{ inputs.dry_run || false }}
+      dry_run: ${{ inputs.dry_run }}
     secrets: inherit

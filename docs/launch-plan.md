@@ -28,8 +28,8 @@ not by the model — is kept by the gate.
 
 | Feature | Trigger | What it does |
 |---|---|---|
-| **Writer** | cron weekly (Mon morning JST) + manual | Topic from `queue.json` (or topic discovery), one new article JA+EN per run, facts to `facts.yaml`, source links inline |
-| **Updater** | cron weekly + manual | Facts due for refresh, source links (first run: adds the 24 missing links to the 12 articles), expired sales → 終了 |
+| **Writer** | weekly random slot (see schedule) + manual | Topic from `queue.json` (or topic discovery), one new article JA+EN per run, facts to `facts.yaml`, source links inline |
+| **Updater** | weekly random slot (see schedule) + manual | Facts due for refresh, source links (first run: adds the 24 missing links to the 12 articles), expired sales → 終了 |
 | **Editor** | manual only (`workflow_dispatch` with `slug` + free-text `instruction`) | Agentic edit of one article on request: "shorten the title", "add a FAQ about X", "update with source Y" |
 
 The editor is the "agentic editing" feature without a UI: run from the GitHub Actions tab (or `gh workflow run`).
@@ -47,6 +47,8 @@ The editor is the "agentic editing" feature without a UI: run from the GitHub Ac
   - `updated_at` changed only where `update_log` gained an entry (no date freshening);
   - report says `needs_human: true` or `injection_suspected: true` → PR stays open, no merge;
   - `policy.paused: true` → nothing runs.
+- **Figure check** (`tools/verify-numbers.mjs`): after the agent, code fetches the cited source pages and a model compares every
+  changed figure; a numeric mismatch holds the PR (equal values in other formats are discarded by code).
 - **Emergency stop**: `paused: true` in `policy.yaml` (one-line commit). **Rollback**: `git revert` → deploy.
 
 ## Timeline (one working day)
@@ -90,7 +92,8 @@ Blocks 1–4 can be built tonight/early; block 5 needs real model calls and a hu
      `max_changed_articles_per_run: 10`, so expect **hold** (merge by hand after reading) or run it twice;
    - *agent: write* — one article; read the Japanese before trusting auto-merge.
 6. Merge the PRs you approve (a manual merge to main triggers *deploy* by itself).
-7. **Switch on the schedule**: repository variable `AGENTS_ENABLED=true` (writer Mon+Thu, updater Wed, 09:00 JST).
+7. **Switch on the schedule**: repository variable `AGENTS_ENABLED=true`. Each week gets 1 or 2 slots on random weekdays,
+   each a new article or an update (`schedule.yml` + `tools/agent-plan.mjs`, 09:00 JST); preview with `npm run agent:plan`.
    Optional variables: `AGENT_MODEL` (default `anthropic/claude-sonnet-4.5`), `AGENT_SMALL_MODEL`.
 8. Emergency stop at any time: `paused: true` in `content/policy.yaml` (or unset `AGENTS_ENABLED` for the schedule).
 
