@@ -15,7 +15,8 @@ use App\Support\ContentFiles;
  */
 class ArticleValidator
 {
-    public const BLOCK_TYPES = ['p', 'h3', 'img', 'table', 'steps', 'list', 'say', 'point', 'warn', 'diff'];
+    // `say` (the mascot's speech bubble) was removed with the mascot on 2026-11-26: use `p` or `point`.
+    public const BLOCK_TYPES = ['p', 'h3', 'img', 'table', 'steps', 'list', 'point', 'warn', 'diff'];
 
     private const SERVICE_TEXT_PUBLIC_LOG = '/未確認|未了|公開前|試作|prototype|draft/iu';
     private const SERVICE_TEXT_BODY = '/試作版|ネイティブチェック|下書き|公開前に、?(確認します|一次|照合)/u';
@@ -169,7 +170,7 @@ class ArticleValidator
                 $v = $block[$type];
                 $at .= ".{$type}";
                 yield from match ($type) {
-                    'p', 'h3', 'say' => [[$at, $v]],
+                    'p', 'h3' => [[$at, $v]],
                     'steps', 'list' => self::each($at, $v),
                     'point', 'warn', 'diff' => self::each($at, $v, 2),
                     'img' => [["{$at}.alt", $v['alt'] ?? null], ["{$at}.caption", $v['caption'] ?? null]],

@@ -68,7 +68,7 @@ export const T = {
   inpost: ['Travelpayouts のパートナープラットフォームに参加しよう', 'Join the Travelpayouts partner platform'],
   inpostPh: ['青いドームの白い村を背に、バックパックを背負って笑う旅行者', 'A smiling traveller with a backpack in front of a white village with blue domes'],
   profH: ['編集部について', 'About the editors'],
-  profName: ['ラボ編集部（マスコット：タビィ）', 'The Lab editors (mascot: Tabi)'],
+  profName: ['ラボ編集部', 'The Lab editors'],
   profP: ['旅行ブロガーのために、日本の検索で使われている言葉でアフィリエイトの基本をまとめています。', 'We explain affiliate basics for travel bloggers in the words people in Japan actually search with.'],
   // 更新前 / 更新後 labels for the diff block
   before: ['更新前', 'Before'],

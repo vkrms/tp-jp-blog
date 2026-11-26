@@ -25,7 +25,7 @@ export type Block =
   | { table: ArticleTable }
   | { steps: Text[] }
   | { list: Text[] }
-  | { say: Text }
+  | { say: Text } // legacy (mascot bubble removed 2026-11-26): rendered as a plain paragraph
   | { point: [Text, Text] }
   | { warn: [Text, Text] }
   | { diff: [Text, Text] };
