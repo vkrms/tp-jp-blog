@@ -135,3 +135,12 @@ test('a new article without sources holds', () => {
   const a = article('no-src', '2026-11-26'); a.sources = [];
   assert.equal(run({ task: 'writer', newArticles: [...real, a] }).decision, 'hold');
 });
+
+test('writer is skipped (no model run) when no topic is approved and discovery is off', () => {
+  const off = { ...policy, topic_discovery: false };
+  const proposed = [{ keyword: 'a', status: 'proposed' }, { keyword: 'b', status: 'idea' }];
+  assert.equal(preCheck({ task: 'writer', policy: off, articles: real, queue: proposed, now: NOW }).run, false);
+  assert.equal(preCheck({ task: 'writer', policy: off, articles: real, queue: [...proposed, { keyword: 'c', status: 'ready' }], now: NOW }).run, true);
+  assert.equal(preCheck({ task: 'writer', policy: { ...policy, topic_discovery: true }, articles: real, queue: proposed, now: NOW }).run, true);
+  assert.equal(preCheck({ task: 'updater', policy: off, articles: real, queue: proposed, now: NOW }).run, true);
+});

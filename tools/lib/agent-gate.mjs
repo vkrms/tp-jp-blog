@@ -45,8 +45,14 @@ export const publishedLastWeek = (articles, now = new Date()) =>
   articles.filter((a) => { const d = firstPublished(a); return d && daysAgo(d, now) < 7; });
 
 /** Можно ли вообще запускать задачу. @returns {{run: boolean, reason?: string}} */
-export function preCheck({ task, policy, articles, now = new Date() }) {
+/** Темы, которые писателю разрешено брать (одобрены человеком). */
+export const approvedTopics = (queue) => (queue ?? []).filter((q) => ['ready', 'approved'].includes(q.status));
+
+export function preCheck({ task, policy, articles, queue = null, now = new Date() }) {
   if (policy.paused) return { run: false, reason: 'policy.yaml: paused = true' };
+  if (task === 'writer' && queue && !policy.topic_discovery && !approvedTopics(queue).length) {
+    return { run: false, reason: 'в content/queue.json нет одобренных тем (ready/approved), а подбор тем выключен' };
+  }
   if (task === 'writer') {
     const n = publishedLastWeek(articles, now).length;
     if (n >= policy.max_new_articles_per_week) return { run: false, reason: `лимит: уже ${n} новых статей за 7 дней (max ${policy.max_new_articles_per_week})` };

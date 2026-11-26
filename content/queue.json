@@ -1,6 +1,34 @@
 {
- "_comment": "Очередь тем для агента-автора. status: held = сознательно не пишем (спрос около нуля); idea = кандидат, нужна проверка ключа и источников. Ключи — от Аси (Google Sheet «Travelpayouts Japan», вкладки Translation Queries и SEO Articles JP).",
+ "_comment": "Очередь тем для агента-автора. status: held = сознательно не пишем (спрос около нуля); idea = кандидат, нужна проверка ключа и источников. Ключи — от Аси (Google Sheet «Travelpayouts Japan», вкладки Translation Queries и SEO Articles JP). Статусы для автора: ready/approved — писать; proposed — ждёт одобрения; idea — кандидат без проверки; held — не писать; published/used — уже написано. Автор берёт только ready/approved.",
  "queue": [
+  {
+   "keyword": "AI 旅行 計画",
+   "topic": "旅行者はAIをどう使う？計画・予約の最新データと旅行ブログの役割",
+   "monthly": null,
+   "status": "proposed",
+   "reason": "Предложено 2026-11-26, ждёт одобрения (status → ready). Источники: tvwtm (WTM 2026), suzctr. Не пересекается: ai-seo — про оценку контента Google, а не про поведение путешественников."
+  },
+  {
+   "keyword": "旅行ブログ ネタ",
+   "topic": "ネタ切れを防ぐ：月ごとの旅行需要（JNTO）とセール時期から記事テーマを決める",
+   "monthly": null,
+   "status": "proposed",
+   "reason": "Предложено 2026-11-26, ждёт одобрения (status → ready). Источники: tvout / tvout_oct, TRAICY. Не пересекается: travel-blog-income — первые шаги, sales-calendar — только распродажи."
+  },
+  {
+   "keyword": "アフィリエイト キーワード 選び方",
+   "topic": "検索意図（とは／始め方／比較）でキーワードを選び、1つの意図に1記事にする方法",
+   "monthly": null,
+   "status": "proposed",
+   "reason": "Предложено 2026-11-26, ждёт одобрения (status → ready). Источники: suzmu и другие страницы suzukikenichi.com. Не пересекается: pick-niche — выбор жанра, не ключей; в категории seo пока 1 статья."
+  },
+  {
+   "keyword": "日本人 海外旅行 人気 行き先",
+   "topic": "日本人の人気の旅行先（データ）と、記事にする価値のある行き先",
+   "monthly": null,
+   "status": "proposed",
+   "reason": "Предложено 2026-11-26, ждёт одобрения (status → ready). Источники: TravelVoice / JNTO — источник ещё проверить. Не пересекается: travel-demand — только общие числа выезда, без направлений."
+  },
   {
    "keyword": "アフィリエイト 市場規模",
    "topic": "アフィリエイト市場規模の推移と見通し（2024→2025→2029予測）、初心者にとっての意味",

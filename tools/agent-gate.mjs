@@ -28,7 +28,8 @@ try { articles = JSON.parse(read('content/articles.json')); } catch (e) { articl
 if (mode === 'pre' && !articles) { console.error(`content/articles.json не разбирается: ${articlesError}`); process.exit(1); }
 
 if (mode === 'pre') {
-  const r = preCheck({ task, policy, articles });
+  const queue = JSON.parse(read('content/queue.json')).queue;
+  const r = preCheck({ task, policy, articles, queue });
   console.log(r.run ? `pre-check: ok (${task})` : `pre-check: skip — ${r.reason}`);
   output({ run: r.run, reason: r.reason ?? '', topic_discovery: policy.topic_discovery });
   process.exit(0);
