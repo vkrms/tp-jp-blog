@@ -6,15 +6,16 @@ import Footer from '../components/Footer.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import Promo from '../components/Promo.astro';
 import { T, KEY, tr, path, type Lang } from '../i18n/ui';
-import { articles, glossary, termId } from '../data/content';
-import { covers } from '../data/covers';
+import { articles, glossary, termId, publishedAt } from '../data/content';
 import icons from '../data/icons.json';
 import hero from '../assets/home/4dbc1d73ae.webp';
 
 const { lang } = Astro.props as { lang: Lang };
+// Newest articles first (by first publication, then last update). Every article is shown, with or without a
+// cover: ArticleCard has a text-only variant, so agent-written articles appear here as soon as they are published.
 const latest = articles
-  .filter((a) => covers[a.slug])
-  .sort((a, b) => b.updated_at.localeCompare(a.updated_at))
+  .slice()
+  .sort((a, b) => publishedAt(b).localeCompare(publishedAt(a)) || b.updated_at.localeCompare(a.updated_at))
   .slice(0, 6);
 const terms = glossary.slice(0, 8);
 const title = lang === 'ja' ? '旅アフィリ・ラボ | 旅行ブログのアフィリエイト入門' : 'Travel affiliate lab | Affiliate know-how for travel bloggers';
