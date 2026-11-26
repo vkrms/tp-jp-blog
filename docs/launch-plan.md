@@ -63,7 +63,32 @@ The editor is the "agentic editing" feature without a UI: run from the GitHub Ac
 
 Blocks 1–4 can be built tonight/early; block 5 needs real model calls and a human reading Japanese output.
 
-## Decisions needed before block 0
+## Decided (2026-11-26)
+- Agent auth: **the existing OpenRouter key** via its Anthropic-compatible endpoint. Verified locally with Claude Code
+  2.1.332: plain prompt, WebSearch and registry-limited WebFetch all work (`ANTHROPIC_BASE_URL=https://openrouter.ai/api`).
+- **Personal GitHub account** (`vkrms/tp-jp-blog`, public) runs Actions; Actions **deploys to Hostinger** via `tools/deploy.sh`.
+- Rehearsal (local, same steps as CI): editor shortened the `ai-seo` title 39 → 23 chars, 2-line diff, date untouched,
+  gate `merge`, ~$0.43 / 2 min.
+
+## Go-live checklist (you)
+1. **Repo settings** → Actions → General → Workflow permissions: *Read and write*, and tick
+   *Allow GitHub Actions to create and approve pull requests* (agent PRs need it).
+2. **Secrets** (Settings → Secrets and variables → Actions, or `gh secret set`), values from your local `.env`:
+   `OPENROUTER_KEY`, `DEPLOY_HOST`, `DEPLOY_PORT`, `DEPLOY_USER`, `DEPLOY_PATH`, and `DEPLOY_SSH_KEY` = the **private key
+   file contents** (`gh secret set DEPLOY_SSH_KEY < ~/.ssh/<deploy key>`).
+3. **Push** `main`.
+4. **First deploy by hand**: Actions → *deploy* → Run workflow. Checks the secrets end to end and ships the EN-noindex change.
+5. **Dry runs** (open a PR, never merge) and read the PRs:
+   - *agent: edit* — e.g. `slug=ai-seo`, instruction "shorten the title to ≤32 chars";
+   - *agent: update* — first run adds the missing source links. It touches 11 articles, which is more than
+     `max_changed_articles_per_run: 10`, so expect **hold** (merge by hand after reading) or run it twice;
+   - *agent: write* — one article; read the Japanese before trusting auto-merge.
+6. Merge the PRs you approve (a manual merge to main triggers *deploy* by itself).
+7. **Switch on the schedule**: repository variable `AGENTS_ENABLED=true` (writer Mon+Thu, updater Wed, 09:00 JST).
+   Optional variables: `AGENT_MODEL` (default `anthropic/claude-sonnet-4.5`), `AGENT_SMALL_MODEL`.
+8. Emergency stop at any time: `paused: true` in `content/policy.yaml` (or unset `AGENTS_ENABLED` for the schedule).
+
+## Decisions needed before block 0 (original list; 1, 2 and 5 resolved above)
 
 1. **Agent auth** (the only hard blocker), one of:
    - a. `CLAUDE_CODE_OAUTH_TOKEN` from the content owner's Claude Team subscription (her original plan; company OK still unconfirmed);
