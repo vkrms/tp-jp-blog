@@ -10,6 +10,17 @@ export const ALLOWED_FILES = [
   'content/glossary.json',
 ];
 
+/** Предложения публичного текста статьи, где упоминается Travelpayouts (title, answer_first, sections, faq, matome). */
+export function tpSentences(article) {
+  const strings = [];
+  const walk = (v) => { if (typeof v === 'string') strings.push(v); else if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') Object.values(v).forEach(walk); };
+  walk([article.title, article.eyebrow, article.answer_first, article.sections, article.faq, article.matome]);
+  return strings
+    .flatMap((t) => t.split(/(?<=[。．！？!?])|(?<=\.)\s+/))
+    .map((t) => t.trim())
+    .filter((t) => /travelpayouts|トラベルペイアウツ/i.test(t));
+}
+
 /** Минимальный разбор content/policy.yaml: только нужные ключи (без YAML-зависимостей). */
 export function parsePolicy(yaml) {
   const val = (re, d) => { const m = yaml.match(re); return m ? m[1] : d; };
@@ -85,6 +96,14 @@ export function postCheck({ task, slug, policy, baseArticles, newArticles, chang
     if (b.updated_at !== n.updated_at && (n.update_log?.length ?? 0) <= (b.update_log?.length ?? 0)) {
       hold.push(`${s}: updated_at изменён без новой строки update_log (освежение даты запрещено)`);
     }
+  }
+
+  // О Travelpayouts — только утверждённые формулировки (agents/rules.md): любое новое предложение с Travelpayouts
+  // в публичном тексте проверяет человек по TP Messagings.
+  const knownTp = new Set(baseArticles.flatMap(tpSentences));
+  for (const s of [...added, ...changed]) {
+    const fresh = tpSentences(next.get(s)).filter((t) => !knownTp.has(t));
+    if (fresh.length) hold.push(`${s}: новые утверждения о Travelpayouts — сверить с TP Messagings: «${fresh[0].slice(0, 90)}»${fresh.length > 1 ? ` (+${fresh.length - 1})` : ''}`);
   }
 
   if (!report) hold.push('нет отчёта агента (agent-out/report.json)');

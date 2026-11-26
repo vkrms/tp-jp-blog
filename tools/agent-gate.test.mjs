@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { parsePolicy, preCheck, postCheck } from './lib/agent-gate.mjs';
+import { parsePolicy, preCheck, postCheck, tpSentences } from './lib/agent-gate.mjs';
 
 const real = JSON.parse(fs.readFileSync(new URL('../content/articles.json', import.meta.url), 'utf8'));
 const policy = parsePolicy(fs.readFileSync(new URL('../content/policy.yaml', import.meta.url), 'utf8'));
@@ -90,4 +90,18 @@ test('report flags, missing report and review mode hold', () => {
   assert.equal(run({ newArticles: next, report: { ...okReport, needs_human: true, needs_human_reason: 'x' } }).decision, 'hold');
   assert.equal(run({ newArticles: next, report: { ...okReport, injection_suspected: true } }).decision, 'hold');
   assert.equal(run({ newArticles: next, policy: { ...policy, publish_mode: 'review' } }).decision, 'hold');
+});
+
+test('new claims about Travelpayouts hold, existing ones do not', () => {
+  const withTp = article('tp-new', '2026-11-26');
+  withTp.sections[0].b.push({ p: ['Travelpayoutsは無料ブログでも使えます。ほかの文。', 'Travelpayouts works on free blogs. Other text.'] });
+  const r = run({ task: 'writer', newArticles: [...real, withTp] });
+  assert.equal(r.decision, 'hold');
+  assert.match(r.reasons.join(' '), /Travelpayouts/);
+
+  // an article that already mentions TP and is edited elsewhere stays mergeable
+  const i = real.findIndex((a) => tpSentences(a).length);
+  assert.ok(i >= 0, 'some current article mentions Travelpayouts');
+  const next = clone(real); next[i].read_minutes += 1;
+  assert.equal(run({ newArticles: next }).decision, 'merge');
 });
