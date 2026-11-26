@@ -127,4 +127,12 @@ export const clip = (s: string, max: number) => {
 };
 
 export const base = (l: Lang) => (l === 'ja' ? '/' : '/en/');
-export const path = (l: Lang, p: string) => (l === 'ja' ? p : '/en' + p);
+/**
+ * URL of a page in a language. EN = the JA URL with `en/` appended (before any #anchor):
+ * /articles/x/ → /articles/x/en/, /glossary/#sub-id → /glossary/en/#sub-id, / → /en/.
+ */
+export const path = (l: Lang, p: string) => {
+  if (l === 'ja') return p;
+  const [route, hash] = p.split('#');
+  return `${route.endsWith('/') ? route : route + '/'}en/${hash !== undefined ? '#' + hash : ''}`;
+};

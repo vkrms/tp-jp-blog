@@ -85,6 +85,7 @@ export function postCheck({ task, slug, policy, baseArticles, newArticles, chang
   const added = [...next.keys()].filter((s) => !base.has(s));
   const changed = [...next.keys()].filter((s) => base.has(s) && JSON.stringify(base.get(s)) !== JSON.stringify(next.get(s)));
 
+  if (added.includes('en')) reject.push('slug «en» зарезервирован (английская версия страницы = её адрес + en/)');
   if (removed.length) reject.push(`удалены или переименованы статьи: ${removed.join(', ')} (slug после публикации не меняется)`);
 
   if (task === 'writer') {

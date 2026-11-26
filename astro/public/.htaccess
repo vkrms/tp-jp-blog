@@ -15,6 +15,13 @@ ErrorDocument 404 /404.html
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
+# EN moved from /en/<page>/ to /<page>/en/ (2026-11-26): permanent redirects for the old URLs. The EN home stays /en/.
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/en/articles/?$ /articles/en/
+  RedirectMatch 301 ^/en/articles/([a-z0-9-]+)/?$ /articles/$1/en/
+  RedirectMatch 301 ^/en/glossary/?$ /glossary/en/
+</IfModule>
+
 # Hashed build assets can be cached for a year; HTML must revalidate.
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|webp|avif|woff2)$">

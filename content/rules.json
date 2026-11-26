@@ -97,10 +97,11 @@
  },
  "seo": {
   "title_max_chars_ja": 32,
-  "slug_pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+  "slug_pattern": "^(?!en$)[a-z0-9]+(-[a-z0-9]+)*$",
   "unique_keyword": true,
   "related_min": 2,
-  "related_max": 5
+  "related_max": 5,
+  "slug_pattern_note": "«en» зарезервирован: английская версия страницы — это её адрес + en/ (/articles/en/ — список статей на EN). Добавлено разработчиком 2026-11-26."
  },
  "source_links": {
   "enforce": false,

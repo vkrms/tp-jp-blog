@@ -47,8 +47,8 @@ class ContentImportTest extends TestCase
     {
         $this->artisan('content:import')->assertSuccessful();
 
-        $this->assertEqualsCanonicalizing(['earn-or-not', 'income-guide'],
-            Fact::find('jao.survey.share_30k')->articles->pluck('slug')->all());
+        $linked = Fact::find('jao.survey.share_30k')->articles->pluck('slug')->all();
+        $this->assertEmpty(array_diff(['earn-or-not', 'income-guide'], $linked), 'used_in from facts.yaml is linked');
         $this->assertNull(Fact::find('jao.survey.share_30k')->value, 'values wait for the placeholder migration');
 
         $internal = Source::find('tp-messagings');

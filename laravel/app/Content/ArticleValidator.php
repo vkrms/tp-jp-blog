@@ -123,6 +123,8 @@ class ArticleValidator
         $slug = $a['slug'] ?? '';
         if (! preg_match('/^[a-z0-9]+(-[a-z0-9]+)*$/', $slug)) {
             $e("slug «{$slug}»: только a-z, 0-9 и дефисы");
+        } elseif ($slug === 'en') {
+            $e('slug «en» зарезервирован (английская версия страницы = её адрес + en/)');
         }
         foreach ($a['related'] ?? [] as $r) {
             if ($r === $slug) {

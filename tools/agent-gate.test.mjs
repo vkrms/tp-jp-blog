@@ -144,3 +144,7 @@ test('writer is skipped (no model run) when no topic is approved and discovery i
   assert.equal(preCheck({ task: 'writer', policy: { ...policy, topic_discovery: true }, articles: real, queue: proposed, now: NOW }).run, true);
   assert.equal(preCheck({ task: 'updater', policy: off, articles: real, queue: proposed, now: NOW }).run, true);
 });
+
+test('slug "en" is reserved', () => {
+  assert.equal(run({ task: 'writer', newArticles: [...real, article('en', '2026-11-26')] }).decision, 'reject');
+});

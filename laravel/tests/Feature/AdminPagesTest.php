@@ -59,8 +59,10 @@ class AdminPagesTest extends TestCase
 
     public function test_article_list_shows_titles_and_slugs(): void
     {
-        // Newest first; earn-or-not is on the first page.
-        $this->get('/admin/articles')->assertSee('アフィリエイトは稼げない？そう言われる理由と、続けている人の共通点')->assertSee('earn-or-not');
+        // Newest first: the most recently updated article is on the first page.
+        $newest = Article::with('currentVersion')->orderByDesc('content_updated_at')->orderBy('id')->first();
+        $title = $newest->currentVersion->content['title'];
+        $this->get('/admin/articles')->assertSee(array_is_list($title) ? $title[0] : $title['ja'])->assertSee($newest->slug);
     }
 
     public function test_articles_cannot_be_created_from_a_blank_form(): void
