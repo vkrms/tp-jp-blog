@@ -7,7 +7,7 @@ limits:
   max_new_articles_per_week: 2     # защита от «потока» слабых статей
   max_changed_articles_per_run: 10 # если изменений больше — PR ждёт человека (что-то пошло не так)
 topic_discovery:               # агент сам ищет темы, когда в очереди пусто (agents/topic-discovery.md)
-  enabled: true
+  enabled: false               # выключено 2026-11-26: темы выбирает человек в queue.json (самоподбор давал исключённые темы и дубли)
   min_score: 7                 # из 10; ниже — статью не пишем
   max_ideas_saved_per_run: 5
 auto_merge_requires:

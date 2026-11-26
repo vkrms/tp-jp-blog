@@ -2,6 +2,13 @@
  "_comment": "Очередь тем для агента-автора. status: held = сознательно не пишем (спрос около нуля); idea = кандидат, нужна проверка ключа и источников. Ключи — от Аси (Google Sheet «Travelpayouts Japan», вкладки Translation Queries и SEO Articles JP).",
  "queue": [
   {
+   "keyword": "アフィリエイト 市場規模",
+   "topic": "アフィリエイト市場規模の推移と見通し（2024→2025→2029予測）、初心者にとっての意味",
+   "monthly": null,
+   "status": "ready",
+   "reason": "Выбрано вручную 2026-11-26. Источники: yano (пресс-релиз Yano), jao25. Не пересекается: what-is-affiliate лишь упоминает цифру, income-guide — про личный доход. Без условий ASP, налогов и права."
+  },
+  {
    "keyword": "YouTube アフィリエイト",
    "topic": "YouTubeのアフィリエイト",
    "monthly": null,
