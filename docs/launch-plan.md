@@ -92,8 +92,10 @@ Blocks 1–4 can be built tonight/early; block 5 needs real model calls and a hu
      `max_changed_articles_per_run: 10`, so expect **hold** (merge by hand after reading) or run it twice;
    - *agent: write* — one article; read the Japanese before trusting auto-merge.
 6. Merge the PRs you approve (a manual merge to main triggers *deploy* by itself).
-7. **Switch on the schedule**: repository variable `AGENTS_ENABLED=true`. Each week gets 1 or 2 slots on random weekdays,
-   each a new article or an update (`schedule.yml` + `tools/agent-plan.mjs`, 09:00 JST); preview with `npm run agent:plan`.
+7. **Switch on the schedule**: repository variable `AGENTS_ENABLED=true`. Each week gets, independently, 1-2 writer
+   slots (new articles) and 1-2 updater slots (fact/source-link refresh), on random weekdays (`schedule.yml` +
+   `tools/agent-plan.mjs`, 09:00 JST); if both land on the same day they run as two separate agent runs that day.
+   Preview with `npm run agent:plan`, or open `/dev/schedule/` while `npm run dev` is running.
    Optional variables: `AGENT_MODEL` (default `anthropic/claude-sonnet-4.5`), `AGENT_SMALL_MODEL`.
 8. Emergency stop at any time: `paused: true` in `content/policy.yaml` (or unset `AGENTS_ENABLED` for the schedule).
 

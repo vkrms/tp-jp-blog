@@ -1,6 +1,8 @@
-# Weekly agent schedule: every week has 1 or 2 slots on random weekdays, each slot a new article (writer) or an
-# update (updater), chosen by tools/agent-plan.mjs (deterministic per ISO week, Japan time). Runs Mon–Fri 09:00 JST
-# and starts the agent only when today has a slot. Preview the plan: npm run agent:plan
+# Weekly agent schedule: every week has independently 1-2 writer slots and 1-2 updater slots, on random weekdays,
+# chosen by tools/agent-plan.mjs (deterministic per ISO week, Japan time). If both land on the same day they run as
+# two separate agent.yml calls; its "agent-content" concurrency group queues them instead of racing on content/.
+# Runs Mon–Fri 09:00 JST and starts only the agent(s) today actually has a slot for. Preview: npm run agent:plan
+# (also: a dev-only schedule view at /dev/schedule/ while `npm run dev` is running).
 name: "agent: schedule"
 on:
   schedule: [{cron: "0 0 * * 1-5"}]
@@ -11,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: {contents: read}
     outputs:
-      task: ${{ steps.plan.outputs.task }}
+      tasks: ${{ steps.plan.outputs.tasks }} # JSON array: [] | ["writer"] | ["updater"] | ["writer","updater"]
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -20,12 +22,18 @@ jobs:
         env:
           AGENT_PLAN_SALT: ${{ vars.AGENT_PLAN_SALT }}
         run: node tools/agent-plan.mjs --today
-  run:
+  run-writer:
     needs: plan
     # agents run only once switched on (repo variable AGENTS_ENABLED=true)
-    if: needs.plan.outputs.task != 'none' && vars.AGENTS_ENABLED == 'true'
+    if: contains(fromJson(needs.plan.outputs.tasks), 'writer') && vars.AGENTS_ENABLED == 'true'
     uses: ./.github/workflows/agent.yml
     permissions: {contents: write, pull-requests: write, actions: write}
-    with:
-      task: ${{ needs.plan.outputs.task }}
+    with: {task: writer}
+    secrets: inherit
+  run-updater:
+    needs: plan
+    if: contains(fromJson(needs.plan.outputs.tasks), 'updater') && vars.AGENTS_ENABLED == 'true'
+    uses: ./.github/workflows/agent.yml
+    permissions: {contents: write, pull-requests: write, actions: write}
+    with: {task: updater}
     secrets: inherit

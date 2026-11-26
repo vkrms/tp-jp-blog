@@ -1,6 +1,7 @@
-// Недельный план запусков агентов: каждую неделю 1 или 2 слота в случайные будни, каждый слот — статья (writer)
-// или обновление (updater), тоже случайно. План детерминирован по номеру недели (ISO, время Японии):
-// повторный запуск в тот же день даёт тот же ответ, план можно посмотреть заранее.
+// Недельный план запусков агентов: каждую неделю 1–2 запуска писателя (writer) И, независимо, 1–2 запуска
+// updater. Дни для каждой задачи выбираются отдельно, поэтому иногда оба запуска выпадают на один
+// день (тогда это два отдельных запуска за день — concurrency-группа agent-content в agent.yml сама их очередит).
+// План детерминирован по номеру недели (ISO, время Японии): повторный запуск в тот же день даёт тот же ответ.
 
 const TZ_OFFSET_H = 9; // Asia/Tokyo, без летнего времени
 export const TASKS = ['writer', 'updater'];
@@ -31,21 +32,30 @@ function rng(seedText) {
   };
 }
 
-/** План недели: [{ isoDay, task }], по возрастанию дня. */
-export function weekPlan(isoYear, isoWeek, salt = '') {
-  const r = rng(`${isoYear}-W${isoWeek}:${salt}`);
-  const slots = r() < 0.5 ? 1 : 2;
-  const days = [...WEEKDAYS];
-  const plan = [];
-  for (let i = 0; i < slots; i++) {
-    const day = days.splice(Math.floor(r() * days.length), 1)[0];
-    plan.push({ isoDay: day, task: TASKS[Math.floor(r() * TASKS.length)] });
-  }
-  return plan.sort((x, y) => x.isoDay - y.isoDay);
+/** n (1 либо 2, решает сам) различных случайных будних дней. */
+function pickDays(r) {
+  const n = r() < 0.5 ? 1 : 2;
+  const pool = [...WEEKDAYS];
+  const days = [];
+  for (let i = 0; i < n; i++) days.push(pool.splice(Math.floor(r() * pool.length), 1)[0]);
+  return days;
 }
 
-/** Задача на сегодня (время Японии) или null. */
-export function taskFor(now = new Date(), salt = '') {
+/**
+ * План недели: [{ isoDay, task }], по возрастанию дня. Писатель и updater получают дни независимо друг от
+ * друга (каждому — 1 или 2 своих дня); один день может достаться обоим сразу.
+ */
+export function weekPlan(isoYear, isoWeek, salt = '') {
+  const r = rng(`${isoYear}-W${isoWeek}:${salt}`);
+  const plan = [];
+  for (const task of TASKS) {
+    for (const isoDay of pickDays(r)) plan.push({ isoDay, task });
+  }
+  return plan.sort((a, b) => a.isoDay - b.isoDay || TASKS.indexOf(a.task) - TASKS.indexOf(b.task));
+}
+
+/** Задачи на сегодня (время Японии): [] | ['writer'] | ['updater'] | ['writer', 'updater']. */
+export function tasksFor(now = new Date(), salt = '') {
   const { isoYear, isoWeek, isoDay } = jstInfo(now);
-  return weekPlan(isoYear, isoWeek, salt).find((s) => s.isoDay === isoDay)?.task ?? null;
+  return weekPlan(isoYear, isoWeek, salt).filter((s) => s.isoDay === isoDay).map((s) => s.task);
 }
