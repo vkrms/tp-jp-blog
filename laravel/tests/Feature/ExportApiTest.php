@@ -44,7 +44,7 @@ class ExportApiTest extends TestCase
 
         $this->assertCount(count($files), $exported);
         foreach ($files as $i => $a) {
-            unset($a['sources'], $a['review_status']);
+            unset($a['sources'], $a['review_status'], $a['image_brief']);
             $a['update_log'] = array_map(fn ($l) => ['date' => $l['date'], 'public' => $l['public']], $a['update_log']);
             ksort($a);
             $e = $exported[$i];

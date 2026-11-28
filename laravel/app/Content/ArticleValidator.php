@@ -16,7 +16,7 @@ use App\Support\ContentFiles;
 class ArticleValidator
 {
     // `say` (the mascot's speech bubble) was removed with the mascot on 2026-11-26: use `p` or `point`.
-    public const BLOCK_TYPES = ['p', 'h3', 'img', 'table', 'steps', 'list', 'point', 'warn', 'diff'];
+    public const BLOCK_TYPES = ['p', 'h3', 'img', 'table', 'steps', 'list', 'point', 'warn', 'diff', 'figure'];
 
     private const SERVICE_TEXT_PUBLIC_LOG = '/未確認|未了|公開前|試作|prototype|draft/iu';
     private const SERVICE_TEXT_BODY = '/試作版|ネイティブチェック|下書き|公開前に、?(確認します|一次|照合)/u';
@@ -176,6 +176,11 @@ class ArticleValidator
                     'img' => [["{$at}.alt", $v['alt'] ?? null], ["{$at}.caption", $v['caption'] ?? null]],
                     'table' => [...self::each("{$at}.head", $v['head'] ?? null),
                         ...collect($v['rows'] ?? [])->flatMap(fn ($row, $r) => self::each("{$at}.rows[{$r}]", $row))->all()],
+                    // Data figures (docs/figures.md) nest Text leaves under arbitrary keys that vary by template
+                    // (rows[].label, items[].title/body, pairs[].avoid/prefer, …) — shape itself is checked by
+                    // JS's tools/lib/figures.mjs against tools/figures/templates.json, not here; this only walks
+                    // whatever Text-shaped leaves exist and checks they are bilingual.
+                    'figure' => [["{$at}.caption", $v['caption'] ?? null], ...self::figureTexts("{$at}.data", $v['data'] ?? null)],
                 };
             }
         }
@@ -288,6 +293,28 @@ class ArticleValidator
         }
 
         return array_map(fn ($v, $i) => ["{$at}[{$i}]", $v], $list, array_keys($list));
+    }
+
+    /**
+     * Every Text-shaped leaf found anywhere under a figure's `data`, however deeply nested, labelled with its
+     * path. A "leaf" is a 2-element list of strings, or {ja, en} — the same shapes Text::isComplete checks.
+     *
+     * @return array<array{0: string, 1: mixed}>
+     */
+    private static function figureTexts(string $at, mixed $v): array
+    {
+        if (! is_array($v)) {
+            return [];
+        }
+        if (Text::isComplete($v, allowBlank: true)) {
+            return [[$at, $v]];
+        }
+        $out = [];
+        foreach ($v as $k => $child) {
+            $out = [...$out, ...self::figureTexts(is_int($k) ? "{$at}[{$k}]" : "{$at}.{$k}", $child)];
+        }
+
+        return $out;
     }
 
     private static function matches(string $pattern, string $text): bool

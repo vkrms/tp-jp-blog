@@ -34,7 +34,7 @@ class ArticlePayload
     public static function public(Article $a): array
     {
         $full = self::full($a);
-        unset($full['sources']);
+        unset($full['sources'], $full['image_brief']); // image_brief is backend-only input for the featured-image generator
         $full['update_log'] = array_map(fn ($l) => ['date' => $l['date'], 'public' => $l['public']], $full['update_log']);
 
         return $full;

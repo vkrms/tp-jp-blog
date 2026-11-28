@@ -35,7 +35,7 @@ class ContentImport extends Command
         'sources', 'settings', 'article_versions', 'articles', 'categories'];
 
     /** Fields of an article that live in the version content (the rest are columns on `articles`). */
-    public const CONTENT_FIELDS = ['title', 'eyebrow', 'answer_first', 'sections', 'faq', 'matome', 'related'];
+    public const CONTENT_FIELDS = ['title', 'eyebrow', 'answer_first', 'sections', 'faq', 'matome', 'related', 'image_brief'];
 
     private array $warnings = [];
 
