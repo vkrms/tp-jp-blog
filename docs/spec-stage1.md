@@ -167,7 +167,7 @@ Astro лежит в корне репозитория, рядом с `content/`:
 
 **Главная:** hero (тексты `heroH`, `heroP`, кнопки), новые статьи (6 карточек, порядок — по `updated_at`), три числа Travelpayouts (только утверждённые: 11 вертикалей, Support 24/7 / 26 минут, выплаты до 20-го), категории, термины глоссария, CTA.
 
-**Ссылки регистрации:** константа `KEY = https://landings.travelpayouts.com/?tp_place=landing_jp-seo-blog`. Для аналитики можно добавить суффиксы к `tp_place` (`_hero`, `_inpost`, `_footer`) — подтвердить с маркетингом, по умолчанию без суффиксов.
+**Ссылки регистрации:** константа `KEY = https://landings.travelpayouts.com/?tp_place=jp-seo-blog`. Значение `tp_place` совпадает с `category` в Snowplow (`jp-seo-blog`), поэтому суффиксы (`_hero`, `_inpost`, `_footer`) не используются.
 
 **Переключатель языка:** ссылка на ту же страницу во втором языке (`/articles/x/` ↔ `/en/articles/x/`). Без localStorage и без автоматического редиректа по языку браузера.
 

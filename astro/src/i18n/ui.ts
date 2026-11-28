@@ -1,12 +1,31 @@
 // UI strings (code, not content). Source: prototype/src/app.js → T. Pair = [ja, en].
+import { SITE_CATEGORY } from '../config';
+
 export type Lang = 'ja' | 'en';
 type P = readonly [string, string];
 
-export const KEY = 'https://landings.travelpayouts.com/?tp_place=landing_jp-seo-blog';
+/**
+ * Add `tp_place=<SITE_CATEGORY>` to links that point at Travelpayouts, keeping any existing query
+ * params (UTM etc.). `tp_place` must equal the Snowplow `category`, so an existing value is
+ * replaced. Internal, third-party and unparseable URLs are returned unchanged.
+ */
+const withTpPlace = (url: string): string => {
+  try {
+    const u = new URL(url);
+    const host = u.hostname.toLowerCase();
+    if (host !== 'travelpayouts.com' && !host.endsWith('.travelpayouts.com')) return url;
+    u.searchParams.set('tp_place', SITE_CATEGORY);
+    return u.toString();
+  } catch {
+    return url;
+  }
+};
+
+export const KEY = withTpPlace('https://landings.travelpayouts.com/');
 /** Travelpayouts main site, Japanese edition (linked from the footer disclosure). */
-export const MAIN_SITE_JP = 'https://travelpayouts.com/jp/';
+export const MAIN_SITE_JP = withTpPlace('https://travelpayouts.com/jp/');
 /** Travelpayouts JP landing page, linked from the "About" nav item. */
-export const ABOUT_URL = 'https://landings.travelpayouts.com/jp/';
+export const ABOUT_URL = withTpPlace('https://landings.travelpayouts.com/jp/');
 
 export const T = {
   siteName: '旅アフィリ・ラボ',
@@ -106,7 +125,7 @@ export const rich = (t: unknown, l: Lang) =>
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(LINK, (_, anchor: string, url: string) =>
-      /^https:\/\//.test(url) ? `<a class="src-link" href="${url}" target="_blank" rel="noopener">${anchor}</a>` : anchor)
+      /^https:\/\//.test(url) ? `<a class="src-link" href="${withTpPlace(url)}" target="_blank" rel="noopener">${anchor}</a>` : anchor)
     .replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>');
 
 /** English month abbreviations, shared by date formatting and the timeline figure. */

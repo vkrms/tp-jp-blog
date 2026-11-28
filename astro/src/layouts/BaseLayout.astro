@@ -8,6 +8,9 @@ const { lang, title, description, route, ogType = 'website', noindex = false } =
 const site = Astro.site!;
 const url = (l: Lang) => new URL(path(l, route), site).href;
 const indexing = process.env.INDEXING === 'true';
+// Google Tag Manager container id. Public by design (it ships in the page HTML), so a default is
+// fine; override it with GTM_ID in the build env (.env via deploy.sh, or a CI variable).
+const gtmId = (process.env.GTM_ID || '').trim() || 'GTM-T7QG7KB';
 // EN is an editorial copy, closed from search (machine translation in the index is a scaled-content risk):
 // always noindex, and no hreflang pairs pointing at it (README §9, agents/seo-ja.md §7).
 const closed = noindex || !indexing || !isIndexedLang(lang);
@@ -17,6 +20,9 @@ const closed = noindex || !indexing || !isIndexedLang(lang);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {gtmId && (
+      <script is:inline set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',${JSON.stringify(gtmId)});`}></script>
+    )}
     <title>{title}</title>
     <meta name="description" content={description} />
     {closed && <meta name="robots" content="noindex, nofollow" />}
@@ -32,6 +38,14 @@ const closed = noindex || !indexing || !isIndexedLang(lang);
     <slot name="head" />
   </head>
   <body>
+    {gtmId && (
+      <noscript>
+        <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      </noscript>
+    )}
     <slot />
+    <script>
+      import '../scripts/analytics';
+    </script>
   </body>
 </html>

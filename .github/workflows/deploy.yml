@@ -22,6 +22,8 @@ jobs:
       - name: Type check
         run: npm exec -w astro -- astro check
       - name: Build (production)
+        env:
+          GTM_ID: ${{ vars.GTM_ID }}
         run: npm run build:prod
       - name: Deploy
         env:

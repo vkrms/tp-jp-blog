@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",
+    "@snowplow/browser-tracker": "^4.10.3",
     "astro": "^7.4.11",
     "typescript": "^6.0.3"
   },
