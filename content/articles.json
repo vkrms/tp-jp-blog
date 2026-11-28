@@ -1990,7 +1990,8 @@
   "sources": [],
   "related": [
    "sales-calendar",
-   "travel-demand"
+   "travel-demand",
+   "ai-travel-planning"
   ],
   "updated_at": "2026-11-09",
   "update_log": [
@@ -2216,7 +2217,8 @@
   ],
   "related": [
    "earn-or-not",
-   "travel-blog-income"
+   "travel-blog-income",
+   "ai-travel-planning"
   ],
   "updated_at": "2026-11-09",
   "update_log": [
@@ -4841,5 +4843,454 @@
   ],
   "review_status": "draft",
   "icon": "chart-line"
+ },
+ {
+  "slug": "ai-travel-planning",
+  "category": "seo",
+  "level": 1,
+  "read_minutes": 7,
+  "keyword": "AI 旅行 計画",
+  "title": {
+   "ja": "AIで旅行計画：58%が価格検索、ブログの役割は？",
+   "en": "AI in travel planning: 58% use it for prices, what role for blogs?"
+  },
+  "eyebrow": {
+   "ja": "AI 旅行 計画",
+   "en": "AI travel planning"
+  },
+  "answer_first": {
+   "ja": "2026年のWTMレポートによると、旅行者の**58%がAIで価格検索・比較**、53%がAIで行き先の提案を受けたいと考えています。一方で、AIが検索結果に組み込まれると、**通常の検索より2倍以上のクリック率**が生まれるデータもあり、旅行ブログは「AIに見つけてもらう」ことが急務です。",
+   "en": "According to the 2026 WTM report, **58% of travellers want to use AI for price search and comparison**, and 53% want AI-generated destination suggestions. Meanwhile, data shows that when AI features are embedded in search results, they generate **more than twice the click-through rate** of regular search, making it urgent for travel blogs to be discovered by AI."
+  },
+  "sections": [
+   {
+    "h": [
+     "旅行者はAIをどう使っている？ WTM 2026のデータ",
+     "How are travellers using AI? Data from WTM 2026"
+    ],
+    "b": [
+     {
+      "p": [
+       "[WTM Global Travel Report 2026](https://www.travelvoice.jp/20261106-160802)（2026年11月発表）は、185以上の国と地域をカバーした調査レポートです。このレポートによると、旅行者のAI活用は3つの分野で進んでいます。",
+       "The [WTM Global Travel Report 2026](https://www.travelvoice.jp/20261106-160802) (published November 2026) is a survey covering 185+ countries and regions. According to the report, travellers are adopting AI in three main areas."
+      ]
+     },
+     {
+      "table": [
+       [
+        [
+         "活用分野",
+         "Area"
+        ],
+        [
+         "割合",
+         "Share"
+        ],
+        [
+         "出典",
+         "Source"
+        ]
+       ],
+       [
+        [
+         "価格検索・比較",
+         "Price search/comparison"
+        ],
+        [
+         "58%",
+         "58%"
+        ],
+        [
+         "WTM 2026",
+         "WTM 2026"
+        ]
+       ],
+       [
+        [
+         "行き先・ルートの提案",
+         "Destination/route suggestions"
+        ],
+        [
+         "53%",
+         "53%"
+        ],
+        [
+         "WTM 2026",
+         "WTM 2026"
+        ]
+       ],
+       [
+        [
+         "予約の完了",
+         "Completing bookings"
+        ],
+        [
+         "36%",
+         "36%"
+        ],
+        [
+         "WTM 2026",
+         "WTM 2026"
+        ]
+       ]
+      ]
+     },
+     {
+      "p": [
+       "最も高いのは**価格検索・比較**で58%です。多くの旅行者が、AIに「いつ、どこへ行けば安いか」を聞いています。",
+       "The highest share is **price search and comparison** at 58%. Many travellers are asking AI \"when and where can I go cheaply?\""
+      ]
+     },
+     {
+      "p": [
+       "次に多いのは**行き先・ルートの提案**で53%です。AIに「おすすめの場所」や「効率の良いルート」を尋ねる使い方が広がっています。",
+       "The second highest is **destination and route suggestions** at 53%. More travellers are asking AI for \"recommended places\" or \"efficient routes\"."
+      ]
+     },
+     {
+      "p": [
+       "**予約の完了**をAIに任せてもよいと考える人は36%です。まだ多数派ではありませんが、3人に1人以上がAIによる自動予約を受け入れる姿勢を見せています。",
+       "**Completing bookings** with AI is acceptable to 36%. This is not yet the majority, but more than one in three are open to AI-automated booking."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "「AIに見つけてもらう」ことが旅行事業者の優先課題",
+     "\"Being discovered by AI\" is now a priority for travel businesses"
+    ],
+    "b": [
+     {
+      "p": [
+       "[WTMレポート](https://www.travelvoice.jp/20261106-160802)は、旅行先や旅行サービスの提供者に対して、次のように述べています。",
+       "The [WTM report](https://www.travelvoice.jp/20261106-160802) states the following for travel destinations and service providers:"
+      ]
+     },
+     {
+      "p": [
+       "レポートは次のように述べています：「AIに見つけてもらえるようにすることが、喫緊の優先事項である」",
+       "The report states: \"Becoming discoverable by AI systems is an urgent priority\""
+      ]
+     },
+     {
+      "p": [
+       "これは、検索エンジン最適化（SEO）だけでは足りない時代に入ったことを意味します。旅行者がAIに質問し、AIが答えを選ぶ流れでは、**AIの情報源に含まれていなければ、紹介されません**。",
+       "This means the era when search engine optimisation (SEO) alone was enough is ending. In a flow where travellers ask AI and AI selects the answer, **if you are not in the AI's sources, you will not be recommended**."
+      ]
+     },
+     {
+      "p": [
+       "旅行ブログを書いている人にとっても、同じことが言えます。AIが参照するデータに自分のブログが含まれるかどうかが、これからの読者数を左右します。",
+       "The same applies to travel bloggers. Whether your blog is included in the data AI refers to will determine your reader numbers going forward."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "AI検索のクリック率は通常検索の2倍以上：Cyrus Shepardの実験",
+     "AI search CTR is more than double regular search: Cyrus Shepard's experiment"
+    ],
+    "b": [
+     {
+      "p": [
+       "では、AIが検索結果に組み込まれると、どれくらいのクリックが生まれるのでしょうか。",
+       "So how many clicks are generated when AI is embedded in search results?"
+      ]
+     },
+     {
+      "p": [
+       "SEOコンサルタントのCyrus Shepard氏は、2026年に28日間のオプトアウト実験を行いました。[鈴木謙一氏のブログ](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/)（2026年11月6日）によると、次のような結果が出ています。",
+       "SEO consultant Cyrus Shepard conducted a 28-day opt-out experiment in 2026. According to [Kenichi Suzuki's blog](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/) (6 November 2026), the results were as follows:"
+      ]
+     },
+     {
+      "table": [
+       [
+        [
+         "指標",
+         "Metric"
+        ],
+        [
+         "値",
+         "Value"
+        ]
+       ],
+       [
+        [
+         "AI機能（AI Overviews/AI Mode）のCTR",
+         "AI features (AI Overviews/AI Mode) CTR"
+        ],
+        [
+         "約0.9%（0.7〜1.1%）",
+         "~0.9% (0.7–1.1%)"
+        ]
+       ],
+       [
+        [
+         "サイト全体の通常検索CTR",
+         "Overall regular search CTR"
+        ],
+        [
+         "約0.4%",
+         "~0.4%"
+        ]
+       ],
+       [
+        [
+         "AIの表示回数シェア",
+         "AI impression share"
+        ],
+        [
+         "約10%",
+         "~10%"
+        ]
+       ],
+       [
+        [
+         "AIからの直接クリックシェア",
+         "Direct AI click share"
+        ],
+        [
+         "約21%",
+         "~21%"
+        ]
+       ]
+      ]
+     },
+     {
+      "p": [
+       "AI機能のCTRは約0.9%で、通常検索の約0.4%の**2倍以上**です。表示回数はサイト全体の10%ですが、クリック数では21%を占めています。",
+       "The CTR for AI features is around 0.9%, **more than double** the regular search rate of around 0.4%. AI impressions account for 10% of the total, but 21% of clicks."
+      ]
+     },
+     {
+      "h3": [
+       "「ハロー効果」：AI要約に載ると、通常の検索結果も改善",
+       "\"Halo effect\": appearing in AI summaries also improves regular search results"
+      ]
+     },
+     {
+      "p": [
+       "さらに興味深いのは、**ハロー効果**と呼ばれる現象です。[鈴木氏のブログ](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/)によると、AI要約に含まれたコンテンツは、同じページの通常の検索結果でも約2.3%CTRが向上しました。",
+       "Even more interesting is the phenomenon called the **halo effect**. According to [Suzuki's blog](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/), content that appeared in AI summaries also improved CTR in regular search results for the same page by around 2.3%."
+      ]
+     },
+     {
+      "p": [
+       "これは、AIが紹介したことで読者が「信頼できる情報源」として記憶し、検索結果でも選びやすくなったと考えられます。",
+       "This suggests that being featured by AI makes readers remember the source as \"trustworthy\" and more likely to select it in regular search results too."
+      ]
+     },
+     {
+      "p": [
+       "つまり、AI検索への最適化は、**通常の検索経由の訪問者も増やす**可能性があります。",
+       "In other words, optimising for AI search may also **increase visitors from regular search**."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "旅行ブログは何をすればいいか",
+     "What should travel blogs do?"
+    ],
+    "b": [
+     {
+      "p": [
+       "これらのデータを踏まえると、旅行ブログの書き手がすべきことは次の3つです。",
+       "Based on this data, travel bloggers should do three things:"
+      ]
+     },
+     {
+      "h3": [
+       "1. 事実とデータを明記する",
+       "1. State facts and data clearly"
+      ]
+     },
+     {
+      "p": [
+       "AIは、あいまいな表現よりも、**具体的な情報**を優先します。「おすすめの時期」ではなく「2026年10月のJNTOデータによると、日本人出国者数は127万人」のように、出典と数字を明記します。",
+       "AI prioritises **specific information** over vague expressions. Instead of \"recommended season\", write \"According to JNTO data for October 2026, Japanese outbound travellers numbered 1.27 million\", citing the source and numbers."
+      ]
+     },
+     {
+      "h3": [
+       "2. 読者の質問に答える構造にする",
+       "2. Structure content to answer reader questions"
+      ]
+     },
+     {
+      "p": [
+       "AIは、「どこへ行けば安いか」「いつがおすすめか」といった質問に対する**明確な答え**を探しています。記事の冒頭で結論を示し、その後に理由や詳細を書く「結論ファースト」の構造が有効です。",
+       "AI looks for **clear answers** to questions like \"where can I go cheaply?\" or \"when is best?\". A \"conclusion-first\" structure that states the answer at the top and then explains the reasons and details works well."
+      ]
+     },
+     {
+      "h3": [
+       "3. 情報源を明示する",
+       "3. Cite your sources"
+      ]
+     },
+     {
+      "p": [
+       "AIが信頼する情報は、**出典が明確**なものです。旅行記事では、JNTOの月次データ、航空会社の公式セール情報、観光庁の調査など、公式な情報源へのリンクを記事内に置きます。",
+       "AI trusts information with **clear sources**. In travel articles, include links to official sources such as JNTO monthly data, airline official sale information, or tourism agency surveys within your content."
+      ]
+     },
+     {
+      "p": [
+       "たとえば、「価格検索にAIを使いたい人は58%（[WTM 2026](https://www.travelvoice.jp/20261106-160802)）」のように、数字と出典をセットで示します。",
+       "For example, write \"58% want to use AI for price search ([WTM 2026](https://www.travelvoice.jp/20261106-160802))\", pairing the number with the source."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "AIは旅行ブログの敵ではなく、流通の窓口",
+     "AI is not the enemy of travel blogs, it's a distribution channel"
+    ],
+    "b": [
+     {
+      "p": [
+       "「AIが答えを出すなら、ブログは読まれなくなる」と考える人もいます。しかし、[Cyrus Shepardの実験](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/)が示すように、AI要約に含まれたページは、**むしろクリックが増えています**。",
+       "Some think \"if AI gives the answer, blogs won't be read\". But as [Cyrus Shepard's experiment](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/) shows, pages included in AI summaries actually **get more clicks**."
+      ]
+     },
+     {
+      "p": [
+       "これは、AIが「要約」を出しても、読者は「詳しい内容」や「別の視点」を求めて元のページを訪れるからです。",
+       "This is because even when AI provides a \"summary\", readers visit the original page seeking \"detailed content\" or \"alternative perspectives\"."
+      ]
+     },
+     {
+      "p": [
+       "旅行ブログの強みは、**個人の経験、写真、失敗談、現地の雰囲気**など、AIが要約しきれない情報にあります。AIに見つけてもらい、そこから自分のページに来てもらう流れを作ることが、これからの旅行ブログの役割です。",
+       "The strength of travel blogs lies in **personal experience, photos, failure stories, and local atmosphere**—information AI cannot fully summarise. The role of travel blogs going forward is to be discovered by AI and then draw readers to your own page."
+      ]
+     }
+    ]
+   },
+   {
+    "h": [
+     "旅行ブロガーがTravelpayoutsを使う理由",
+     "Why travel bloggers use Travelpayouts"
+    ],
+    "b": [
+     {
+      "p": [
+       "AIに見つけてもらう記事を書き、読者が増えたら、次のステップは**収益化**です。",
+       "Once you write content that AI can discover and your readership grows, the next step is **monetisation**."
+      ]
+     },
+     {
+      "p": [
+       "Travelpayoutsは、航空券、ホテル、レンタカーなど**11の旅行ジャンル**のプログラムを1つの場所にまとめたプラットフォームです。複数のASPに登録しなくても、旅行に必要なプログラムがそろいます。",
+       "Travelpayouts is a platform that brings together programmes in **11 travel verticals**—flights, hotels, car rental and more—in one place. You get all the travel programmes you need without registering with multiple ASPs."
+      ]
+     },
+     {
+      "p": [
+       "報酬の支払いは毎月20日まで、最低額は10ドルから。サポートは24時間体制で、平均26分で返信があります。登録は3ステップで5〜7分で完了します。",
+       "Payouts are made by the 20th of each month, with a minimum of $10. Support is available 24/7, with an average response time of 26 minutes. Registration takes three steps and 5–7 minutes to complete."
+      ]
+     },
+     {
+      "p": [
+       "AIに見つけてもらう記事を書き、読者の役に立つ情報を出し、そこから報酬を得る。この3つを両立できるのが、旅行ブログの強みです。",
+       "Writing content discovered by AI, providing useful information to readers, and earning rewards from it. Travel blogs can do all three."
+      ]
+     }
+    ]
+   }
+  ],
+  "faq": [
+   {
+    "q": [
+     "AIで旅行計画をすると、ブログは読まれなくなりますか？",
+     "If AI does travel planning, will blogs stop being read?"
+    ],
+    "a": [
+     "むしろ逆です。[Cyrus Shepardの実験](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/)では、AI要約に含まれたページのクリック率は、通常検索の2倍以上でした。AIは要約を出しますが、読者は詳細や別の視点を求めて元のページを訪れます。",
+     "The opposite is true. In [Cyrus Shepard's experiment](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/), pages included in AI summaries had more than double the click-through rate of regular search. AI provides a summary, but readers visit the original page seeking details or alternative perspectives."
+    ]
+   },
+   {
+    "q": [
+     "旅行ブログでAIに見つけてもらうには、何を書けばいいですか？",
+     "What should a travel blog write to be discovered by AI?"
+    ],
+    "a": [
+     "具体的な事実とデータを明記することが最も大切です。「おすすめの時期」ではなく「2026年10月のJNTOデータによると出国者数は127万人」のように、出典と数字をセットで示します。記事の冒頭で結論を述べ、情報源へのリンクを置く構造が有効です。",
+     "The most important thing is to state specific facts and data. Instead of \"recommended season\", write \"According to JNTO data for October 2026, outbound travellers numbered 1.27 million\", pairing the source with the numbers. A structure that states the conclusion at the top and includes links to sources works well."
+    ]
+   },
+   {
+    "q": [
+     "WTMレポートの「AIに見つけてもらう」とは、どういう意味ですか？",
+     "What does the WTM report mean by \"being discovered by AI\"?"
+    ],
+    "a": [
+     "[WTMレポート](https://www.travelvoice.jp/20261106-160802)は、旅行者の半数以上がAIを使って行き先や価格を調べる時代では、AIの情報源に含まれていないと紹介されないと述べています。検索エンジン最適化だけでなく、AIが参照するデータに自分のブログが含まれることが重要です。",
+     "The [WTM report](https://www.travelvoice.jp/20261106-160802) states that in an era where more than half of travellers use AI to research destinations and prices, if you are not in the AI's sources, you will not be recommended. It's important not just for search engine optimisation, but also for your blog to be included in the data AI refers to."
+    ]
+   },
+   {
+    "q": [
+     "AIに最適化すると、SEOの順位は下がりますか？",
+     "If I optimise for AI, will my SEO rankings drop?"
+    ],
+    "a": [
+     "下がりません。[鈴木謙一氏のブログ](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/)によると、AI要約に含まれたページは、通常の検索結果でもCTRが約2.3%向上する「ハロー効果」が確認されています。AIに最適化することは、SEOにもプラスに働きます。",
+     "They won't drop. According to [Kenichi Suzuki's blog](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/), pages included in AI summaries also showed a \"halo effect\" where CTR in regular search results improved by around 2.3%. Optimising for AI also benefits SEO."
+    ]
+   }
+  ],
+  "matome": [
+   [
+    "旅行者の58%がAIで価格検索、53%がAIで行き先の提案を受けたいと考えている（[WTM 2026](https://www.travelvoice.jp/20261106-160802)、2026年11月）。旅行ブログは「AIに見つけてもらう」ことが優先課題。",
+    "58% of travellers want to use AI for price search and 53% want AI-generated destination suggestions ([WTM 2026](https://www.travelvoice.jp/20261106-160802), November 2026). Being discovered by AI is now a priority for travel blogs."
+   ],
+   [
+    "AI検索のクリック率は通常検索の2倍以上（[Cyrus Shepard実験](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/)、2026年11月）。AI要約に含まれると、通常の検索結果でも約2.3%CTRが向上する「ハロー効果」がある。",
+    "AI search CTR is more than double regular search ([Cyrus Shepard experiment](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/), November 2026). Appearing in AI summaries also brings a \"halo effect\" improving regular search CTR by around 2.3%."
+   ],
+   [
+    "旅行ブログがすべきことは、事実とデータを明記し、読者の質問に答える構造で書き、情報源を明示すること。AIは旅行ブログの敵ではなく、読者を連れてくる流通の窓口。",
+    "Travel blogs should state facts and data clearly, structure content to answer reader questions, and cite sources. AI is not the enemy of travel blogs, it's a distribution channel that brings readers."
+   ]
+  ],
+  "sources": [
+   "tvwtm",
+   "suzctr"
+  ],
+  "related": [
+   "ai-seo",
+   "travel-blog-income"
+  ],
+  "image_brief": {
+   "biome": "city",
+   "gender": "woman",
+   "device": "phone",
+   "action": "checking flight prices on a travel planning app"
+  },
+  "updated_at": "2026-11-26",
+  "update_log": [
+   {
+    "date": "2026-11-26",
+    "public": {
+     "ja": "初版を公開",
+     "en": "First published"
+    },
+    "internal_note": {
+     "ja": "初版を作成。WTM Global Travel Report 2026（TravelVoice 2026-11-06）とCyrus Shepardの28日実験（鈴木謙一ブログ 2026-11-06）をもとに、旅行者のAI活用データ（価格検索58%、行き先提案53%、予約完了36%）とAI検索のCTR（通常検索の2倍以上、ハロー効果+2.3%）を記載。旅行ブログが「AIに見つけてもらう」ための3つの方法（事実とデータ明記、結論ファースト、情報源明示）を解説。Travelpayoutsの11 travel verticals、支払い条件、サポート体制を記載（TP Messagingsから）。",
+     "en": "First version. Based on WTM Global Travel Report 2026 (TravelVoice 2026-11-06) and Cyrus Shepard's 28-day experiment (Kenichi Suzuki blog 2026-11-06), covers traveller AI adoption data (price search 58%, destination suggestions 53%, completing bookings 36%) and AI search CTR (more than double regular search, halo effect +2.3%). Explains three methods for travel blogs to be discovered by AI (state facts and data, conclusion-first, cite sources). Includes Travelpayouts' 11 travel verticals, payout terms, and support structure (from TP Messagings)."
+    }
+   }
+  ],
+  "review_status": "draft",
+  "icon": "robot"
  }
 ]
