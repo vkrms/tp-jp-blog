@@ -1,5 +1,6 @@
 import { holdReasons as numberHoldReasons } from './verify-numbers.mjs';
 import { holdReasons as topicHoldReasons } from './check-topics.mjs';
+import { holdReasons as tpHoldReasons } from './check-travelpayouts.mjs';
 
 // Решение о публикации результата агента — код, а не модель (docs/launch-plan.md, «Guardrails»).
 // Чистые функции без git и файлов: их проверяют тесты (tools/agent-gate.test.mjs), CLI — tools/agent-gate.mjs.
@@ -12,17 +13,6 @@ export const ALLOWED_FILES = [
   'content/queue.json',
   'content/glossary.json',
 ];
-
-/** Предложения публичного текста статьи, где упоминается Travelpayouts (title, answer_first, sections, faq, matome). */
-export function tpSentences(article) {
-  const strings = [];
-  const walk = (v) => { if (typeof v === 'string') strings.push(v); else if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') Object.values(v).forEach(walk); };
-  walk([article.title, article.eyebrow, article.answer_first, article.sections, article.faq, article.matome]);
-  return strings
-    .flatMap((t) => t.split(/(?<=[。．！？!?])|(?<=\.)\s+/))
-    .map((t) => t.trim())
-    .filter((t) => /travelpayouts|トラベルペイアウツ/i.test(t));
-}
 
 /** Минимальный разбор content/policy.yaml: только нужные ключи (без YAML-зависимостей). */
 export function parsePolicy(yaml) {
@@ -68,7 +58,7 @@ export function preCheck({ task, policy, articles, queue = null, now = new Date(
  *   reject — нарушение границ (чужие файлы, удаление статей, ошибки валидатора): PR не открывать;
  *   empty  — агент ничего не изменил.
  */
-export function postCheck({ task, slug, policy, baseArticles, newArticles, changedFiles, untrackedFiles = [], validatorOk, report, numberCheck = null, topicCheck = null, now = new Date() }) {
+export function postCheck({ task, slug, policy, baseArticles, newArticles, changedFiles, untrackedFiles = [], validatorOk, report, numberCheck = null, topicCheck = null, tpCheck = null, now = new Date() }) {
   const reject = [], hold = [], notes = [];
   // Новые неотслеживаемые файлы вне content/ — черновики агента (скрипты и т. п.): не коммитятся, только отмечаем.
   const scratch = untrackedFiles.filter((f) => !ALLOWED_FILES.includes(f) && !f.startsWith('agent-out/'));
@@ -114,13 +104,8 @@ export function postCheck({ task, slug, policy, baseArticles, newArticles, chang
     }
   }
 
-  // О Travelpayouts — только утверждённые формулировки (agents/rules.md): любое новое предложение с Travelpayouts
-  // в публичном тексте проверяет человек по TP Messagings.
-  const knownTp = new Set(baseArticles.flatMap(tpSentences));
-  for (const s of [...added, ...changed]) {
-    const fresh = tpSentences(next.get(s)).filter((t) => !knownTp.has(t));
-    if (fresh.length) hold.push(`${s}: новые утверждения о Travelpayouts — сверить с TP Messagings: «${fresh[0].slice(0, 90)}»${fresh.length > 1 ? ` (+${fresh.length - 1})` : ''}`);
-  }
+  // О Travelpayouts — проверка по одобренным фактам (tools/check-travelpayouts.mjs), не по дословному совпадению.
+  hold.push(...tpHoldReasons(tpCheck));
 
   // Автосверка изменённых цифр с источниками (tools/verify-numbers.mjs): расхождение — PR ждёт человека.
   hold.push(...numberHoldReasons(numberCheck));
