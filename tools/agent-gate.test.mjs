@@ -12,6 +12,11 @@ const okReport = { title: 't', needs_human: false, injection_suspected: false };
 const run = (over) => postCheck({ task: 'updater', policy, baseArticles: real, newArticles: real, changedFiles: ['content/articles.json'],
   validatorOk: true, report: okReport, now: NOW, ...over });
 const article = (slug, date) => ({ ...clone(real[0]), slug, updated_at: date, update_log: [{ date, public: { ja: '初版を公開', en: 'First published' } }] });
+// Weekly-cap tests need a baseline with a KNOWN number of articles published in the 7 days before NOW — the real
+// corpus keeps growing (every merge adds another dated article) and would otherwise silently eat into the cap.
+// Real articles published well before that window make a safe, stable base for those specific assertions.
+const firstPublished = (a) => a.update_log?.[0]?.date ?? a.updated_at;
+const stable = real.filter((a) => firstPublished(a) < '2026-11-20');
 
 test('policy.yaml is parsed', () => {
   assert.equal(policy.publish_mode, 'auto');
@@ -51,11 +56,11 @@ test('forbidden files, validator errors and deleted articles are rejected', () =
 });
 
 test('writer: one new article per run, weekly cap holds', () => {
-  const one = [...real, article('new-one', '2026-11-26')];
-  assert.equal(run({ task: 'writer', newArticles: one }).decision, 'merge');
+  const one = [...stable, article('new-one', '2026-11-26')];
+  assert.equal(run({ task: 'writer', baseArticles: stable, newArticles: one }).decision, 'merge');
   const two = [...one, article('new-two', '2026-11-26')];
-  assert.equal(run({ task: 'writer', newArticles: two }).decision, 'reject');
-  const base = [...real, article('a', '2026-11-23'), article('b', '2026-11-24')];
+  assert.equal(run({ task: 'writer', baseArticles: stable, newArticles: two }).decision, 'reject');
+  const base = [...stable, article('a', '2026-11-23'), article('b', '2026-11-24')];
   assert.equal(run({ task: 'writer', baseArticles: base, newArticles: [...base, article('c', '2026-11-26')] }).decision, 'hold');
 });
 
@@ -133,10 +138,10 @@ test('a new article without sources holds', () => {
 test('writer is skipped (no model run) when no topic is approved and discovery is off', () => {
   const off = { ...policy, topic_discovery: false };
   const proposed = [{ keyword: 'a', status: 'proposed' }, { keyword: 'b', status: 'idea' }];
-  assert.equal(preCheck({ task: 'writer', policy: off, articles: real, queue: proposed, now: NOW }).run, false);
-  assert.equal(preCheck({ task: 'writer', policy: off, articles: real, queue: [...proposed, { keyword: 'c', status: 'ready' }], now: NOW }).run, true);
-  assert.equal(preCheck({ task: 'writer', policy: { ...policy, topic_discovery: true }, articles: real, queue: proposed, now: NOW }).run, true);
-  assert.equal(preCheck({ task: 'updater', policy: off, articles: real, queue: proposed, now: NOW }).run, true);
+  assert.equal(preCheck({ task: 'writer', policy: off, articles: stable, queue: proposed, now: NOW }).run, false);
+  assert.equal(preCheck({ task: 'writer', policy: off, articles: stable, queue: [...proposed, { keyword: 'c', status: 'ready' }], now: NOW }).run, true);
+  assert.equal(preCheck({ task: 'writer', policy: { ...policy, topic_discovery: true }, articles: stable, queue: proposed, now: NOW }).run, true);
+  assert.equal(preCheck({ task: 'updater', policy: off, articles: stable, queue: proposed, now: NOW }).run, true);
 });
 
 test('slug "en" is reserved', () => {

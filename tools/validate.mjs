@@ -8,20 +8,52 @@ const rules = read('rules.json');
 const figureManifest = JSON.parse(fs.readFileSync(new URL('../tools/figures/templates.json', import.meta.url), 'utf8'));
 const BLOCK_KEYS = new Set(['p', 'h3', 'img', 'figure', 'table', 'steps', 'list', 'say', 'point', 'warn', 'diff']);
 const srcIds = new Set(sources.map(s => s.id));
+// Форма блоков (docs/spec-stage1.md §3.2, astro/src/data/content.ts): модель иногда придумывает правдоподобную,
+// но неверную форму (faq как {q,a} вместо [q,a], table как список строк вместо {head,rows}) — такое не ломает
+// JSON и проходило мимо старых проверок (только «один ключ, тип известен»), а потом ломало сборку сайта.
+const isText = v => (Array.isArray(v) && v.length === 2) || (v && typeof v === 'object' && !Array.isArray(v) && typeof v.ja === 'string' && typeof v.en === 'string');
+const isTextArray = v => Array.isArray(v) && v.every(isText);
+const isTextPair = v => Array.isArray(v) && v.length === 2 && isText(v[0]) && isText(v[1]);
 const errors = [], warns = [];
 const text = a => JSON.stringify([a.title, a.answer_first, a.sections, a.faq, a.matome]);
 for (const a of articles) {
   const e = m => errors.push(`${a.slug}: ${m}`), w = m => warns.push(`${a.slug}: ${m}`);
   for (const f of rules.required_fields) if (a[f] == null || (Array.isArray(a[f]) && !a[f].length && f !== 'sources')) e(`нет поля ${f}`);
-  // Блоки (docs/spec-stage1.md §3.2): один ключ, известный тип; фигуры — по реестру шаблонов (docs/figures.md).
+  for (const f of ['title', 'eyebrow', 'answer_first']) if (a[f] != null && !isText(a[f])) e(`${f}: нужен текст на обоих языках (ja и en)`);
+  if (!Array.isArray(a.faq) || !a.faq.every(isTextPair)) e('faq: каждый элемент должен быть парой [вопрос, ответ], оба — текст на обоих языках');
+  if (!Array.isArray(a.matome) || !a.matome.every(isText)) e('matome: каждый пункт должен быть текстом на обоих языках');
+  // Блоки (docs/spec-stage1.md §3.2): один ключ, известный тип, и форма значения соответствует типу;
+  // фигуры — по реестру шаблонов (docs/figures.md).
   const dataFigures = [];
-  for (const s of a.sections || []) for (const b of s.b || []) {
-    const keys = Object.keys(b || {});
-    if (keys.length !== 1) { e(`блок должен иметь один ключ, а их ${keys.length}${keys.length ? ` (${keys.join(', ')})` : ''}`); continue; }
-    if (!BLOCK_KEYS.has(keys[0])) e(`неизвестный тип блока «${keys[0]}»`);
-    if (b.figure) {
-      for (const m of validateFigure(b.figure, figureManifest)) e(m);
-      dataFigures.push(b.figure);
+  for (const s of a.sections || []) {
+    if (s.h != null && !isText(s.h)) e('sections[].h: нужен текст на обоих языках (ja и en)');
+    for (const b of s.b || []) {
+      const keys = Object.keys(b || {});
+      if (keys.length !== 1) { e(`блок должен иметь один ключ, а их ${keys.length}${keys.length ? ` (${keys.join(', ')})` : ''}`); continue; }
+      const type = keys[0];
+      if (!BLOCK_KEYS.has(type)) { e(`неизвестный тип блока «${type}»`); continue; }
+      if (['p', 'h3', 'say'].includes(type) && !isText(b[type])) e(`${type}: нужен текст на обоих языках (ja и en)`);
+      if (['steps', 'list'].includes(type) && !isTextArray(b[type])) e(`${type}: нужен список текстов, каждый на обоих языках`);
+      if (['point', 'warn', 'diff'].includes(type) && !isTextPair(b[type])) e(`${type}: нужна пара [текст, текст], каждый на обоих языках — не объект`);
+      if (type === 'img') {
+        const img = b.img;
+        if (!img || Array.isArray(img) || typeof img.src !== 'string' || !img.src || !isText(img.alt) || !isText(img.caption)) {
+          e('img: нужен объект {src (строка), alt, caption (текст на обоих языках)}');
+        }
+      }
+      if (type === 'table') {
+        const t = b.table;
+        if (!t || Array.isArray(t) || !Array.isArray(t.head) || !Array.isArray(t.rows)) {
+          e('table: нужен объект {head, rows} — не список строк таблицы');
+        } else {
+          if (!t.head.every(isText)) e('table.head: каждая ячейка — текст на обоих языках');
+          if (!t.rows.every(row => Array.isArray(row) && row.every(isText))) e('table.rows: каждая ячейка — текст на обоих языках');
+        }
+      }
+      if (b.figure) {
+        for (const m of validateFigure(b.figure, figureManifest)) e(m);
+        dataFigures.push(b.figure);
+      }
     }
   }
   if (dataFigures.length) {

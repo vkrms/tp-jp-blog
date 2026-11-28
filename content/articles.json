@@ -4876,8 +4876,8 @@
       ]
      },
      {
-      "table": [
-       [
+      "table": {
+       "head": [
         [
          "活用分野",
          "Area"
@@ -4891,49 +4891,51 @@
          "Source"
         ]
        ],
-       [
+       "rows": [
         [
-         "価格検索・比較",
-         "Price search/comparison"
+         [
+          "価格検索・比較",
+          "Price search/comparison"
+         ],
+         [
+          "58%",
+          "58%"
+         ],
+         [
+          "WTM 2026",
+          "WTM 2026"
+         ]
         ],
         [
-         "58%",
-         "58%"
+         [
+          "行き先・ルートの提案",
+          "Destination/route suggestions"
+         ],
+         [
+          "53%",
+          "53%"
+         ],
+         [
+          "WTM 2026",
+          "WTM 2026"
+         ]
         ],
         [
-         "WTM 2026",
-         "WTM 2026"
-        ]
-       ],
-       [
-        [
-         "行き先・ルートの提案",
-         "Destination/route suggestions"
-        ],
-        [
-         "53%",
-         "53%"
-        ],
-        [
-         "WTM 2026",
-         "WTM 2026"
-        ]
-       ],
-       [
-        [
-         "予約の完了",
-         "Completing bookings"
-        ],
-        [
-         "36%",
-         "36%"
-        ],
-        [
-         "WTM 2026",
-         "WTM 2026"
+         [
+          "予約の完了",
+          "Completing bookings"
+         ],
+         [
+          "36%",
+          "36%"
+         ],
+         [
+          "WTM 2026",
+          "WTM 2026"
+         ]
         ]
        ]
-      ]
+      }
      },
      {
       "p": [
@@ -5006,8 +5008,8 @@
       ]
      },
      {
-      "table": [
-       [
+      "table": {
+       "head": [
         [
          "指標",
          "Metric"
@@ -5017,47 +5019,49 @@
          "Value"
         ]
        ],
-       [
+       "rows": [
         [
-         "AI機能（AI Overviews/AI Mode）のCTR",
-         "AI features (AI Overviews/AI Mode) CTR"
+         [
+          "AI機能（AI Overviews/AI Mode）のCTR",
+          "AI features (AI Overviews/AI Mode) CTR"
+         ],
+         [
+          "約0.9%（0.7〜1.1%）",
+          "~0.9% (0.7–1.1%)"
+         ]
         ],
         [
-         "約0.9%（0.7〜1.1%）",
-         "~0.9% (0.7–1.1%)"
-        ]
-       ],
-       [
-        [
-         "サイト全体の通常検索CTR",
-         "Overall regular search CTR"
+         [
+          "サイト全体の通常検索CTR",
+          "Overall regular search CTR"
+         ],
+         [
+          "約0.4%",
+          "~0.4%"
+         ]
         ],
         [
-         "約0.4%",
-         "~0.4%"
-        ]
-       ],
-       [
-        [
-         "AIの表示回数シェア",
-         "AI impression share"
+         [
+          "AIの表示回数シェア",
+          "AI impression share"
+         ],
+         [
+          "約10%",
+          "~10%"
+         ]
         ],
         [
-         "約10%",
-         "~10%"
-        ]
-       ],
-       [
-        [
-         "AIからの直接クリックシェア",
-         "Direct AI click share"
-        ],
-        [
-         "約21%",
-         "~21%"
+         [
+          "AIからの直接クリックシェア",
+          "Direct AI click share"
+         ],
+         [
+          "約21%",
+          "~21%"
+         ]
         ]
        ]
-      ]
+      }
      },
      {
       "p": [
@@ -5207,46 +5211,46 @@
    }
   ],
   "faq": [
-   {
-    "q": [
+   [
+    [
      "AIで旅行計画をすると、ブログは読まれなくなりますか？",
      "If AI does travel planning, will blogs stop being read?"
     ],
-    "a": [
+    [
      "むしろ逆です。[Cyrus Shepardの実験](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/)では、AI要約に含まれたページのクリック率は、通常検索の2倍以上でした。AIは要約を出しますが、読者は詳細や別の視点を求めて元のページを訪れます。",
      "The opposite is true. In [Cyrus Shepard's experiment](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/), pages included in AI summaries had more than double the click-through rate of regular search. AI provides a summary, but readers visit the original page seeking details or alternative perspectives."
     ]
-   },
-   {
-    "q": [
+   ],
+   [
+    [
      "旅行ブログでAIに見つけてもらうには、何を書けばいいですか？",
      "What should a travel blog write to be discovered by AI?"
     ],
-    "a": [
+    [
      "具体的な事実とデータを明記することが最も大切です。「おすすめの時期」ではなく「2026年10月のJNTOデータによると出国者数は127万人」のように、出典と数字をセットで示します。記事の冒頭で結論を述べ、情報源へのリンクを置く構造が有効です。",
      "The most important thing is to state specific facts and data. Instead of \"recommended season\", write \"According to JNTO data for October 2026, outbound travellers numbered 1.27 million\", pairing the source with the numbers. A structure that states the conclusion at the top and includes links to sources works well."
     ]
-   },
-   {
-    "q": [
+   ],
+   [
+    [
      "WTMレポートの「AIに見つけてもらう」とは、どういう意味ですか？",
      "What does the WTM report mean by \"being discovered by AI\"?"
     ],
-    "a": [
+    [
      "[WTMレポート](https://www.travelvoice.jp/20261106-160802)は、旅行者の半数以上がAIを使って行き先や価格を調べる時代では、AIの情報源に含まれていないと紹介されないと述べています。検索エンジン最適化だけでなく、AIが参照するデータに自分のブログが含まれることが重要です。",
      "The [WTM report](https://www.travelvoice.jp/20261106-160802) states that in an era where more than half of travellers use AI to research destinations and prices, if you are not in the AI's sources, you will not be recommended. It's important not just for search engine optimisation, but also for your blog to be included in the data AI refers to."
     ]
-   },
-   {
-    "q": [
+   ],
+   [
+    [
      "AIに最適化すると、SEOの順位は下がりますか？",
      "If I optimise for AI, will my SEO rankings drop?"
     ],
-    "a": [
+    [
      "下がりません。[鈴木謙一氏のブログ](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/)によると、AI要約に含まれたページは、通常の検索結果でもCTRが約2.3%向上する「ハロー効果」が確認されています。AIに最適化することは、SEOにもプラスに働きます。",
      "They won't drop. According to [Kenichi Suzuki's blog](https://www.suzukikenichi.com/blog/ctr-for-ai-overviews-and-ai-mode-estimated-at-more-than-double-the-site-wide-search-ctr-in-a-28-day-opt-out-experiment/), pages included in AI summaries also showed a \"halo effect\" where CTR in regular search results improved by around 2.3%. Optimising for AI also benefits SEO."
     ]
-   }
+   ]
   ],
   "matome": [
    [
