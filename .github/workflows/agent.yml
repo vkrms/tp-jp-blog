@@ -61,7 +61,7 @@ jobs:
 
       - name: Repair JSON quotes
         if: steps.pre.outputs.run == 'true'
-        run: node tools/repair-json.mjs || echo "::warning::JSON still broken after repair; the gate will reject"
+        run: node tools/repair-json.mjs --base "$(git rev-parse HEAD)" || echo "::warning::JSON still broken after repair; the gate will reject"
 
       - name: Verify changed figures against sources
         if: steps.pre.outputs.run == 'true'
